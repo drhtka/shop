@@ -8,23 +8,23 @@
     <!-- Bootstrap  -->
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
     <!-- CSS  -->
-    <link href="{% static "shop_app/css/base.css" %}" rel="stylesheet">
+    {% comment %}<link href="{% static "shop_app/css/base.css" %}" rel="stylesheet">{% endcomment %}
 
 </head>
 <body>
 {% block navbar %}
             <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-        <a class="navbar-brand" href="#">Главная</a>
-        <a class="navbar-brand" href="#">Категории</a>
-        <a class="navbar-brand" href="#">Товары</a>
-        <a class="navbar-brand" href="#">Контакты</a>
-        <a class="navbar-brand" href="#">Галерея</a>
+        <a class="navbar-brand" href="http://127.0.0.1:8000/main/">Главная</a>
+        <a class="navbar-brand" href="http://127.0.0.1:8000/main/category/">Категории</a>
+        <a class="navbar-brand" href="http://127.0.0.1:8000/main/goods/">Товары</a>
+        <a class="navbar-brand" href="http://127.0.0.1:8000/main/contacts/">Контакты</a>
+        <a class="navbar-brand" href="http://127.0.0.1:8000/main/gallery/">Галерея</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<!--            <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="#"> Категории <span class="sr-only">(current)</span></a>
@@ -35,7 +35,7 @@
 
             </ul>
 
-        </div>
+        </div>-->
     </nav>
 {% endblock %}
 
@@ -52,9 +52,9 @@
 {% block paginator %}{% endblock %}
 
   <!-- JS  -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  {% comment %}<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="{% static "js/bootstrap.min.js" %}"></script>
-  <script src="{%static "shop_app/js/script.js" %}" rel="stylesheet"></script>
+  <script src="{%static "shop_app/js/script.js" %}" rel="stylesheet"></script>{% endcomment %}
 
 </body>
 </html>
