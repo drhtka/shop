@@ -1,0 +1,23 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static "all_static/css/base.css" %}" rel="stylesheet">
+    <link href="{% static "all_static/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+
+</head>
+<body>
+  <div id="content">
+    {% block content %}
+
+    {% endblock %}
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="{% static "all_static/bootstrap/js/bootstrap.min.js"  %}"></script>
+
+</body>
+</html>

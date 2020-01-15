@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+<title>{% block title %}Категории{% endblock %}</title>
+
+{% block content %}
+{% for cat in category %}
+    <p>{{ cat.0 }}</p> <!-- /.id -->
+    <p><a href="http://127.0.0.1:8000/main/goods?i={{ cat.0 }}">{{ cat.1 }}</a></p><!-- /.catname-->
+    <p>{{ cat.2 }}</p><!-- /.descr -->
+{% endfor %}
+
+{% endblock %}

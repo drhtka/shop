@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+<title>{% block title %}Детали{% endblock %}</title>
+
+ {% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+             <div class="img-thumbnail">
+                <img src="{%static 'img/1.jpg' %}" alt="нет фото" width="450" height="450">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-24">
+              <h4>Детальное описание товара</h4>
+  <p>Здесь можно ознакомиться с характеристиками товара:</p>
+  <table class="table table-responsive">
+    <thead>
+      <tr>
+        <th>Наименование</th>
+        <th>Описание</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Название:</td>
+        <td><small>какое то описание</small></td>
+
+      </tr>
+      <tr>
+        <td>Характеристики:</td>
+        <td><small>какое то описание</small></td>
+      </tr>
+      <tr>
+        <td>Вес:</td>
+        <td><small>какое то описание</small></td>
+      </tr>
+      <tr>
+      <td>Цвет:</td>
+        <td><small>какое то описание</small></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+        </div>
+    </div>
+<input type="button" class="btn btn-success" value="Купить">
+{% endblock %}

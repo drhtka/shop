@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+<title>{% block title %}Товары{% endblock %}</title>
+
+
+
+
+{% block content %}
+{% for goodss in goods %}
+           <div class="row">
+                <div class="col-1">
+                <div class="alert-success">{{ goodss.0 }}
+                    </div><!-- /.id -->
+                </div>
+                <div class="col-2">
+                <div class="alert-success"><a href="http://127.0.0.1:8000/main/show?i={{ goodss.0 }}">{{ goodss.1 }}</a>
+                    </div><!-- /.goodsname-->
+                </div>
+                <div class="col-1">
+                    <div class="alert-success">{{ goodss.2 }}
+                    </div><!-- /.catid -->
+                </div>
+                <div class="col-2">
+                    <div class="alert-success">{{ goodss.3 }}
+                    </div><!-- /.price -->
+                </div>
+               <div class="col-2">
+                    <div class="alert-success">{{ goodss.4 }}
+                    </div><!-- /.img -->
+                </div>
+               <div class="col-2">
+                    <div class="alert-success">{{ goodss.5 }}
+                    </div><!-- /.desc-->
+                </div>
+           </div>
+
+{% endfor %}
+{% endblock %}
+
+{% block paginator %}
+        <nav aria-label="...">
+  <ul class="pagination">
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item active">
+      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
+{% endblock %}
+

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+<title>{% block title %}Контакты{% endblock %}</title>
+
+{% block content %}
+
+<h1>Contacts</h1>
+
+{% for mob in mobile_records %}
+    <p>{{ mob.1 }}</p>{% comment %}ver dj 1*** [] в 2***{% endcomment %}
+    <p>{{ mob.2 }}</p>
+{% endfor %}
+{% endblock %}
+
