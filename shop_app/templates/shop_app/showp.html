@@ -7,44 +7,62 @@
     <div class="row">
         <div class="col-md-8">
              <div class="img-thumbnail">
-                <img src="{%static 'img/1.jpg' %}" alt="нет фото" width="450" height="450">
+                <img src="{% static "media/img/no_image_app_content.jpg" %}" alt="нет фото" width="450" height="450">
             </div>
         </div>
     </div>
-    <div class="row">
+
         <div class="col-md-24">
               <h4>Детальное описание товара</h4>
   <p>Здесь можно ознакомиться с характеристиками товара:</p>
-  <table class="table table-responsive">
-    <thead>
-      <tr>
-        <th>Наименование</th>
-        <th>Описание</th>
 
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Название:</td>
-        <td><small>какое то описание</small></td>
-
-      </tr>
-      <tr>
-        <td>Характеристики:</td>
-        <td><small>какое то описание</small></td>
-      </tr>
-      <tr>
-        <td>Вес:</td>
-        <td><small>какое то описание</small></td>
-      </tr>
-      <tr>
-      <td>Цвет:</td>
-        <td><small>какое то описание</small></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+           </div>
         </div>
-    </div>
-<input type="button" class="btn btn-success" value="Купить">
+
+   {% comment %}{{ MEDIA_URL }}{{ no_image_app_content.image }}
+   <table class="table table-responsive">
+            <thead>
+              <tr>
+                <th>Наименование</th>
+                <th>Описание</th>
+              </tr>
+            </thead>
+          </table>{% endcomment %}
+      {% for sh in show %}
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-lg-1">
+                  <div class="alert-success">{{ sh.0 }}
+                  </div><!-- /.id -->
+              </div>
+
+          <div class="col-lg-3">
+                <div class="alert-success">{{ sh.1 }}
+                </div><!-- /.goodsname-->
+          </div>
+           <div class="col-1">
+                    <div class="alert-success">{{ sh.2 }}
+                    </div><!-- /.catid -->
+                </div>
+            <div class="col-2">
+                    <div class="alert-success">{{ sh.3 }}
+                    </div><!-- /.price -->
+                </div>
+               <div class="col-2">
+                   <div class="alert-success">{{ sh.4 }}
+                    </div><!-- /.img -->
+                </div>
+               <div class="col-3">
+                   <div class="alert-success">{{ sh.5 }}
+                    </div><!-- /.desc-->
+               </div>
+
+      </div><!---->
+          </div> <!/.container-fluid---->
+      {% endfor %}
+            <div class="col-auto">
+                <input type="button" class="btn btn-success" value="Купить">
+            </div>
+
+
 {% endblock %}

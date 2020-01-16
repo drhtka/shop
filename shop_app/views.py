@@ -35,9 +35,9 @@ def goods(request):
     cursor = connection.cursor()
     if request.GET.get('i'):
         idcat = request.GET.get('i', default=None)
-        postgreSQL_select_Query = "select * from goods where catid = " + idcat + " ORDER BY id DESC"
+        postgreSQL_select_Query = "select * from goods where catid = " + idcat + " ORDER BY id ASC"
     else:
-        postgreSQL_select_Query = "select * from goods ORDER BY id DESC"
+        postgreSQL_select_Query = "select * from goods ORDER BY id ASC"
     print(postgreSQL_select_Query)
 
     cursor.execute(postgreSQL_select_Query)
@@ -64,5 +64,29 @@ def gallery(request):
     return render(request, 'shop_app/gallery.html')
 
 def show(request):
+#    idgoods = request.GET.get('i', default=None)
+    connection = psycopg2.connect(user="shopuser",
+                                  password="shop_pos0701",
+                                  host="127.0.0.1",
+                                  port="5432",
+                                  database="shop_pos")
 
-    return render(request, 'shop_app/showp.html')
+
+    if request.GET.get('i'):
+        idgoods = request.GET.get('i', default=None)
+        postgreSQL_select_Query = "select * from goods where id = " + idgoods + " ORDER BY id ASC"
+    else:
+        postgreSQL_select_Query = "select * from goods ORDER BY id ASC"
+
+    cursor = connection.cursor()
+    cursor.execute(postgreSQL_select_Query)
+    show = cursor.fetchall()
+
+
+    return render(request, 'shop_app/showp.html', context={'show': show})
+
+#"""#    postgreSQL_select_Query = "select * from goods where idgoods = " + idgoods + " ORDER BY id ASC"
+#    postgreSQL_select_Query = "select * from goods ORDER BY id ASC" #where id = 1
+#   postgreSQL_select_Query = "select * from goods where catid = " + idcat + " ORDER BY id ASC
+
+#    show = cursor.fetchone()""""

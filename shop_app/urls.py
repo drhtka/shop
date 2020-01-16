@@ -15,3 +15,4 @@ urlpatterns = [
     path('category/', views.category),
     path('show/', views.show),
 ]
+#+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
