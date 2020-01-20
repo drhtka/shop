@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-8">
              <div class="img-thumbnail">
-                <img src="{% static "media/img/no_image_app_content.jpg" %}" alt="нет фото" width="450" height="450">
+                <img src="{% static "media/img/no_image_app_content.jpg" %}" alt="нет фото" width="150" height="150">
             </div>
         </div>
     </div>
@@ -59,10 +59,12 @@
 
       </div><!---->
           </div> <!/.container-fluid---->
-      {% endfor %}
             <div class="col-auto">
-                <input type="button" class="btn btn-success" value="Купить">
+                <a class="navbar-brand" href="http://127.0.0.1:8000/main/shop_billing?i={{ sh.0 }}&name={{ sh.1 }}&price={{ sh.2 }}"><input type="button" class="btn btn-success"  value="Купить "></a>
             </div>
+      {% endfor %}
+
 
 
 {% endblock %}
+{% comment %}{{ sh.3 }}{% endcomment %}

@@ -1,6 +1,7 @@
+<!DOCTYPE html>
 {% load staticfiles %}
 
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +9,7 @@
     <!-- Bootstrap  -->
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
     <!-- CSS  -->
-    <link href="{% static "shop_app/css/base.css" %}" rel="stylesheet">{% comment %}{% endcomment %}
+    {% comment %}<link href="{% static "shop_app/css/base.css" %}" rel="stylesheet">{% endcomment %}
 
 </head>
 <body>
@@ -19,6 +20,7 @@
         <a class="navbar-brand" href="http://127.0.0.1:8000/main/goods/">Товары</a>
         <a class="navbar-brand" href="http://127.0.0.1:8000/main/contacts/">Контакты</a>
         <a class="navbar-brand" href="http://127.0.0.1:8000/main/gallery/">Галерея</a>
+        <a class="navbar-brand" href="http://127.0.0.1:8000/main/shop_billing/">Корзина</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -52,9 +54,15 @@
 {% block paginator %}{% endblock %}
 
   <!-- JS  -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="{% static "js/bootstrap.min.js" %}"></script>
-  <script src="{%static "shop_app/js/script.js" %}" rel="stylesheet"></script>{% comment %}{% endcomment %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+      {% comment %}
+      $(document).ready(function () {
+
+});
+<script src="{% static "shop_app/js/script.js" %}" rel="stylesheet"></script>
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+{% endcomment %}
 
 </body>
 </html>

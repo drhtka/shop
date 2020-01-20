@@ -38,12 +38,11 @@ def goods(request):
         postgreSQL_select_Query = "select * from goods where catid = " + idcat + " ORDER BY id ASC"
     else:
         postgreSQL_select_Query = "select * from goods ORDER BY id ASC"
-    print(postgreSQL_select_Query)
+    #print(postgreSQL_select_Query)
 
     cursor.execute(postgreSQL_select_Query)
     goods = cursor.fetchall()
-    print(goods)
-
+    #print(goods)
     return render(request, 'shop_app/goods.html', context={'goods': goods})
 
 def category(request):
@@ -54,10 +53,8 @@ def category(request):
                                   database="shop_pos")
     cursor = connection.cursor()
     postgreSQL_select_Query = "select * from category"
-
     cursor.execute(postgreSQL_select_Query)
     category = cursor.fetchall()
-
     return render(request, 'shop_app/category.html', context={'category': category})
 
 def gallery(request):
@@ -71,22 +68,34 @@ def show(request):
                                   port="5432",
                                   database="shop_pos")
 
-
     if request.GET.get('i'):
         idgoods = request.GET.get('i', default=None)
         postgreSQL_select_Query = "select * from goods where id = " + idgoods + " ORDER BY id ASC"
     else:
         postgreSQL_select_Query = "select * from goods ORDER BY id ASC"
-
     cursor = connection.cursor()
     cursor.execute(postgreSQL_select_Query)
     show = cursor.fetchall()
-
-
     return render(request, 'shop_app/showp.html', context={'show': show})
 
-#"""#    postgreSQL_select_Query = "select * from goods where idgoods = " + idgoods + " ORDER BY id ASC"
-#    postgreSQL_select_Query = "select * from goods ORDER BY id ASC" #where id = 1
-#   postgreSQL_select_Query = "select * from goods where catid = " + idcat + " ORDER BY id ASC
+def shop_billing(request):
+    #id_shop_billing = request.POST.get('i', default=None)
+    connection = psycopg2.connect(user="shopuser",
+                                  password="shop_pos0701",
+                                  host="127.0.0.1",
+                                  port="5432",
+                                  database="shop_pos")
 
-#    show = cursor.fetchone()""""
+    id_shop_billing = request.GET.get('i', default=None)
+    name = request.GET.get('name', default=None)
+    price = request.GET.get('price', default=None)
+    postgreSQL_select_Query = "INSERT INTO shop_billing (name, sum) VALUES ('" + name + "', '" + price + "')"
+    print(postgreSQL_select_Query)
+    cursor = connection.cursor()
+    cursor.execute(postgreSQL_select_Query)
+    connection.commit()
+
+
+
+    return render(request, 'shop_app/shop_billing.html',)
+
