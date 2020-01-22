@@ -89,13 +89,42 @@ def shop_billing(request):
     id_shop_billing = request.GET.get('i', default=None)
     name = request.GET.get('name', default=None)
     price = request.GET.get('price', default=None)
+    img = request.GET.get('img', default=None)
+    #img = str(img)
+    print(type(img))
     postgreSQL_select_Query = "INSERT INTO shop_billing (name, sum) VALUES ('" + name + "', '" + price + "')"
     print(postgreSQL_select_Query)
     cursor = connection.cursor()
     cursor.execute(postgreSQL_select_Query)
     connection.commit()
 
+    postgreSQL_select_Query = "SELECT * FROM shop_billing ORDER BY id DESC LIMIT 1"# INSERT INTO shop_order (bill_id, tovar_name, price)
+    cursor = connection.cursor()
+    cursor.execute(postgreSQL_select_Query)
+    show = cursor.fetchone()
+    print(show[0])
+    find_id = str(show[0])
+    print(type(find_id))
+    postgreSQL_select_Query_2 = "INSERT INTO shop_orders (bill_id, price, tovar_name, img) VALUES (" + find_id + ", '" + price + "', '" + name + "', '" + img + "')"
+    print(postgreSQL_select_Query_2)
+
+    cursor = connection.cursor()
+    cursor.execute(postgreSQL_select_Query_2)
+    connection.commit()
+
+    return render(request, 'shop_app/shop_billing.html', )
+
+#    find_id = int(find_id)
+#    postgreSQL_select_Query_1 = "INSERT INTO shop_orders (bill_id, tovar_name, price, img) VALUES (" + find_id + ", '" + name + "', '" + price + "', '" + img + "')"
+#    print(postgreSQL_select_Query_1)
+# sission внести имя name
+    #return render(request, 'shop_app/shop_billing.html',)
 
 
-    return render(request, 'shop_app/shop_billing.html',)
 
+
+
+ #   id_shop_billing = request.GET.get('i', default=None)
+ #   name = request.GET.get('name', default=None)
+ #   price = request.GET.get('price', default=None)
+ #   postgreSQL_select_Query = "INSERT INTO shop_orders (bill_id, tovar_name, price) VALUES ('" + name + "', '" + sum + "')"
