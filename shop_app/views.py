@@ -111,13 +111,21 @@ def shop_billing(request):
     cursor = connection.cursor()
     cursor.execute(postgreSQL_select_Query_2)
     connection.commit()
+    # sission внести имя name
+    #request.session.modified = True
+    request.session['name'] = name
 
-    return render(request, 'shop_app/shop_billing.html', )
+    #name2 = request.session.get('name')
+    #request.session['price']= price
+    #name3 = request.session.get('price')
+
+    #print(request.session['name']), 'name3': name3
+    return render(request, 'shop_app/shop_billing.html', {'name': name})
 
 #    find_id = int(find_id)
 #    postgreSQL_select_Query_1 = "INSERT INTO shop_orders (bill_id, tovar_name, price, img) VALUES (" + find_id + ", '" + name + "', '" + price + "', '" + img + "')"
 #    print(postgreSQL_select_Query_1)
-# sission внести имя name
+
     #return render(request, 'shop_app/shop_billing.html',)
 
 

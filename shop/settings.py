@@ -140,6 +140,8 @@ STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 
 )
+#https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-SESSION_ENGINE
+SESSION_ENGINE = 'django.contrib.sessions.backends.file'
 
 """
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
