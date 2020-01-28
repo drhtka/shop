@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 import psycopg2
 from django.http import HttpResponse
+from django.template import loader, Context
 
 
 def index(request):
@@ -111,28 +112,18 @@ def shop_billing(request):
     cursor = connection.cursor()
     cursor.execute(postgreSQL_select_Query_2)
     connection.commit()
-    # sission внести имя name
-    #request.session.modified = True
-    request.session['name'] = name
 
-    #name2 = request.session.get('name')
-    #request.session['price']= price
-    #name3 = request.session.get('price')
+    request.session.get('my_list')
+    if len(request.session['my_list']) > 0:
+        request.session['my_list'].append([name, price, img])
+    else:
+        request.session['my_list'] = []
+        request.session['my_list'].append([name, price, img])
 
-    #print(request.session['name']), 'name3': name3
-    return render(request, 'shop_app/shop_billing.html', {'name': name})
-
-#    find_id = int(find_id)
-#    postgreSQL_select_Query_1 = "INSERT INTO shop_orders (bill_id, tovar_name, price, img) VALUES (" + find_id + ", '" + name + "', '" + price + "', '" + img + "')"
-#    print(postgreSQL_select_Query_1)
-
-    #return render(request, 'shop_app/shop_billing.html',)
+    request.session.modified = True
+    print(request.session['my_list'])
+    return render(request, 'shop_app/shop_billing.html', context={'name': name, 'price': price, 'img': img, 'cart_seshion': request.session['my_list']})
 
 
 
 
-
- #   id_shop_billing = request.GET.get('i', default=None)
- #   name = request.GET.get('name', default=None)
- #   price = request.GET.get('price', default=None)
- #   postgreSQL_select_Query = "INSERT INTO shop_orders (bill_id, tovar_name, price) VALUES ('" + name + "', '" + sum + "')"

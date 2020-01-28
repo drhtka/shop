@@ -5,12 +5,16 @@
  {% block content %}
 
 <h1>Спасибо за покупку!</h1>
-     name:{{ name }}<br>
-     price:{{ name3 }}
+     {% for shop_bill in cart_seshion %}
+     name:{{ shop_bill.0 }}
+     price:{{ shop_bill.1 }}
+     photo: {{ shop_bill.2 }}<br>
+     {% endfor %}
+
 {% comment %}{% for shop_bill in shop_billing %}
     <p>{{ shop_bill.0 }}</p> <!-- /.id -->
 <p>{{ shop_bill.1 }}</p> <!-- /.name -->
     <p>{{ shop_bill.3 }}</p> <!-- /.price-->
-{% endfor %}{% endcomment %}
+{% endfor %} {{ sessionlist }}{% endcomment %}
 {% endblock %}
 

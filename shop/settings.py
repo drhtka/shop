@@ -142,6 +142,8 @@ STATICFILES_FINDERS = (
 )
 #https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-SESSION_ENGINE
 SESSION_ENGINE = 'django.contrib.sessions.backends.file'
+#https://developer.mozilla.org/ru/docs/Learn/Server-side/Django/%D0%A1%D0%B5%D1%81%D1%81%D0%B8%D0%B8
+SESSION_SAVE_EVERY_REQUEST = True
 
 """
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
