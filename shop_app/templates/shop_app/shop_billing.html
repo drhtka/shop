@@ -1,15 +1,21 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-<title>{% block title %}Корзина{% endblock %}</title>
 
+
+<title>{% block title %}Корзина{% endblock %}</title>
  {% block content %}
 
-<h1>Спасибо за покупку!</h1>
+<h1>Выбранные товары</h1>
      {% for shop_bill in cart_seshion %}
-     name:{{ shop_bill.0 }}
-     price:{{ shop_bill.1 }}
-     photo: {{ shop_bill.2 }}<br>
+         Название товара: <a{{ shop_bill.0 }}></a><form action="/main/dell_goods" method="get"><button value="{{ shop_bill.0 }}" name="id" class="btn btn-danger">Удалить</button></form>
+     Цена: {{ shop_bill.1 }}
+     Изображение: {{ shop_bill.2 }}<br>
      {% endfor %}
+
+
+            <div class="col-auto">
+                <a class="navbar-brand" href="http://127.0.0.1:8000/main/final_order?i={{ sh.0 }}&name={{ sh.1 }}&price={{ sh.3 }}&img={{ sh.4 }}"><input type="button" class="btn btn-success"  value="Подтвердить "></a>
+            </div>
 
 {% comment %}{% for shop_bill in shop_billing %}
     <p>{{ shop_bill.0 }}</p> <!-- /.id -->
