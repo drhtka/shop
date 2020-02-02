@@ -66,7 +66,7 @@ def gallery(request):
 
 def show(request):
     # детальное описание товара
-#    idgoods = request.GET.get('i', default=None)
+    #idgoods = request.GET.get('i', default=None)
     connection = psycopg2.connect(user="shopuser",
                                   password="shop_pos0701",
                                   host="127.0.0.1",
@@ -84,7 +84,7 @@ def show(request):
     return render(request, 'shop_app/showp.html', context={'show': show})
 
 def shop_billing(request):
-    # выбираем товар и отправляем в корзину
+    #выбираем товар и отправляем в корзину
     #id_shop_billing = request.POST.get('i', default=None)
     connection = psycopg2.connect(user="shopuser",
                                   password="shop_pos0701",
@@ -104,7 +104,7 @@ def shop_billing(request):
     cursor.execute(postgreSQL_select_Query)
     connection.commit()
 
-    postgreSQL_select_Query = "SELECT * FROM shop_billing ORDER BY id DESC LIMIT 1"# INSERT INTO shop_order (bill_id, tovar_name, price)
+    postgreSQL_select_Query = "SELECT * FROM shop_billing ORDER BY id DESC LIMIT 1"
     cursor = connection.cursor()
     cursor.execute(postgreSQL_select_Query)
     show = cursor.fetchone()
@@ -130,7 +130,7 @@ def shop_billing(request):
 
 
 def finalOrder(request):
-    # товары в корзине
+    #товары в корзине
     connection = psycopg2.connect(user="shopuser",
                                   password="shop_pos0701",
                                   host="127.0.0.1",
@@ -156,30 +156,35 @@ def finalOrder(request):
         cursor.execute(postgreSQL_select_Query_3)
         connection.commit()
     request.session['my_list'] = []
-    #del request.session['my_list']
 
     return render(request, 'shop_app/show.html')
 
 
 def dell_goods(request):
-    #удалить товар из корзины
+    #удалить товар(ы) из корзины
     name_dell = request.GET.get('id', default=None)
     print(name_dell)
     i = 0
-    for dell_godd in request.session['my_list']:
-        if name_dell == dell_godd[0]:
+    for dell_good in request.session['my_list']:
+        if name_dell == dell_good[0]:
             del request.session['my_list'][i]
             break
         else:
             i += 1
 
 
+    connection = psycopg2.connect(user="shopuser",
+                                  password="shop_pos0701",
+                                  host="127.0.0.1",
+                                  port="5432",
+                                  database="shop_pos")
+
+    postgreSQL_select_Query = "delete from shop_orders where id = [i]"
+    print(postgreSQL_select_Query)
+    cursor = connection.cursor()
+    cursor.execute(postgreSQL_select_Query)
+    connection.commit()
     print(request.session['my_list'])
 
     return render(request, 'shop_app/del_goods.html')
 
-
-
-# print("INSERT INTO shop_orders (tovar_name, price, img, bill_id) VALUES ('" + my_price + "', '" + my_name + "', '" + my_img + "', " + find_id + " )")
-# find_id = str(id_shop_billing)
-# #final_order = cursor.fetchall()
