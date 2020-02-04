@@ -117,12 +117,13 @@ def shop_billing(request):
     cursor = connection.cursor()
     cursor.execute(postgreSQL_select_Query_2)
     connection.commit()
+    #request.session['my_list'] = []# clear sission
     request.session.get('my_list')
     if len(request.session['my_list']) > 0:
-        request.session['my_list'].append([name, price, img])
+        request.session['my_list'].append([name, price, img, find_id])
     else:
         request.session['my_list'] = []
-        request.session['my_list'].append([name, price, img])
+        request.session['my_list'].append([name, price, img, find_id])
 
     request.session.modified = True
     print(request.session['my_list'])
@@ -157,7 +158,8 @@ def finalOrder(request):
         connection.commit()
     request.session['my_list'] = []
 
-    return render(request, 'shop_app/show.html')
+    #return render(request, 'shop_app/show.html')
+    return render(request, 'shop_app/shop_final.html')
 
 
 def dell_goods(request):
@@ -165,21 +167,26 @@ def dell_goods(request):
     name_dell = request.GET.get('id', default=None)
     print(name_dell)
     i = 0
-    for dell_good in request.session['my_list']:
+    session_array = request.session['my_list']
+    for dell_good in session_array:
         if name_dell == dell_good[0]:
-            del request.session['my_list'][i]
+            del session_array[i]
             break
         else:
             i += 1
-
-
+    request.session['my_list'] = session_array
+    print(request.session['my_list'])
+    dell_id = request.session['my_list'][0][3]
+    print(321)
+    print(dell_id)
+    dell_id = str(dell_id)
     connection = psycopg2.connect(user="shopuser",
                                   password="shop_pos0701",
                                   host="127.0.0.1",
                                   port="5432",
                                   database="shop_pos")
 
-    postgreSQL_select_Query = "delete from shop_orders where id = [i]"
+    postgreSQL_select_Query = "delete from shop_orders where tovar_name = '" + name_dell + "' and bill_id  = " + dell_id
     print(postgreSQL_select_Query)
     cursor = connection.cursor()
     cursor.execute(postgreSQL_select_Query)
@@ -188,3 +195,7 @@ def dell_goods(request):
 
     return render(request, 'shop_app/del_goods.html')
 
+def shop_orders(request):
+    session_array = request.session['my_list']
+
+    return render(request, 'shop_app/shop_orders.html', context={'session_array': session_array})

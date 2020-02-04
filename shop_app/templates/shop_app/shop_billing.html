@@ -7,14 +7,14 @@
 
 <h1>Выбранные товары</h1>
      {% for shop_bill in cart_seshion %}
-         Название товара: <a{{ shop_bill.0 }}></a><form action="/main/dell_goods" method="get"><button value="{{ shop_bill.0 }}" name="id" class="btn btn-danger">Удалить</button></form>
+         Название товара: {{ shop_bill.0 }}<a{{ shop_bill.3 }}></a><form action="/main/dell_goods" method="get"><button value="{{ shop_bill.0 }}" name="id" class="btn btn-danger" >Удалить</button></form>
      Цена: {{ shop_bill.1 }}
-     Изображение: {{ shop_bill.2 }}<br>
+     Изображение: {{ shop_bill.2 }}<br><br>
      {% endfor %}
 
 
             <div class="col-auto">
-                <a class="navbar-brand" href="http://127.0.0.1:8000/main/final_order?i={{ sh.0 }}&name={{ sh.1 }}&price={{ sh.3 }}&img={{ sh.4 }}"><input type="button" class="btn btn-success"  value="Подтвердить "></a>
+                <a class="navbar-brand" href="http://127.0.0.1:8000/main/final_order?i={{ sh.0 }}&name={{ sh.1 }}&price={{ sh.3 }}&img={{ sh.4 }}"><input type="button" class="btn btn-success" value="Подтвердить "></a>
             </div>
 
 {% comment %}{% for shop_bill in shop_billing %}

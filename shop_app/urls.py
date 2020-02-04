@@ -17,5 +17,6 @@ urlpatterns = [
     path('shop_billing/', views.shop_billing),
     path('final_order/', views.finalOrder),
     path('dell_goods/', views.dell_goods),
+    path('shop_orders/', views.shop_orders),
 ]
 #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
