@@ -118,14 +118,14 @@ def shop_billing(request):
     else:
         request.session['my_list'] = []
         postgreSQL_select_Query = "INSERT INTO shop_billing (name, sum) VALUES ('" + name + "', '" + price + "')"
-        #вставляыем запись в таблицу shop_billing - эта запись будет номером корзинки 26 min
+        #вставляем запись в таблицу shop_billing - эта запись будет номером корзинки 26 min
         print(postgreSQL_select_Query)
         cursor = connection.cursor()
         cursor.execute(postgreSQL_select_Query)
         connection.commit()
 
         postgreSQL_select_Query = "SELECT * FROM shop_billing ORDER BY id DESC LIMIT 1"
-        # после вставки получаем еномер этй записи (номер корзинки)
+        # после вставки получаем номер этой записи (номер корзинки)
         cursor = connection.cursor()
         cursor.execute(postgreSQL_select_Query)
         show = cursor.fetchone()
@@ -207,7 +207,7 @@ def dell_goods(request):
 
 def shop_orders(request):
     session_array = request.session['my_list']
-
+    print(session_array)
     return render(request, 'shop_app/shop_orders.html', context={'session_array': session_array})
 
 def send_order(request):
@@ -219,16 +219,17 @@ def send_order(request):
                                   database="shop_pos")
 
     search_bill_id = request.session['my_list'][0][3]
-    for final in request.session['my_list']:
+    print('test_searc')
+    print(search_bill_id)
+    for finall in request.session['my_list']:
         #print(123)
-        #print(final)
+        #print(finall)
 
-        my_price = final[1]
-        my_name = final[0]
-        my_img = final[2]
+        my_price = finall[1]
+        my_name = finall[0]
+        my_img = finall[2]
 
-
-    postgreSQL_select_Query = "INSERT INTO shop_orders (tovar_name, price, img, bill_id) VALUES ('" + my_name + "', '" + my_price + "', '" + my_img + "', " +search_bill_id+ " )"
+    postgreSQL_select_Query = "INSERT INTO shop_orders (tovar_name, price, img, bill_id) VALUES ('" + my_name + "', '" + my_price + "', '" + my_img + "', '" + search_bill_id + "' )"
     print(postgreSQL_select_Query)
     cursor = connection.cursor()
     cursor.execute(postgreSQL_select_Query)
