@@ -81,7 +81,19 @@ def show(request):
     cursor = connection.cursor()
     cursor.execute(postgreSQL_select_Query)
     show = cursor.fetchall()
-    return render(request, 'shop_app/showp.html', context={'show': show})
+    print('test_sess')
+    print(request.session['my_list'])
+    print(show[0][1])
+    test_ashow = show[0][1]
+    chek_good = ''
+    if request.session['my_list']:
+        show_get = request.session['my_list']
+        for ts in show_get:
+            if ts[0] == test_ashow:
+                chek_good = 'disabled'
+                break
+
+    return render(request, 'shop_app/showp.html', context={'show': show, 'chek_good': chek_good})
 
 def shop_billing(request):
     #выбираем товар и отправляем в корзину
@@ -98,31 +110,29 @@ def shop_billing(request):
     img = request.GET.get('img', default=None)
     #img = str(img)
     print(type(img))
-    postgreSQL_select_Query = "INSERT INTO shop_billing (name, sum) VALUES ('" + name + "', '" + price + "')"
-    print(postgreSQL_select_Query)
-    cursor = connection.cursor()
-    cursor.execute(postgreSQL_select_Query)
-    connection.commit()
 
-    postgreSQL_select_Query = "SELECT * FROM shop_billing ORDER BY id DESC LIMIT 1"
-    cursor = connection.cursor()
-    cursor.execute(postgreSQL_select_Query)
-    show = cursor.fetchone()
-    print(show[0])
-    find_id = str(show[0])
-    print(type(find_id))
-    postgreSQL_select_Query_2 = "INSERT INTO shop_orders (bill_id, price, tovar_name, img) VALUES (" + find_id + ", '" + price + "', '" + name + "', '" + img + "')"
-    print(postgreSQL_select_Query_2)
-
-    cursor = connection.cursor()
-    cursor.execute(postgreSQL_select_Query_2)
-    connection.commit()
-    #request.session['my_list'] = []# clear sission
-    request.session.get('my_list')
     if len(request.session['my_list']) > 0:
-        request.session['my_list'].append([name, price, img, find_id])
+        print(request.session['my_list'])
+        search_find_id = request.session['my_list'][0][3]
+        request.session['my_list'].append([name, price, img, search_find_id])
     else:
         request.session['my_list'] = []
+        postgreSQL_select_Query = "INSERT INTO shop_billing (name, sum) VALUES ('" + name + "', '" + price + "')"
+        #вставляыем запись в таблицу shop_billing - эта запись будет номером корзинки 26 min
+        print(postgreSQL_select_Query)
+        cursor = connection.cursor()
+        cursor.execute(postgreSQL_select_Query)
+        connection.commit()
+
+        postgreSQL_select_Query = "SELECT * FROM shop_billing ORDER BY id DESC LIMIT 1"
+        # после вставки получаем еномер этй записи (номер корзинки)
+        cursor = connection.cursor()
+        cursor.execute(postgreSQL_select_Query)
+        show = cursor.fetchone()
+        print(show[0])
+        find_id = str(show[0])
+        print(type(find_id))
+
         request.session['my_list'].append([name, price, img, find_id])
 
     request.session.modified = True
@@ -144,8 +154,8 @@ def finalOrder(request):
     img = request.GET.get('img', default=None)
 
     for final in request.session['my_list']:
-        print(123)
-        print(final)
+        #print(123)
+        #print(final)
 
         cursor = connection.cursor()
         my_price = final[1]
@@ -153,7 +163,7 @@ def finalOrder(request):
         my_img = final[2]
 
         postgreSQL_select_Query_3 = "INSERT INTO shop_orders (tovar_name, price, img) VALUES ('" + my_name + "', '" + my_price + "', '" + my_img + "' )"
-        print(postgreSQL_select_Query_3)
+        #print(postgreSQL_select_Query_3)
         cursor.execute(postgreSQL_select_Query_3)
         connection.commit()
     request.session['my_list'] = []
@@ -176,10 +186,10 @@ def dell_goods(request):
             i += 1
     request.session['my_list'] = session_array
     print(request.session['my_list'])
-    dell_id = request.session['my_list'][0][3]
+    dell_id = request.session['my_list'][0][1]
     print(321)
-    print(dell_id)
     dell_id = str(dell_id)
+    print(dell_id)
     connection = psycopg2.connect(user="shopuser",
                                   password="shop_pos0701",
                                   host="127.0.0.1",
@@ -199,3 +209,29 @@ def shop_orders(request):
     session_array = request.session['my_list']
 
     return render(request, 'shop_app/shop_orders.html', context={'session_array': session_array})
+
+def send_order(request):
+    print(request.session['my_list'])
+    connection = psycopg2.connect(user="shopuser",
+                                  password="shop_pos0701",
+                                  host="127.0.0.1",
+                                  port="5432",
+                                  database="shop_pos")
+
+    search_bill_id = request.session['my_list'][0][3]
+    for final in request.session['my_list']:
+        #print(123)
+        #print(final)
+
+        my_price = final[1]
+        my_name = final[0]
+        my_img = final[2]
+
+
+    postgreSQL_select_Query = "INSERT INTO shop_orders (tovar_name, price, img, bill_id) VALUES ('" + my_name + "', '" + my_price + "', '" + my_img + "', " +search_bill_id+ " )"
+    print(postgreSQL_select_Query)
+    cursor = connection.cursor()
+    cursor.execute(postgreSQL_select_Query)
+    connection.commit()
+    request.session['my_list'] = []
+    return render(request, 'shop_app/send_order.html')
