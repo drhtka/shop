@@ -11,17 +11,13 @@
              <div class="col-auto">
                     <div>{{ shop_order.0 }}</div>
                  <form action="/main/dell_goods" method="get">
-                     <button value="{{ shop_order.0 }}" name="id" class="btn btn-outline-danger">Удалить</button>
-                 </form>
+                 <button value="{{ shop_order.0 }}" class="btn btn-outline-danger" name="id">Удалить</button></form>
                  <a href="http://127.0.0.1:8000/main/send_order"><button value="" class="btn btn-outline-success">Купить</button></a>
             </div>
          </div>
      {% endfor %}
 
-
-
-
-{% endblock %}
-
+  <a href="/main/send_order"><button>Oformit zakaz</button></a>
+ {% endblock %}
 {% comment %}<input type="checkbox" name="gender" value="1" />
 {% endcomment %}

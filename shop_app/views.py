@@ -81,9 +81,10 @@ def show(request):
     cursor = connection.cursor()
     cursor.execute(postgreSQL_select_Query)
     show = cursor.fetchall()
-    print('test_sess')
+    #request.session['my_list'] = []
+    #request.session.get('my_list')
     print(request.session['my_list'])
-    print(show[0][1])
+
     test_ashow = show[0][1]
     chek_good = ''
     if request.session['my_list']:
@@ -93,6 +94,7 @@ def show(request):
                 chek_good = 'disabled'
                 break
 
+    print(request.session['my_list'])
     return render(request, 'shop_app/showp.html', context={'show': show, 'chek_good': chek_good})
 
 def shop_billing(request):
@@ -207,6 +209,7 @@ def dell_goods(request):
 
 def shop_orders(request):
     session_array = request.session['my_list']
+    print('test_array')
     print(session_array)
     return render(request, 'shop_app/shop_orders.html', context={'session_array': session_array})
 
@@ -229,10 +232,21 @@ def send_order(request):
         my_name = finall[0]
         my_img = finall[2]
 
-    postgreSQL_select_Query = "INSERT INTO shop_orders (tovar_name, price, img, bill_id) VALUES ('" + my_name + "', '" + my_price + "', '" + my_img + "', '" + search_bill_id + "' )"
-    print(postgreSQL_select_Query)
+        postgreSQL_select_Query = "INSERT INTO shop_orders (tovar_name, price, img, bill_id) VALUES ('" + my_name + "', '" + my_price + "', '" + my_img + "', " + search_bill_id + " )"
+        print(postgreSQL_select_Query)
+        cursor = connection.cursor()
+        cursor.execute(postgreSQL_select_Query)
+        connection.commit()
+
+    my_sql = "select * from shop_orders"
     cursor = connection.cursor()
-    cursor.execute(postgreSQL_select_Query)
-    connection.commit()
+    cursor.execute(my_sql)
+    show = cursor.fetchall()
+    print(show)
     request.session['my_list'] = []
+
     return render(request, 'shop_app/send_order.html')
+
+    #print('test_sess')
+    #print(request.session['my_list'])
+    #print(show[0][1])

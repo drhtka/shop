@@ -4,7 +4,7 @@
 
 <title>{% block title %}Мои заказы{% endblock %}</title>
  {% block content %}
-
+shop billing
 <h1>Выбранные товары</h1>
      {% for shop_bill in cart_seshion %}
          Название товара: {{ shop_bill.0 }}
@@ -16,13 +16,13 @@
          </form><br><br>
      {% endfor %}
 
-
-{% comment %}
+     <a href="/main/send_order"><button>Oformit zakaz</button></a>
 
             <div class="col-auto">
                 <a class="navbar-brand" href="http://127.0.0.1:8000/main/final_order?i={{ sh.0 }}&name={{ sh.1 }}&price={{ sh.3 }}&img={{ sh.4 }}"><input type="button" class="btn btn-success" value="Подтвердить "></a>
             </div>
 
+{% comment %}
 {% for shop_bill in shop_billing %}
     <p>{{ shop_bill.0 }}</p> <!-- /.id -->
 <p>{{ shop_bill.1 }}</p> <!-- /.name -->
