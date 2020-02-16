@@ -180,6 +180,7 @@ def dell_goods(request):
     print(name_dell)
     i = 0
     session_array = request.session['my_list']
+    dell_id = request.session['my_list'][0][1]
     for dell_good in session_array:
         if name_dell == dell_good[0]:
             del session_array[i]
@@ -188,7 +189,6 @@ def dell_goods(request):
             i += 1
     request.session['my_list'] = session_array
     print(request.session['my_list'])
-    dell_id = request.session['my_list'][0][1]
     print(321)
     dell_id = str(dell_id)
     print(dell_id)
@@ -211,9 +211,13 @@ def shop_orders(request):
     session_array = request.session['my_list']
     print('test_array')
     print(session_array)
-    return render(request, 'shop_app/shop_orders.html', context={'session_array': session_array})
+    button_vis = 'un_visible'
+    if len(session_array) > 0:
+        button_vis = 'visible'
+    return render(request, 'shop_app/shop_orders.html', context={'session_array': session_array, 'bbutton_vis': button_vis})
 
 def send_order(request):
+    print('vse_tovari')
     print(request.session['my_list'])
     connection = psycopg2.connect(user="shopuser",
                                   password="shop_pos0701",
@@ -221,28 +225,18 @@ def send_order(request):
                                   port="5432",
                                   database="shop_pos")
 
-    search_bill_id = request.session['my_list'][0][3]
+    search_bill_id = request.session['my_list'][0][3] # в этой строке берем номер нашей корзинки и отправляем в инсерт в таблицу заказов
     print('test_searc')
     print(search_bill_id)
     for finall in request.session['my_list']:
-        #print(123)
-        #print(finall)
-
         my_price = finall[1]
         my_name = finall[0]
         my_img = finall[2]
-
         postgreSQL_select_Query = "INSERT INTO shop_orders (tovar_name, price, img, bill_id) VALUES ('" + my_name + "', '" + my_price + "', '" + my_img + "', " + search_bill_id + " )"
         print(postgreSQL_select_Query)
         cursor = connection.cursor()
         cursor.execute(postgreSQL_select_Query)
         connection.commit()
-
-    my_sql = "select * from shop_orders"
-    cursor = connection.cursor()
-    cursor.execute(my_sql)
-    show = cursor.fetchall()
-    print(show)
     request.session['my_list'] = []
 
     return render(request, 'shop_app/send_order.html')

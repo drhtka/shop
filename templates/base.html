@@ -60,10 +60,12 @@
       $(document).ready(function () {
         <a class="navbar-brand" href="http://127.0.0.1:8000/main/shop_billing/">Мои Заказы</a>
 });
-<script src="{% static "shop_app/js/script.js" %}" rel="stylesheet"></script>
-<script src="{% static "js/bootstrap.min.js" %}"></script>
 
-{% endcomment %}
+
+<script src="{% static "shop_app/js/script.js" %}" rel="stylesheet"></script>
+<script src="{% static "js/bootstrap.min.js" %}"></script>{% endcomment %}
+{% block js %}{% endblock %}
+
 
 </body>
 </html>

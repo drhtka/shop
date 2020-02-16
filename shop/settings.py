@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop_app.apps.ShopAppConfig',
+    'test_url.apps.TestUrlConfig',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +59,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
                 os.path.join(BASE_DIR, 'templates'),
-                os.path.join(BASE_DIR, 'shop_app/templates'),
+                #os.path.join(BASE_DIR, 'shop_app/templates'),
                 ]
         ,
         'APP_DIRS': True,

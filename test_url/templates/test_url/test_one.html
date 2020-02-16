@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+<title>{% block title %}one{% endblock %}</title>тест один
+{% block content %}
+
+    <body>
+        <input type="button" onclick="alert('содержимое')" value="Кнопка">
+    </body>
+{% endblock %}
+
+{% block js %}
+
+    <script>
+
+    </script>
+
+{% endblock %}
+

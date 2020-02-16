@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+<title>{% block title %}one{% endblock %}</title>тест один
+{% block content %}
+
+    <body>
+        <input type="button" onclick="alert('содержимое')" value="Кнопка">
+    </body><br>
+    Вывел id : {{ prod }}<br>
+
+
+<script>
+function myFunction(){
+alert(document.getElementById("myinput").value);
+}
+</script>
+
+<input type="text" value="" id="myinput">
+<button onclick="myFunction()">Вывести</button>
+{% endblock %}

@@ -1,23 +1,29 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-
+<style>.un_visible{ display: none; }</style>
 
 <title>{% block title %}Корзина{% endblock %}</title>
 
  {% block content %}
+
+     <h1>shop orders</h1>
      <div class="alert alert-dark" role="alert">Страница офомления заказа</div>
      {% for shop_order in session_array %}
          <div class="container-fluid">
              <div class="col-auto">
-                    <div>{{ shop_order.0 }}</div>
+                 <div>{{ shop_order.0 }}</div>
+                 <div>{{ shop_order.1 }}</div>
+                 <div>{{ shop_order.2 }}</div>
                  <form action="/main/dell_goods" method="get">
-                 <button value="{{ shop_order.0 }}" class="btn btn-outline-danger" name="id">Удалить</button></form>
-                 <a href="http://127.0.0.1:8000/main/send_order"><button value="" class="btn btn-outline-success">Купить</button></a>
+                    <button value="{{ shop_order.0 }}" name="id" class="btn btn-outline-danger">Удалить</button>
+                 </form>
             </div>
          </div>
      {% endfor %}
+<a href="/main/send_order"><button value="" class="btn btn-outline-success {{ button_vis }}">Купить</button></a>
 
-  <a href="/main/send_order"><button>Oformit zakaz</button></a>
  {% endblock %}
-{% comment %}<input type="checkbox" name="gender" value="1" />
+{% comment %}
+<a href="/main/send_order"><button>Оформить заказ</button></a>
+<input type="checkbox" name="gender" value="1" />
 {% endcomment %}
