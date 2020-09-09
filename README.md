@@ -5,6 +5,7 @@
  - pytz==2019.3
  - sqlparse==0.3.0
  - Query
+ - BD PostgresQL
 
 
 **Install**

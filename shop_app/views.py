@@ -81,13 +81,13 @@ def show(request):
     cursor = connection.cursor()
     cursor.execute(postgreSQL_select_Query)
     show = cursor.fetchall()
+    #request.session['test'] = 123
+    #print(request.session['test'])
     #request.session['my_list'] = []
     #request.session.get('my_list')
-    print(request.session['my_list'])
-
     test_ashow = show[0][1]
     chek_good = ''
-    if request.session['my_list']:
+    if request.session.get('my_list', True):
         show_get = request.session['my_list']
         for ts in show_get:
             if ts[0] == test_ashow:
@@ -244,3 +244,8 @@ def send_order(request):
     #print('test_sess')
     #print(request.session['my_list'])
     #print(show[0][1])
+
+"""    if request.session['my_list'] in locals():
+        print('yes')
+    else:
+        print('no')"""

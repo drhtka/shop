@@ -9,18 +9,21 @@
     <!-- Bootstrap  -->
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
     <!-- CSS  -->
-    {% comment %}<link href="{% static "shop_app/css/base.css" %}" rel="stylesheet">{% endcomment %}
+    {% comment %}<link href="{% static "shop_app/css/base.css" %}" rel="stylesheet">
+    <a class="navbar-brand" href="http://127.0.0.1:8000/main/">Главная</a>
+    <a class="navbar-brand" href="http://127.0.0.1:8000/main/shop_orders/">Корзина</a>
+    {% endcomment %}
 
 </head>
 <body>
 {% block navbar %}
             <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-        <a class="navbar-brand" href="http://127.0.0.1:8000/main/">Главная</a>
-        <a class="navbar-brand" href="http://127.0.0.1:8000/main/category/">Категории</a>
-        <a class="navbar-brand" href="http://127.0.0.1:8000/main/goods/">Товары</a>
-        <a class="navbar-brand" href="http://127.0.0.1:8000/main/contacts/">Контакты</a>
-        <a class="navbar-brand" href="http://127.0.0.1:8000/main/gallery/">Галерея</a>
-        <a class="navbar-brand" href="http://127.0.0.1:8000/main/shop_orders/">Корзина</a>
+        <a class="navbar-brand" href="{% url "index" %}">Главная</a>
+        <a class="navbar-brand" href="{% url "category" %}">Категории</a>
+        <a class="navbar-brand" href="{% url "goods" %}">Товары</a>
+        <a class="navbar-brand" href="{% url "contacts" %}">Контакты</a>
+        <a class="navbar-brand" href="{% url "gallery" %}">Галерея</a>
+        <a class="navbar-brand" href="{% url "shop_orders" %}">Корзина</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

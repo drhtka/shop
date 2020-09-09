@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_js.html" %}
 {% load staticfiles %}
 
 <title>{% block title %}one{% endblock %}</title>тест один
@@ -9,13 +9,10 @@
     </body><br>
     Вывел id : {{ prod }}<br>
 
-
-<script>
-function myFunction(){
-alert(document.getElementById("myinput").value);
-}
-</script>
-
 <input type="text" value="" id="myinput">
 <button onclick="myFunction()">Вывести</button>
+
+{% endblock %}
+{% block js %}
+
 {% endblock %}

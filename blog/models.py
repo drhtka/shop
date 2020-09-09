@@ -22,8 +22,9 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-
 class Comment(models.Model):
     blogpost = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
     comment = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
+
+
