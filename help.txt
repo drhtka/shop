@@ -1,0 +1,88 @@
+              <h2>Hover Rows</h2>
+  <p>The .table-hover class enables a hover state (grey background on mouse over) on table rows:</p>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+      </tr>
+      <tr>
+        <td>Mary</td>
+        <td>Moe</td>
+      </tr>
+      <tr>
+        <td>July</td>
+        <td>Dooley</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% comment %}    <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+    <tr><td class="alert-success">{{ goodss.0 }}</td></tr>
+            <tr><td class="alert-secondary">{{ goodss.1 }}</td></tr>
+
+            <thead>
+            <tr class="active">
+                <th></th>
+                <th>Название</th>
+                <th>Категория</th>
+                <th>Цена</th>
+                <th>Фото</th>
+                <th>Примечание</th>
+            </tr>
+        </thead>
+        <tbody>
+            <td class="alert-success">Number</td><tr><td>{{ goodss.1 }}</td></tr>
+            <tr><td></td></tr>
+            <tr><td>{{ goodss.3 }}</td></tr>
+            <tr><td>{{ goodss.4 }}</td></tr>
+            <tr><td>{{ goodss.5 }}</td></tr>
+            <tr><td>{{ goodss.6 }}</td></tr>  </tbody></div>    </table>
+</div>
+{% endcomment %}
+
+   <!--<tbody>
+      <tr>
+        <td>Название:</td>
+        <td><small></small></td>
+
+      </tr>
+      <tr>
+        <td>Характеристики:</td>
+        <td><small></small></td>
+      </tr>
+      <tr>
+        <td>Вес:</td>
+        <td><small></small></td>
+      </tr>
+      <tr>
+      <td>Цвет:</td>
+        <td><small></small></td>
+      </tr>
+    </tbody>-->
+
+
+
+     """   connection = psycopg2.connect(user="shopuser",
+                                  password="shop_pos0701",
+                                  host="127.0.0.1",
+                                  port="5432",
+                                  database="shop_pos")
+
+    postgreSQL_select_Query = "delete from shop_orders where tovar_name = 'name_dell'"
+    print(postgreSQL_select_Query)
+    cursor = connection.cursor()
+    cursor.execute(postgreSQL_select_Query)
+    connection.commit()
+    print(request.session['my_list'])
+"""

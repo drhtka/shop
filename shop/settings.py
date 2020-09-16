@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Django settings for shop project.
 
@@ -21,12 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'trdyd_sjq7!b$+si6mztzla1sma!jz)267#^q*d%!bx+thottp'
+SECRET_KEY = '9v&*3_@_029tixk300k9uz75m#@p(6(w@&-gm-ed14v*@+5)z2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -39,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop_app.apps.ShopAppConfig',
-    'test_url.apps.TestUrlConfig',
+	'test_url.apps.TestUrlConfig',
     'blog.apps.BlogConfig',
     'rest_framework',
 ]
@@ -59,10 +58,7 @@ ROOT_URLCONF = 'shop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-                os.path.join(BASE_DIR, 'templates'),
-                #os.path.join(BASE_DIR, 'shop_app/templates'),
-                ]
+        'DIRS': [os.path.join(BASE_DIR, 'templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -71,7 +67,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.media',
             ],
         },
     },
@@ -135,7 +130,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "bootstrap"),
-    os.path.join(BASE_DIR, 'shop_app/static')
+    os.path.join(BASE_DIR, 'shop_app/static'),
+    os.path.join(BASE_DIR, 'test_url/static'),
+    os.path.join(BASE_DIR, 'shop_app/static/big_retail'),
 ]
 STATICFILES_FINDERS = (
 
@@ -147,16 +144,3 @@ STATICFILES_FINDERS = (
 SESSION_ENGINE = 'django.contrib.sessions.backends.file'
 #https://developer.mozilla.org/ru/docs/Learn/Server-side/Django/%D0%A1%D0%B5%D1%81%D1%81%D0%B8%D0%B8
 SESSION_SAVE_EVERY_REQUEST = True
-
-"""
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-STATICFILES_DIRS = [
-    #os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, "all_static")
-]
-STATICFILES_FINDERS = (
-
-    "django.contrib.staticfiles.finders.FileSystemFinder",
-    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-
-)"""

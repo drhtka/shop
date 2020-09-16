@@ -28,7 +28,7 @@ from blog.api.serializers import CommentSerializer
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('main/', include('shop_app.urls')),
+    path('', include('shop_app.urls')),
     path('test/', include('test_url.urls')),
     #path('blog/', include('blog.urls')),
     path("api/posts/",
