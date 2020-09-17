@@ -173,7 +173,7 @@ hello
                             </li>
                             <li class="dropdown"><a href="#" class="dropdown-toggle">О нас</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-2"><i class="fa fa-angle-down"></i></span>
                                 <ul role="menu" class="dropdown-menu collapse-2 collapse">
-                                    <li><a href="about-us.html">О компании</a>
+                                    <li><a href="{% url "category" %}">О компании</a>
                                     </li>
                                     <li><a href="services.html">Услуги</a>
                                     </li>
@@ -197,7 +197,7 @@ hello
                             </li>
                             <li class="dropdown"><a href="#" class="dropdown-toggle">Галерея</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-6"><i class="fa fa-angle-down"></i></span>
                                 <ul role="menu" class="dropdown-menu collapse-6 collapse">
-                                    <li><a href="portfolio.html">Портфолио</a>
+                                    <li><a href="{% url "gallery" %}">Фото</a>
                                     </li>
                                     <li><a href="portfolio-single.html">Описание</a>
                                     </li>
@@ -269,10 +269,12 @@ hello
         </div>
     </div>
 </section>
+{% block top-sale %}
 <section id="top-sale" class="top-sale-section">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+
                 <h2 class="section-title">Что мы можем Вам предложить?</h2>
                 <p class="sub-title">Метод изучения рынка индуктивно ускоряет медиабизнес. Сегмент рынка развивает институциональный контент, опираясь на опыт западных коллег.</p>
             </div>
@@ -923,6 +925,9 @@ hello
         </div>
     </div>
 </section>
+
+{% endblock top-sale %}
+
 <section id="footer" class="footer-bg">
     <div class="footer-section">
         <div class="container">
