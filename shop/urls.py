@@ -21,8 +21,8 @@ from django.urls import path, include, re_path
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
-from blog.api import views as api_views
-from blog.api.serializers import CommentSerializer
+#from blog.api import views as api_views
+#from blog.api.serializers import CommentSerializer
 
 
 
@@ -31,14 +31,14 @@ urlpatterns = [
     path('', include('shop_app.urls')),
     path('test/', include('test_url.urls')),
     #path('blog/', include('blog.urls')),
-    path("api/posts/",
-         api_views.PostListView.as_view(),
-         name="api_post_list"),
-    path("api/posts/<pk>",
-         api_views.CommentDetailView.as_view(),
-         name="api_post_detail"),
-    path('api/post-detail/<int:pk>',
-         api_views.PostListUrlView.as_view()),
+    #path("api/posts/",
+    #     api_views.PostListView.as_view(),
+    #     name="api_post_list"),
+    #path("api/posts/<pk>",
+    #     api_views.CommentDetailView.as_view(),
+    #     name="api_post_detail"),
+    #path('api/post-detail/<int:pk>',
+    #     api_views.PostListUrlView.as_view()),
     #re_path("api/my_posts/(?P<title>\D+)/", api_views.PostListUrlView.as_view(), name="api_post_list"),
     #re_path(r'^users/(?P<id>\d+)/(?P<name>\D+)/', views.users),
     #re_path("api/posts/<blogpost>[^/]", api_views.PostListUrlView.as_view(), name="api_post_list"),

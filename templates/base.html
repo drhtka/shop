@@ -61,6 +61,7 @@ hello
         </ul>
     </div>
 </div>
+{% block header %}
 <div class="header-top">
     <div class="container">
         <div class="row">
@@ -125,6 +126,8 @@ hello
         </div>
     </div>
 </div>
+{% endblock header %}
+
 <div id="sticky-section" class="sticky-navigation">
     <nav class="navbar navbar-default menu-bar" role="navigation">
         <div class="container">
@@ -232,6 +235,8 @@ hello
         </div>
     </nav>
 </div>
+
+{% block work-area %}
 <section class="work-area section">
     <div class="container">
         <div class="row">
@@ -269,6 +274,8 @@ hello
         </div>
     </div>
 </section>
+{% endblock work-area %}
+
 {% block top-sale %}
 <section id="top-sale" class="top-sale-section">
     <div class="container">
@@ -764,6 +771,8 @@ hello
         </ul>
     </div>
 </section>
+{% endblock top-sale %}
+{% block brands-section %}
 <section id="brands" class="brands-section section slant-angle">
     <div class="section-inner">
         <div class="container">
@@ -812,6 +821,9 @@ hello
         </div>
     </div>
 </section>
+
+{% endblock brands-section %}
+{% block new-additions %}
 <section id="new-additions" class="new-additions section">
     <div class="container">
         <div class="row">
@@ -925,9 +937,9 @@ hello
         </div>
     </div>
 </section>
+{% endblock new-additions%}
 
-{% endblock top-sale %}
-
+{% block footer %}
 <section id="footer" class="footer-bg">
     <div class="footer-section">
         <div class="container">
@@ -1016,6 +1028,7 @@ hello
         </div>
     </div>
 </section>
+{% endblock footer %}
 <script type="text/javascript" src="{% static "big_retail/js/jquery-1.11.1.min.js" %}" rel="stylesheet"></script>
 <script type="text/javascript" src="{% static "big_retail/js/bootstrap.min.js" %}" rel="stylesheet"></script>
 <script type="text/javascript" src="{% static "big_retail/js/bootstrapValidator.min.js" %}" rel="stylesheet"></script>

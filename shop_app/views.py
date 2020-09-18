@@ -3,11 +3,14 @@ from django.shortcuts import render, render_to_response
 import psycopg2
 from django.http import HttpResponse
 from django.template import loader, Context
-
+from shop_app.models import GoodsModel
 
 def index(request):
     #главная
-    return render(request, 'shop_app/index.html')
+    all_goods = GoodsModel.objects.values_list()
+    print('all_goods')
+    print(all_goods)
+    return render(request, 'shop_app/index.html', {'all_goods': all_goods})
 
 def contacts(request):
     connection = psycopg2.connect(user="shopuser",
