@@ -5,14 +5,14 @@
 {% block work-area %}
 {% endblock work-area %}
 {% block top-sale %}
-    {{ all_goods }}
+
     <h1>Главная</h1>
-    {% for all_goods_s in all_goods %}
+    {% comment %}{% for all_goods_s in all_goods %}
         Айди <p>{{ all_goods_s.0 }}</p>
-        Айди <p>{{ all_goods_s.1 }}</p>
-        Айди <p>{{ all_goods_s.2 }}</p>
-        Айди <p>{{ all_goods_s.3 }}</p>
-    {% endfor %}
+        азвание <p>{{ all_goods_s.1 }}</p>
+        катгория <p>{{ all_goods_s.2 }}</p>
+        Цена <p>{{ all_goods_s.3 }}</p>
+    {% endfor %}{% endcomment %}
     <section id="top-sale" class="top-sale-section">
         <div class="container">
             <div class="row">
@@ -83,412 +83,39 @@
                     </ul>
                 </div>
             </div>
+<!--товары на главной старт   style="padding-left: 255px; height: 500px; overflow: hidden; padding-top: 40px;"-->
+            <div class="cont_goods_image">
+            {% for all_goods_s in all_goods %}
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade in active" id="grid">
                     <div class="row">
-                        <div class="col-md-3 col-sm-3">
+                        <div class="col-md col-sm">
                             <div class="prodect-box">
-                                <div class="photo-block"><a data-rel="prettyPhoto" href="images/prodects/1.jpg" title="Название товара" class="link"><i class="fa fa-plus"></i></a> <img src="images/prodects/1.jpg" alt="item" class="img-responsive">
+                                <div class="photo-block"><a data-rel="prettyPhoto" href="{{ MEDIA_URL }}{{ all_goods_s.4 }}" title="Название товара" class="link"><i class="fa fa-plus"></i></a> <img src="{{ MEDIA_URL }}{{ all_goods_s.4 }}" alt="item" class="img-responsive">
                                 </div>
                                 <div class="prodect-details">
                                     <h4>категория</h4>
-                                    <h3>название товара</h3>
-                                    <h2>999 р.</h2>
+                                    <h3>{{ all_goods_s.1 }}</h3>
+                                    <h2>Цена:{{ all_goods_s.3 }}</h2>
                                     <p class="ratings">
                                         <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
                                     </p>
                                     <div class="row shoping-details">
                                         <div class="col-xs-6"><a href="#" class="add-card-text"><span class="fa fa-shopping-cart"></span>В корзину</a>
                                         </div>
-                                        <div class="col-xs-6"><a href="#" class="show-link">Читать...<span class="fa fa-angle-right right-icon"></span></a>
+                                        <div class="col-xs-6"><a href="{% url "show" %}?i={{ all_goods_s.0 }}" class="show-link">Читать...<span class="fa fa-angle-right right-icon"></span></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-3">
-                            <div class="prodect-box">
-                                <div class="photo-block"><a data-rel="prettyPhoto" href="images/prodects/2.jpg" title="Название товара" class="link"><i class="fa fa-plus"></i></a> <img src="images/prodects/2.jpg" alt="item" class="img-responsive">
-                                </div>
-                                <div class="prodect-details">
-                                    <h4>категория</h4>
-                                    <h3>название товара</h3>
-                                    <h2>999 р.</h2>
-                                    <p class="ratings">
-                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
-                                    </p>
-                                    <div class="row shoping-details">
-                                        <div class="col-xs-6"><a href="#" class="add-card-text"><span class="fa fa-shopping-cart"></span>В корзину</a>
-                                        </div>
-                                        <div class="col-xs-6"><a href="#" class="show-link">Читать...<span class="fa fa-angle-right right-icon"></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-3">
-                            <div class="prodect-box">
-                                <div class="photo-block"><a data-rel="prettyPhoto" href="images/prodects/3.jpg" title="Название товара" class="link"><i class="fa fa-plus"></i></a> <img src="images/prodects/3.jpg" alt="item" class="img-responsive">
-                                </div>
-                                <div class="prodect-details">
-                                    <h4>категория</h4>
-                                    <h3>название товара</h3>
-                                    <h2>999 р.</h2>
-                                    <p class="ratings">
-                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
-                                    </p>
-                                    <div class="row shoping-details">
-                                        <div class="col-xs-6"><a href="#" class="add-card-text"><span class="fa fa-shopping-cart"></span>В корзину</a>
-                                        </div>
-                                        <div class="col-xs-6"><a href="#" class="show-link">Читать...<span class="fa fa-angle-right right-icon"></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-3">
-                            <div class="prodect-box">
-                                <div class="photo-block"><a data-rel="prettyPhoto" href="images/prodects/4.jpg" title="Название товара" class="link"><i class="fa fa-plus"></i></a> <img src="images/prodects/4.jpg" alt="item" class="img-responsive">
-                                </div>
-                                <div class="prodect-details">
-                                    <h4>категория</h4>
-                                    <h3>название товара</h3>
-                                    <h2>999 р.</h2>
-                                    <p class="ratings">
-                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
-                                    </p>
-                                    <div class="row shoping-details">
-                                        <div class="col-xs-6"><a href="#" class="add-card-text"><span class="fa fa-shopping-cart"></span>В корзину</a>
-                                        </div>
-                                        <div class="col-xs-6"><a href="#" class="show-link">Читать...<span class="fa fa-angle-right right-icon"></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 col-sm-3">
-                            <div class="prodect-box">
-                                <div class="photo-block"><a data-rel="prettyPhoto" href="images/prodects/5.jpg" title="Название товара" class="link"><i class="fa fa-plus"></i></a> <img src="images/prodects/5.jpg" alt="item" class="img-responsive">
-                                </div>
-                                <div class="prodect-details">
-                                    <h4>категория</h4>
-                                    <h3>название товара</h3>
-                                    <h2>999 р.</h2>
-                                    <p class="ratings">
-                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
-                                    </p>
-                                    <div class="row shoping-details">
-                                        <div class="col-xs-6"><a href="#" class="add-card-text"><span class="fa fa-shopping-cart"></span>В корзину</a>
-                                        </div>
-                                        <div class="col-xs-6"><a href="#" class="show-link">Читать...<span class="fa fa-angle-right right-icon"></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-3">
-                            <div class="prodect-box">
-                                <div class="photo-block"><a data-rel="prettyPhoto" href="images/prodects/6.jpg" title="Название товара" class="link"><i class="fa fa-plus"></i></a> <img src="images/prodects/6.jpg" alt="item" class="img-responsive">
-                                </div>
-                                <div class="prodect-details">
-                                    <h4>категория</h4>
-                                    <h3>название товара</h3>
-                                    <h2>999 р.</h2>
-                                    <p class="ratings">
-                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
-                                    </p>
-                                    <div class="row shoping-details">
-                                        <div class="col-xs-6"><a href="#" class="add-card-text"><span class="fa fa-shopping-cart"></span>В корзину</a>
-                                        </div>
-                                        <div class="col-xs-6"><a href="#" class="show-link">Читать...<span class="fa fa-angle-right right-icon"></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-3">
-                            <div class="prodect-box">
-                                <div class="photo-block"><a data-rel="prettyPhoto" href="images/prodects/7.jpg" title="Название товара" class="link"><i class="fa fa-plus"></i></a> <img src="images/prodects/7.jpg" alt="item" class="img-responsive">
-                                </div>
-                                <div class="prodect-details">
-                                    <h4>категория</h4>
-                                    <h3>название товара</h3>
-                                    <h2>999 р.</h2>
-                                    <p class="ratings">
-                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
-                                    </p>
-                                    <div class="row shoping-details">
-                                        <div class="col-xs-6"><a href="#" class="add-card-text"><span class="fa fa-shopping-cart"></span>В корзину</a>
-                                        </div>
-                                        <div class="col-xs-6"><a href="#" class="show-link">Читать...<span class="fa fa-angle-right right-icon"></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-3">
-                            <div class="prodect-box">
-                                <div class="photo-block"><a data-rel="prettyPhoto" href="images/prodects/8.jpg" title="Название товара" class="link"><i class="fa fa-plus"></i></a> <img src="images/prodects/8.jpg" alt="item" class="img-responsive">
-                                </div>
-                                <div class="prodect-details">
-                                    <h4>категория</h4>
-                                    <h3>название товара</h3>
-                                    <h2>999 р.</h2>
-                                    <p class="ratings">
-                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
-                                    </p>
-                                    <div class="row shoping-details">
-                                        <div class="col-xs-6"><a href="#" class="add-card-text"><span class="fa fa-shopping-cart"></span>В корзину</a>
-                                        </div>
-                                        <div class="col-xs-6"><a href="#" class="show-link">Читать...<span class="fa fa-angle-right right-icon"></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 col-sm-3">
-                            <div class="prodect-box">
-                                <div class="photo-block"><a data-rel="prettyPhoto" href="images/prodects/9.jpg" title="Название товара" class="link"><i class="fa fa-plus"></i></a> <img src="images/prodects/9.jpg" alt="item" class="img-responsive">
-                                </div>
-                                <div class="prodect-details">
-                                    <h4>категория</h4>
-                                    <h3>название товара</h3>
-                                    <h2>999 р.</h2>
-                                    <p class="ratings">
-                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
-                                    </p>
-                                    <div class="row shoping-details">
-                                        <div class="col-xs-6"><a href="#" class="add-card-text"><span class="fa fa-shopping-cart"></span>В корзину</a>
-                                        </div>
-                                        <div class="col-xs-6"><a href="#" class="show-link">Читать...<span class="fa fa-angle-right right-icon"></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-3">
-                            <div class="prodect-box">
-                                <div class="photo-block"><a data-rel="prettyPhoto" href="images/prodects/10.jpg" title="Название товара" class="link"><i class="fa fa-plus"></i></a> <img src="images/prodects/10.jpg" alt="item" class="img-responsive">
-                                </div>
-                                <div class="prodect-details">
-                                    <h4>категория</h4>
-                                    <h3>название товара</h3>
-                                    <h2>999 р.</h2>
-                                    <p class="ratings">
-                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
-                                    </p>
-                                    <div class="row shoping-details">
-                                        <div class="col-xs-6"><a href="#" class="add-card-text"><span class="fa fa-shopping-cart"></span>В корзину</a>
-                                        </div>
-                                        <div class="col-xs-6"><a href="#" class="show-link">Читать...<span class="fa fa-angle-right right-icon"></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-3">
-                            <div class="prodect-box">
-                                <div class="photo-block"><a data-rel="prettyPhoto" href="images/prodects/11.jpg" title="Название товара" class="link"><i class="fa fa-plus"></i></a> <img src="images/prodects/11.jpg" alt="item" class="img-responsive">
-                                </div>
-                                <div class="prodect-details">
-                                    <h4>категория</h4>
-                                    <h3>название товара</h3>
-                                    <h2>999 р.</h2>
-                                    <p class="ratings">
-                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
-                                    </p>
-                                    <div class="row shoping-details">
-                                        <div class="col-xs-6"><a href="#" class="add-card-text"><span class="fa fa-shopping-cart"></span>В корзину</a>
-                                        </div>
-                                        <div class="col-xs-6"><a href="#" class="show-link">Читать...<span class="fa fa-angle-right right-icon"></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-3">
-                            <div class="prodect-box">
-                                <div class="photo-block"><a data-rel="prettyPhoto" href="images/prodects/12.jpg" title="Название товара" class="link"><i class="fa fa-plus"></i></a> <img src="images/prodects/12.jpg" alt="item" class="img-responsive">
-                                </div>
-                                <div class="prodect-details">
-                                    <h4>категория</h4>
-                                    <h3>название товара</h3>
-                                    <h2>999 р.</h2>
-                                    <p class="ratings">
-                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
-                                    </p>
-                                    <div class="row shoping-details">
-                                        <div class="col-xs-6"><a href="#" class="add-card-text"><span class="fa fa-shopping-cart"></span>В корзину</a>
-                                        </div>
-                                        <div class="col-xs-6"><a href="#" class="show-link">Читать...<span class="fa fa-angle-right right-icon"></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div role="tabpanel" class="tab-pane fade shop-list-section" id="list">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="item-panel">
-                                <div class="row">
-                                    <div class="col-md-3 col-sm-3">
-                                        <a data-rel="prettyPhoto" href="images/shop-3/1.png" title="Название товара" class="img-body"></a> <img src="images/shop-3/1.png" alt="" class="img-responsive">
-                                    </div>
-                                    <div class="col-md-9 col-sm-9">
-                                        <div class="offer-box">
-                                            <h3>-50%</h3>
-                                            <h3>Акция</h3>
-                                        </div><a href="#"><h3>название товара</h3></a>
-                                        <h4>999 р.</h4>
-                                        <h5>Категория</h5>
-                                        <p>Ретроконверсия национального наследия реально изменяет формирование имиджа. Еще Траут показал, что мониторинг активности вполне вероятен. Узнавание бренда экономит тактический инструмент маркетинга.</p>
-                                        <p class="ratings">
-                                            <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
-                                        </p>
-                                        <ul>
-                                            <li class="show-link"><a href="#"><span>Читать...</span></a><span class="fa fa-angle-right right-icon"></span>
-                                            </li>
-                                            <li class="add-to-card"><span class="fa fa-shopping-cart"></span><a href="#"><span>В корзину</span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="item-panel">
-                                <div class="row">
-                                    <div class="col-md-3 col-sm-3">
-                                        <a data-rel="prettyPhoto" href="images/shop-3/2.png" title="Название товара" class="img-body"></a> <img src="images/shop-3/2.png" alt="" class="img-responsive">
-                                    </div>
-                                    <div class="col-md-9 col-sm-9"><a href="#"><h3>название товара</h3></a>
-                                        <h4>999 р.</h4>
-                                        <h5>Категория</h5>
-                                        <p>Ретроконверсия национального наследия реально изменяет формирование имиджа. Еще Траут показал, что мониторинг активности вполне вероятен. Узнавание бренда экономит тактический инструмент маркетинга.</p>
-                                        <p class="ratings">
-                                            <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
-                                        </p>
-                                        <ul>
-                                            <li class="show-link"><a href="#"><span>Читать...</span></a><span class="fa fa-angle-right right-icon"></span>
-                                            </li>
-                                            <li class="add-to-card"><span class="fa fa-shopping-cart"></span><a href="#"><span>В корзину</span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="item-panel">
-                                <div class="row">
-                                    <div class="col-md-3 col-sm-3">
-                                        <a data-rel="prettyPhoto" href="images/shop-3/3.png" title="Название товара" class="img-body"></a> <img src="images/shop-3/3.png" alt="" class="img-responsive">
-                                    </div>
-                                    <div class="col-md-9 col-sm-9"><a href="#"><h3>название товара</h3></a>
-                                        <h4>999 р.</h4>
-                                        <h5>Категория</h5>
-                                        <p>Ретроконверсия национального наследия реально изменяет формирование имиджа. Еще Траут показал, что мониторинг активности вполне вероятен. Узнавание бренда экономит тактический инструмент маркетинга.</p>
-                                        <p class="ratings">
-                                            <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
-                                        </p>
-                                        <ul>
-                                            <li class="show-link"><a href="#"><span>Читать...</span></a><span class="fa fa-angle-right right-icon"></span>
-                                            </li>
-                                            <li class="add-to-card"><span class="fa fa-shopping-cart"></span><a href="#"><span>В корзину</span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="item-panel">
-                                <div class="row">
-                                    <div class="col-md-3 col-sm-3">
-                                        <a data-rel="prettyPhoto" href="images/shop-3/4.png" title="Название товара" class="img-body"></a> <img src="images/shop-3/4.png" alt="" class="img-responsive">
-                                    </div>
-                                    <div class="col-md-9 col-sm-9"><a href="#"><h3>название товара</h3></a>
-                                        <h4>999 р.</h4>
-                                        <h5>Категория</h5>
-                                        <p>Ретроконверсия национального наследия реально изменяет формирование имиджа. Еще Траут показал, что мониторинг активности вполне вероятен. Узнавание бренда экономит тактический инструмент маркетинга.</p>
-                                        <p class="ratings">
-                                            <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
-                                        </p>
-                                        <ul>
-                                            <li class="show-link"><a href="#"><span>Читать...</span></a><span class="fa fa-angle-right right-icon"></span>
-                                            </li>
-                                            <li class="add-to-card"><span class="fa fa-shopping-cart"></span><a href="#"><span>В корзину</span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="item-panel">
-                                <div class="row">
-                                    <div class="col-md-3 col-sm-3">
-                                        <a data-rel="prettyPhoto" href="images/shop-3/5.png" title="Название товара" class="img-body"></a> <img src="images/shop-3/5.png" alt="" class="img-responsive">
-                                    </div>
-                                    <div class="col-md-9 col-sm-9"><a href="#"><h3>название товара</h3></a>
-                                        <h4>999 р.</h4>
-                                        <h5>Категория</h5>
-                                        <p>Ретроконверсия национального наследия реально изменяет формирование имиджа. Еще Траут показал, что мониторинг активности вполне вероятен. Узнавание бренда экономит тактический инструмент маркетинга.</p>
-                                        <p class="ratings">
-                                            <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
-                                        </p>
-                                        <ul>
-                                            <li class="show-link"><a href="#"><span>Читать...</span></a><span class="fa fa-angle-right right-icon"></span>
-                                            </li>
-                                            <li class="add-to-card"><span class="fa fa-shopping-cart"></span><a href="#"><span>В корзину</span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="item-panel">
-                                <div class="row">
-                                    <div class="col-md-3 col-sm-3">
-                                        <a data-rel="prettyPhoto" href="images/shop-3/6.png" title="Название товара" class="img-body"></a> <img src="images/shop-3/6.png" alt="" class="img-responsive">
-                                    </div>
-                                    <div class="col-md-9 col-sm-9"><a href="#"><h3>название товара</h3></a>
-                                        <h4>999 р.</h4>
-                                        <h5>Категория</h5>
-                                        <p>Ретроконверсия национального наследия реально изменяет формирование имиджа. Еще Траут показал, что мониторинг активности вполне вероятен. Узнавание бренда экономит тактический инструмент маркетинга.</p>
-                                        <p class="ratings">
-                                            <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
-                                        </p>
-                                        <ul>
-                                            <li class="show-link"><a href="#"><span>Читать...</span></a><span class="fa fa-angle-right right-icon"></span>
-                                            </li>
-                                            <li class="add-to-card"><span class="fa fa-shopping-cart"></span><a href="#"><span>В корзину</span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
+{% endfor %}
+ </div>
+<!--товары на главной конец-->
             <ul class="top-sale-pagination animated" data-animation="fadeInUp" data-animation-delay="500">
                 <li class="preview"><a href="#" title="Previews Image"><span class="fa fa-2x fa-angle-left"></span></a>
                 </li>

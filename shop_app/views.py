@@ -65,7 +65,7 @@ def category(request):
     return render(request, 'shop_app/category.html', context={'category': category})
 
 def gallery(request):
-    return render(request, 'shop_app/gallery.html')
+    return render(request, 'shop_app/big_retail/portfolio.html')
 
 def show(request):
     # детальное описание товара
@@ -86,7 +86,7 @@ def show(request):
     show = cursor.fetchall()
     #request.session['test'] = 123
     #print(request.session['test'])
-    #request.session['my_list'] = []
+    request.session['my_list'] = []
     #request.session.get('my_list')
     test_ashow = show[0][1]
     chek_good = ''
@@ -98,7 +98,8 @@ def show(request):
                 break
 
     print(request.session['my_list'])
-    return render(request, 'shop_app/showp.html', context={'show': show, 'chek_good': chek_good})
+    return render(request, 'shop_app/big_retail/shop-detail.html', context={'show': show, 'chek_good': chek_good})
+    #return render(request, 'shop_app/showp.html', context={'show': show, 'chek_good': chek_good})
 
 def shop_billing(request):
     #выбираем товар и отправляем в корзину

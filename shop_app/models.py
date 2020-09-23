@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils import timezone
 # Create your models here.
@@ -79,3 +80,31 @@ class OrdersModel(models.Model):
 
     def __str__(self):
         return self.tovar_name
+
+from django.contrib.contenttypes.fields import GenericForeignKey
+
+
+class Image(models.Model):
+    class Meta:
+        verbose_name = 'Фотография'
+        verbose_name_plural = 'Фотографии'
+        db_table = 'photos'
+
+    image = models.ImageField(upload_to="img")
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey("content_type", "object_id")
+    #print('mayak')
+    #print(object_id, image.)
+
+
+class Product(models.Model):
+    class Meta:
+        verbose_name = 'Галерея'
+        verbose_name_plural = 'Галереи'
+        db_table = 'product'
+
+    name = models.CharField('Галерея', max_length=100)
+
+    def __str__(self):
+        return self.name

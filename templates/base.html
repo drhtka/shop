@@ -9,7 +9,7 @@
     <head>
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
         <meta charset="utf-8">
-        <title>Big retail - HTML шаблон интернет-магазина</title>
+        <title>{% block title %}Наш интернет-магазин{% endblock %}</title>
         <link href="https://fonts.googleapis.com/css?family=Lora:400,700&subset=latin,cyrillic" rel="stylesheet" type="text/css">
         <link href="{% static "big_retail/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
         <link href="{% static "big_retail/css/font-awesome.css" %}" rel="stylesheet" type="text/css">
@@ -25,10 +25,11 @@
         <link href="{% static "big_retail/css/themes/theme.css" %}" id="changeable-colors" rel="stylesheet" type="text/css">
         {% comment %}{% endcomment %}<link href="{% static "big_retail/css/style.css" %}" rel="stylesheet" type="text/css">
         <link href="{% static "big_retail/css/responsive.css" %}" rel="stylesheet" type="text/css">
+        <link href="{% static "shop_app/css/base.css" %}" rel="stylesheet" type="text/css">
     </head>
 
 <body id="video-bg">
-hello
+{% block pageloader %}
 <div id="pageloader">
     <div class="loader-item fa fa-spin colored-border"></div>
 </div>
@@ -61,6 +62,7 @@ hello
         </ul>
     </div>
 </div>
+{% endblock pageloader %}
 {% block header %}
 <div class="header-top">
     <div class="container">
@@ -127,7 +129,7 @@ hello
     </div>
 </div>
 {% endblock header %}
-
+{% block header2 %}
 <div id="sticky-section" class="sticky-navigation">
     <nav class="navbar navbar-default menu-bar" role="navigation">
         <div class="container">
@@ -182,6 +184,8 @@ hello
                                     </li>
                                 </ul>
                             </li>
+                            <li><a href="{% url "category" %}">Категории</a>
+                            </li>
                             <li class="dropdown"><a href="#" class="dropdown-toggle">Товары</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-3"><i class="fa fa-angle-down"></i></span>
                                 <ul role="menu" class="dropdown-menu collapse-3 collapse">
                                     <li class="dropdown"><a href="shop-list.html" class="dropdown-toggle">Магазин</a> <span class="submenu-toggler collapsed" data-toggle="collapse" data-target=".collapse-4"><i class="fa fa-angle-right"></i></span>
@@ -235,7 +239,10 @@ hello
         </div>
     </nav>
 </div>
+{% endblock header2 %}
 
+{% block content %}
+{% endblock content %}
 {% block work-area %}
 <section class="work-area section">
     <div class="container">

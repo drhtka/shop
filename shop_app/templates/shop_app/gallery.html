@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+{% load static %}
 
 <title>{% block title %}Галерея{% endblock %}</title>
 
@@ -7,6 +7,11 @@
 
  {% endblock %}
 <h1>Галерея</h1>
+{% block header %}
+{% endblock header %}
+{% block header2 %}
+{% endblock header2 %}
+
 {% block work-area %}
     <div class="container">
         <div class="row">

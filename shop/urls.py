@@ -18,12 +18,12 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include, re_path
 #from rest_framework.urlpatterns import format_suffix_patterns
-from rest_framework.views import APIView
-from rest_framework.viewsets import ModelViewSet
-
+#from rest_framework.views import APIView
+#from rest_framework.viewsets import ModelViewSet
 #from blog.api import views as api_views
 #from blog.api.serializers import CommentSerializer
-
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -45,7 +45,9 @@ urlpatterns = [
     #path("api/posts/<str:blogpost>/", api_views.PostListUrlView.as_view(), name="api_post_list"),
     #re_path("api/posts/<blogpost>[^/]+/comments/", api_views.PostListUrlView.as_view(), name="api_post_list"),
     #url(r'^(?P<blogpost>[^/]+)/comments/(?P<id>[^/]+)/$', ModelViewSet.as_view(resource=CommentSerializer)),
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 #<str:title>/
