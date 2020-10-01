@@ -3,7 +3,7 @@ from django.shortcuts import render, render_to_response
 import psycopg2
 from django.http import HttpResponse
 from django.template import loader, Context
-from shop_app.models import GoodsModel
+from shop_app.models import GoodsModel, Image
 
 def index(request):
     #главная
@@ -39,17 +39,22 @@ def goods(request):
                                   port="5432",
                                   database="shop_pos")
     cursor = connection.cursor()
+    postgreSQL_select_Query = 'select * from goods'
+    cursor.execute(postgreSQL_select_Query)
+    goodss = cursor.fetchall()
+    print(goodss)
+    print(request.GET.get('i', default=None))
     if request.GET.get('i'):
         idcat = request.GET.get('i', default=None)
-        postgreSQL_select_Query = "select * from goods where catid = " + idcat + " ORDER BY id ASC"
+        #idcat = str(idcat)
+        postgreSQL_select_Query = 'select * from goods where catid = ' + idcat + ' ORDER BY id ASC'
     else:
         postgreSQL_select_Query = "select * from goods ORDER BY id ASC"
     #print(postgreSQL_select_Query)
-
     cursor.execute(postgreSQL_select_Query)
-    goods = cursor.fetchall()
-    #print(goods)
-    return render(request, 'shop_app/goods.html', context={'goods': goods})
+    goodss = cursor.fetchall()
+    #print(goodss)
+    return render(request, 'shop_app/big_retail/shop-list.html', context={'goods': goodss})
 
 def category(request):
     # категории товаров
@@ -62,10 +67,14 @@ def category(request):
     postgreSQL_select_Query = "select * from category"
     cursor.execute(postgreSQL_select_Query)
     category = cursor.fetchall()
-    return render(request, 'shop_app/category.html', context={'category': category})
+    return render(request, 'shop_app/big_retail/portfolio.html', context={'category': category})
 
 def gallery(request):
-    return render(request, 'shop_app/big_retail/portfolio.html')
+    all_photo = Image.objects.values_list()
+    for all_photo_s in all_photo:
+        print(all_photo_s[1])
+    #return render(request, 'shop_app/category.html')
+    return render(request, 'shop_app/big_retail/portfolio.html', {'all_photo': all_photo_s})
 
 def show(request):
     # детальное описание товара
@@ -104,6 +113,7 @@ def show(request):
 def shop_billing(request):
     #выбираем товар и отправляем в корзину
     #id_shop_billing = request.POST.get('i', default=None)
+    request.session['my_list'] = []
     connection = psycopg2.connect(user="shopuser",
                                   password="shop_pos0701",
                                   host="127.0.0.1",

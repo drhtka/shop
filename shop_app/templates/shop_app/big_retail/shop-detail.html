@@ -2,22 +2,16 @@
 {% load static %}
 
 <title>{% block title %}Описание товара{% endblock %}</title>
-{% block work-area %}
-{% endblock work-area %}
-{% block top-sale %}
-{% endblock top-sale %}
-{% block brands-section %}
-{% endblock brands-section %}
-{% block new-additions %}
-{% endblock new-additions %}
-
-
+11111111111111111
+{% block video-baner %}
+{% endblock video-baner %}
+{% block content %}
 <body id="shop-detail">
 
     <div id="pageloader">
         <div class="loader-item fa fa-spin colored-border"></div>
     </div>
-{% block content %}
+
     <div class="page-desc-section">
         <div class="container">
             <div class="row">
@@ -54,7 +48,7 @@
                 <div class="col-md-7 product-description animated" data-animation="fadeInUp" data-animation-delay="500"><a href="#">{{ sh.1 }}</a>
                     <h3>{{ sh.3 }} рублей</h3>
                     <p>{{ sh.5 }}</p>
-                    {% endfor %}
+
                     <p>
                         <input id="input-21d" value="3" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
                     </p>
@@ -119,12 +113,15 @@
                     </div>
                     <div class="row add-buttons">
                         <div class="col-sm-6">
-                            <button type="button" class="btn add-cart"><i class="fa fa-shopping-cart"></i>В корзину</button>
+{#                            <a class="navbar-brand" href="{% url "shop_billing" %}?i={{ sh.0 }}&name={{ sh.1 }}&price={{ sh.3 }}&img={{ sh.4 }}"><input type="button" {{ chek_good }} class="btn btn-success" value="Заказать "></a>#}
+
+                            <a class="navbar-brand" href="{% url "shop_billing" %}?i={{ sh.0 }}&name={{ sh.1 }}&price={{ sh.3 }}&img={{ sh.4 }}"><button type="button" class="btn add-cart" {{ chek_good }}><i class="fa fa-shopping-cart"></i>В корзину</button></a>
                         </div>
                         <div class="col-sm-6">
                             <button type="button" class="btn"><i class="fa fa-heart"></i>В избранное</button>
                         </div>
                     </div>
+                {% endfor %}
                     <div class="row category-tags">
                         <div class="col-xs-12">
                             <p>Категория товара: <a href="#">Одежда</a>
@@ -324,9 +321,9 @@
             </div>
         </div>
     </section>
-{% endblock content %}
-{% block footer %}
-    <section id="footer" class="footer-bg">
+
+
+    {% comment %}<section id="footer" class="footer-bg">
         <div class="footer-section">
             <div class="container">
                 <div class="row">
@@ -414,6 +411,8 @@
             </div>
         </div>
     </section>
-{% endblock footer %}
+{% endcomment %}
 </body>
-
+{% endblock content %}
+{% block brands %}{% endblock brands %}
+{% block additions %}{% endblock additions %}

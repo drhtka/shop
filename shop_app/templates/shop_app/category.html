@@ -4,11 +4,12 @@
 <title>{% block title %}Категории{% endblock %}</title>
 
 {% block content %}
-    444444
+    <div class="container">    444444
 {% for cat in category %}
     <p>{{ cat.0 }}</p> <!-- /.id -->
     <p><a href="{% url "goods" %}?i={{ cat.0 }}">{{ cat.1 }}</a></p><!-- /.catname-->
     <p>{{ cat.2 }}</p><!-- /.descr -->
 {% endfor %}
+    </div>
 
 {% endblock %}

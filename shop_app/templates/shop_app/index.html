@@ -1,23 +1,51 @@
 {% extends "base.html" %}
 {% load static %}
 
-<title>{% block title %}Главная{% endblock %}</title>
-{% block work-area %}
-{% endblock work-area %}
-{% block top-sale %}
+    <title>{% block title %}Главная{% endblock %}</title>
+{% block content %}
+<body id="video-bg">
 
-    <h1>Главная</h1>
-    {% comment %}{% for all_goods_s in all_goods %}
-        Айди <p>{{ all_goods_s.0 }}</p>
-        азвание <p>{{ all_goods_s.1 }}</p>
-        катгория <p>{{ all_goods_s.2 }}</p>
-        Цена <p>{{ all_goods_s.3 }}</p>
-    {% endfor %}{% endcomment %}
+    <section class="work-area section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="section-title text-center color-black animated" data-animation="fadeInRight" data-animation-delay="300">Приветствуем Вас в нашем магазине!</h2>
+                    <p class="sub-title text-center color-black animated" data-animation="fadeInLeft" data-animation-delay="500">Исходя из структуры пирамиды Маслоу, опрос охватывает фирменный нишевый проект.</p>
+                    <p class="sub-title text-center color-black animated" data-animation="fadeInLeft" data-animation-delay="500">Рекламоноситель, пренебрегая деталями, основан на тщательном анализе данных.</p>
+                </div>
+            </div>
+            <div class="row welcome-block">
+                <div class="col-sm-3">
+                    <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="300"><i class="fa fa-shopping-cart"></i>
+                        <h3>Быстрая покупка</h3>
+                        <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="500"><i class="fa fa-car"></i>
+                        <h3>Доставка по России</h3>
+                        <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="700"><i class="fa fa-money"></i>
+                        <h3>Продажа шаблонов</h3>
+                        <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="900"><i class="fa fa-credit-card"></i>
+                        <h3>Оплачивайте здесь</h3>
+                        <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <section id="top-sale" class="top-sale-section">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-
                     <h2 class="section-title">Что мы можем Вам предложить?</h2>
                     <p class="sub-title">Метод изучения рынка индуктивно ускоряет медиабизнес. Сегмент рынка развивает институциональный контент, опираясь на опыт западных коллег.</p>
                 </div>
@@ -83,39 +111,114 @@
                     </ul>
                 </div>
             </div>
-<!--товары на главной старт   style="padding-left: 255px; height: 500px; overflow: hidden; padding-top: 40px;"-->
-            <div class="cont_goods_image">
-            {% for all_goods_s in all_goods %}
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade in active" id="grid">
-                    <div class="row">
-                        <div class="col-md col-sm">
+{#                    <div class="row">#}
+{#                        <div class="col-md-12">#}
+                            <div class="item-panel">
+                                <div class="row">
+                                    {% for all_goods_s in all_goods %}
+                                    <div class="col-md-3 col-sm-3">
+                                        <div class="prodect-box">
+                                            <div class="photo-block">
+                                                <a data-rel="prettyPhoto" href="{{ MEDIA_URL }}{{ all_goods_s.4 }}" title="Название товара" class="link">
+                                                    <i class="fa fa-plus"></i></a>
+                                                <img src="{{ MEDIA_URL }}{{ all_goods_s.4 }}" alt="item" class="img-responsive">
+                                            </div>
+                                            <div class="prodect-details">
+                                                <h4>категория</h4>
+                                                <h3>{{ all_goods_s.1 }}</h3>
+                                                <h2>Цена:{{ all_goods_s.3 }}</h2>
+                                                <p class="ratings">
+                                                    <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
+                                                </p>
+                                                <div class="row shoping-details">
+                                                    <div class="col-xs-6"><a href="#" class="add-card-text"><span class="fa fa-shopping-cart"></span>В корзину</a>
+                                                    </div>
+                                                    <div class="col-xs-6"><a href="{% url "show" %}?i={{ all_goods_s.0 }}" class="show-link">Читать...<span class="fa fa-angle-right right-icon"></span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                <div class="row">
+                    {% for all_goods_s in all_goods %}
+                    <div class="col-sm-3 col-md-3">22222222222
+                        <div class="prodect-box-">
+                            <div class="photo-block-">
+                                <a data-rel="prettyPhoto-" href="/media/img/36.jpg" title="Название товара" class="link">
+                                    <i class="fa- fa-plus-"></i></a>
+                                <img src="/media/img/36.jpg" alt="item" class="img-responsive">
+                            </div>
+                            <div class="prodect-details-">
+                                <h4>категория</h4>
+                                <h3>{{ all_goods_s.1 }}</h3>
+                                <h2>цена: {{ all_goods_s.3 }}</h2>
+                                <p>
+                                    <input><span>- рейтинг товара</span>
+                                </p>
+                                <div class="row- shoping-details-">
+                                    <div>
+                                        <div><a href="#" class="add-card-text-"><span></span>в корзину</a>
+                                        </div>
+                                        <div ><a href="{% url "show" %}?i={{ all_goods_s.0 }}">Читать...<span class="right-icon-"></span></a>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="col-sm-3 col-md-3">111111111111111111111111</div>
+                    <div class="col-sm-3 col-md-3">111111111111111111111111</div>
+                    <div class="col-sm-3 col-md-3">111111111111111111111111</div>
+                    <div class="col-sm-3 col-md-3">111111111111111111111111</div>
+                    <div class="col-sm-3 col-md-3">111111111111111111111111</div>
+                    <div class="col-sm-3 col-md-3">111111111111111111111111</div>
+                    <div class="col-sm-3 col-md-3">111111111111111111111111</div>
+                    <div class="col-sm-3 col-md-3">111111111111111111111111</div>
+                    <div class="col-sm-3 col-md-3">111111111111111111111111</div>
+                    <div class="col-sm-3 col-md-3">111111111111111111111111</div>
+                    {% comment %}{% for all_goods_s in all_goods %}
+                        <div class="col-md-3 col-sm-3">
                             <div class="prodect-box">
-                                <div class="photo-block"><a data-rel="prettyPhoto" href="{{ MEDIA_URL }}{{ all_goods_s.4 }}" title="Название товара" class="link"><i class="fa fa-plus"></i></a> <img src="{{ MEDIA_URL }}{{ all_goods_s.4 }}" alt="item" class="img-responsive">
+                                <div class="photo-block">
+                                    <a data-rel="prettyPhoto" href="{{ MEDIA_URL }}{{ all_goods_s.4 }}" title="Название товара" class="link">
+                                        <i class="fa fa-plus"></i></a>
+                                    <img src="{{ MEDIA_URL }}{{ all_goods_s.4 }}" alt="item" class="img-responsive">
                                 </div>
                                 <div class="prodect-details">
                                     <h4>категория</h4>
                                     <h3>{{ all_goods_s.1 }}</h3>
                                     <h2>Цена:{{ all_goods_s.3 }}</h2>
                                     <p class="ratings">
-                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
+                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs">
+                                        <span>- рейтинг товара</span>
                                     </p>
                                     <div class="row shoping-details">
-                                        <div class="col-xs-6"><a href="#" class="add-card-text"><span class="fa fa-shopping-cart"></span>В корзину</a>
+                                        <div class="col-xs-6"><a href="#" class="add-card-text">
+                                            <span class="fa fa-shopping-cart"></span>В корзину</a>
                                         </div>
-                                        <div class="col-xs-6"><a href="{% url "show" %}?i={{ all_goods_s.0 }}" class="show-link">Читать...<span class="fa fa-angle-right right-icon"></span></a>
+                                        <div class="col-xs-6"><a href="{% url "show" %}?i={{ all_goods_s.0 }}" class="show-link">Читать...
+                                            <span class="fa fa-angle-right right-icon"></span></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    {% endfor %}{% endcomment %}
 
-                    </div>
                 </div>
-            </div>
-{% endfor %}
- </div>
-<!--товары на главной конец-->
+                    </div>
+{#                </div>#}
+{#            </div>-->>#}
             <ul class="top-sale-pagination animated" data-animation="fadeInUp" data-animation-delay="500">
                 <li class="preview"><a href="#" title="Previews Image"><span class="fa fa-2x fa-angle-left"></span></a>
                 </li>
@@ -133,9 +236,11 @@
                 </li>
             </ul>
         </div>
+        </div>
     </section>
-{% endblock top-sale %}
-{% block brands-section %}
-{% endblock brands-section %}
-{% block new-additions %}
-{% endblock new-additions %}
+
+
+
+</body>
+
+{% endblock content %}

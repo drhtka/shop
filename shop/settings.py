@@ -54,11 +54,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'shop.urls'
-
+#big_retail/os.path.join(BASE_DIR, 'shop_app/templates/shop_app/big_retail'),
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'shop_app/templates/shop_app'),
+                 os.path.join(BASE_DIR, 'shop_app/templates/')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -141,10 +142,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "bootstrap"),
+    #os.path.join(BASE_DIR, "bootstrap"),
     os.path.join(BASE_DIR, 'shop_app/static'),
     os.path.join(BASE_DIR, 'test_url/static'),
     os.path.join(BASE_DIR, 'shop_app/static/big_retail'),
+
 ]
 STATICFILES_FINDERS = (
 

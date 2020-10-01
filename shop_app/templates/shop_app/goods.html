@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+{% load static %}
 
 <title>{% block title %}Товары{% endblock %}</title>
 
@@ -7,7 +7,8 @@
 
 
 {% block content %}
-{% for goodss in goods %}
+    <div class="container">
+    {% for goodss in goods %}
            <div class="container-fluid">
                <div class="row">
                 <div class="col-lg-1">
@@ -51,6 +52,7 @@
                 </div>
                </div>
            </div>
+        </div>
 
 {% endfor %}
 {% endblock %}
