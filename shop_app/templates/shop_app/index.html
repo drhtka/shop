@@ -111,6 +111,7 @@
                     </ul>
                 </div>
             </div>
+            {% comment %}
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade in active" id="grid">
 {#                    <div class="row">#}
@@ -123,7 +124,11 @@
                                             <div class="photo-block">
                                                 <a data-rel="prettyPhoto" href="{{ MEDIA_URL }}{{ all_goods_s.4 }}" title="Название товара" class="link">
                                                     <i class="fa fa-plus"></i></a>
+{#                                                <img src="/media/img/36.jpg" alt="item" class="img-responsive">#}
                                                 <img src="{{ MEDIA_URL }}{{ all_goods_s.4 }}" alt="item" class="img-responsive">
+{#                                                    <img src="style="background-image: url(/static/main/{{ all_goods_s.4 }});" alt="item" class="img-responsive">#}
+{#                                                <img src="" alt="item" class="img-responsive"  style="background-image:({{ MEDIA_URL }}{{ all_goods_s.4 }})">#}
+{#                                                style="background-image: url({{ product.photo.image.url }});">#}
                                             </div>
                                             <div class="prodect-details">
                                                 <h4>категория</h4>
@@ -145,25 +150,28 @@
 
                             </div>
                         </div>
-                <div class="row">
+                    <div class="row">
                     {% for all_goods_s in all_goods %}
                     <div class="col-sm-3 col-md-3">22222222222
-                        <div class="prodect-box-">
+                        <div class="prodect-box">
                             <div class="photo-block-">
                                 <a data-rel="prettyPhoto-" href="/media/img/36.jpg" title="Название товара" class="link">
                                     <i class="fa- fa-plus-"></i></a>
-                                <img src="/media/img/36.jpg" alt="item" class="img-responsive">
+                                <div>
+                                    {{ MEDIA_URL }}{{ all_goods_s.4 }}
+                                </div>
+                                <img src="/media/{{ all_goods_s.4 }}" alt="item" class="img-responsive">
                             </div>
-                            <div class="prodect-details-">
+                            <div  class="prodect-details border_image">
                                 <h4>категория</h4>
                                 <h3>{{ all_goods_s.1 }}</h3>
                                 <h2>цена: {{ all_goods_s.3 }}</h2>
                                 <p>
-                                    <input><span>- рейтинг товара</span>
+                                <div class="border_two_line"><span class="color_star">&#9733;</span> <span class="color_star_two">&#9734;</span><span class="my_reiting">- рейтинг товара</span></div>
                                 </p>
                                 <div class="row- shoping-details-">
-                                    <div>
-                                        <div><a href="#" class="add-card-text-"><span></span>в корзину</a>
+                                    <div class="my_cart_reed">
+                                        <div><a href="#" class="add-card-text-"><span class="fa fa-shopping-cart"></span>В корзину</a>
                                         </div>
                                         <div ><a href="{% url "show" %}?i={{ all_goods_s.0 }}">Читать...<span class="right-icon-"></span></a>
 
@@ -176,6 +184,8 @@
                         </div>
                     </div>
                     {% endfor %}
+                <div class="row">
+
                     <div class="col-sm-3 col-md-3">111111111111111111111111</div>
                     <div class="col-sm-3 col-md-3">111111111111111111111111</div>
                     <div class="col-sm-3 col-md-3">111111111111111111111111</div>
@@ -186,6 +196,80 @@
                     <div class="col-sm-3 col-md-3">111111111111111111111111</div>
                     <div class="col-sm-3 col-md-3">111111111111111111111111</div>
                     <div class="col-sm-3 col-md-3">111111111111111111111111</div>
+                </div>
+                    {% for all_goods_s in all_goods %}
+                        <div class="col-md-3 col-sm-3">
+                            <div class="prodect-box">
+                                <div class="photo-block">
+                                    <a data-rel="prettyPhoto" href="{{ MEDIA_URL }}{{ all_goods_s.4 }}" title="Название товара" class="link">
+                                        <i class="fa fa-plus"></i></a>
+                                    <img src="{{ MEDIA_URL }}{{ all_goods_s.4 }}" alt="item" class="img-responsive">
+                                </div>
+                                <div class="prodect-details">
+                                    <h4>категория</h4>
+                                    <h3>{{ all_goods_s.1 }}</h3>
+                                    <h2>Цена:{{ all_goods_s.3 }}</h2>
+                                    <p class="ratings">
+                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs">
+                                        <span>- рейтинг товара</span>
+                                    </p>
+                                    <div class="row shoping-details">
+                                        <div class="col-xs-6"><a href="#" class="add-card-text">
+                                            <span class="fa fa-shopping-cart"></span>В корзину</a>
+                                        </div>
+                                        <div class="col-xs-6"><a href="{% url "show" %}?i={{ all_goods_s.0 }}" class="show-link">Читать...
+                                            <span class="fa fa-angle-right right-icon"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+                    </div>
+{#                </div>#}
+{#            </div>-->>#}{% endcomment %}
+                {#start test#}
+                <div class="my_row">
+
+                    {% for all_goods_s in all_goods %}
+
+                        <div class="chaild_grid">
+                            <div class="prodect-box">
+                                <div class="photo-block-">
+                                    <a data-rel="prettyPhoto-" href="/media/img/36.jpg" title="Название товара" class="link">
+                                        <i class="fa- fa-plus-"></i></a>
+
+                                    <img src="{{ MEDIA_URL }}{{ all_goods_s.4 }}" alt="item" class="img-responsive" style="height: 253px; width: 300px">
+                                </div>
+                                <div  class="prodect-details border_image">
+                                    <h4>{{ all_goods_s.2 }}</h4>{#Категория#}
+                                    <h3>{{ all_goods_s.1 }}</h3>
+                                    <h2>цена: {{ all_goods_s.3 }}</h2>
+                                    <p>
+                                    <div class="border_two_line"><span class="color_star rating">&#9733;</span> <span class="color_star_two">&#9734;</span><span class="my_reiting">- рейтинг товара</span></div>
+                                    </p>
+                                    <div class="row- shoping-details">
+                                        <div class="my_cart_reed">
+                                            <div><a href="#" class="add-card-text"><span class="fa fa-shopping-cart"></span>В корзину</a>
+                                            </div>
+                                            <div ><a href="{% url "show" %}?i={{ all_goods_s.0 }}" class="show-link">Читать...<span class="right-icon-"></span></a>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                </div>
+
+            {#    end test        <--!-->#}
+
                     {% comment %}{% for all_goods_s in all_goods %}
                         <div class="col-md-3 col-sm-3">
                             <div class="prodect-box">
@@ -215,10 +299,7 @@
                         </div>
                     {% endfor %}{% endcomment %}
 
-                </div>
-                    </div>
-{#                </div>#}
-{#            </div>-->>#}
+
             <ul class="top-sale-pagination animated" data-animation="fadeInUp" data-animation-delay="500">
                 <li class="preview"><a href="#" title="Previews Image"><span class="fa fa-2x fa-angle-left"></span></a>
                 </li>

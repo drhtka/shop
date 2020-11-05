@@ -22,32 +22,67 @@
             </div>
         </div>
     </div>
+{#{{ image_goods.0.1 }}#}
 
     <section class="product-detail">
         <div class="container">
             <div class="row">
-                {% for sh in show %}
+{#                {% for sh in show %}#}
+                <!--главное фото  наше-->
+            <div class="main-big-photo">
+                <div class="prev-div" onclick="newPrev(this)"> < </div>
+                    <div class="big-photo"><img class="main_img" src="{{ MEDIA_URL }}{{ show.4 }}" ></div>
+                <div class="next-div" onclick="newNext(this)"> > </div>
+            </div>
+                <!--главное фото конец-->
+                <!--малые фото начало-->
+                <div class="cont_flat_image" >
+{#                    style="padding-left: 255px; height: 500px; overflow: hidden; padding-top: 40px;"#}
+                {% for image_goods_s in image_goods %}
+                    <div class="small_image_for" ><img class="img_small" onclick="changeImg(this)" src="{{ MEDIA_URL}}{{ image_goods_s.1 }}">
+                    </div >
+                {% endfor %}
+                </div>
+                <!--малые фото конец-->
+                <!--главное фото старое-->
+
                 <div class="col-md-5 product-slider animated" data-animation="fadeInUp" data-animation-delay="300">
-                    <div id="big-detail" class="owl-carousel">
-                        <div class="item"><img src="{{ MEDIA_URL }}{{ sh.4 }}" class="img-responsive">
-                        </div>
-                        <div class="item"><img src="images/shop/2.png" class="img-responsive">
-                        </div>
-                        <div class="item"><img src="{{ MEDIA_URL }}{{ sh.4 }}" class="img-responsive">
-                        </div>
+                    <!--главное фото-->
+                <div class="parrent_img col-md-5">
+                    <div class="arrow_left"><img class="img_arrow_left" src={% static "shop_app/img/34.png" %} alt="arrow"></div>
+                    <div id="big-detail" class="owl-carousel" style="width: 570px">
+                        <div class="item first"><img class="main_img" src="{{ MEDIA_URL }}{{ show.4 }}" class="img-responsive"></div>
+
+{#                        <div class="item"><img src="{{ MEDIA_URL }}{{ show.0.4 }}" class="img-responsive">#}
+{#                        </div>#}
+{#                        <div class="item"><img src="{{ MEDIA_URL }}{{ show.0.4 }}" class="img-responsive">#}
+{#                        </div>#}
                     </div>
+                    <div class="arrow_right"><img src={% static "shop_app/img/35.png" %} alt="arrow"></div>
+                </div>
+                    <!--главное фото староеend-->
+{#                    <div class="owl-controls clickable">#}
+{#                        <div class="owl-buttons">#}
+{#                            <div class="owl-prev">prev</div>#}
+{#                        <div class="owl-next">next</div>#}
+{#                        </div>#}
+{#                    </div>#}
                     <div id="small-detail" class="owl-carousel">
-                        <div class="item first"><img src="images/shop/small-1.png" class="img-responsive">
-                        </div>
-                        <div class="item"><img src="images/shop/small-1.png" class="img-responsive">
-                        </div>
-                        <div class="item last"><img src="images/shop/small-1.png" class="img-responsive">
-                        </div>
+{#                        <div class="arrow_left"><img src={% static "shop_app/img/34.png" %} alt="arrow"></div>#}
+                        {% for image_goods_s in image_goods %}
+                        <div class="item" ><img onclick="changeImg(this)" src="{{ MEDIA_URL}}{{ image_goods_s.1 }}" class="img-responsive" style="height: 80px; width: 200px !important;">
+                            </div >
+                        {% endfor %}
+{#                        <div class="arrow_right"><img src={% static "shop_app/img/35.png" %} alt="arrow"></div>#}
+{#                        <div class="item"><img src="images/shop/small-1.png" class="img-responsive">#}
+{#                        </div>#}
+{#                        <div class="item last"><img src="images/shop/small-1.png" class="img-responsive">#}
+{#                        </div>#}
                     </div>
                 </div>
-                <div class="col-md-7 product-description animated" data-animation="fadeInUp" data-animation-delay="500"><a href="#">{{ sh.1 }}</a>
-                    <h3>{{ sh.3 }} рублей</h3>
-                    <p>{{ sh.5 }}</p>
+                <div class="col-md-7 product-description animated my_right_block" data-animation="fadeInUp" data-animation-delay="500"><a href="#">{{ show.1 }}</a>
+                    <h3>{{ show.3 }} рублей</h3>
+                    <p>{{ show.5 }}</p>
 
                     <p>
                         <input id="input-21d" value="3" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
@@ -115,18 +150,18 @@
                         <div class="col-sm-6">
 {#                            <a class="navbar-brand" href="{% url "shop_billing" %}?i={{ sh.0 }}&name={{ sh.1 }}&price={{ sh.3 }}&img={{ sh.4 }}"><input type="button" {{ chek_good }} class="btn btn-success" value="Заказать "></a>#}
 
-                            <a class="navbar-brand" href="{% url "shop_billing" %}?i={{ sh.0 }}&name={{ sh.1 }}&price={{ sh.3 }}&img={{ sh.4 }}"><button type="button" class="btn add-cart" {{ chek_good }}><i class="fa fa-shopping-cart"></i>В корзину</button></a>
+                            <a class="" href="{% url "shop_billing" %}?i={{ show.0.0 }}&name={{ show.0.1 }}&price={{ show.0.3 }}&img={{ show.0.4 }}"><button type="button" class="btn add-cart" {{ chek_good }}><i class="fa fa-shopping-cart"></i>В корзину</button></a>
                         </div>
                         <div class="col-sm-6">
                             <button type="button" class="btn"><i class="fa fa-heart"></i>В избранное</button>
                         </div>
                     </div>
-                {% endfor %}
+{#                {% endfor %}#}
                     <div class="row category-tags">
                         <div class="col-xs-12">
-                            <p>Категория товара: <a href="#">Одежда</a>
+                            <p>Категория товара: <a href="#">{{ show.2 }}</a>
                             </p>
-                            <p>Теги: услуги, товары, шаблоны, новое</p>
+                            <p>Теги: {{ tegs_categ_desc }}</p>
                         </div>
                     </div>
                 </div>
@@ -416,3 +451,4 @@
 {% endblock content %}
 {% block brands %}{% endblock brands %}
 {% block additions %}{% endblock additions %}
+{% block js %}<script type="text/javascript" src="{% static "shop_app/js/script.js" %}"></script>{% endblock js %}

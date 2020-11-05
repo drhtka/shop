@@ -1,15 +1,11 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from shop_app.models import GoodsModel, CategoryModel, BillingModel, OrdersModel, Image, Product
-from django.contrib.contenttypes.admin import GenericTabularInline
-
-class GoodsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'goodsname', 'catid', 'price')
-    list_filter = ('id', 'goodsname', 'price')
+from django.contrib.contenttypes.admin import GenericTabularInline#, GenericInlineModelAdmin
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'catname')
-    list_filter = ('id', 'catname')
+    list_display = ('catname', 'id',)
+    list_filter = ('catname', 'id',)
 
 class BillngAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
@@ -21,10 +17,19 @@ class OrdersAdmin(admin.ModelAdmin):
 
 class ImageInline(GenericTabularInline):
     model = Image
+
     list_filter = ('object_id')
+    list_display = ('object_id')
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'id')
+    inlines = [
+        ImageInline,
+    ]
+
+class GoodsAdmin(admin.ModelAdmin):
+    list_display = ('id', 'goodsname', 'category', 'price')
+    list_filter = ('id', 'goodsname', 'price')
     inlines = [
         ImageInline,
     ]

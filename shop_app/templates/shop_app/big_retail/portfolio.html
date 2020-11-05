@@ -1,307 +1,24 @@
 {% extends "base.html" %}
 {% load static %}
 <title>{% block title %}Категории{% endblock %}</title>
-{% block header-top %}
-    <div class="header-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="navbar">
-                        <div class="navbar-header">
-                            <ul class="header-top-left">
-                                <li class="dropdown collapse navbar-collapse" id="bs-example-navbar-collapse-1">Язык<a class="dropdown-toggle" data-toggle="dropdown" href="#">[ <span>RU<i class="fa fa-angle-down"></i></span> ]</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#"><span><img src="images/top-navigation/flag1.jpg" alt="Language-flag"></span>ENG</a>
-                                        </li>
-                                        <li><a href="#"><span><img src="images/top-navigation/flag2.jpg" alt="Language-flag"></span>GER</a>
-                                        </li>
-                                        <li><a href="#"><span><img src="images/top-navigation/flag3.jpg" alt="Language-flag"></span>FRE</a>
-                                        </li>
-                                        <li><a href="#"><span><img src="images/top-navigation/flag4.jpg" alt="Language-flag"></span>ITA</a>
-                                        </li>
-                                        <li><a href="#"><span><img src="images/top-navigation/flag5.jpg" alt="Language-flag"></span>SPA</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a href="mailto:email@example.com"><i class="flaticon-black164"></i> mail@mail.com</a>
-                                </li>
-                                <li><a href="#"><i class="flaticon-phone46"></i> +7 123 456 78 90</a>
-                                </li>
-                            </ul>
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><i class="flaticon-list50"></i>
-                            </button>
-                        </div>
-                        <ul class="nav navbar-nav navbar-right section-hidden">
-                            <li class="cart"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-shopping-cart"></i>В корзине (3) товара</a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li class="clearfix"><i class="fa fa-times pull-right"></i> <img src="images/top-navigation/1.jpg" alt="item-1" class="pull-left">
-                                        <div class="pull-left product"><a href="#">Название товара</a>
-                                            <h5>500 р.</h5>
-                                        </div>
-                                    </li>
-                                    <li class="clearfix"><i class="fa fa-times pull-right"></i> <img src="images/top-navigation/1.jpg" alt="item-1" class="pull-left">
-                                        <div class="pull-left product"><a href="#">Название товара</a>
-                                            <h5>500 р.</h5>
-                                        </div>
-                                    </li>
-                                    <li class="clearfix"><i class="fa fa-times pull-right"></i> <img src="images/top-navigation/1.jpg" alt="item-1" class="pull-left">
-                                        <div class="pull-left product"><a href="#">Название товара</a>
-                                            <h5>500 р.</h5>
-                                        </div>
-                                    </li>
-                                    <li class="total">
-                                        <h5>Итого: 1 500 р.</h5>
-                                    </li>
-                                    <li class="clearfix checkout"><a href="#" class="pull-left">В корзину</a> <a href="#" class="pull-right">Опталить</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="#"><i class="fa fa-unlock-alt"></i>Вход</a>
-                            </li>
-                            <li><a href="#">Регистрация</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-{% endblock header-top %}
-{% block header1 %}
-    <div id="sticky-section" class="sticky-navigation">
-        <nav class="navbar navbar-default menu-bar" role="navigation">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="navbar-header">
-                            <div class="site-logo"><a title="" href="index.html">Big retail</a>
-                            </div>
-                            <ul class="nav navbar-nav navbar-right section-show">
-                                <li class="cart"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-shopping-cart"></i>В корзине (3) товара</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li class="clearfix"><i class="fa fa-times pull-right"></i> <img src="images/top-navigation/1.jpg" alt="item-1" class="pull-left">
-                                            <div class="pull-left product"><a href="#">Название товара</a>
-                                                <h5>500 р.</h5>
-                                            </div>
-                                        </li>
-                                        <li class="clearfix"><i class="fa fa-times pull-right"></i> <img src="images/top-navigation/1.jpg" alt="item-1" class="pull-left">
-                                            <div class="pull-left product"><a href="#">Название товара</a>
-                                                <h5>500 р.</h5>
-                                            </div>
-                                        </li>
-                                        <li class="clearfix"><i class="fa fa-times pull-right"></i> <img src="images/top-navigation/1.jpg" alt="item-1" class="pull-left">
-                                            <div class="pull-left product"><a href="#">Название товара</a>
-                                                <h5>500 р.</h5>
-                                            </div>
-                                        </li>
-                                        <li class="total">
-                                            <h5>Итого: 1 500 р.</h5>
-                                        </li>
-                                        <li class="clearfix checkout"><a href="#" class="pull-left">В корзину</a> <a href="#" class="pull-right">Оплатить</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="login-style"><a href="#"><i class="fa fa-unlock-alt"></i>Вход</a>
-                                </li>
-                                <li class="register-border"><a href="#">Регистрация</a>
-                                </li>
-                            </ul>
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"><span class="menu-box"><span class="menu">Меню</span><i class="flaticon-list50 menu-button"></i>
-                                </span>
-                            </button>
-                        </div>
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="dropdown"><a href="{% url "index" %}" class="dropdown-toggle active">Главная</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-1"><i class="fa fa-angle-down"></i></span>
-                                </li>
+{#{% block css %}#}
+{#    <link href="{% static "big_retail/css/themes/theme.css" %}" id="changeable-colors" rel="stylesheet" type="text/css">#}
+{#    <link href="{% static "big_retail/css/style.css" %}" rel="stylesheet" type="text/css">#}
+{#{% endblock css %}#}
+{% block video-baner %}
+{% endblock video-baner %}
 
-
-                                <li><a href="{% url "category" %}">Категории</a>
-                                </li>
-                                <li class="dropdown"><a href="#" class="dropdown-toggle">Товары</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-3"><i class="fa fa-angle-down"></i></span>
-                                    <ul role="menu" class="dropdown-menu collapse-3 collapse">
-                                        <li class="dropdown"><a href="shop-list.html" class="dropdown-toggle">Магазин</a> <span class="submenu-toggler collapsed" data-toggle="collapse" data-target=".collapse-4"><i class="fa fa-angle-right"></i></span>
-                                            <ul role="menu" class="sub-menu collapse-4 collapse">
-                                                <li><a href="shop-list.html">Список товаров</a>
-                                                </li>
-                                                <li><a href="shop-detail.html">Описание товара</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="cart.html">Корзина</a>
-                                        </li>
-                                        <li><a href="check-out.html">Оплата</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="#" class="dropdown-toggle">Галерея</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-6"><i class="fa fa-angle-down"></i></span>
-                                    <ul role="menu" class="dropdown-menu collapse-6 collapse">
-                                        <li><a href="portfolio.html">Портфолио</a>
-                                        </li>
-                                        <li><a href="portfolio-single.html">Описание</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="#" class="dropdown-toggle">Новости</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-6"><i class="fa fa-angle-down"></i></span>
-                                    <ul role="menu" class="dropdown-menu collapse-6 collapse">
-                                        <li><a href="blog.html">Новости</a>
-                                        </li>
-                                        <li><a href="blog-single.html">Описание</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a href="contacts.html">Контакты</a>
-                                </li>
-                                <li class="dropdown"><a href="#" class="dropdown-toggle">О нас</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-2"><i class="fa fa-angle-down"></i></span>
-                                    <ul role="menu" class="dropdown-menu collapse-2 collapse">
-                                        <li><a href="about-us.html">О компании</a>
-                                        </li>
-                                        <li><a href="services.html">Услуги</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="search"><a href="#search-toggle-right" id="search-toggle"><i class="glyphicon glyphicon-search"></i></a>
-                                </li>
-                                <li class="search-form">
-                                    <form role="search" class="navbar-form">
-                                        <div class="input-group">
-                                            <input type="text" name="q" placeholder="Искать.." class="form-control">
-                                            <div class="input-group-btn">
-                                                <button type="submit" class="btn btn-default">ОК</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
-{% endblock header1 %}
-
-    <body id="projects">
+    <body id="projects"></body>
     {% block content %}
-        <div id="pageloader">
+        {% comment %}<div id="pageloader">
             <div class="loader-item fa fa-spin colored-border"></div>
-        </div>
-
-        {% comment %}<div id="sticky-section" class="sticky-navigation">
-            <nav class="navbar navbar-default menu-bar" role="navigation">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="navbar-header">
-                                <div class="site-logo"><a title="" href="index.html">Big retail</a>
-                                </div>
-                                <ul class="nav navbar-nav navbar-right section-show">
-                                    <li class="cart"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-shopping-cart"></i>В корзине (3) товара</a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li class="clearfix"><i class="fa fa-times pull-right"></i> <img src="images/top-navigation/1.jpg" alt="item-1" class="pull-left">
-                                                <div class="pull-left product"><a href="#">Название товара</a>
-                                                    <h5>500 р.</h5>
-                                                </div>
-                                            </li>
-                                            <li class="clearfix"><i class="fa fa-times pull-right"></i> <img src="images/top-navigation/1.jpg" alt="item-1" class="pull-left">
-                                                <div class="pull-left product"><a href="#">Название товара</a>
-                                                    <h5>500 р.</h5>
-                                                </div>
-                                            </li>
-                                            <li class="clearfix"><i class="fa fa-times pull-right"></i> <img src="images/top-navigation/1.jpg" alt="item-1" class="pull-left">
-                                                <div class="pull-left product"><a href="#">Название товара</a>
-                                                    <h5>500 р.</h5>
-                                                </div>
-                                            </li>
-                                            <li class="total">
-                                                <h5>Итого: 1 500 р.</h5>
-                                            </li>
-                                            <li class="clearfix checkout"><a href="#" class="pull-left">В корзину</a> <a href="#" class="pull-right">Оплатить</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="login-style"><a href="#"><i class="fa fa-unlock-alt"></i>Вход</a>
-                                    </li>
-                                    <li class="register-border"><a href="#">Регистрация</a>
-                                    </li>
-                                </ul>
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"><span class="menu-box"><span class="menu">Меню</span><i class="flaticon-list50 menu-button"></i>
-                                    </span>
-                                </button>
-                            </div>
-                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li class="dropdown"><a href="#" class="dropdown-toggle">Главная</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-1"><i class="fa fa-angle-down"></i></span>
-                                        <ul role="menu" class="dropdown-menu collapse-1 collapse">
-                                            <li><a href="index.html">Главная #1</a>
-                                            </li>
-                                            <li><a href="index-2.html">Главная #2</a>
-                                            </li>
-                                            <li><a href="index-3.html">Главная #3</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown"><a href="#" class="dropdown-toggle">О нас</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-2"><i class="fa fa-angle-down"></i></span>
-                                        <ul role="menu" class="dropdown-menu collapse-2 collapse">
-                                            <li><a href="about-us.html">О компании</a>
-                                            </li>
-                                            <li><a href="services.html">Услуги</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown"><a href="#" class="dropdown-toggle">Товары</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-3"><i class="fa fa-angle-down"></i></span>
-                                        <ul role="menu" class="dropdown-menu collapse-3 collapse">
-                                            <li class="dropdown"><a href="shop-list.html" class="dropdown-toggle">Магазин</a> <span class="submenu-toggler collapsed" data-toggle="collapse" data-target=".collapse-4"><i class="fa fa-angle-right"></i></span>
-                                                <ul role="menu" class="sub-menu collapse-4 collapse">
-                                                    <li><a href="shop-list.html">Список товаров</a>
-                                                    </li>
-                                                    <li><a href="shop-detail.html">Описание товара</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="cart.html">Корзина</a>
-                                            </li>
-                                            <li><a href="check-out.html">Оплата</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown"><a href="#" class="dropdown-toggle active">Галерея</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-6"><i class="fa fa-angle-down"></i></span>
-                                        <ul role="menu" class="dropdown-menu collapse-6 collapse">
-                                            <li><a href="portfolio.html">Портфолио</a>
-                                            </li>
-                                            <li><a href="portfolio-single.html">Описание</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown"><a href="#" class="dropdown-toggle">Новости</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-6"><i class="fa fa-angle-down"></i></span>
-                                        <ul role="menu" class="dropdown-menu collapse-6 collapse">
-                                            <li><a href="blog.html">Новости</a>
-                                            </li>
-                                            <li><a href="blog-single.html">Описание</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="contacts.html">Контакты</a>
-                                    </li>
-                                    <li class="search"><a href="#search-toggle-right" id="search-toggle"><i class="glyphicon glyphicon-search"></i></a>
-                                    </li>
-                                    <li class="search-form">
-                                        <form role="search" class="navbar-form">
-                                            <div class="input-group">
-                                                <input type="text" name="q" placeholder="Искать.." class="form-control">
-                                                <div class="input-group-btn">
-                                                    <button type="submit" class="btn btn-default">ОК</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </nav>
         </div>{% endcomment %}
+<style>
+.inner_content{
+    height: {{ height_block }};
+}
+
+</style>
         <div class="page-desc-section">
             <div class="container">
                 <div class="row">
@@ -312,6 +29,7 @@
                 </div>
             </div>
         </div>
+        <div class="inner_content">
         <section id="#your-works" class="your-works-section">
             <div class="container">
                 <div class="row">
@@ -321,41 +39,46 @@
                     </div>
                 </div>
             </div>
-            <div class="container">
+            <div class="container- my_container" >
                 <div class="row">
-                    <div class="col-md-12 category-buttons">
-                        <ul class="nav nav-pills project-filters" id="filters">
-                            <li><a href="#" data-filter=".photo" class="filter active">Одежда</a>
+                    <div class="col-md-12 category-buttons category-buttons_my">
+                        <ul class="nav nav-pills project-filters" id="filters" style="margin-left: 500px;">
+                            <li><a href="#" data-filter=".photo" class="filter filteer_my active">Одежда</a>
                             </li>
-                            <li><a href="#" data-filter=".web" class="filter">Техника</a>
+                            <li><a href="#" data-filter=".web" class="filter filteer_my">Техника</a>
                             </li>
-                            <li><a href="#" data-filter=".html" class="filter">Товары</a>
+                            <li><a href="#" data-filter=".html" class="filter filteer_my">Товары</a>
                             </li>
-                            <li><a href="#" data-filter=".wp" class="filter">Разное</a>
+                            <li><a href="#" data-filter=".wp" class="filter filteer_my">Разное</a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="project-grid works grid-column-3">
-                    <div class="project-items photo">
+                <div class="project-grid works- grid-column-3-">
+                {% for category_s in category %}
+                <div class="children">
+                    <div class="project-items- photo- html- proj-our">
                         <div class="thumbnail">
                             <div class="img-box">
-                                <div class="img-block"><img src="images/portfolio/projects/1.jpg" class="img-responsive">
-                                    <div class="mask">
-                                        <div class="mask-links">
-                                            <ul>
-                                                <li><a class="zoom work-control" data-rel="prettyPhoto" href="images/portfolio/projects/large/1.jpg" title="Название фото"><i class="fa fa-search color-blue"></i></a>
-                                                </li>
-                                                <li><a class="link work-control" href="portfolio-single.html"><i class="fa fa-link color-blue"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+
+                                <div class="img-block"><img src="{{ MEDIA_URL }}{{ category_s.3 }}" class="img-responsive">
+{#                                    <div class="mask">#}
+{#                                        <div class="mask-links">#}
+{#                                            <ul>#}
+{#                                                <li><a class="zoom work-control" data-rel="prettyPhoto" href="" title="{{ category_s.1 }}"><i class="fa fa-search color-blue"></i></a>#}
+{#                                                </li>#}
+{#                                                <li><a class="link work-control" href="portfolio-single.html"><i class="fa fa-link color-blue"></i></a>#}
+{#                                                </li>#}
+{#                                            </ul>#}
+{#                                        </div>#}<!--значки поиска и тд-->
+{#                                    </div>#}
                                 </div>
                             </div>
+{#                            <p><a href="{% url "goods" %}?i={{ cat.0 }}">{{ cat.1 }}</a></p><!-- /.catname-->#}
                             <div class="caption">
-                                <h3>Название фото</h3>
-                                <p>А вот по мнению аналитиков контекстная реклама ускоряет сублимированный охват аудитории. Практика однозначно показывает, что рейт-карта ускоряет конкурент, повышая конкуренцию.</p>
+
+                                <h3><a href="{% url "sort_goods_categ" %}?i={{ category_s.0 }}">{{ category_s.1 }}</a></h3><!--Название-->
+                                <p>{{ category_s.2 }}{#А вот по мнению аналитиков контекстная реклама ускоряет сублимированный охват аудитории. Практика однозначно показывает, что рейт-карта ускоряет конкурент, повышая конкуренцию.#}</p>
                                 <p class="rating">
                                     <input value="4" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг фото</span>
                                 </p>
@@ -364,41 +87,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-items photo html">
-                        <div class="thumbnail">
-                            <div class="img-box">
-                                <div class="img-block"><img src="images/portfolio/projects/2.jpg" class="img-responsive">
-                                    <div class="mask">
-                                        <div class="mask-links">
-                                            <ul>
-                                                <li><a class="zoom work-control" data-rel="prettyPhoto" href="images/portfolio/projects/large/2.jpg" title="Название фото"><i class="fa fa-search color-blue"></i></a>
-                                                </li>
-                                                <li><a class="link work-control" href="portfolio-single.html"><i class="fa fa-link color-blue"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="caption">
-                                <h3>Название фото</h3>
-                                <p>А вот по мнению аналитиков контекстная реклама ускоряет сублимированный охват аудитории. Практика однозначно показывает, что рейт-карта ускоряет конкурент, повышая конкуренцию.</p>
-                                <p class="rating">
-                                    <input value="4" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг фото</span>
-                                </p>
-                                <div class="social-icon"><a href="#"><i class="fa fa-google google-icon"></i></a> <a href="#"><i class="fa fa-facebook facebook-icon"></i></a> <a href="#"><i class="fa fa-dribbble dribble-icon"></i></a> <a href="#"><i class="fa fa-twitter twitter-icon"></i></a> <a href="#"><i class="fa fa-rss rss-icon"></i></a> <a href="#"><i class="fa fa-vimeo-square vimeo-icon"></i></a> <a href="#"><i class="fa fa-skype skype-icon"></i></a> <a href="#"><i class="fa fa-youtube youtube-icon"></i></a>
-                                </div>
-                            </div>
-                        </div>
+                </div>
+                    {% endfor %}
                     </div>
-                    <div class="project-items photo web">
+                    {% comment %}<div class="project-items photo html">
                         <div class="thumbnail">
                             <div class="img-box">
-                                <div class="img-block"><img src="images/portfolio/projects/3.jpg" class="img-responsive">
+                                <div class="img-block"><img src="" class="img-responsive">
                                     <div class="mask">
                                         <div class="mask-links">
                                             <ul>
-                                                <li><a class="zoom work-control" data-rel="prettyPhoto" href="images/portfolio/projects/large/3.jpg" title="Название фото"><i class="fa fa-search color-blue"></i></a>
+                                                <li><a class="zoom work-control" data-rel="prettyPhoto" href="" title="Название фото"><i class="fa fa-search color-blue"></i></a>
                                                 </li>
                                                 <li><a class="link work-control" href="portfolio-single.html"><i class="fa fa-link color-blue"></i></a>
                                                 </li>
@@ -421,11 +120,38 @@
                     <div class="project-items photo web">
                         <div class="thumbnail">
                             <div class="img-box">
-                                <div class="img-block"><img src="images/portfolio/projects/4.jpg" class="img-responsive">
+                                <div class="img-block"><img src="" class="img-responsive">
                                     <div class="mask">
                                         <div class="mask-links">
                                             <ul>
-                                                <li><a class="zoom work-control" data-rel="prettyPhoto" href="images/portfolio/projects/large/4.jpg" title="Название фото"><i class="fa fa-search color-blue"></i></a>
+                                                <li><a class="zoom work-control" data-rel="prettyPhoto" href="" title="Название фото"><i class="fa fa-search color-blue"></i></a>
+                                                </li>
+                                                <li><a class="link work-control" href="portfolio-single.html"><i class="fa fa-link color-blue"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="caption">
+                                <h3>Название фото</h3>
+                                <p>А вот по мнению аналитиков контекстная реклама ускоряет сублимированный охват аудитории. Практика однозначно показывает, что рейт-карта ускоряет конкурент, повышая конкуренцию.</p>
+                                <p class="rating">
+                                    <input value="4" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг фото</span>
+                                </p>
+                                <div class="social-icon"><a href="#"><i class="fa fa-google google-icon"></i></a> <a href="#"><i class="fa fa-facebook facebook-icon"></i></a> <a href="#"><i class="fa fa-dribbble dribble-icon"></i></a> <a href="#"><i class="fa fa-twitter twitter-icon"></i></a> <a href="#"><i class="fa fa-rss rss-icon"></i></a> <a href="#"><i class="fa fa-vimeo-square vimeo-icon"></i></a> <a href="#"><i class="fa fa-skype skype-icon"></i></a> <a href="#"><i class="fa fa-youtube youtube-icon"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-items photo web">
+                        <div class="thumbnail">
+                            <div class="img-box">
+                                <div class="img-block"><img src="" class="img-responsive">
+                                    <div class="mask">
+                                        <div class="mask-links">
+                                            <ul>
+                                                <li><a class="zoom work-control" data-rel="prettyPhoto" href="" title="Название фото"><i class="fa fa-search color-blue"></i></a>
                                                 </li>
                                                 <li><a class="link work-control" href="portfolio-single.html"><i class="fa fa-link color-blue"></i></a>
                                                 </li>
@@ -448,11 +174,11 @@
                     <div class="project-items photo web html">
                         <div class="thumbnail">
                             <div class="img-box">
-                                <div class="img-block"><img src="images/portfolio/projects/5.jpg" class="img-responsive">
+                                <div class="img-block"><img src="" class="img-responsive">
                                     <div class="mask">
                                         <div class="mask-links">
                                             <ul>
-                                                <li><a class="zoom work-control" data-rel="prettyPhoto" href="images/portfolio/projects/large/5.jpg" title="Название фото"><i class="fa fa-search color-blue"></i></a>
+                                                <li><a class="zoom work-control" data-rel="prettyPhoto" href="" title="Название фото"><i class="fa fa-search color-blue"></i></a>
                                                 </li>
                                                 <li><a class="link work-control" href="portfolio-single.html"><i class="fa fa-link color-blue"></i></a>
                                                 </li>
@@ -475,11 +201,11 @@
                     <div class="project-items wp photo">
                         <div class="thumbnail">
                             <div class="img-box">
-                                <div class="img-block"><img src="images/portfolio/projects/6.jpg" class="img-responsive">
+                                <div class="img-block"><img src="" class="img-responsive">
                                     <div class="mask">
                                         <div class="mask-links">
                                             <ul>
-                                                <li><a class="zoom work-control" data-rel="prettyPhoto" href="images/portfolio/projects/large/6.jpg" title="Название фото"><i class="fa fa-search color-blue"></i></a>
+                                                <li><a class="zoom work-control" data-rel="prettyPhoto" href="" title="Название фото"><i class="fa fa-search color-blue"></i></a>
                                                 </li>
                                                 <li><a class="link work-control" href="portfolio-single.html"><i class="fa fa-link color-blue"></i></a>
                                                 </li>
@@ -498,9 +224,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>{% endcomment %}
                 </div>
             </div>
+            {% comment paginator %}
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -523,171 +250,13 @@
                     </div>
                 </div>
             </div>
+            {% endcomment %}
         </section>
-
+        </div>
     {% endblock content %}
-    {% block brands %}<section id="brands" class="brands-section section slant-angle">
-        <div class="section-inner">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 animated" data-animation="fadeInRight" data-animation-delay="500">
-                        <h2 class="section-title animated" data-animation="fadeInRight" data-animation-delay="300">Партнеры</h2>
-                        <p class="sub-title animated" data-animation="fadeInLeft" data-animation-delay="300">Метод изучения рынка индуктивно ускоряет медиабизнес. Сегмент рынка развивает институциональный контент, опираясь на опыт западных коллег.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 animated" data-animation="fadeInUp" data-animation-delay="800">
-                        <div id="brands-slider" class="brands-carousel-slider">
-                            <div class="brands-item">
-                                <a href="#"><img src="images/brands/1.png" width="314" height="534" class="img-responsive">
-                                </a>
-                            </div>
-                            <div class="brands-item">
-                                <a href="#"><img src="images/brands/2.png" width="314" height="534" class="img-responsive">
-                                </a>
-                            </div>
-                            <div class="brands-item">
-                                <a href="#"><img src="images/brands/3.png" width="314" height="534" class="img-responsive">
-                                </a>
-                            </div>
-                            <div class="brands-item">
-                                <a href="#"><img src="images/brands/4.png" width="314" height="534" class="img-responsive">
-                                </a>
-                            </div>
-                            <div class="brands-item">
-                                <a href="#"><img src="images/brands/5.png" width="314" height="534" class="img-responsive">
-                                </a>
-                            </div>
-                            <div class="brands-item">
-                                <a href="#"><img src="images/brands/1.png" width="314" height="534" class="img-responsive">
-                                </a>
-                            </div>
-                            <div class="brands-item">
-                                <a href="#"><img src="images/brands/2.png" width="314" height="534" class="img-responsive">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>{% endblock brands %}
-    {% block additions %}<section id="new-additions" class="new-additions section">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 animated" data-animation="fadeInRight" data-animation-delay="500">
-                    <h2 class="section-title animated" data-animation="fadeInRight" data-animation-delay="300">Специальные предложения</h2>
-                    <p class="sub-title animated" data-animation="fadeInLeft" data-animation-delay="300">Метод изучения рынка индуктивно ускоряет медиабизнес. Сегмент рынка развивает институциональный контент, опираясь на опыт западных коллег.</p>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 animated" data-animation="fadeInUp" data-animation-delay="800">
-                    <div id="new-additions-carousel" class="new-additions-carousel">
-                        <div class="new-additions-items active">
-                            <div class="add-item">
-                                <a href="#"><img src="images/new-additions/1.png" width="170" height="150" class="img-responsive">
-                                </a>
-                            </div>
-                            <h4>название товара</h4>
-                            <h5>Категория</h5>
-                            <h3><a href="#">Подробнее</a></h3>
-                        </div>
-                        <div class="new-additions-items active">
-                            <div class="add-item">
-                                <a href="#"><img src="images/new-additions/2.png" width="170" height="150" class="img-responsive">
-                                </a>
-                            </div>
-                            <h4>название товара</h4>
-                            <h5>Категория</h5>
-                            <h3><a href="#">Подробнее</a></h3>
-                        </div>
-                        <div class="new-additions-items active">
-                            <div class="add-item">
-                                <a href="#"><img src="images/new-additions/3.png" width="170" height="150" class="img-responsive">
-                                </a>
-                            </div>
-                            <h4>название товара</h4>
-                            <h5>Категория</h5>
-                            <h3><a href="#">Подробнее</a></h3>
-                        </div>
-                        <div class="new-additions-items active">
-                            <div class="add-item">
-                                <a href="#"><img src="images/new-additions/4.png" width="170" height="150" class="img-responsive">
-                                </a>
-                            </div>
-                            <h4>название товара</h4>
-                            <h5>Категория</h5>
-                            <h3><a href="#">Подробнее</a></h3>
-                        </div>
-                        <div class="new-additions-items load-more">
-                            <div class="add-item">
-                                <a href="#"><img src="images/new-additions/5.png" width="170" height="150" class="img-responsive">
-                                </a>
-                            </div>
-                            <h4>название товара</h4>
-                            <h5>Категория</h5>
-                            <h3><a href="#">Подробнее</a></h3>
-                        </div>
-                        <div class="new-additions-items load-more">
-                            <div class="add-item">
-                                <a href="#"><img src="images/new-additions/6.png" width="170" height="150" class="img-responsive">
-                                </a>
-                            </div>
-                            <h4>название товара</h4>
-                            <h5>Категория</h5>
-                            <h3><a href="#">Подробнее</a></h3>
-                        </div>
-                        <div class="new-additions-items load-more">
-                            <div class="add-item">
-                                <a href="#"><img src="images/new-additions/7.png" width="170" height="150" class="img-responsive">
-                                </a>
-                            </div>
-                            <h4>название товара</h4>
-                            <h5>Категория</h5>
-                            <h3><a href="#">Подробнее</a></h3>
-                        </div>
-                        <div class="new-additions-items load-more">
-                            <div class="add-item">
-                                <a href="#"><img src="images/new-additions/8.png" width="170" height="150" class="img-responsive">
-                                </a>
-                            </div>
-                            <h4>название товара</h4>
-                            <h5>Категория</h5>
-                            <h3><a href="#">Подробнее</a></h3>
-                        </div>
-                        <div class="new-additions-items load-more">
-                            <div class="add-item">
-                                <a href="#"><img src="images/new-additions/9.png" width="170" height="150" class="img-responsive">
-                                </a>
-                            </div>
-                            <h4>название товара</h4>
-                            <h5>Категория</h5>
-                            <h3><a href="#">Подробнее</a></h3>
-                        </div>
-                        <div class="new-additions-items load-more">
-                            <div class="add-item">
-                                <a href="#"><img src="images/new-additions/2.png" width="170" height="150" class="img-responsive">
-                                </a>
-                            </div>
-                            <h4>название товара</h4>
-                            <h5>Категория</h5>
-                            <h3><a href="#">Подробнее</a></h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row loadmore-btn">
-                <div class="col-md-12 load-post text-center">
-                    <button type="button" class="btn load-posts loadmore">Еще</button>
-                </div>
-            </div>
-        </div>
-    </section>{% endblock additions %}
-    {% block footer %}<section id="footer" class="footer-bg">
+    {% block brands %}{% endblock brands %}
+    {% block additions %}{% endblock additions %}
+    {% block footer %}<section id="footer" class="footer-bg" style="margin-top: 50px">
         <div class="footer-section">
             <div class="container">
                 <div class="row">
@@ -738,21 +307,21 @@
                     <div class="col-sm-3 flickr animated" data-animation="fadeInUp" data-animation-delay="900">
                         <h3>Галерея</h3>
                         <ul>
-                            <li><img src="images/flickr/1.jpg" alt="flickr-1" class="img-responsive">
+                            <li><img src="" alt="flickr-1" class="img-responsive">
                             </li>
-                            <li><img src="images/flickr/2.jpg" alt="flickr-1" class="img-responsive">
+                            <li><img src="" alt="flickr-1" class="img-responsive">
                             </li>
-                            <li><img src="images/flickr/3.jpg" alt="flickr-1" class="img-responsive">
+                            <li><img src="" alt="flickr-1" class="img-responsive">
                             </li>
-                            <li><img src="images/flickr/4.jpg" alt="flickr-1" class="img-responsive">
+                            <li><img src="" alt="flickr-1" class="img-responsive">
                             </li>
-                            <li><img src="images/flickr/5.jpg" alt="flickr-1" class="img-responsive">
+                            <li><img src="" alt="flickr-1" class="img-responsive">
                             </li>
-                            <li><img src="images/flickr/6.jpg" alt="flickr-1" class="img-responsive">
+                            <li><img src="" alt="flickr-1" class="img-responsive">
                             </li>
-                            <li><img src="images/flickr/7.jpg" alt="flickr-1" class="img-responsive">
+                            <li><img src="" alt="flickr-1" class="img-responsive">
                             </li>
-                            <li><img src="images/flickr/8.jpg" alt="flickr-1" class="img-responsive">
+                            <li><img src="" alt="flickr-1" class="img-responsive">
                             </li>
                         </ul>
                     </div>
@@ -774,7 +343,14 @@
                 </div>
             </div>
         </div>
+{#        <script type="text/javascript" src="{% static "big_retail/js/main.js" %}" rel="stylesheet"></script>#}
     </section>{% endblock footer %}
-        </body>
+{% block js %}
+    <script type='text/javascript' src='http://test.michalbacak.com/wp-includes/js/imagesloaded.min.js?ver=3.2.0'></script>
+    <script type='text/javascript' src='http://test.michalbacak.com/wp-content/plugins/ajax-load-more/vendor/js/masonry/masonry.pkgd.min.js?ver=4.2.1'></script>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js">
+{% endblock js %}
+
+
 
 

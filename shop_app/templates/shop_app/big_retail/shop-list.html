@@ -5,28 +5,28 @@
 
 {% block content %}
 <body id="shop-list-layout-side-bar">
-    <div id="pageloader">
-        <div class="loader-item fa fa-spin colored-border"></div>
-    </div>
+{#    <div id="pageloader">#}
+{#        <div class="loader-item fa fa-spin colored-border"></div>#}
+{#    </div>#}
 
 
     <!--start slider-->
     <div id="top-slider" class="owl-carousel owl-theme">
         <div class="item"><img src="/media/img/36.jpg" alt="">
             <div class="carousel-caption">
-                <h2>Шаблон HTML5</h2>
-                <h1>Адаптивный дизайн</h1>
-                <p>Каталог качественных шаблонов на любой вкус</p>
-                <p>Создание и продвижение сайтов</p>
+                <h2>Магазин товаров</h2>
+                <h1>Открывайте на любом устройстве</h1>
+                <p>Каталог качественных товаров на любой вкус</p>
+                <p>Приобрайте с удовольствием</p>
                 <div class="btn pop">ПОДРОБНОСТИ</div>
             </div>
         </div>
         <div class="item"><img src="/media/img/36.jpg" alt="">
             <div class="carousel-caption">
-                <h2>Шаблон HTML5</h2>
-                <h1>Адаптивный дизайн</h1>
-                <p>Каталог качественных шаблонов на любой вкус</p>
-                <p>Создание и продвижение сайтов</p>
+                <h2>Магазин товаров</h2>
+                <h1>Открывайте на любом устройстве</h1>
+                <p>Каталог качественных товаров на любой вкус</p>
+                <p>Приобрайте с удовольствием</p>
                 <div class="btn pop">ПОДРОБНОСТИ</div>
             </div>
         </div>
@@ -106,7 +106,7 @@
                 </div>
             </div>
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane fade" id="grid">
+                {% comment %}<div role="tabpanel" class="tab-pane fade" id="grid">
                     <div class="row">
                         <div class="col-md-3 col-sm-3">
                             <div class="prodect-box">
@@ -353,7 +353,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>{% endcomment %}
                 <div role="tabpanel" class="tab-pane fade in active shop-list-section" id="list">
                     <div class="row">
                         <div class="col-md-3 filter col-sm-3">
@@ -379,12 +379,16 @@
                                 <div class="filter-title">
                                     <h3>Категории</h3>
                                 </div>
+                                {% for category_on_goods_s in category_on_goods %}
                                 <div class="panel-group" id="accordion" role="tablist">
+                                    {{ category_on_goods_s.0 }}
                                     <div class="panel panel-default">
+
                                         <div class="panel-heading">
-                                            <h4 class="panel-title"><a href="#collapseOne" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle collapsed"><span class="counting-box">13</span> <span class="panel-title">Название категории</span></a></h4>
+                                            <h4 class="panel-title"><a href="{% url "sort_goods_categ" %}?i={{ category_on_goods_s.0 }}"><span class="counting-box">13</span> <span class="panel-title">{{ category_on_goods_s.1}}</span></a></h4>
                                         </div>
-                                        <div class="panel-collapse collapse" id="collapseOne">
+
+                                        {% comment подкктегории%}<div class="panel-collapse collapse" id="collapseOne">
                                             <div class="panel-body">
                                                 <ul>
                                                     <li><a href="#"><span class="fa fa-caret-right"></span>Название подкатегории</a>
@@ -399,9 +403,11 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                        </div>
+                                        </div>{% endcomment %}
+
                                     </div>
-                                    <div class="panel panel-default">
+
+{% comment название категории%}                                    <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <h4 class="panel-title"><a href="#collapseTwo" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle collapsed"><span class="counting-box">13</span> <span class="panel-title">Название категории</span></a></h4>
                                         </div>
@@ -547,10 +553,11 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>{% endcomment %}
                                 </div>
+                                {% endfor %}
                             </div>
-                            <div class="top-rated-prodect-box">
+                            {% comment спец предложение%}<div class="top-rated-prodect-box">
                                 <div class="filter-title">
                                     <h3>Спец. предложения</h3>
                                 </div>
@@ -624,8 +631,8 @@
                                         </li>
                                     </ul><a href="#"><h4 class="see-all-link">смотреть еще</h4></a>
                                 </div>
-                            </div>
-                            <div class="testimonials-box">
+                            </div>{% endcomment %}
+                            {% comment %}<div class="testimonials-box">
                                 <div class="filter-title">
                                     <h3>Отзывы</h3>
                                 </div>
@@ -641,10 +648,10 @@
                                         <h4>специалист</h4>
                                     </div>
                                 </div>
-                            </div>
+                            </div>{% endcomment %}
                         </div>
                         <div class="col-md-9 col-sm-9">
-                            <div class="row">
+                            {% comment %}<div class="row">
                                 <div class="col-md-12">
                                     <div class="item-panel">
                                         <div class="row margin-hide">
@@ -671,8 +678,83 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>{% endcomment %}
+
+                            <!---->
+                        <div>
+                            {% for goodss in goods %}
+
+                                <!--start block-->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="item-panel">
+                                            <div class="row margin-hide">
+                                                <div class="col-md-4 col-sm-4 padding-left-hide">
+                                                    <a data-rel="prettyPhoto" href="images/shop-2/1.png" title="Название товара" class="img-body"></a>
+                                                    <img src="{{MEDIA_URL}}{{ goodss.4 }}" alt="" class="img-responsive">
+                                                </div>
+                                                <div class="col-md-8 col-sm-8 padding-right-hide">
+                                                    <div class="offer-box">
+                                                        <h3>-50%</h3>
+                                                        <h3>Акция</h3>
+                                                    </div><a href="#"><h3>{{ goodss.1 }}</h3></a>
+                                                    <h4>{{ goodss.3 }} р.</h4>
+                                                    <h5>{{ goodss.2 }}</h5>
+                                                    <p>{{ goodss.5 }}</p>
+                                                    <p class="ratings">
+                                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span> рейтинг товара</span>
+                                                    </p>
+                                                    <ul>
+                                                        <li class="show-link"><a href="{% url "show" %}?i={{ goodss.0 }}"><span>Подробнее..</span></a><span class="fa fa-angle-right right-icon"></span>
+                                                        </li>
+                                                        <li class="add-to-card"><span class="fa fa-shopping-cart"></span><a href="#"><span>В корзину</span></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            {% endfor %}
+                        </div>
+                        </div>
+                                <!--end block-->
+
+                                {% comment for_original %}<div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-lg-1">
+                                            <div class="alert-success-">{{ goodss.0 }}
+                                            </div><!-- /.id -->
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="alert-success-"><a href="{% url "show" %}?i={{ goodss.0 }}">{{ goodss.1 }}</a>
+                                            </div><!-- /.goodsname-->
+                                        </div>
+                                        <div class="col-1">
+                                            <div class="alert-success-">{{ goodss.2 }}
+                                            </div><!-- /.catid -->
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="alert-success-">{{ goodss.3 }}
+                                            </div><!-- /.price -->
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="alert-success-">{{ goodss.4 }}
+                                            </div><!-- /.img -->
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="alert-success-">{{ goodss.5 }}
+                                            </div><!-- /.desc-->
+
+                                        </div>
+                                    </div>
+                                </div>{% endcomment for_original%}
+
+                                </div>
+
+
+                            <!---->
+                            {% comment %}
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="item-panel">
@@ -814,6 +896,7 @@
                                     </ul>
                                 </div>
                             </div>
+                            {% endcomment %}
                         </div>
                     </div>
                 </div>

@@ -3,14 +3,64 @@ from django.shortcuts import render, render_to_response
 import psycopg2
 from django.http import HttpResponse
 from django.template import loader, Context
-from shop_app.models import GoodsModel, Image
+from shop_app.models import GoodsModel, Image, CategoryModel
 
 def index(request):
     #главная
+    all_goods_arr = []
     all_goods = GoodsModel.objects.values_list()
-    print('all_goods')
-    print(all_goods)
-    return render(request, 'shop_app/index.html', {'all_goods': all_goods})
+
+    all_goods_arr.append(all_goods)
+    all_goods = all_goods_arr
+    # print('all_goodss')
+    # print(all_goods)
+
+    tmp_append_goods = []
+    tmp_categ_name = []
+    tmp_categ_name_list = []
+    for all_goods_s in all_goods:
+        tmp_append_goods.append(all_goods_s)
+        for tmp_s in tmp_append_goods[0]:
+            #print('tmp_s')
+            #print(tmp_s)
+            p = GoodsModel(category=tmp_s[2])
+            categor_name = p.get_category_display()
+            list_tmp = list(tmp_s)
+            list_tmp[2]=categor_name
+            list_tmp = tuple(list_tmp)
+            #print('tmPP_turp')
+            #print(list_tmp)
+            for list_tmp_s in [list_tmp]:
+                # print('list_tmp_s')
+                # print(list_tmp_s)
+                tmp_categ_name_list = list_tmp_s
+                tmp_categ_name.append(tmp_categ_name_list)
+                            #tmp_categ_name = tmp_categ_name + ',' + list_tmp_s
+                            #tmp_categ_name = [list_tmp_s][0]
+        # print('tmp_categ_name')
+        # print(tmp_categ_name)
+
+            # ','.join(list_tmp)
+            # print('turpleQAPPplus')
+            # print(tmp_categ_name)
+
+
+            # # list_tmp[2]=categor_name
+            # print('turpleQAPPplus')
+            # print(list_tmp)
+            # turp_app = tuple(list_tmp)
+            # # print(turp_app)
+            # '(, )'.join(turp_app)
+            # print('tmp_categ_name')
+            # print(list_tmp)
+            # for item in tuple(list_tmp):
+            # # tmp_categ_name = tuple(list_tmp)
+            #     print('item')
+            #     print(item)
+            #     print('tmp_categ_nameIt')
+            #     print(tmp_categ_name.append(item))
+
+        return render(request, 'shop_app/index.html', {'all_goods': tmp_categ_name})
 
 def contacts(request):
     connection = psycopg2.connect(user="shopuser",
@@ -30,9 +80,10 @@ def contacts(request):
     return render(request, 'shop_app/contacts.html', context={'contacts': 'hello', 'mobile_records': mobile_records})
 
 def goods(request):
-    # все товары
-    print(123)
+    # все товары по определённой категории
+    # print('1234')
     #idcat = request.GET.get('i', default=None)
+    all_goods_arr = []
     connection = psycopg2.connect(user="shopuser",
                                   password="shop_pos0701",
                                   host="127.0.0.1",
@@ -42,19 +93,92 @@ def goods(request):
     postgreSQL_select_Query = 'select * from goods'
     cursor.execute(postgreSQL_select_Query)
     goodss = cursor.fetchall()
-    print(goodss)
-    print(request.GET.get('i', default=None))
-    if request.GET.get('i'):
-        idcat = request.GET.get('i', default=None)
-        #idcat = str(idcat)
-        postgreSQL_select_Query = 'select * from goods where catid = ' + idcat + ' ORDER BY id ASC'
-    else:
-        postgreSQL_select_Query = "select * from goods ORDER BY id ASC"
-    #print(postgreSQL_select_Query)
+    # print('pered_goodss')
+    # print(goodss)
+    #print(request.GET.get('i', default=None))
+    # if request.GET.get('i'):
+    #     idcat = request.GET.get('i', default=None)
+    #     idcat = str(idcat)
+    #     print(str(idcat))
+    #     postgreSQL_select_Query = 'select * from goods where category = ' + idcat + ' ORDER BY id ASC'
+    # else:
+    postgreSQL_select_Query = "select * from goods ORDER BY id ASC"
+    # print(postgreSQL_select_Query)
     cursor.execute(postgreSQL_select_Query)
     goodss = cursor.fetchall()
-    #print(goodss)
-    return render(request, 'shop_app/big_retail/shop-list.html', context={'goods': goodss})
+    # print('goodss')
+    # print(goodss)
+    all_goods_arr.append(goodss)
+    all_goods = all_goods_arr
+    # print('all_goodss')
+    # print(all_goods)
+
+    tmp_append_goods = []
+    tmp_categ_name = []
+    tmp_categ_name_list = []
+    for all_goods_s in all_goods:
+        tmp_append_goods.append(all_goods_s)
+        for tmp_s in tmp_append_goods[0]:
+            #print('tmp_s')
+            #print(tmp_s)
+            p = GoodsModel(category=tmp_s[2])
+            categor_name = p.get_category_display()
+            list_tmp = list(tmp_s)
+            list_tmp[2]=categor_name
+            list_tmp = tuple(list_tmp)
+            #print('tmPP_turp')
+            #print(list_tmp)
+            for list_tmp_s in [list_tmp]:
+                # print('list_tmp_s')
+                # print(list_tmp_s)
+                tmp_categ_name_list = list_tmp_s
+                tmp_categ_name.append(tmp_categ_name_list)
+    # print('tmp_categ_name')
+    # print(tmp_categ_name)
+    category_on_goods = CategoryModel.objects.values_list()
+    # print('category_on_goods')
+    # print(category_on_goods)
+    #return render(request, 'shop_app/goods.html', context={'goods': goodss})
+
+    return render(request, 'shop_app/big_retail/shop-list.html', context={'goods': tmp_categ_name,
+                                                                          'category_on_goods': category_on_goods})
+def sort_goods_categ(request):
+    # print('ii')
+    # print(request.GET.get('i'))
+    cat_num = (request.GET.get('i', default=None))
+    sort_goods_categ = GoodsModel.objects.filter(category=str(cat_num)).values_list()
+    # print('sort_goods_categ')
+    # print(sort_goods_categ)
+    tmp_append_goods = []
+    tmp_categ_name = []
+    tmp_categ_name_list = []
+    for all_goods_s in sort_goods_categ:
+        tmp_append_goods.append(all_goods_s)
+    print('tmp_append_goods')
+    print(tmp_append_goods)
+        # print('all_goods_s')
+        # print(all_goods_s)
+
+
+    for tmp_s in tmp_append_goods:
+        # print('tmp_s')
+        # print(tmp_s[2])
+        p = GoodsModel(category=tmp_append_goods[0][2])
+        categor_name = p.get_category_display()
+        list_tmp = list(tmp_s)
+        list_tmp[2]=categor_name
+        list_tmp = tuple(list_tmp)
+        print('list_tmp')
+        print(list_tmp)
+        for list_tmp_s in [list_tmp]:
+        # print('list_tmp_s')
+        # print(list_tmp_s)
+            tmp_categ_name_list = list_tmp_s
+            tmp_categ_name.append(tmp_categ_name_list)
+
+    category_on_goods = CategoryModel.objects.values_list()
+    return render(request, 'shop_app/big_retail/shop-list.html', context={'goods': tmp_categ_name,
+                                                                          'category_on_goods': category_on_goods})
 
 def category(request):
     # категории товаров
@@ -67,7 +191,26 @@ def category(request):
     postgreSQL_select_Query = "select * from category"
     cursor.execute(postgreSQL_select_Query)
     category = cursor.fetchall()
-    return render(request, 'shop_app/big_retail/portfolio.html', context={'category': category})
+
+    count_get_flats = len(category)
+    # print('count_get_flats')
+    # print(count_get_flats)
+    count_get_flats_res = ''
+    height_block = '1500px'
+    if count_get_flats == 0:
+        count_get_flats_res = 'Здесь пока ничего'
+        height_block = '150px'
+
+    if count_get_flats >= 0 or (count_get_flats <= 3):
+        height_block = '1000px'
+
+    #if count_get_flats <= 6:
+    if count_get_flats >= 3 or (count_get_flats <= 6):
+        height_block = '1400px'
+        #print(count_get_flats)
+        #print(heth_block)
+
+    return render(request, 'shop_app/big_retail/portfolio.html', context={'category': category, 'height_block': height_block})
 
 def gallery(request):
     all_photo = Image.objects.values_list()
@@ -75,7 +218,7 @@ def gallery(request):
         print(all_photo_s[1])
     #return render(request, 'shop_app/category.html')
     return render(request, 'shop_app/big_retail/portfolio.html', {'all_photo': all_photo_s})
-
+#from django.contrib.admin.options import get_content_type_for_model
 def show(request):
     # детальное описание товара
     #idgoods = request.GET.get('i', default=None)
@@ -93,6 +236,8 @@ def show(request):
     cursor = connection.cursor()
     cursor.execute(postgreSQL_select_Query)
     show = cursor.fetchall()
+    # print('show')
+    # print(show)
     #request.session['test'] = 123
     #print(request.session['test'])
     request.session['my_list'] = []
@@ -106,8 +251,42 @@ def show(request):
                 chek_good = 'disabled'
                 break
 
-    print(request.session['my_list'])
-    return render(request, 'shop_app/big_retail/shop-detail.html', context={'show': show, 'chek_good': chek_good})
+    # print(request.session['my_list'])
+    #symbol = GoodsModel.objects.first()
+    #image_goods = Image.objects.filter(content_type=get_content_type_for_model(symbol), object_id=request.GET.get('i'))
+    image_goods = Image.objects.filter(object_id=request.GET.get('i')).values_list()
+
+
+    print('chek_good')
+    print(show[0][2])
+    tegs_categ = CategoryModel.objects.filter(id=show[0][2]).values('description')
+
+    tegs_categ_desc = tegs_categ[0]['description']
+
+    tmp_append_goods = []
+    tmp_categ_name = []
+    tmp_categ_name_list = []
+    for all_goods_s in show:
+        tmp_append_goods.append(all_goods_s)
+        # print('tmp_append_goods')
+        # print(tmp_append_goods)
+        for tmp_s in tmp_append_goods:
+            # print('tmp_s')
+            # print(tmp_s)
+            p = GoodsModel(category=tmp_s[2])
+            categor_name = p.get_category_display()
+            list_tmp = list(tmp_s)
+            list_tmp[2]=categor_name
+            list_tmp = tuple(list_tmp)
+            #print('tmPP_turp')
+            #print(list_tmp)
+            for list_tmp_s in [list_tmp]:
+                print('list_tmp_s')
+                print(list_tmp_s)
+                # tmp_categ_name_list = list_tmp_s
+                # tmp_categ_name.append(tmp_categ_name_list)
+                # print(tmp_categ_name[0])
+        return render(request, 'shop_app/big_retail/shop-detail.html', context={'show': list_tmp_s, 'chek_good': chek_good, 'image_goods': image_goods, 'tegs_categ_desc': tegs_categ_desc})
     #return render(request, 'shop_app/showp.html', context={'show': show, 'chek_good': chek_good})
 
 def shop_billing(request):

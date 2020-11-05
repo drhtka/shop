@@ -28,6 +28,8 @@
 	overflow: hidden;
 	position: relative;
 	width: 100%;
+	/*width: 640px;*/
+	/*margin-left: -50px;*/
 }
 .owl-carousel .owl-wrapper-outer.autoHeight{
 	-webkit-transition: height 500ms ease-in-out;
