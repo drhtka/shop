@@ -60,7 +60,7 @@
 .main_img{
     z-index: 1;
     height: 470px;
-    width: 570px;
+    width: 620px;
     cursor: pointer;
 
 }
@@ -137,6 +137,7 @@
     font-weight: bolder;
     z-index: 1;
     margin-top: 10px;
+    cursor: pointer;
 }
 
 .main-big-photo:hover .next-div{
@@ -147,15 +148,18 @@
     font-size: 100px;
     font-weight: bolder;
     z-index: 1;
-    margin-left: 510px;
+    margin-left: 563px;
+    cursor: pointer;
 }
 
 .cont_flat_image{
     display: grid;
-    grid-template-columns: 160px 160px 160px;
+    grid-template-columns: 160px 160px 160px 160px;
     grid-template-rows: 140px; /* 250px 250px 250px;*/
     width: 50%;
     height: 50%;
+    /*overflow: hidden;*/
+    /*padding-top: 40px;*/
 }
 
 /*.small_image_for{*/
@@ -164,8 +168,8 @@
 /*}*/
 
 .img_small{
-    height: 80px;
-    width: 200px;
+    height: 130px;
+    width: 140px;
     vertical-align: revert;
-    margin-top: 10px;
+    margin-top: 15px;
 }

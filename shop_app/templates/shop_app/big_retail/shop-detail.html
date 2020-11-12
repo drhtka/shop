@@ -30,16 +30,16 @@
 {#                {% for sh in show %}#}
                 <!--главное фото  наше-->
             <div class="main-big-photo">
-                <div class="prev-div" onclick="newPrev(this)"> < </div>
+                <div class="prev-div" onclick="newPrev(this) "> < </div>
                     <div class="big-photo"><img class="main_img" src="{{ MEDIA_URL }}{{ show.4 }}" ></div>
                 <div class="next-div" onclick="newNext(this)"> > </div>
             </div>
                 <!--главное фото конец-->
                 <!--малые фото начало-->
-                <div class="cont_flat_image" >
+                <div class="cont_flat_image" id="slider">
 {#                    style="padding-left: 255px; height: 500px; overflow: hidden; padding-top: 40px;"#}
                 {% for image_goods_s in image_goods %}
-                    <div class="small_image_for" ><img class="img_small" onclick="changeImg(this)" src="{{ MEDIA_URL}}{{ image_goods_s.1 }}">
+                    <div><img onclick="changeImg(this)" class="img_small" id={{ image_goods_s.0 }} src="{{ MEDIA_URL}}{{ image_goods_s.1 }}">
                     </div >
                 {% endfor %}
                 </div>
@@ -209,7 +209,7 @@
                     <div id="top-sales">
                         <div class="item">
                             <div class="thumbnail">
-                                <div class="photo-block"><a class="add-cart-link" data-rel="prettyPhoto" href="images/top-sales/1.jpg" title="Название товара"><i class="fa fa-plus"></i></a> <img src="images/top-sales/1.jpg" class="img-responsive" alt="top-sales">
+                                <div class="photo-block"><a class="add-cart-link" data-rel="prettyPhoto" href="" title="Название товара"><i class="fa fa-plus"></i></a> <img src="" class="img-responsive" alt="top-sales">
                                 </div>
                                 <div class="caption"><a href="#" class="category">Категория</a> <a href="#">Название товара</a>
                                     <h4>500 р.</h4>
@@ -227,7 +227,7 @@
                         </div>
                         <div class="item">
                             <div class="thumbnail">
-                                <div class="photo-block"><a class="add-cart-link" data-rel="prettyPhoto" href="images/top-sales/2.jpg" title="Название товара"><i class="fa fa-plus"></i></a> <img src="images/top-sales/2.jpg" class="img-responsive" alt="top-sales">
+                                <div class="photo-block"><a class="add-cart-link" data-rel="prettyPhoto" href="" title="Название товара"><i class="fa fa-plus"></i></a> <img src="" class="img-responsive" alt="top-sales">
                                 </div>
                                 <div class="caption"><a href="#" class="category">Категория</a> <a href="#">Название товара</a>
                                     <h4>500 р.</h4>
@@ -245,7 +245,7 @@
                         </div>
                         <div class="item">
                             <div class="thumbnail">
-                                <div class="photo-block"><a class="add-cart-link" data-rel="prettyPhoto" href="images/top-sales/3.jpg" title="Название товара"><i class="fa fa-plus"></i></a> <img src="images/top-sales/3.jpg" class="img-responsive" alt="top-sales">
+                                <div class="photo-block"><a class="add-cart-link" data-rel="prettyPhoto" href="" title="Название товара"><i class="fa fa-plus"></i></a> <img src="" class="img-responsive" alt="top-sales">
                                 </div>
                                 <div class="caption"><a href="#" class="category">Категория</a> <a href="#">Название товара</a>
                                     <h4>500 р.</h4>
@@ -263,7 +263,7 @@
                         </div>
                         <div class="item">
                             <div class="thumbnail">
-                                <div class="photo-block"><a class="add-cart-link" data-rel="prettyPhoto" href="images/top-sales/4.jpg" title="Название товара"><i class="fa fa-plus"></i></a> <img src="images/top-sales/4.jpg" class="img-responsive" alt="top-sales">
+                                <div class="photo-block"><a class="add-cart-link" data-rel="prettyPhoto" href="" title="Название товара"><i class="fa fa-plus"></i></a> <img src="" class="img-responsive" alt="top-sales">
                                 </div>
                                 <div class="caption"><a href="#" class="category">Категория</a> <a href="#">Название товара</a>
                                     <h4>500 р.</h4>
@@ -281,7 +281,7 @@
                         </div>
                         <div class="item">
                             <div class="thumbnail">
-                                <div class="photo-block"><a class="add-cart-link" data-rel="prettyPhoto" href="images/top-sales/5.jpg" title="Название товара"><i class="fa fa-plus"></i></a> <img src="images/top-sales/5.jpg" class="img-responsive" alt="top-sales">
+                                <div class="photo-block"><a class="add-cart-link" data-rel="prettyPhoto" href="" title="Название товара"><i class="fa fa-plus"></i></a> <img src="" class="img-responsive" alt="top-sales">
                                 </div>
                                 <div class="caption"><a href="#" class="category">Категория</a> <a href="#">Название товара</a>
                                     <h4>500 р.</h4>
@@ -299,7 +299,7 @@
                         </div>
                         <div class="item">
                             <div class="thumbnail">
-                                <div class="photo-block"><a class="add-cart-link" data-rel="prettyPhoto" href="images/top-sales/6.jpg" title="Название товара"><i class="fa fa-plus"></i></a> <img src="images/top-sales/6.jpg" class="img-responsive" alt="top-sales">
+                                <div class="photo-block"><a class="add-cart-link" data-rel="prettyPhoto" href="" title="Название товара"><i class="fa fa-plus"></i></a> <img src="" class="img-responsive" alt="top-sales">
                                 </div>
                                 <div class="caption"><a href="#" class="category">Категория</a> <a href="#">Название товара</a>
                                     <h4>500 р.</h4>
@@ -317,7 +317,7 @@
                         </div>
                         <div class="item">
                             <div class="thumbnail">
-                                <div class="photo-block"><a class="add-cart-link" data-rel="prettyPhoto" href="images/top-sales/7.jpg" title="Название товара"><i class="fa fa-plus"></i></a> <img src="images/top-sales/7.jpg" class="img-responsive" alt="top-sales">
+                                <div class="photo-block"><a class="add-cart-link" data-rel="prettyPhoto" href="" title="Название товара"><i class="fa fa-plus"></i></a> <img src="" class="img-responsive" alt="top-sales">
                                 </div>
                                 <div class="caption"><a href="#" class="category">Категория</a> <a href="#">Название товара</a>
                                     <h4>500 р.</h4>
@@ -335,7 +335,7 @@
                         </div>
                         <div class="item">
                             <div class="thumbnail">
-                                <div class="photo-block"><a class="add-cart-link" data-rel="prettyPhoto" href="images/top-sales/8.jpg" title="Название товара"><i class="fa fa-plus"></i></a> <img src="images/top-sales/8.jpg" class="img-responsive" alt="top-sales">
+                                <div class="photo-block"><a class="add-cart-link" data-rel="prettyPhoto" href="" title="Название товара"><i class="fa fa-plus"></i></a> <img src="" class="img-responsive" alt="top-sales">
                                 </div>
                                 <div class="caption"><a href="#" class="category">Категория</a> <a href="#">Название товара</a>
                                     <h4>500 р.</h4>
