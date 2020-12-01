@@ -9,7 +9,8 @@ def index(request):
     #главная
     all_goods_arr = []
     all_goods = GoodsModel.objects.values_list()
-
+    # print('all_goodss')
+    # print(all_goods[0:5])
     all_goods_arr.append(all_goods)
     all_goods = all_goods_arr
     # print('all_goodss')
@@ -60,7 +61,7 @@ def index(request):
             #     print('tmp_categ_nameIt')
             #     print(tmp_categ_name.append(item))
 
-        return render(request, 'shop_app/index.html', {'all_goods': tmp_categ_name})
+        return render(request, 'shop_app/index.html', {'all_goods': tmp_categ_name, 'all_in_slider': all_goods[0:5]})
 
 def contacts(request):
     connection = psycopg2.connect(user="shopuser",
@@ -219,8 +220,10 @@ def gallery(request):
     #return render(request, 'shop_app/category.html')
     return render(request, 'shop_app/big_retail/portfolio.html', {'all_photo': all_photo_s})
 #from django.contrib.admin.options import get_content_type_for_model
-def show(request):
+def show(request, pk):
     # детальное описание товара
+    print('id')
+    print(pk)
     #idgoods = request.GET.get('i', default=None)
     connection = psycopg2.connect(user="shopuser",
                                   password="shop_pos0701",
@@ -228,8 +231,8 @@ def show(request):
                                   port="5432",
                                   database="shop_pos")
 
-    if request.GET.get('i'):
-        idgoods = request.GET.get('i', default=None)
+    if pk:
+        idgoods = str(pk)
         postgreSQL_select_Query = "select * from goods where id = " + idgoods + " ORDER BY id ASC"
     else:
         postgreSQL_select_Query = "select * from goods ORDER BY id ASC"
@@ -254,7 +257,7 @@ def show(request):
     # print(request.session['my_list'])
     #symbol = GoodsModel.objects.first()
     #image_goods = Image.objects.filter(content_type=get_content_type_for_model(symbol), object_id=request.GET.get('i'))
-    image_goods = Image.objects.filter(object_id=request.GET.get('i')).values_list()
+    image_goods = Image.objects.filter(object_id=pk).values_list()
 
 
     print('chek_good')

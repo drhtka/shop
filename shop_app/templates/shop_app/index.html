@@ -1,47 +1,126 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load pagination_tags %}
     <title>{% block title %}Главная{% endblock %}</title>
 {% block content %}
 <body id="video-bg">
 
-    <section class="work-area section">
+
+    {% block additions %} {% endblock additions %}
+        <section id="new-additions" class="new-additions section">
         <div class="container">
             <div class="row">
-                <div class="col-xs-12">
-                    <h2 class="section-title text-center color-black animated" data-animation="fadeInRight" data-animation-delay="300">Приветствуем Вас в нашем магазине!</h2>
-                    <p class="sub-title text-center color-black animated" data-animation="fadeInLeft" data-animation-delay="500">Исходя из структуры пирамиды Маслоу, опрос охватывает фирменный нишевый проект.</p>
-                    <p class="sub-title text-center color-black animated" data-animation="fadeInLeft" data-animation-delay="500">Рекламоноситель, пренебрегая деталями, основан на тщательном анализе данных.</p>
+                <div class="col-xs-12 animated" data-animation="fadeInRight" data-animation-delay="500">
+                    <h2 class="section-title animated" data-animation="fadeInRight" data-animation-delay="300">Специальные предложения</h2>
+                    <p class="sub-title animated" data-animation="fadeInLeft" data-animation-delay="300">Метод изучения рынка индуктивно ускоряет медиабизнес. Сегмент рынка развивает институциональный контент, опираясь на опыт западных коллег.</p>
                 </div>
             </div>
-            <div class="row welcome-block">
-                <div class="col-sm-3">
-                    <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="300"><i class="fa fa-shopping-cart"></i>
-                        <h3>Быстрая покупка</h3>
-                        <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 animated" data-animation="fadeInUp" data-animation-delay="800">
+                    <div id="new-additions-carousel" class="new-additions-carousel">
+                        <div class="new-additions-items active">
+                            <div class="add-item">
+                                <a href="#"><img src="" width="170" height="150" class="img-responsive">
+                                </a>
+                            </div>
+                            <h4>название товара</h4>
+                            <h5>Категория</h5>
+                            <h3><a href="#">Подробнее</a></h3>
+                        </div>
+                        <div class="new-additions-items active">
+                            <div class="add-item">
+                                <a href="#"><img src="" width="170" height="150" class="img-responsive">
+                                </a>
+                            </div>
+                            <h4>название товара</h4>
+                            <h5>Категория</h5>
+                            <h3><a href="#">Подробнее</a></h3>
+                        </div>
+                        <div class="new-additions-items active">
+                            <div class="add-item">
+                                <a href="#"><img src="" width="170" height="150" class="img-responsive">
+                                </a>
+                            </div>
+                            <h4>название товара</h4>
+                            <h5>Категория</h5>
+                            <h3><a href="#">Подробнее</a></h3>
+                        </div>
+                        <div class="new-additions-items active">
+                            <div class="add-item">
+                                <a href="#"><img src="" width="170" height="150" class="img-responsive">
+                                </a>
+                            </div>
+                            <h4>название товара</h4>
+                            <h5>Категория</h5>
+                            <h3><a href="#">Подробнее</a></h3>
+                        </div>
+                        <div class="new-additions-items load-more">
+                            <div class="add-item">
+                                <a href="#"><img src="" width="170" height="150" class="img-responsive">
+                                </a>
+                            </div>
+                            <h4>название товара</h4>
+                            <h5>Категория</h5>
+                            <h3><a href="#">Подробнее</a></h3>
+                        </div>
+                        <div class="new-additions-items load-more">
+                            <div class="add-item">
+                                <a href="#"><img src="" width="170" height="150" class="img-responsive">
+                                </a>
+                            </div>
+                            <h4>название товара</h4>
+                            <h5>Категория</h5>
+                            <h3><a href="#">Подробнее</a></h3>
+                        </div>
+                        <div class="new-additions-items load-more">
+                            <div class="add-item">
+                                <a href="#"><img src="" width="170" height="150" class="img-responsive">
+                                </a>
+                            </div>
+                            <h4>название товара</h4>
+                            <h5>Категория</h5>
+                            <h3><a href="#">Подробнее</a></h3>
+                        </div>
+                        <div class="new-additions-items load-more">
+                            <div class="add-item">
+                                <a href="#"><img src="" width="170" height="150" class="img-responsive">
+                                </a>
+                            </div>
+                            <h4>название товара</h4>
+                            <h5>Категория</h5>
+                            <h3><a href="#">Подробнее</a></h3>
+                        </div>
+                        <div class="new-additions-items load-more">
+                            <div class="add-item">
+                                <a href="#"><img src="" width="170" height="150" class="img-responsive">
+                                </a>
+                            </div>
+                            <h4>название товара</h4>
+                            <h5>Категория</h5>
+                            <h3><a href="#">Подробнее</a></h3>
+                        </div>
+                        <div class="new-additions-items load-more">
+                            <div class="add-item">
+                                <a href="#"><img src="" width="170" height="150" class="img-responsive">
+                                </a>
+                            </div>
+                            <h4>название товара</h4>
+                            <h5>Категория</h5>
+                            <h3><a href="#">Подробнее</a></h3>
+                        </div>
                     </div>
                 </div>
-                <div class="col-sm-3">
-                    <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="500"><i class="fa fa-car"></i>
-                        <h3>Доставка по России</h3>
-                        <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="700"><i class="fa fa-money"></i>
-                        <h3>Продажа шаблонов</h3>
-                        <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="900"><i class="fa fa-credit-card"></i>
-                        <h3>Оплачивайте здесь</h3>
-                        <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
-                    </div>
+            </div>
+            <div class="row loadmore-btn">
+                <div class="col-md-12 load-post text-center">
+                    <button type="button" class="btn load-posts loadmore">Еще</button>
                 </div>
             </div>
         </div>
     </section>
+   <!-- new-additions end-->
     <section id="top-sale" class="top-sale-section">
         <div class="container">
             <div class="row">
@@ -56,9 +135,9 @@
                         <li class="pull-right">
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="btn-group list view-type">Показать как:</li>
-                                <li class="btn-group list active" role="presentation"><a href="#list" title="List View" role="tab" data-toggle="tab"><i class="fa fa-th-list"></i></a>
+                                <li class="btn-group list active" role="presentation"><a href="{% url 'goods' %}" title="List View" role="tab" ><i class="fa fa-th-list"></i></a>
                                 </li>
-                                <li class="btn-group grid" role="presentation"><a href="#grid" title="Grid View" role="tab" data-toggle="tab"><i class="fa fa-th-large"></i></a>
+                                <li class="btn-group grid" role="presentation"><a href="{% url "index" %}" title="Grid View" role="tab" ><i class="fa fa-th-large"></i></a>
                                 </li>
                             </ul>
                         </li>
@@ -80,18 +159,18 @@
                             <button type="button" class="btn btn-default top-icon"><i class="fa fa-arrow-up"></i>
                             </button>
                         </li>
-                        <li class="btn-group item-show">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="pull-right"><i class="fa fa-angle-down"></i></span>Выводить: <span>по 12 товаров</span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">по 18 товаров</a>
-                                </li>
-                                <li><a href="#">по 24 товара</a>
-                                </li>
-                                <li><a href="#">ВСЕ</a>
-                                </li>
-                            </ul>
-                        </li>
+{#                        <li class="btn-group item-show">#}
+{#                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="pull-right"><i class="fa fa-angle-down"></i></span>Выводить: <span>по 12 товаров</span>#}
+{#                            </button>#}
+{#                            <ul class="dropdown-menu" role="menu">#}
+{#                                <li><a href="#">по 18 товаров</a>#}
+{#                                </li>#}
+{#                                <li><a href="#">по 24 товара</a>#}
+{#                                </li>#}
+{#                                <li><a href="#">ВСЕ</a>#}
+{#                                </li>#}
+{#                            </ul>#}
+{#                        </li>#}
                         <li class="btn-group item-categories">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="pull-right"><i class="fa fa-angle-down"></i></span>Выбрать: <span>категорию</span>
                             </button>
@@ -232,7 +311,7 @@
 {#            </div>-->>#}{% endcomment %}
                 {#start test#}
                 <div class="my_row">
-
+                    {% autopaginate all_goods 12 %}
                     {% for all_goods_s in all_goods %}
 
                         <div class="chaild_grid">
@@ -254,8 +333,8 @@
                                         <div class="my_cart_reed">
                                             <div><a href="#" class="add-card-text"><span class="fa fa-shopping-cart"></span>В корзину</a>
                                             </div>
-                                            <div ><a href="{% url "show" %}?i={{ all_goods_s.0 }}" class="show-link">Читать...<span class="right-icon-"></span></a>
-
+{#                                            <div ><a href="{% url "show" %}?i={{ all_goods_s.0 }}" class="show-link">Читать...<span class="right-icon-"></span></a>#}
+                                              <div ><a href="{% url "show" pk=all_goods_s.0 %}" class="show-link">Читать...<span class="right-icon-"></span></a>
                                             </div>
                                         </div>
 
@@ -266,6 +345,7 @@
                         </div>
 
                     {% endfor %}
+                    {% paginate %}
                 </div>
 
             {#    end test        <--!-->#}
@@ -300,28 +380,71 @@
                     {% endfor %}{% endcomment %}
 
 
-            <ul class="top-sale-pagination animated" data-animation="fadeInUp" data-animation-delay="500">
-                <li class="preview"><a href="#" title="Previews Image"><span class="fa fa-2x fa-angle-left"></span></a>
-                </li>
-                <li><a href="#" title="1">1</a>
-                </li>
-                <li><a href="#" title="1">2</a>
-                </li>
-                <li><a href="#" title="1">3</a>
-                </li>
-                <li><a href="#" title="1">4</a>
-                </li>
-                <li><a href="#" title="1">5</a>
-                </li>
-                <li class="next"><a href="#" title="Next Image"><span class="fa fa-2x fa-angle-right"></span></a>
-                </li>
-            </ul>
+{#            <ul class="top-sale-pagination animated" data-animation="fadeInUp" data-animation-delay="500">#}
+{#                <li class="preview"><a href="#" title="Previews Image"><span class="fa fa-2x fa-angle-left"></span></a>#}
+{#                </li>#}
+                <!--выгрузка 14.11.20 на уроке-->
+{#{{ all_in_slider }} #}
+{#                {% for all_in_slider_s in all_in_slider %}#}
+{#                    <li><a href="#" title="1">1</a>#}
+{#                    {{ all_in_slider_s }}#}
+{#                    </li>#}
+{#                {% endfor %}#}
+                <!--выгрузка 14.11.20 на уроке end-->
+{#                <li><a href="#" title="1">2</a>#}
+{#                </li>#}
+{#                <li><a href="#" title="1">3</a>#}
+{#                </li>#}
+{#                <li><a href="#" title="1">4</a>#}
+{#                </li>#}
+{#                <li><a href="#" title="1">5</a>#}
+{#                </li>#}
+{#                <li class="next"><a href="#" title="Next Image"><span class="fa fa-2x fa-angle-right"></span></a>#}
+{#                </li>#}
+{#            </ul>#}
         </div>
         </div>
     </section>
 
-
+    <section class="work-area section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="section-title text-center color-black animated" data-animation="fadeInRight" data-animation-delay="300">Приветствуем Вас в нашем магазине!</h2>
+                    <p class="sub-title text-center color-black animated" data-animation="fadeInLeft" data-animation-delay="500">Исходя из структуры пирамиды Маслоу, опрос охватывает фирменный нишевый проект.</p>
+                    <p class="sub-title text-center color-black animated" data-animation="fadeInLeft" data-animation-delay="500">Рекламоноситель, пренебрегая деталями, основан на тщательном анализе данных.</p>
+                </div>
+            </div>
+            <div class="row welcome-block">
+                <div class="col-sm-3">
+                    <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="300"><i class="fa fa-shopping-cart"></i>
+                        <h3>Быстрая покупка</h3>
+                        <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="500"><i class="fa fa-car"></i>
+                        <h3>Доставка по России</h3>
+                        <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="700"><i class="fa fa-money"></i>
+                        <h3>Продажа шаблонов</h3>
+                        <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="900"><i class="fa fa-credit-card"></i>
+                        <h3>Оплачивайте здесь</h3>
+                        <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 </body>
 
 {% endblock content %}
+{% block brands %}{% endblock brands %}

@@ -42,10 +42,15 @@ INSTALLED_APPS = [
 	'test_url.apps.TestUrlConfig',
     #'blog.apps.BlogConfig',
     'rest_framework',
+    'corsheaders',
+    'dj_pagination',
+    'api',
 
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -53,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'dj_pagination.middleware.PaginationMiddleware',
 ]
 
 ROOT_URLCONF = 'shop.urls'
@@ -160,3 +166,10 @@ STATICFILES_FINDERS = (
 SESSION_ENGINE = 'django.contrib.sessions.backends.file'
 #https://developer.mozilla.org/ru/docs/Learn/Server-side/Django/%D0%A1%D0%B5%D1%81%D1%81%D0%B8%D0%B8
 SESSION_SAVE_EVERY_REQUEST = True
+
+CORS_ORIGIN_WHITELIST =(
+    'localhost:8800'
+    '127.0.0.1:8800'
+
+
+)

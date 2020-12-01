@@ -7,7 +7,9 @@
 // }
 
 // картинка при нажатии перепрыгивает наглавную
-var active_photo = ''
+var active_photo = document.getElementsByClassName('img_small')[0] // обращаемся к первой фотке списка маленьких фото
+// при загрузке страницы
+// изначально в этой глобальной переменной должна быть
 function changeImg(mythis) {
 	document.getElementsByClassName('main_img')[0].src = mythis.src // при нажатии записываем фотку в главное фото
 	//alert(mythis.id) // id фоток
@@ -16,6 +18,10 @@ function changeImg(mythis) {
 // var num = 0;
 function newPrev(myThis){
 	// alert('levo')
+	// alert('newPrev')
+	// console.log('active_photo.newPrev')
+	// console.log(document.getElementsByClassName('img_small')[0])
+	//active_photo =
 	if(active_photo.parentNode.previousElementSibling != null){  // ищу следующую картинку, если ее нет то стоп
 		// если есть то идем дальше
 		active_photo = active_photo.parentNode.previousElementSibling.childNodes[0] // записываем в глобал перменную при клике картинку к которой подошел клик слева
@@ -25,8 +31,8 @@ function newPrev(myThis){
 }
 
 function newNext(myThis){
-	alert('123')
-	console.log(active_photo)
+	// alert('newNext')
+	// console.log(active_photo)
 	// console.log('active_photo')
 	// console.log(active_photo)
 	// console.log(active_photo.parentNode.nextElementSibling)
@@ -38,47 +44,3 @@ function newNext(myThis){
 
 }
 
-// var num = 0;
-// function newNext() {
-// 	var slider = document.getElementById('slider');
-// 	num++;
-// 	if(num >= images.length) {
-// 		num = 0;
-// 	}
-// 	slider.src = images[num];
-// 	document.getElementsByClassName('main_img')[0].src = images[num]
-// 	//alert(images[num])
-// }
-//
-// function newPrev() {
-// 	var slider = document.getElementById('slider');
-// 	num--;
-// 	if(num < 0) {
-// 		num = images.length-1;
-// 	}
-// 	slider.src = images[num];
-// 	document.getElementsByClassName('main_img')[0].src = images[num]
-// }
-
-
-// var tmp_my_arr = []
-// console.log('active_photo')
-// console.log(active_photo)
-// for (my_item of [active_photo]){
-// 	console.log('my_item')
-// 	console.log(my_item)
-// 	tmp_my_arr.push(my_item)
-// 	console.log('tmp_my_arr')
-// 	console.log(tmp_my_arr[0].src)
-// 	// tmp_my_arr = tmp_my_arr.slace(0)
-// 	// console.log(tmp_my_arr.slace(0))
-//
-// }
-// // console.log('0')
-// // console.log(active_photo.src)
-// // tmp_my_arr.push(active_photo.src)
-// // console.log('0.5')
-// // console.log(tmp_my_arr)
-// // active_photo.src = tmp_my_arr
-// console.log('1')
-// console.log(active_photo.src)
