@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><!DOCTYPE html>
+    <html lang="ru">
+
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta charset="utf-8">
+        <title>{% block title %}Наш интернет-магазин{% endblock %}</title>
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+
+        <link href="{% static "big_retail/css/font-awesome.css" %}" rel="stylesheet" type="text/css">
+        <link href="{% static "big_retail/css/animate.min.css" %}" rel="stylesheet" type="text/css">
+        <link href="{% static "big_retail/css/hover-min.css" %}" rel="stylesheet" type="text/css">
+        <link href="{% static "big_retail/css/flexisel.css" %}" rel="stylesheet" type="text/css">
+        <link href="{% static "big_retail/css/owl.carousel.css" %}" rel="stylesheet" type="text/css">
+{#        <link href="{% static "big_retail/css/owl.carousel.css" %}" rel="stylesheet" type="text/css">#}
+        <link href="{% static "big_retail/css/prettyPhoto.css" %}" rel="stylesheet" type="text/css">
+        <link href="{% static "big_retail/css/YTPlayer.css" %}" rel="stylesheet" type="text/css">
+        <link href="{% static "big_retail/css/star-rating.min.css" %}" rel="stylesheet" type="text/css">
+        <link href="{% static "big_retail/css/flaticon.css" %}" rel="stylesheet" type="text/css">
+        <link href="{% static "big_retail/css/themes/theme.css" %}" id="changeable-colors" rel="stylesheet" type="text/css">
+        <link href="{% static "big_retail/css/responsive.css" %}" rel="stylesheet" type="text/css">
+        {% comment %}<link href="{% static "shop_app/css/base.css" %}" rel="stylesheet" type="text/css">{% endcomment %}
+        <link href="{% static "big_retail/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
+        <link href="{% static "big_retail/css/style.css" %}" rel="stylesheet" type="text/css">
+        <link href="{% static "big_retail/css/my_style.css" %}" rel="stylesheet" type="text/css">
+        <link href="{% static "pagination/my_pagin.css" %}" rel="stylesheet" type="text/css">
+
+    {% block css %}{% endblock css %}
+
+    </head>
+    {% block video-baner %}
+        <div id="pageloader">
+            <div class="loader-item fa fa-spin colored-border"></div>
+        </div>
+        <div id="fixed_video1">
+            <div id="P3" class="player video-container" data-property="{videoURL:'8hv-ol3RnPo',containment:'#fixed_video1',autoPlay:true, showControls:true, mute:true, startAt:0}"></div>
+            <div class="container text-slider-container">
+                <div class="text-slider">
+                    <ul class="slide-text">
+                        <li>
+                            <h1>Шаблон сайта HTML5 & CSS3</h1>
+                        </li>
+                        <li>
+                            <h1>Адаптивные шаблоны сайтов</h1>
+                        </li>
+                        <li>
+                            <h1>Шаблон сайта HTML5 & CSS3</h1>
+                        </li>
+                    </ul>
+                </div>
+                <ul class="sub-titles">
+                    <li>Профессиональный шаблон сайта</li>
+                </ul>
+                <ul class="slider-button">
+                    <li>
+                        <button class="btn btn-default">Purchase</button>
+                    </li>
+                    <li>
+                        <button class="btn btn-line btn-default">Read more</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    {% endblock video-baner %}
+    {% block header-top %}
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="navbar">
+                            <div class="navbar-header">
+                                <ul class="header-top-left">
+                                    <li class="dropdown collapse navbar-collapse" id="bs-example-navbar-collapse-1">Язык<a class="dropdown-toggle" data-toggle="dropdown" href="#">[ <span>RU<i class="fa fa-angle-down"></i></span> ]</a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#"><span><img src="" alt="Language-flag"></span>ENG</a>
+                                            </li>
+                                            <li><a href="#"><span><img src="" alt="Language-flag"></span>GER</a>
+                                            </li>
+                                            <li><a href="#"><span><img src="" alt="Language-flag"></span>FRE</a>
+                                            </li>
+                                            <li><a href="#"><span><img src="" alt="Language-flag"></span>ITA</a>
+                                            </li>
+                                            <li><a href="#"><span><img src="" alt="Language-flag"></span>SPA</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="mailto:email@example.com"><i class="flaticon-black164"></i> mail@mail.com</a>
+                                    </li>
+                                    <li><a href="#"><i class="flaticon-phone46"></i> +7 123 456 78 90</a>
+                                    </li>
+                                </ul>
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><i class="flaticon-list50"></i>
+                                </button>
+                            </div>
+                            <ul class="nav navbar-nav navbar-right section-hidden">
+
+                                <li class="cart"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-shopping-cart"></i>В корзине {{ count_render_session }} товара</a>
+                                    <ul class="dropdown-menu" role="menu">
+
+                                        {% for render_session_s in render_session  %}
+                                        <li class="clearfix">
+{#                                            <i class="fa fa-times pull-right"></i>#}
+                                            <form action="/dell_goods" method="get">
+                                                <input value="{{ render_session_s.0 }}" name="id" class="btn btn-danger" type="hidden">
+                                                <button id="show_button" class="fa fa-times pull-right show_button"></button>
+
+                                            </form>
+
+                                            <img src="{{ MEDIA_URL }}{{ render_session_s.2 }}" height="30px" width="30px" alt="item-1" class="pull-left">
+                                            <div class="pull-left product"><a href="#">{{ render_session_s.0 }}</a>
+                                                <h5>{{ render_session_s.1 }} р.</h5>
+                                            </div>
+                                        </li>
+                                        {% endfor %}
+                                        <li class="clearfix checkout"><a href="{% url 'shop_bay' %}" class="pull-left">В корзину</a> <a href="{% url 'shop_orders' %}" class="pull-right">Оплатить</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="#"><i class="fa fa-unlock-alt"></i>Вход</a>
+                                </li>
+                                <li><a href="#">Регистрация</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endblock header-top %}
+    {% block header1 %}
+        <div id="sticky-section" class="sticky-navigation">
+            <nav class="navbar navbar-default menu-bar" role="navigation">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="navbar-header">
+                                <div class="site-logo"><a title="" href="{% url 'index' %}">Big retail</a>
+                                </div>
+                                <ul class="nav navbar-nav navbar-right section-show">
+                                    <li class="cart"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-shopping-cart"></i>В корзине (3) товара</a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li class="clearfix"><i class="fa fa-times pull-right"></i> <img src="" alt="item-1" class="pull-left">
+                                                <div class="pull-left product"><a href="#">Название товара</a>
+                                                    <h5>500 р.</h5>
+                                                </div>
+                                            </li>
+                                            <li class="clearfix"><i class="fa fa-times pull-right"></i> <img src="" alt="item-1" class="pull-left">
+                                                <div class="pull-left product"><a href="#">Название товара</a>
+                                                    <h5>500 р.</h5>
+                                                </div>
+                                            </li>
+                                            <li class="clearfix"><i class="fa fa-times pull-right"></i> <img src="" alt="item-1" class="pull-left">
+                                                <div class="pull-left product"><a href="#">Название товара</a>
+                                                    <h5>500 р.</h5>
+                                                </div>
+                                            </li>
+                                            <li class="total">
+                                                <h5>Итого: 1 500 р.</h5>
+                                            </li>
+                                            <li class="clearfix checkout"><a href="#" class="pull-left">В корзину</a> <a href="#" class="pull-right">Оплатить</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="login-style"><a href="#"><i class="fa fa-unlock-alt"></i>Вход</a>
+                                    </li>
+                                    <li class="register-border"><a href="#">Регистрация</a>
+                                    </li>
+                                </ul>
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"><span class="menu-box"><span class="menu">Меню</span><i class="flaticon-list50 menu-button"></i>
+                                </span>
+                                </button>
+                            </div>
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="dropdown"><a href="{% url "index" %}" class="dropdown-toggle active">Главная</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-1"><i class="fa fa-angle-down"></i></span>
+                                    </li>
+
+
+                                    <li><a href="{% url "category" %}">Категории</a>
+                                    </li>
+                                    <li class="dropdown"><a href="{% url 'goods' %}" class="dropdown-toggle">Товары</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-3"></span>
+
+                                    <li class="dropdown"><a href="#" class="dropdown-toggle">Галерея</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-6"><i class="fa fa-angle-down"></i></span>
+                                        <ul role="menu" class="dropdown-menu collapse-6 collapse">
+                                            <li><a href="{% url 'category' %}">Портфолио</a>
+                                            </li>
+                                            <li><a href="portfolio-single.html">Описание</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown"><a href="#" class="dropdown-toggle">Новости</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-6"><i class="fa fa-angle-down"></i></span>
+                                        <ul role="menu" class="dropdown-menu collapse-6 collapse">
+                                            <li><a href="blog.html">Новости</a>
+                                            </li>
+                                            <li><a href="blog-single.html">Описание</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="contacts.html">Контакты</a>
+                                    </li>
+                                    <li class="dropdown"><a href="#" class="dropdown-toggle">О нас</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-2"><i class="fa fa-angle-down"></i></span>
+                                        <ul role="menu" class="dropdown-menu collapse-2 collapse">
+                                            <li><a href="about-us.html">О компании</a>
+                                            </li>
+                                            <li><a href="services.html">Услуги</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{% url "shop_orders" %}">Оплатить</a>
+                                    </li>
+                                    <li class="search"><a href="#search-toggle-right" id="search-toggle"><i class="glyphicon glyphicon-search"></i></a>
+                                    </li>
+                                    <li class="search-form">
+                                        <form role="search" class="navbar-form">
+                                            <div class="input-group">
+                                                <input type="text" name="q" placeholder="Искать.." class="form-control">
+                                                <div class="input-group-btn">
+                                                    <button type="submit" class="btn btn-default">ОК</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    {% endblock header1 %}
+
+<body>
+{% block content %}
+
+{% endblock content %}
+
+
+    {% block brands %}<section id="brands" class="brands-section section slant-angle">
+            <div class="section-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 animated" data-animation="fadeInRight" data-animation-delay="500">
+                            <h2 class="section-title animated" data-animation="fadeInRight" data-animation-delay="300">Партнеры</h2>
+                            <p class="sub-title animated" data-animation="fadeInLeft" data-animation-delay="300">Метод изучения рынка индуктивно ускоряет медиабизнес. Сегмент рынка развивает институциональный контент, опираясь на опыт западных коллег.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 animated" data-animation="fadeInUp" data-animation-delay="800">
+                            <div id="brands-slider" class="brands-carousel-slider">
+                                <div class="brands-item">
+                                    <a href="#"><img src="" width="314" height="534" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="brands-item">
+                                    <a href="#"><img src="" width="314" height="534" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="brands-item">
+                                    <a href="#"><img src="" width="314" height="534" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="brands-item">
+                                    <a href="#"><img src="" width="314" height="534" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="brands-item">
+                                    <a href="#"><img src="" width="314" height="534" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="brands-item">
+                                    <a href="#"><img src="" width="314" height="534" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="brands-item">
+                                    <a href="#"><img src="" width="314" height="534" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>{% endblock brands %}
+{% comment %}{% block additions %}
+    <section id="new-additions" class="new-additions section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 animated" data-animation="fadeInRight" data-animation-delay="500">
+                    <h2 class="section-title animated" data-animation="fadeInRight" data-animation-delay="300">Специальные предложения</h2>
+                    <p class="sub-title animated" data-animation="fadeInLeft" data-animation-delay="300">Метод изучения рынка индуктивно ускоряет медиабизнес. Сегмент рынка развивает институциональный контент, опираясь на опыт западных коллег.</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 animated" data-animation="fadeInUp" data-animation-delay="800">
+                    <div id="new-additions-carousel" class="new-additions-carousel">
+                        <div class="new-additions-items active">
+                            <div class="add-item">
+                                <a href="#"><img src="" width="170" height="150" class="img-responsive">
+                                </a>
+                            </div>
+                            <h4>название товара</h4>
+                            <h5>Категория</h5>
+                            <h3><a href="#">Подробнее</a></h3>
+                        </div>
+                        <div class="new-additions-items active">
+                            <div class="add-item">
+                                <a href="#"><img src="" width="170" height="150" class="img-responsive">
+                                </a>
+                            </div>
+                            <h4>название товара</h4>
+                            <h5>Категория</h5>
+                            <h3><a href="#">Подробнее</a></h3>
+                        </div>
+                        <div class="new-additions-items active">
+                            <div class="add-item">
+                                <a href="#"><img src="" width="170" height="150" class="img-responsive">
+                                </a>
+                            </div>
+                            <h4>название товара</h4>
+                            <h5>Категория</h5>
+                            <h3><a href="#">Подробнее</a></h3>
+                        </div>
+                        <div class="new-additions-items active">
+                            <div class="add-item">
+                                <a href="#"><img src="" width="170" height="150" class="img-responsive">
+                                </a>
+                            </div>
+                            <h4>название товара</h4>
+                            <h5>Категория</h5>
+                            <h3><a href="#">Подробнее</a></h3>
+                        </div>
+                        <div class="new-additions-items load-more">
+                            <div class="add-item">
+                                <a href="#"><img src="" width="170" height="150" class="img-responsive">
+                                </a>
+                            </div>
+                            <h4>название товара</h4>
+                            <h5>Категория</h5>
+                            <h3><a href="#">Подробнее</a></h3>
+                        </div>
+                        <div class="new-additions-items load-more">
+                            <div class="add-item">
+                                <a href="#"><img src="" width="170" height="150" class="img-responsive">
+                                </a>
+                            </div>
+                            <h4>название товара</h4>
+                            <h5>Категория</h5>
+                            <h3><a href="#">Подробнее</a></h3>
+                        </div>
+                        <div class="new-additions-items load-more">
+                            <div class="add-item">
+                                <a href="#"><img src="" width="170" height="150" class="img-responsive">
+                                </a>
+                            </div>
+                            <h4>название товара</h4>
+                            <h5>Категория</h5>
+                            <h3><a href="#">Подробнее</a></h3>
+                        </div>
+                        <div class="new-additions-items load-more">
+                            <div class="add-item">
+                                <a href="#"><img src="" width="170" height="150" class="img-responsive">
+                                </a>
+                            </div>
+                            <h4>название товара</h4>
+                            <h5>Категория</h5>
+                            <h3><a href="#">Подробнее</a></h3>
+                        </div>
+                        <div class="new-additions-items load-more">
+                            <div class="add-item">
+                                <a href="#"><img src="" width="170" height="150" class="img-responsive">
+                                </a>
+                            </div>
+                            <h4>название товара</h4>
+                            <h5>Категория</h5>
+                            <h3><a href="#">Подробнее</a></h3>
+                        </div>
+                        <div class="new-additions-items load-more">
+                            <div class="add-item">
+                                <a href="#"><img src="" width="170" height="150" class="img-responsive">
+                                </a>
+                            </div>
+                            <h4>название товара</h4>
+                            <h5>Категория</h5>
+                            <h3><a href="#">Подробнее</a></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row loadmore-btn">
+                <div class="col-md-12 load-post text-center">
+                    <button type="button" class="btn load-posts loadmore">Еще</button>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock additions %}{% endcomment %}
+    {% block footer %}<section id="footer" class="footer-bg">
+            <div class="footer-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-3 animated" data-animation="fadeInUp" data-animation-delay="300">
+                            <h3>О магазине</h3>
+                            <p>Ретроконверсия национального наследия реально изменяет формирование имиджа. Еще Траут показал, что мониторинг активности вполне вероятен. Узнавание бренда экономит тактический инструмент маркетинга.</p>
+                            <ul>
+                                <li>Россия, Москва</li>
+                                <li>ул. Пушкина 23а</li>
+                                <li>mail@mail.com</li>
+                                <li>+7 123 456 789</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-3 latest-post animated" data-animation="fadeInUp" data-animation-delay="700">
+                            <h3>Последние статьи</h3>
+                            <ul>
+                                <li><a href="#">Загловок статьи на сайте</a>
+                                </li>
+                                <li><a href="#">Загловок статьи на сайте</a>
+                                </li>
+                                <li><a href="#">Загловок статьи на сайте</a>
+                                </li>
+                                <li><a href="#">Загловок статьи на сайте</a>
+                                </li>
+                                <li><a href="#">Загловок статьи на сайте</a>
+                                </li>
+                                <li><a href="#">Загловок статьи на сайте</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-3 latest-post animated" data-animation="fadeInUp" data-animation-delay="700">
+                            <h3>Последние новости</h3>
+                            <ul>
+                                <li><a href="#">Загловок новости на сайте</a>
+                                </li>
+                                <li><a href="#">Загловок новости на сайте</a>
+                                </li>
+                                <li><a href="#">Загловок новости на сайте</a>
+                                </li>
+                                <li><a href="#">Загловок новости на сайте</a>
+                                </li>
+                                <li><a href="#">Загловок новости на сайте</a>
+                                </li>
+                                <li><a href="#">Загловок новости на сайте</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-3 flickr animated" data-animation="fadeInUp" data-animation-delay="900">
+                            <h3>Галерея</h3>{{ gallery_index_tmp }}
+                            {% for gallery_index_tmp_s in gallery_index_tmp %}
+                            <ul>
+                                <li><img src="{{ MEDIA_URL }}{{ gallery_index_tmp_s }}" alt="flickr-1" class="img-responsive">
+                                </li>
+
+{#                                <li><img src="" alt="flickr-1" class="img-responsive">#}
+{#                                </li>#}
+{#                                <li><img src="" alt="flickr-1" class="img-responsive">#}
+{#                                </li>#}
+{#                                <li><img src="" alt="flickr-1" class="img-responsive">#}
+{#                                </li>#}
+{#                                <li><img src="" alt="flickr-1" class="img-responsive">#}
+{#                                </li>#}
+{#                                <li><img src="" alt="flickr-1" class="img-responsive">#}
+{#                                </li>#}
+{#                                <li><img src="" alt="flickr-1" class="img-responsive">#}
+{#                                </li>#}
+{#                                <li><img src="" alt="flickr-1" class="img-responsive">#}
+{#                                </li>#}
+                            </ul>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copy-rights-bg">
+                <div class="copy-rights-section">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p class="copyright-content">&copy; 2016 Big retail - HTML шаблон интернет-магазина</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="social-icon"><a href="#"><i class="fa fa-rss rss-icon"></i></a> <a href="#"><i class="fa fa-facebook facebook-icon"></i></a> <a href="#"><i class="fa fa-tumblr tumblr-icon"></i></a> <a href="#"><i class="fa fa-youtube youtube-icon"></i></a> <a href="#"><i class="fa fa-google google-icon"></i></a> <a href="#"><i class="fa fa-dribbble dribble-icon"></i></a> <a href="#"><i class="fa fa-vimeo-square vimeo-icon"></i></a> <a href="#"><i class="fa fa-skype skype-icon"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>{% endblock footer %}
+{% block js %}
+    <script type='text/javascript' src='http://test.michalbacak.com/wp-includes/js/imagesloaded.min.js?ver=3.2.0'></script>
+    <script type='text/javascript' src='http://test.michalbacak.com/wp-content/plugins/ajax-load-more/vendor/js/masonry/masonry.pkgd.min.js?ver=4.2.1'></script>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js">
+{% endblock js %}
+{% block js-1 %}
+{#<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>#}
+
+{#<script type='text/javascript' src='http://test.michalbacak.com/wp-includes/js/imagesloaded.min.js?ver=3.2.0'></script>#}
+{#<script type='text/javascript' src='http://test.michalbacak.com/wp-content/plugins/ajax-load-more/vendor/js/masonry/masonry.pkgd.min.js?ver=4.2.1'></script>#}
+<script type='text/javascript' src='http://test.michalbacak.com/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type="text/javascript" src="{% static "big_retail/js/jquery-1.11.1.min.js" %}" rel="stylesheet">var jQuery1111 = $.noConflict(true);</script>
+<script type="text/javascript" src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js"></script>
+<script type="text/javascript" src="{% static "big_retail/js/bootstrap.min.js" %}" rel="stylesheet"></script>
+<script type="text/javascript" src="{% static "big_retail/js/bootstrapValidator.min.js" %}" rel="stylesheet"></script>
+<script type="text/javascript" src="{% static "big_retail/js/bootstrap-hover-dropdown.min.js" %}" rel="stylesheet"></script>
+<script type="text/javascript" src="{% static "big_retail/js/owl.carousel.min.js" %}" rel="stylesheet" ></script><!--owl-theme-->
+<script type="text/javascript" src="{% static "big_retail/js/jquery.sticky.js" %}"  rel="stylesheet"></script><!---->
+
+{#<script type="text/javascript" src="{% static "big_retail/js/carousel.min.js" %}"  rel="stylesheet"></script><!--owl-theme-->#}
+<script type="text/javascript" src="{% static "big_retail/js/slider/jquery.fractionslider.js" %}" rel="stylesheet"></script><!---->
+<script type="text/javascript" src="{% static "big_retail/js/slider/main.js" %}" charset="utf-8" rel="stylesheet"></script> <!---->
+<script type="text/javascript" src="{% static "big_retail/js/jquery.prettyPhoto.js" %}" rel="stylesheet"></script><!---->
+<script type="text/javascript" src="{% static "big_retail/js/jquery.easy-ticker.min.js" %}" rel="stylesheet"></script><!---->
+<script type="text/javascript" src="{% static "big_retail/js/idangerous.swiper.min.js" %}" rel="stylesheet"></script><!---->
+<script type="text/javascript" src="{% static "big_retail/js/idangerous.swiper.progress.min.js" %}" rel="stylesheet"></script><!---->
+<script type="text/javascript" src="{% static "big_retail/js/star-rating.min.js" %}" rel="stylesheet"></script><!---->
+
+<script type="text/javascript" src="{% static "big_retail/js/jquery.flexslider-min.js" %}" rel="stylesheet"></script><!---->
+
+<script type="text/javascript" src="{% static "big_retail/js/jquery.content_slider.js" %}" rel="stylesheet"></script><!---->
+<script type="text/javascript" src="{% static "big_retail/js/jquery.easypiechart.min.js" %}"></script><!---->
+<script type="text/javascript" src="{% static "big_retail/js/option.js" %}"></script><!---->
+<script type="text/javascript" src="{% static "big_retail/js/jquery.nstSlider.js" %}"></script><!---->
+
+<script type="text/javascript" src="{% static "big_retail/js/jquery.mb.YTPlayer.js" %}"></script><!---->
+<script type="text/javascript" src="{% static "big_retail/js/jquery.appear.js" %}"></script><!---->
+<script type="text/javascript" src="{% static "big_retail/js/main.js" %}"></script><!---->
+
+{#<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>#} <!-- который ломал все-->
+{% comment %}<script type="text/javascript" src="{% static "shop_app/js/script.js" %}" rel="stylesheet"></script>{% endcomment %}
+
+<div id="root"></div>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+{% endblock js-1 %}
+{#{% block react %}{% endblock react %}#}
+{% block react %}
+    <script type='text/javascript' src='http://test.michalbacak.com/wp-includes/js/imagesloaded.min.js?ver=3.2.0'></script>
+    <script type='text/javascript' src='http://test.michalbacak.com/wp-content/plugins/ajax-load-more/vendor/js/masonry/masonry.pkgd.min.js?ver=4.2.1'></script>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js">
+
+{% endblock react %}
+</body>
+
+</html>
+

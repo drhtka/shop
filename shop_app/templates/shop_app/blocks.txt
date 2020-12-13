@@ -1,0 +1,6 @@
+    {% block video-baner %}{% endblock video-baner %}
+    {% block header-top %}{% endblock header-top %}
+    {% block header1 %}{% endblock header1 %}
+	{% block brands %}{% endblock brands %}
+	{% block additions %}{% endblock additions %}
+	{% block footer %}{% endblock footer %}
