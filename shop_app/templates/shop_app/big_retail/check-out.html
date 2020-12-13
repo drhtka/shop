@@ -1,209 +1,13 @@
-<!DOCTYPE html>
-<html lang="ru">
+{% extends "base.html" %}
+{% load staticfiles %}
+<style>.un_visible{ display: none; }</style>
 
-<head>
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-    <meta charset="utf-8">
-    <title>Big retail - HTML шаблон интернет-магазина</title>
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,700&subset=latin,cyrillic" rel="stylesheet" type="text/css">
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
-    <link href="css/animate.min.css" rel="stylesheet" type="text/css">
-    <link href="css/hover-min.css" rel="stylesheet" type="text/css">
-    <link href="css/flexisel.css" rel="stylesheet" type="text/css">
-    <link href="css/owl.carousel.css" rel="stylesheet" type="text/css">
-    <link href="css/owl.carousel.css" rel="stylesheet" type="text/css">
-    <link href="css/prettyPhoto.css" rel="stylesheet" type="text/css">
-    <link href="css/YTPlayer.css" rel="stylesheet" type="text/css">
-    <link href="css/flaticon.css" rel="stylesheet" type="text/css">
-    <link href="css/themes/theme.css" id="changeable-colors" rel="stylesheet" type="text/css">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
-    <link href="css/responsive.css" rel="stylesheet" type="text/css">
-</head>
+<title>{% block title %}Оформление и оплата{% endblock %}</title>
+
+{% block content %}
 
 <body id="check-out">
-    <div id="pageloader">
-        <div class="loader-item fa fa-spin colored-border"></div>
-    </div>
-    <div class="header-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="navbar">
-                        <div class="navbar-header">
-                            <ul class="header-top-left">
-                                <li class="dropdown collapse navbar-collapse" id="bs-example-navbar-collapse-1">Язык<a class="dropdown-toggle" data-toggle="dropdown" href="#">[ <span>RU<i class="fa fa-angle-down"></i></span> ]</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#"><span><img src="images/top-navigation/flag1.jpg" alt="Language-flag"></span>ENG</a>
-                                        </li>
-                                        <li><a href="#"><span><img src="images/top-navigation/flag2.jpg" alt="Language-flag"></span>GER</a>
-                                        </li>
-                                        <li><a href="#"><span><img src="images/top-navigation/flag3.jpg" alt="Language-flag"></span>FRE</a>
-                                        </li>
-                                        <li><a href="#"><span><img src="images/top-navigation/flag4.jpg" alt="Language-flag"></span>ITA</a>
-                                        </li>
-                                        <li><a href="#"><span><img src="images/top-navigation/flag5.jpg" alt="Language-flag"></span>SPA</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a href="mailto:email@example.com"><i class="flaticon-black164"></i> mail@mail.com</a>
-                                </li>
-                                <li><a href="#"><i class="flaticon-phone46"></i> +7 123 456 78 90</a>
-                                </li>
-                            </ul>
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><i class="flaticon-list50"></i>
-                            </button>
-                        </div>
-                        <ul class="nav navbar-nav navbar-right section-hidden">
-                            <li class="cart"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-shopping-cart"></i>В корзине (3) товара</a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li class="clearfix"><i class="fa fa-times pull-right"></i> <img src="images/top-navigation/1.jpg" alt="item-1" class="pull-left">
-                                        <div class="pull-left product"><a href="#">Название товара</a>
-                                            <h5>500 р.</h5>
-                                        </div>
-                                    </li>
-                                    <li class="clearfix"><i class="fa fa-times pull-right"></i> <img src="images/top-navigation/1.jpg" alt="item-1" class="pull-left">
-                                        <div class="pull-left product"><a href="#">Название товара</a>
-                                            <h5>500 р.</h5>
-                                        </div>
-                                    </li>
-                                    <li class="clearfix"><i class="fa fa-times pull-right"></i> <img src="images/top-navigation/1.jpg" alt="item-1" class="pull-left">
-                                        <div class="pull-left product"><a href="#">Название товара</a>
-                                            <h5>500 р.</h5>
-                                        </div>
-                                    </li>
-                                    <li class="total">
-                                        <h5>Итого: 1 500 р.</h5>
-                                    </li>
-                                    <li class="clearfix checkout"><a href="#" class="pull-left">В корзину</a> <a href="#" class="pull-right">Опталить</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="#"><i class="fa fa-unlock-alt"></i>Вход</a>
-                            </li>
-                            <li><a href="#">Регистрация</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="sticky-section" class="sticky-navigation">
-        <nav class="navbar navbar-default menu-bar" role="navigation">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="navbar-header">
-                            <div class="site-logo"><a title="" href="index.html">Big retail</a>
-                            </div>
-                            <ul class="nav navbar-nav navbar-right section-show">
-                                <li class="cart"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-shopping-cart"></i>В корзине (3) товара</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li class="clearfix"><i class="fa fa-times pull-right"></i> <img src="images/top-navigation/1.jpg" alt="item-1" class="pull-left">
-                                            <div class="pull-left product"><a href="#">Название товара</a>
-                                                <h5>500 р.</h5>
-                                            </div>
-                                        </li>
-                                        <li class="clearfix"><i class="fa fa-times pull-right"></i> <img src="images/top-navigation/1.jpg" alt="item-1" class="pull-left">
-                                            <div class="pull-left product"><a href="#">Название товара</a>
-                                                <h5>500 р.</h5>
-                                            </div>
-                                        </li>
-                                        <li class="clearfix"><i class="fa fa-times pull-right"></i> <img src="images/top-navigation/1.jpg" alt="item-1" class="pull-left">
-                                            <div class="pull-left product"><a href="#">Название товара</a>
-                                                <h5>500 р.</h5>
-                                            </div>
-                                        </li>
-                                        <li class="total">
-                                            <h5>Итого: 1 500 р.</h5>
-                                        </li>
-                                        <li class="clearfix checkout"><a href="#" class="pull-left">В корзину</a> <a href="#" class="pull-right">Оплатить</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="login-style"><a href="#"><i class="fa fa-unlock-alt"></i>Вход</a>
-                                </li>
-                                <li class="register-border"><a href="#">Регистрация</a>
-                                </li>
-                            </ul>
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"><span class="menu-box"><span class="menu">Меню</span><i class="flaticon-list50 menu-button"></i>
-                                </span>
-                            </button>
-                        </div>
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="dropdown"><a href="#" class="dropdown-toggle">Главная</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-1"><i class="fa fa-angle-down"></i></span>
-                                    <ul role="menu" class="dropdown-menu collapse-1 collapse">
-                                        <li><a href="index.html">Главная #1</a>
-                                        </li>
-                                        <li><a href="index-2.html">Главная #2</a>
-                                        </li>
-                                        <li><a href="index-3.html">Главная #3</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="#" class="dropdown-toggle">О нас</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-2"><i class="fa fa-angle-down"></i></span>
-                                    <ul role="menu" class="dropdown-menu collapse-2 collapse">
-                                        <li><a href="about-us.html">О компании</a>
-                                        </li>
-                                        <li><a href="services.html">Услуги</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="#" class="dropdown-toggle active">Товары</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-3"><i class="fa fa-angle-down"></i></span>
-                                    <ul role="menu" class="dropdown-menu collapse-3 collapse">
-                                        <li class="dropdown"><a href="shop-list.html" class="dropdown-toggle">Магазин</a> <span class="submenu-toggler collapsed" data-toggle="collapse" data-target=".collapse-4"><i class="fa fa-angle-right"></i></span>
-                                            <ul role="menu" class="sub-menu collapse-4 collapse">
-                                                <li><a href="shop-list.html">Список товаров</a>
-                                                </li>
-                                                <li><a href="shop-detail.html">Описание товара</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="cart.html">Корзина</a>
-                                        </li>
-                                        <li><a href="check-out.html">Оплата</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="#" class="dropdown-toggle">Галерея</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-6"><i class="fa fa-angle-down"></i></span>
-                                    <ul role="menu" class="dropdown-menu collapse-6 collapse">
-                                        <li><a href="portfolio.html">Портфолио</a>
-                                        </li>
-                                        <li><a href="portfolio-single.html">Описание</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="#" class="dropdown-toggle">Новости</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-6"><i class="fa fa-angle-down"></i></span>
-                                    <ul role="menu" class="dropdown-menu collapse-6 collapse">
-                                        <li><a href="blog.html">Новости</a>
-                                        </li>
-                                        <li><a href="blog-single.html">Описание</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a href="contacts.html">Контакты</a>
-                                </li>
-                                <li class="search"><a href="#search-toggle-right" id="search-toggle"><i class="glyphicon glyphicon-search"></i></a>
-                                </li>
-                                <li class="search-form">
-                                    <form role="search" class="navbar-form">
-                                        <div class="input-group">
-                                            <input type="text" name="q" placeholder="Искать.." class="form-control">
-                                            <div class="input-group-btn">
-                                                <button type="submit" class="btn btn-default">ОК</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
+
     <div class="page-desc-section">
         <div class="container">
             <div class="row">
@@ -271,13 +75,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-sm-6">
-                    <h2>Адрес доставки</h2>
+                    <div><h2>Данные для заказа</h2></div>
                     <form role="form" name="commentform" class="login-form" id="comment-form-2" method="post" action="#" enctype="multipart/form-data">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <input type="email" name="contact_email" id="input_email" class="form-control input-email" placeholder="Ваш логин">
-                            </div>
-                        </div>
+{#                        <div class="row">#}
+{#                            <div class="col-md-12">#}
+{#                                <input type="email" name="contact_email" id="input_email" class="form-control input-email" placeholder="Ваш логин">#}
+{#                            </div>#}
+{#                        </div>#}
                         <div class="row">
                             <div class="col-md-6">
                                 <input type="text" name="first-name" id="first-name" class="form-control input-email" placeholder="Имя">
@@ -286,34 +90,34 @@
                                 <input type="text" name="last-name" id="last-name" class="form-control input-email" placeholder="Фамилия">
                             </div>
                         </div>
+{#                        <div class="row">#}
+{#                            <div class="col-md-12">#}
+{#                                <input type="text" name="comapany-name" id="comapany-name" class="form-control input-email" placeholder="Организация">#}
+{#                            </div>#}
+{#                        </div>#}
                         <div class="row">
                             <div class="col-md-12">
-                                <input type="text" name="comapany-name" id="comapany-name" class="form-control input-email" placeholder="Организация">
+                                <input type="text" name="address" id="address" class="form-control input-email" placeholder="Email">
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <input type="text" name="address" id="address" class="form-control input-email" placeholder="Страна">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <input type="text" name="town-city" id="town-city" class="form-control input-email" placeholder="Город, населенный пункт">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <input type="text" name="state-country" id="state-country" class="form-control input-email" placeholder="улица, номер дома">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input type="text" name="phone" id="phone" class="form-control input-email" placeholder="Телефон">
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" name="post-code" id="post-code" class="form-control input-email" placeholder="Почтовый индекс">
-                            </div>
-                        </div>
+{#                        <div class="row">#}
+{#                            <div class="col-md-12">#}
+{#                                <input type="text" name="town-city" id="town-city" class="form-control input-email" placeholder="Город, населенный пункт">#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="row">#}
+{#                            <div class="col-md-12">#}
+{#                                <input type="text" name="state-country" id="state-country" class="form-control input-email" placeholder="улица, номер дома">#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="row">#}
+{#                            <div class="col-md-6">#}
+{#                                <input type="text" name="phone" id="phone" class="form-control input-email" placeholder="Телефон">#}
+{#                            </div>#}
+{#                            <div class="col-md-6">#}
+{#                                <input type="text" name="post-code" id="post-code" class="form-control input-email" placeholder="Почтовый индекс">#}
+{#                            </div>#}
+{#                        </div>#}
                         <div class="row">
                             <div class="col-md-12">
                                 <input type="text" name="telephone" id="telephone" class="form-control input-email" placeholder="Телефон для связи"> <span><input type="checkbox"></span><a href="#" class="check-text">Создать аккаунт</a>
@@ -328,74 +132,91 @@
             </div>
         </div>
     </section>
+{#    <div class="alert alert-dark" role="alert">Страница офомления заказа</div>#}
+    <h2 style="text-align: center">Ваш заказ</h2>
+    {% for shop_order in session_array %}
+        <div class="container-fluid">
+            <div class="col-auto">
+{#                <div>{{ shop_order.0 }}</div>#}
+{#                <div>{{ shop_order.1 }}</div>#}
+{#                <div><img class="orders_img" src="{{ MEDIA_URL }}{{ shop_order.2 }}" width="50px" height="50px"></div>#}
+{#                <form action="/main/dell_goods" method="get">#}
+{#                    <button value="{{ shop_order.0 }}" name="id" class="btn btn-outline-danger">Удалить</button>#}
+{#                </form>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{##}
+{#    <a href="/send_order"><button value="" class="btn btn-outline-success {{ button_vis }}">Купить</button></a>#}
+
     <section id="order-section" class="order-section">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h2>Ваш заказ</h2>
-                    <div class="order-box">
+
+                    <div class="">
                         <table class="table">
                             <tr class="table-title">
                                 <td>Товар</td>
                                 <td>Цена</td>
+                                <td>Изображение</td>
                             </tr>
                             <tr class="prodect-title">
-                                <td>Название товара</td>
-                                <td>999 р.</td>
+                                <td>{{ shop_order.0 }}</td>
+                                <td>{{ shop_order.1 }} р.</td>
+                                <td><img class="orders_img" src="{{ MEDIA_URL }}{{ shop_order.2 }}" width="30px" height="30px"></td>
                             </tr>
-                            <tr class="prodect-title">
-                                <td>Название товара</td>
-                                <td>999 р.</td>
-                            </tr>
+                            {% endfor %}
+
                             <tr class="table-title sub-total">
                                 <td>Итого</td>
-                                <td>2 000 р.</td>
+                                <td> {{ summ }} р.</td>
                             </tr>
-                            <tr class="table-title delivery">
-                                <td>Доставка</td>
-                                <td>Бесплатно</td>
-                            </tr>
-                            <tr class="table-title total-price">
-                                <td>К оплате</td>
-                                <td class="blue-text">2 000 р.</td>
-                            </tr>
+{#                            <tr class="table-title delivery">#}
+{#                                <td>Доставка</td>#}
+{#                                <td>Бесплатно</td>#}
+{#                            </tr>#}
+{#                            <tr class="table-title total-price">#}
+{#                                <td>К оплате</td>#}
+{#                                <td class="blue-text">2 000 р.</td>#}
+{#                            </tr>#}
                         </table>
                     </div>
                 </div>
             </div>
-            <div class="row payment-method">
-                <div class="col-md-12">
-                    <div class="bank-payment">
-                        <input id="bank-payment" type="radio" value="bank" checked="checked" name="payment-method">
-                        <label for="bank-payment">WebMoney</label>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="cheque-payment">
-                        <input id="cheque-payment" type="radio" value="cheque" checked="checked" name="payment-method">
-                        <label for="cheque-payment">Яндекс деньги</label>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="cheque-payment">
-                        <input id="cheque2-payment" type="radio" value="cheque" checked="checked" name="payment-method">
-                        <label for="cheque2-payment">QIWI</label>
-                    </div>
-                </div>
+{#            <div class="row payment-method">#}
+{#                <div class="col-md-12">#}
+{#                    <div class="bank-payment">#}
+{#                        <input id="bank-payment" type="radio" value="bank" checked="checked" name="payment-method">#}
+{#                        <label for="bank-payment">WebMoney</label>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-md-12">#}
+{#                    <div class="cheque-payment">#}
+{#                        <input id="cheque-payment" type="radio" value="cheque" checked="checked" name="payment-method">#}
+{#                        <label for="cheque-payment">Яндекс деньги</label>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-md-12">#}
+{#                    <div class="cheque-payment">#}
+{#                        <input id="cheque2-payment" type="radio" value="cheque" checked="checked" name="payment-method">#}
+{#                        <label for="cheque2-payment">QIWI</label>#}
+{#                    </div>#}
+{#                </div>#}
                 <div class="col-md-12">
                     <div class="paypal-payment">
-                        <input id="paypal-payment" type="radio" value="paypal" checked="checked" name="payment-method">
-                        <label for="paypal-payment">Robokassa</label>
-                        <a href="#" title="Master Card"><img src="images/payment-method/mastercard.jpg" alt="payment method">
-                        </a>
-                        <a href="#" title="Visa"><img src="images/payment-method/visa.jpg" alt="payment method">
-                        </a>
-                        <a href="#" title="Amex"><img src="images/payment-method/amex.jpg" alt="payment method">
-                        </a>
-                        <a href="#" title="DISCOVER"><img src="images/payment-method/discover.jpg" alt="payment method">
-                        </a>
-                        <a href="#" title="eCHECK"><img src="images/payment-method/echeck.jpg" alt="payment method">
-                        </a>
+{#                        <input id="paypal-payment" type="radio" value="paypal" checked="checked" name="payment-method">#}
+{#                        <label for="paypal-payment">Robokassa</label>#}
+{#                        <a href="#" title="Master Card"><img src="images/payment-method/mastercard.jpg" alt="payment method">#}
+{#                        </a>#}
+{#                        <a href="#" title="Visa"><img src="images/payment-method/visa.jpg" alt="payment method">#}
+{#                        </a>#}
+{#                        <a href="#" title="Amex"><img src="images/payment-method/amex.jpg" alt="payment method">#}
+{#                        </a>#}
+{#                        <a href="#" title="DISCOVER"><img src="images/payment-method/discover.jpg" alt="payment method">#}
+{#                        </a>#}
+{#                        <a href="#" title="eCHECK"><img src="images/payment-method/echeck.jpg" alt="payment method">#}
+{#                        </a>#}
                     </div><a href="#"><h4>Я готов заплатить</h4></a>
                 </div>
             </div>
@@ -489,25 +310,4 @@
             </div>
         </div>
     </section>
-    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/bootstrapValidator.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap-hover-dropdown.min.js"></script>
-    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
-    <script type="text/javascript" src="js/jquery.sticky.js"></script>
-    <script type="text/javascript" src="js/carousel.min.js"></script>
-    <script type="text/javascript" src="js/slider/jquery.fractionslider.js"></script>
-    <script type="text/javascript" src="js/slider/main.js" charset="utf-8"></script>
-    <script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
-    <script type="text/javascript" src="js/jquery.flexslider-min.js"></script>
-    <script type="text/javascript" src="js/jquery.content_slider.js"></script>
-    
-    <script type="text/javascript" src="js/jquery.easypiechart.min.js"></script>
-    <script type="text/javascript" src="js/option.js"></script>
-    <script type="text/javascript" src="js/jquery.nstSlider.js"></script>
-    <script type="text/javascript" src="js/jquery.mb.YTPlayer.js"></script>
-    <script type="text/javascript" src="js/jquery.appear.js"></script>
-
-</body>
-
-</html>
+{% endblock %}

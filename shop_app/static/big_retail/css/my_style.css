@@ -35,17 +35,18 @@
 /*grid on categ*/
 .project-grid{
     display: grid;
-    grid-template-rows: 400px 400px 400px 400px;
-    grid-template-columns: 350px 350px 350px 350px;
-    width: 1650px;
-
+    grid-template-rows: 370px 370px 370px;
+    grid-template-columns: 320px 320px 320px 320px;
+    /*width: 1650px;*/
+    margin-top: 50px;
+    margin-left: 100px;
 }
 
 .proj-our{
     /*display: grid;*/
     /*grid-template-rows: 390px 390px 390px;*/
     /*grid-template-columns: 320px 320px 320px;*/
-    width: 80% !important;
+    /*width: 80% !important;*/
     height: 90%;
     margin: 0 auto;
     margin-top: 5px;
@@ -60,7 +61,7 @@
 .main_img{
     z-index: 1;
     height: 470px;
-    width: 620px;
+    width: 580px;
     cursor: pointer;
 
 }
@@ -90,15 +91,12 @@
 
 .my_container{
     max-width: 1500px;
+    max-height: 1200px;
     margin: 0 auto;
 }
 
 .owl-wrapper-outer{
     width: 570px;
-}
-
-.my_right_block{
-    padding-left: 100px;
 }
 
 .prev-div{
@@ -148,14 +146,14 @@
     font-size: 100px;
     font-weight: bolder;
     z-index: 1;
-    margin-left: 563px;
+    margin-left: 523px;
     cursor: pointer;
 }
 
 .cont_flat_image{
     display: grid;
-    grid-template-columns: 160px 160px 160px 160px;
-    grid-template-rows: 140px; /* 250px 250px 250px;*/
+    grid-template-columns: 147px 147px 147px 147px 147px 147px 147px 147px;
+    grid-template-rows: 135px; /* 250px 250px 250px;*/
     width: 50%;
     height: 50%;
     /*overflow: hidden;*/
@@ -171,5 +169,50 @@
     height: 130px;
     width: 140px;
     vertical-align: revert;
-    margin-top: 15px;
+    margin-top: 8px;
+}
+
+/*#show_button{*/
+/*    display: none;*/
+/*}*/
+
+/*#show_button.visible {*/
+/*    display: block;*/
+/*}*/
+
+#show_button {
+    padding: 0;
+    border: none;
+    /*font: inherit;*/ /*пришлось закоментить чтоб появился ихний крестик*/
+    color: inherit;
+    background-color: transparent;
+    /* отображаем курсор в виде руки при наведении; некоторые
+      считают, что необходимо оставлять стрелочный вид для кнопок */
+    cursor: pointer;
+}
+
+.my_container{
+    /* padding-right: 15px; */
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.my_prod{
+    width: 600px;
+    margin-left: -15px;
+}
+
+.my_right_block{
+    /*padding-left: 100px;*/
+
+}
+
+.grid-footer{
+    display: grid;
+    grid-template-columns: 58px 58px 58px 58px 58px 58px;
+    grid-template-rows: 58px 58px 58px 58px; /* 250px 250px 250px;*/
+    grid-column-gap: 5px; /*отступы в столбце*/
+    grid-row-gap: 15px; /*отступы в ряде*/
+    /*margin-top: 5px;*/
 }

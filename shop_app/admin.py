@@ -31,7 +31,7 @@ class GoodsAdmin(admin.ModelAdmin):
     list_display = ('id', 'goodsname', 'category', 'price')
     list_filter = ('id', 'goodsname', 'price')
     inlines = [
-        ImageInline,
+        ImageInline, # связываем галерею с товаром
     ]
 
 admin.site.register(GoodsModel, GoodsAdmin,)

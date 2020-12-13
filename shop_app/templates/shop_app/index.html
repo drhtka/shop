@@ -1,9 +1,156 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load pagination_tags %}
     <title>{% block title %}Главная{% endblock %}</title>
 {% block content %}
 <body id="video-bg">
+<style>
+
+/*    .pagination{
+        margin-top: {{ height_block }};
+        margin-left: 600px;
+        width: 800px;
+    }*/
+</style>
+
+    {% block additions %} {% endblock additions %}
+        <section id="new-additions" class="new-additions section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 animated" data-animation="fadeInRight" data-animation-delay="500">
+                    <h2 class="section-title animated" data-animation="fadeInRight" data-animation-delay="300">Специальные предложения</h2>
+                    <p class="sub-title animated" data-animation="fadeInLeft" data-animation-delay="300">Метод изучения рынка индуктивно ускоряет медиабизнес. Сегмент рынка развивает институциональный контент, опираясь на опыт западных коллег.</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 animated" data-animation="fadeInUp" data-animation-delay="800">
+                    <div id="new-additions-carousel" class="new-additions-carousel">
+
+                        {% for all_goods_random_s in all_goods_random %}
+                        <div class="new-additions-items active">
+                            <div class="add-item">
+                                <img src="{{ MEDIA_URL }}{{ all_goods_random_s.4 }}" width="170" height="150" class="img-responsive">
+                                </a>
+                            </div>
+                            <h4>{{ all_goods_random_s.1 }}</h4><!--название товара-->
+                            <h5>{{ all_goods_random_s.2 }}</h5><!--Категория-->
+                            <h3><a href="{% url "show" pk=all_goods_random_s.0 %}">Подробнее</a></h3>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+            <div class="row loadmore-btn">
+                <div class="col-md-12 load-post text-center">
+                    <button type="button" class="btn load-posts loadmore">Еще</button>
+                </div>
+            </div>
+        </div>
+    </section>
+   <!-- new-additions end-->
+    <section id="top-sale" class="top-sale-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="section-title">Что мы можем Вам предложить?</h2>
+                    <p class="sub-title">Метод изучения рынка индуктивно ускоряет медиабизнес. Сегмент рынка развивает институциональный контент, опираясь на опыт западных коллег.</p>
+                </div>
+            </div>
+            <div class="row button-block">
+                <div class="col-md-12">
+                    <ul>
+                        <li class="pull-right">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="btn-group list view-type">Показать как:</li>
+                                <li class="btn-group list active" role="presentation" ><a href="{% url 'goods' %}" title="Списком" role="tab" style="cursor: pointer;"><i class="fa fa-th-list"></i></a>
+                                </li>
+                                <li class="btn-group grid" role="presentation"><a href="{% url "index" %}" title="Сеткой" role="tab" ><i class="fa fa-th-large"></i></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="btn-group item-sort">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="pull-right"><i class="fa fa-angle-down"></i></span>Сортировать: <span>Выберите вариант</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">По цене</a>
+                                </li>
+                                <li><a href="#">По популярности</a>
+                                </li>
+                                <li><a href="#">По дате</a>
+                                </li>
+                                <li><a href="#">По доставке</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="btn-group">
+                            <button type="button" class="btn btn-default top-icon"><i class="fa fa-arrow-up"></i>
+                            </button>
+                        </li>
+                        <li class="btn-group item-categories">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="pull-right"><i class="fa fa-angle-down"></i></span>Выбрать: <span>категорию</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Техника</a>
+                                </li>
+                                <li><a href="#">Одежда</a>
+                                </li>
+                                <li><a href="#">Недвижимость</a>
+                                </li>
+                                <li><a href="#">Продукты</a>
+                                </li>
+                                <li><a href="#">Все</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            {% autopaginate all_goods 12 %}
+                <div class="my_row">
+
+                    {% for all_goods_s in all_goods %}
+
+                        <div class="chaild_grid">
+                            <div class="prodect-box">
+                                <div class="photo-block-">
+                                    <a data-rel="prettyPhoto-" href="/media/img/36.jpg" title="Название товара" class="link">
+                                        <i class="fa- fa-plus-"></i></a>
+
+                                    <img src="{{ MEDIA_URL }}{{ all_goods_s.4 }}" alt="item" class="img-responsive" style="height: 253px; width: 300px">
+                                </div>
+                                <div  class="prodect-details border_image">
+                                    <h4>{{ all_goods_s.2 }}</h4>{#Категория#}
+                                    <h3>{{ all_goods_s.1 }}</h3>
+                                    <h2>цена: {{ all_goods_s.3 }}</h2>
+                                    <p>
+                                    <div class="border_two_line"><span class="color_star rating">&#9733;</span> <span class="color_star_two">&#9734;</span><span class="my_reiting">- рейтинг товара</span></div>
+                                    </p>
+                                    <div class="row- shoping-details">
+                                        <div class="my_cart_reed">
+                                <div><a href="{% url 'shop_cart' %}?i={{ all_goods_s.0 }}&name={{ all_goods_s.1 }}&price={{ all_goods_s.3 }}&img={{ all_goods_s.4 }}" class="add-card-text"><span class="fa fa-shopping-cart"></span>В корзину</a>
+                                            </div>
+{#                                            <div ><a href="{% url "show" %}?i={{ all_goods_s.0 }}" class="show-link">Читать...<span class="right-icon-"></span></a>#}
+                                              <div ><a href="{% url "show" pk=all_goods_s.0 %}" class="show-link">Подробнее...<span class="right-icon-"></span></a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+            {% paginate %}
+        </div>
+        </div>
+    </section>
 
     <section class="work-area section">
         <div class="container">
@@ -42,286 +189,101 @@
             </div>
         </div>
     </section>
-    <section id="top-sale" class="top-sale-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 class="section-title">Что мы можем Вам предложить?</h2>
-                    <p class="sub-title">Метод изучения рынка индуктивно ускоряет медиабизнес. Сегмент рынка развивает институциональный контент, опираясь на опыт западных коллег.</p>
-                </div>
-            </div>
-            <div class="row button-block">
-                <div class="col-md-12">
-                    <ul>
-                        <li class="pull-right">
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li class="btn-group list view-type">Показать как:</li>
-                                <li class="btn-group list active" role="presentation"><a href="#list" title="List View" role="tab" data-toggle="tab"><i class="fa fa-th-list"></i></a>
-                                </li>
-                                <li class="btn-group grid" role="presentation"><a href="#grid" title="Grid View" role="tab" data-toggle="tab"><i class="fa fa-th-large"></i></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="btn-group item-sort">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="pull-right"><i class="fa fa-angle-down"></i></span>Сортировать: <span>Выберите вариант</span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">По цене</a>
-                                </li>
-                                <li><a href="#">По популярности</a>
-                                </li>
-                                <li><a href="#">По дате</a>
-                                </li>
-                                <li><a href="#">По доставке</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="btn-group">
-                            <button type="button" class="btn btn-default top-icon"><i class="fa fa-arrow-up"></i>
-                            </button>
-                        </li>
-                        <li class="btn-group item-show">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="pull-right"><i class="fa fa-angle-down"></i></span>Выводить: <span>по 12 товаров</span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">по 18 товаров</a>
-                                </li>
-                                <li><a href="#">по 24 товара</a>
-                                </li>
-                                <li><a href="#">ВСЕ</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="btn-group item-categories">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="pull-right"><i class="fa fa-angle-down"></i></span>Выбрать: <span>категорию</span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Техника</a>
-                                </li>
-                                <li><a href="#">Одежда</a>
-                                </li>
-                                <li><a href="#">Недвижимость</a>
-                                </li>
-                                <li><a href="#">Продукты</a>
-                                </li>
-                                <li><a href="#">Все</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            {% comment %}
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane fade in active" id="grid">
-{#                    <div class="row">#}
-{#                        <div class="col-md-12">#}
-                            <div class="item-panel">
-                                <div class="row">
-                                    {% for all_goods_s in all_goods %}
-                                    <div class="col-md-3 col-sm-3">
-                                        <div class="prodect-box">
-                                            <div class="photo-block">
-                                                <a data-rel="prettyPhoto" href="{{ MEDIA_URL }}{{ all_goods_s.4 }}" title="Название товара" class="link">
-                                                    <i class="fa fa-plus"></i></a>
-{#                                                <img src="/media/img/36.jpg" alt="item" class="img-responsive">#}
-                                                <img src="{{ MEDIA_URL }}{{ all_goods_s.4 }}" alt="item" class="img-responsive">
-{#                                                    <img src="style="background-image: url(/static/main/{{ all_goods_s.4 }});" alt="item" class="img-responsive">#}
-{#                                                <img src="" alt="item" class="img-responsive"  style="background-image:({{ MEDIA_URL }}{{ all_goods_s.4 }})">#}
-{#                                                style="background-image: url({{ product.photo.image.url }});">#}
-                                            </div>
-                                            <div class="prodect-details">
-                                                <h4>категория</h4>
-                                                <h3>{{ all_goods_s.1 }}</h3>
-                                                <h2>Цена:{{ all_goods_s.3 }}</h2>
-                                                <p class="ratings">
-                                                    <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
-                                                </p>
-                                                <div class="row shoping-details">
-                                                    <div class="col-xs-6"><a href="#" class="add-card-text"><span class="fa fa-shopping-cart"></span>В корзину</a>
-                                                    </div>
-                                                    <div class="col-xs-6"><a href="{% url "show" %}?i={{ all_goods_s.0 }}" class="show-link">Читать...<span class="fa fa-angle-right right-icon"></span></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                {% endfor %}
-
-                            </div>
-                        </div>
-                    <div class="row">
-                    {% for all_goods_s in all_goods %}
-                    <div class="col-sm-3 col-md-3">22222222222
-                        <div class="prodect-box">
-                            <div class="photo-block-">
-                                <a data-rel="prettyPhoto-" href="/media/img/36.jpg" title="Название товара" class="link">
-                                    <i class="fa- fa-plus-"></i></a>
-                                <div>
-                                    {{ MEDIA_URL }}{{ all_goods_s.4 }}
-                                </div>
-                                <img src="/media/{{ all_goods_s.4 }}" alt="item" class="img-responsive">
-                            </div>
-                            <div  class="prodect-details border_image">
-                                <h4>категория</h4>
-                                <h3>{{ all_goods_s.1 }}</h3>
-                                <h2>цена: {{ all_goods_s.3 }}</h2>
-                                <p>
-                                <div class="border_two_line"><span class="color_star">&#9733;</span> <span class="color_star_two">&#9734;</span><span class="my_reiting">- рейтинг товара</span></div>
-                                </p>
-                                <div class="row- shoping-details-">
-                                    <div class="my_cart_reed">
-                                        <div><a href="#" class="add-card-text-"><span class="fa fa-shopping-cart"></span>В корзину</a>
-                                        </div>
-                                        <div ><a href="{% url "show" %}?i={{ all_goods_s.0 }}">Читать...<span class="right-icon-"></span></a>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                <div class="row">
-
-                    <div class="col-sm-3 col-md-3">111111111111111111111111</div>
-                    <div class="col-sm-3 col-md-3">111111111111111111111111</div>
-                    <div class="col-sm-3 col-md-3">111111111111111111111111</div>
-                    <div class="col-sm-3 col-md-3">111111111111111111111111</div>
-                    <div class="col-sm-3 col-md-3">111111111111111111111111</div>
-                    <div class="col-sm-3 col-md-3">111111111111111111111111</div>
-                    <div class="col-sm-3 col-md-3">111111111111111111111111</div>
-                    <div class="col-sm-3 col-md-3">111111111111111111111111</div>
-                    <div class="col-sm-3 col-md-3">111111111111111111111111</div>
-                    <div class="col-sm-3 col-md-3">111111111111111111111111</div>
-                </div>
-                    {% for all_goods_s in all_goods %}
-                        <div class="col-md-3 col-sm-3">
-                            <div class="prodect-box">
-                                <div class="photo-block">
-                                    <a data-rel="prettyPhoto" href="{{ MEDIA_URL }}{{ all_goods_s.4 }}" title="Название товара" class="link">
-                                        <i class="fa fa-plus"></i></a>
-                                    <img src="{{ MEDIA_URL }}{{ all_goods_s.4 }}" alt="item" class="img-responsive">
-                                </div>
-                                <div class="prodect-details">
-                                    <h4>категория</h4>
-                                    <h3>{{ all_goods_s.1 }}</h3>
-                                    <h2>Цена:{{ all_goods_s.3 }}</h2>
-                                    <p class="ratings">
-                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs">
-                                        <span>- рейтинг товара</span>
-                                    </p>
-                                    <div class="row shoping-details">
-                                        <div class="col-xs-6"><a href="#" class="add-card-text">
-                                            <span class="fa fa-shopping-cart"></span>В корзину</a>
-                                        </div>
-                                        <div class="col-xs-6"><a href="{% url "show" %}?i={{ all_goods_s.0 }}" class="show-link">Читать...
-                                            <span class="fa fa-angle-right right-icon"></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-
-                </div>
-                    </div>
-{#                </div>#}
-{#            </div>-->>#}{% endcomment %}
-                {#start test#}
-                <div class="my_row">
-
-                    {% for all_goods_s in all_goods %}
-
-                        <div class="chaild_grid">
-                            <div class="prodect-box">
-                                <div class="photo-block-">
-                                    <a data-rel="prettyPhoto-" href="/media/img/36.jpg" title="Название товара" class="link">
-                                        <i class="fa- fa-plus-"></i></a>
-
-                                    <img src="{{ MEDIA_URL }}{{ all_goods_s.4 }}" alt="item" class="img-responsive" style="height: 253px; width: 300px">
-                                </div>
-                                <div  class="prodect-details border_image">
-                                    <h4>{{ all_goods_s.2 }}</h4>{#Категория#}
-                                    <h3>{{ all_goods_s.1 }}</h3>
-                                    <h2>цена: {{ all_goods_s.3 }}</h2>
-                                    <p>
-                                    <div class="border_two_line"><span class="color_star rating">&#9733;</span> <span class="color_star_two">&#9734;</span><span class="my_reiting">- рейтинг товара</span></div>
-                                    </p>
-                                    <div class="row- shoping-details">
-                                        <div class="my_cart_reed">
-                                            <div><a href="#" class="add-card-text"><span class="fa fa-shopping-cart"></span>В корзину</a>
-                                            </div>
-                                            <div ><a href="{% url "show" %}?i={{ all_goods_s.0 }}" class="show-link">Читать...<span class="right-icon-"></span></a>
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    {% endfor %}
-                </div>
-
-            {#    end test        <--!-->#}
-
-                    {% comment %}{% for all_goods_s in all_goods %}
-                        <div class="col-md-3 col-sm-3">
-                            <div class="prodect-box">
-                                <div class="photo-block">
-                                    <a data-rel="prettyPhoto" href="{{ MEDIA_URL }}{{ all_goods_s.4 }}" title="Название товара" class="link">
-                                        <i class="fa fa-plus"></i></a>
-                                    <img src="{{ MEDIA_URL }}{{ all_goods_s.4 }}" alt="item" class="img-responsive">
-                                </div>
-                                <div class="prodect-details">
-                                    <h4>категория</h4>
-                                    <h3>{{ all_goods_s.1 }}</h3>
-                                    <h2>Цена:{{ all_goods_s.3 }}</h2>
-                                    <p class="ratings">
-                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs">
-                                        <span>- рейтинг товара</span>
-                                    </p>
-                                    <div class="row shoping-details">
-                                        <div class="col-xs-6"><a href="#" class="add-card-text">
-                                            <span class="fa fa-shopping-cart"></span>В корзину</a>
-                                        </div>
-                                        <div class="col-xs-6"><a href="{% url "show" %}?i={{ all_goods_s.0 }}" class="show-link">Читать...
-                                            <span class="fa fa-angle-right right-icon"></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}{% endcomment %}
-
-
-            <ul class="top-sale-pagination animated" data-animation="fadeInUp" data-animation-delay="500">
-                <li class="preview"><a href="#" title="Previews Image"><span class="fa fa-2x fa-angle-left"></span></a>
-                </li>
-                <li><a href="#" title="1">1</a>
-                </li>
-                <li><a href="#" title="1">2</a>
-                </li>
-                <li><a href="#" title="1">3</a>
-                </li>
-                <li><a href="#" title="1">4</a>
-                </li>
-                <li><a href="#" title="1">5</a>
-                </li>
-                <li class="next"><a href="#" title="Next Image"><span class="fa fa-2x fa-angle-right"></span></a>
-                </li>
-            </ul>
-        </div>
-        </div>
-    </section>
-
-
 
 </body>
 
 {% endblock content %}
+{% block brands %}{% endblock brands %}
+{% block footer %}<section id="footer" class="footer-bg">
+    <div class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 animated" data-animation="fadeInUp" data-animation-delay="300">
+                    <h3>О магазине</h3>
+                    <p>Ретроконверсия национального наследия реально изменяет формирование имиджа. Еще Траут показал, что мониторинг активности вполне вероятен. Узнавание бренда экономит тактический инструмент маркетинга.</p>
+                    <ul>
+                        <li>Россия, Москва</li>
+                        <li>ул. Пушкина 23а</li>
+                        <li>mail@mail.com</li>
+                        <li>+7 123 456 789</li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 latest-post animated" data-animation="fadeInUp" data-animation-delay="700">
+                    <h3>Последние статьи</h3>
+                    <ul>
+                        <li><a href="#">Загловок статьи на сайте</a>
+                        </li>
+                        <li><a href="#">Загловок статьи на сайте</a>
+                        </li>
+                        <li><a href="#">Загловок статьи на сайте</a>
+                        </li>
+                        <li><a href="#">Загловок статьи на сайте</a>
+                        </li>
+                        <li><a href="#">Загловок статьи на сайте</a>
+                        </li>
+                        <li><a href="#">Загловок статьи на сайте</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 latest-post animated" data-animation="fadeInUp" data-animation-delay="700">
+                    <h3>Последние новости</h3>
+                    <ul>
+                        <li><a href="#">Загловок новости на сайте</a>
+                        </li>
+                        <li><a href="#">Загловок новости на сайте</a>
+                        </li>
+                        <li><a href="#">Загловок новости на сайте</a>
+                        </li>
+                        <li><a href="#">Загловок новости на сайте</a>
+                        </li>
+                        <li><a href="#">Загловок новости на сайте</a>
+                        </li>
+                        <li><a href="#">Загловок новости на сайте</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 flickr animated" data-animation="fadeInUp" data-animation-delay="900">
+                    <h3>Галерея</h3>
+                <div class=" grid-footer">
+                    {% for gallery_index_tmp_s in gallery_index_tmp %}
+                        <ul>
+                            <li><img src="{{ MEDIA_URL }}{{ gallery_index_tmp_s.1 }}" alt="flickr-1" class="img-responsive">
+                            </li>
+
+                            {#                                <li><img src="" alt="flickr-1" class="img-responsive">#}
+                            {#                                </li>#}
+                            {#                                <li><img src="" alt="flickr-1" class="img-responsive">#}
+                            {#                                </li>#}
+                            {#                                <li><img src="" alt="flickr-1" class="img-responsive">#}
+                            {#                                </li>#}
+                            {#                                <li><img src="" alt="flickr-1" class="img-responsive">#}
+                            {#                                </li>#}
+                            {#                                <li><img src="" alt="flickr-1" class="img-responsive">#}
+                            {#                                </li>#}
+                            {#                                <li><img src="" alt="flickr-1" class="img-responsive">#}
+                            {#                                </li>#}
+                            {#                                <li><img src="" alt="flickr-1" class="img-responsive">#}
+                            {#                                </li>#}
+                        </ul>
+                    {% endfor %}
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copy-rights-bg">
+        <div class="copy-rights-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="copyright-content">&copy; 2016 Big retail - HTML шаблон интернет-магазина</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="social-icon"><a href="#"><i class="fa fa-rss rss-icon"></i></a> <a href="#"><i class="fa fa-facebook facebook-icon"></i></a> <a href="#"><i class="fa fa-tumblr tumblr-icon"></i></a> <a href="#"><i class="fa fa-youtube youtube-icon"></i></a> <a href="#"><i class="fa fa-google google-icon"></i></a> <a href="#"><i class="fa fa-dribbble dribble-icon"></i></a> <a href="#"><i class="fa fa-vimeo-square vimeo-icon"></i></a> <a href="#"><i class="fa fa-skype skype-icon"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>{% endblock footer %}

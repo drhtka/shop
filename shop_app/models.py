@@ -86,6 +86,8 @@ class Image(models.Model):
 
     # def clean(self, exclude=None):
     #     pass
+    def __str__(self):
+        return str(self.image)
 
 class GoodsModel(models.Model):
     class Meta:
@@ -127,7 +129,7 @@ class Product(models.Model):
         db_table = 'product'
 
     name = models.CharField('Галерея', max_length=100)
-    #tags = GenericRelation(Image)
+    tags = GenericRelation(Image)
 
     def __str__(self):
         return self.name

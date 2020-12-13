@@ -1,10 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 <title>{% block title %}Категории{% endblock %}</title>
-{#{% block css %}#}
-{#    <link href="{% static "big_retail/css/themes/theme.css" %}" id="changeable-colors" rel="stylesheet" type="text/css">#}
-{#    <link href="{% static "big_retail/css/style.css" %}" rel="stylesheet" type="text/css">#}
-{#{% endblock css %}#}
+
 {% block video-baner %}
 {% endblock video-baner %}
 
@@ -15,10 +12,14 @@
         </div>{% endcomment %}
 <style>
 .inner_content{
-    height: {{ height_block }};
+    {#height: {{ height_block }};#}
 }
 
 </style>
+
+{#        <div id="app"></div>#}
+{#        <div id="root"></div>#}
+        {{ goods_api }}
         <div class="page-desc-section">
             <div class="container">
                 <div class="row">
@@ -40,20 +41,7 @@
                 </div>
             </div>
             <div class="container- my_container" >
-                <div class="row">
-                    <div class="col-md-12 category-buttons category-buttons_my">
-                        <ul class="nav nav-pills project-filters" id="filters" style="margin-left: 500px;">
-                            <li><a href="#" data-filter=".photo" class="filter filteer_my active">Одежда</a>
-                            </li>
-                            <li><a href="#" data-filter=".web" class="filter filteer_my">Техника</a>
-                            </li>
-                            <li><a href="#" data-filter=".html" class="filter filteer_my">Товары</a>
-                            </li>
-                            <li><a href="#" data-filter=".wp" class="filter filteer_my">Разное</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+
                 <div class="project-grid works- grid-column-3-">
                 {% for category_s in category %}
                 <div class="children">
@@ -61,26 +49,17 @@
                         <div class="thumbnail">
                             <div class="img-box">
 
-                                <div class="img-block"><img src="{{ MEDIA_URL }}{{ category_s.3 }}" class="img-responsive">
-{#                                    <div class="mask">#}
-{#                                        <div class="mask-links">#}
-{#                                            <ul>#}
-{#                                                <li><a class="zoom work-control" data-rel="prettyPhoto" href="" title="{{ category_s.1 }}"><i class="fa fa-search color-blue"></i></a>#}
-{#                                                </li>#}
-{#                                                <li><a class="link work-control" href="portfolio-single.html"><i class="fa fa-link color-blue"></i></a>#}
-{#                                                </li>#}
-{#                                            </ul>#}
-{#                                        </div>#}<!--значки поиска и тд-->
-{#                                    </div>#}
+                                <div class="img-block"><img src="{{ MEDIA_URL }}{{ category_s.3 }}" class="img-responsive" alt="">
                                 </div>
                             </div>
-{#                            <p><a href="{% url "goods" %}?i={{ cat.0 }}">{{ cat.1 }}</a></p><!-- /.catname-->#}
                             <div class="caption">
 
                                 <h3><a href="{% url "sort_goods_categ" %}?i={{ category_s.0 }}">{{ category_s.1 }}</a></h3><!--Название-->
                                 <p>{{ category_s.2 }}{#А вот по мнению аналитиков контекстная реклама ускоряет сублимированный охват аудитории. Практика однозначно показывает, что рейт-карта ускоряет конкурент, повышая конкуренцию.#}</p>
                                 <p class="rating">
-                                    <input value="4" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг фото</span>
+                                    <label>
+                                        <input value="4" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs">
+                                    </label><span>- рейтинг фото</span>
                                 </p>
                                 <div class="social-icon"><a href="#"><i class="fa fa-google google-icon"></i></a> <a href="#"><i class="fa fa-facebook facebook-icon"></i></a> <a href="#"><i class="fa fa-dribbble dribble-icon"></i></a> <a href="#"><i class="fa fa-twitter twitter-icon"></i></a> <a href="#"><i class="fa fa-rss rss-icon"></i></a> <a href="#"><i class="fa fa-vimeo-square vimeo-icon"></i></a> <a href="#"><i class="fa fa-skype skype-icon"></i></a> <a href="#"><i class="fa fa-youtube youtube-icon"></i></a>
                                 </div>
@@ -90,169 +69,11 @@
                 </div>
                     {% endfor %}
                     </div>
-                    {% comment %}<div class="project-items photo html">
-                        <div class="thumbnail">
-                            <div class="img-box">
-                                <div class="img-block"><img src="" class="img-responsive">
-                                    <div class="mask">
-                                        <div class="mask-links">
-                                            <ul>
-                                                <li><a class="zoom work-control" data-rel="prettyPhoto" href="" title="Название фото"><i class="fa fa-search color-blue"></i></a>
-                                                </li>
-                                                <li><a class="link work-control" href="portfolio-single.html"><i class="fa fa-link color-blue"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="caption">
-                                <h3>Название фото</h3>
-                                <p>А вот по мнению аналитиков контекстная реклама ускоряет сублимированный охват аудитории. Практика однозначно показывает, что рейт-карта ускоряет конкурент, повышая конкуренцию.</p>
-                                <p class="rating">
-                                    <input value="4" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг фото</span>
-                                </p>
-                                <div class="social-icon"><a href="#"><i class="fa fa-google google-icon"></i></a> <a href="#"><i class="fa fa-facebook facebook-icon"></i></a> <a href="#"><i class="fa fa-dribbble dribble-icon"></i></a> <a href="#"><i class="fa fa-twitter twitter-icon"></i></a> <a href="#"><i class="fa fa-rss rss-icon"></i></a> <a href="#"><i class="fa fa-vimeo-square vimeo-icon"></i></a> <a href="#"><i class="fa fa-skype skype-icon"></i></a> <a href="#"><i class="fa fa-youtube youtube-icon"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-items photo web">
-                        <div class="thumbnail">
-                            <div class="img-box">
-                                <div class="img-block"><img src="" class="img-responsive">
-                                    <div class="mask">
-                                        <div class="mask-links">
-                                            <ul>
-                                                <li><a class="zoom work-control" data-rel="prettyPhoto" href="" title="Название фото"><i class="fa fa-search color-blue"></i></a>
-                                                </li>
-                                                <li><a class="link work-control" href="portfolio-single.html"><i class="fa fa-link color-blue"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="caption">
-                                <h3>Название фото</h3>
-                                <p>А вот по мнению аналитиков контекстная реклама ускоряет сублимированный охват аудитории. Практика однозначно показывает, что рейт-карта ускоряет конкурент, повышая конкуренцию.</p>
-                                <p class="rating">
-                                    <input value="4" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг фото</span>
-                                </p>
-                                <div class="social-icon"><a href="#"><i class="fa fa-google google-icon"></i></a> <a href="#"><i class="fa fa-facebook facebook-icon"></i></a> <a href="#"><i class="fa fa-dribbble dribble-icon"></i></a> <a href="#"><i class="fa fa-twitter twitter-icon"></i></a> <a href="#"><i class="fa fa-rss rss-icon"></i></a> <a href="#"><i class="fa fa-vimeo-square vimeo-icon"></i></a> <a href="#"><i class="fa fa-skype skype-icon"></i></a> <a href="#"><i class="fa fa-youtube youtube-icon"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-items photo web">
-                        <div class="thumbnail">
-                            <div class="img-box">
-                                <div class="img-block"><img src="" class="img-responsive">
-                                    <div class="mask">
-                                        <div class="mask-links">
-                                            <ul>
-                                                <li><a class="zoom work-control" data-rel="prettyPhoto" href="" title="Название фото"><i class="fa fa-search color-blue"></i></a>
-                                                </li>
-                                                <li><a class="link work-control" href="portfolio-single.html"><i class="fa fa-link color-blue"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="caption">
-                                <h3>Название фото</h3>
-                                <p>А вот по мнению аналитиков контекстная реклама ускоряет сублимированный охват аудитории. Практика однозначно показывает, что рейт-карта ускоряет конкурент, повышая конкуренцию.</p>
-                                <p class="rating">
-                                    <input value="4" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг фото</span>
-                                </p>
-                                <div class="social-icon"><a href="#"><i class="fa fa-google google-icon"></i></a> <a href="#"><i class="fa fa-facebook facebook-icon"></i></a> <a href="#"><i class="fa fa-dribbble dribble-icon"></i></a> <a href="#"><i class="fa fa-twitter twitter-icon"></i></a> <a href="#"><i class="fa fa-rss rss-icon"></i></a> <a href="#"><i class="fa fa-vimeo-square vimeo-icon"></i></a> <a href="#"><i class="fa fa-skype skype-icon"></i></a> <a href="#"><i class="fa fa-youtube youtube-icon"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-items photo web html">
-                        <div class="thumbnail">
-                            <div class="img-box">
-                                <div class="img-block"><img src="" class="img-responsive">
-                                    <div class="mask">
-                                        <div class="mask-links">
-                                            <ul>
-                                                <li><a class="zoom work-control" data-rel="prettyPhoto" href="" title="Название фото"><i class="fa fa-search color-blue"></i></a>
-                                                </li>
-                                                <li><a class="link work-control" href="portfolio-single.html"><i class="fa fa-link color-blue"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="caption">
-                                <h3>Название фото</h3>
-                                <p>А вот по мнению аналитиков контекстная реклама ускоряет сублимированный охват аудитории. Практика однозначно показывает, что рейт-карта ускоряет конкурент, повышая конкуренцию.</p>
-                                <p class="rating">
-                                    <input value="4" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг фото</span>
-                                </p>
-                                <div class="social-icon"><a href="#"><i class="fa fa-google google-icon"></i></a> <a href="#"><i class="fa fa-facebook facebook-icon"></i></a> <a href="#"><i class="fa fa-dribbble dribble-icon"></i></a> <a href="#"><i class="fa fa-twitter twitter-icon"></i></a> <a href="#"><i class="fa fa-rss rss-icon"></i></a> <a href="#"><i class="fa fa-vimeo-square vimeo-icon"></i></a> <a href="#"><i class="fa fa-skype skype-icon"></i></a> <a href="#"><i class="fa fa-youtube youtube-icon"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-items wp photo">
-                        <div class="thumbnail">
-                            <div class="img-box">
-                                <div class="img-block"><img src="" class="img-responsive">
-                                    <div class="mask">
-                                        <div class="mask-links">
-                                            <ul>
-                                                <li><a class="zoom work-control" data-rel="prettyPhoto" href="" title="Название фото"><i class="fa fa-search color-blue"></i></a>
-                                                </li>
-                                                <li><a class="link work-control" href="portfolio-single.html"><i class="fa fa-link color-blue"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="caption">
-                                <h3>Название фото</h3>
-                                <p>А вот по мнению аналитиков контекстная реклама ускоряет сублимированный охват аудитории. Практика однозначно показывает, что рейт-карта ускоряет конкурент, повышая конкуренцию.</p>
-                                <p class="rating">
-                                    <input value="4" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг фото</span>
-                                </p>
-                                <div class="social-icon"><a href="#"><i class="fa fa-google google-icon"></i></a> <a href="#"><i class="fa fa-facebook facebook-icon"></i></a> <a href="#"><i class="fa fa-dribbble dribble-icon"></i></a> <a href="#"><i class="fa fa-twitter twitter-icon"></i></a> <a href="#"><i class="fa fa-rss rss-icon"></i></a> <a href="#"><i class="fa fa-vimeo-square vimeo-icon"></i></a> <a href="#"><i class="fa fa-skype skype-icon"></i></a> <a href="#"><i class="fa fa-youtube youtube-icon"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>{% endcomment %}
+
                 </div>
-            </div>
-            {% comment paginator %}
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <ul class="top-sale-pagination animated" data-animation="fadeInUp" data-animation-delay="500">
-                            <li class="preview"><a href="#" title="Previews Image"><span class="fa fa-2x fa-angle-left"></span></a>
-                            </li>
-                            <li><a href="#" title="1">1</a>
-                            </li>
-                            <li><a href="#" title="1">2</a>
-                            </li>
-                            <li><a href="#" title="1">3</a>
-                            </li>
-                            <li><a href="#" title="1">4</a>
-                            </li>
-                            <li><a href="#" title="1">5</a>
-                            </li>
-                            <li class="next"><a href="#" title="Next Image"><span class="fa fa-2x fa-angle-right"></span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            {% endcomment %}
         </section>
-        </div>
+            </div>
+hello-1
     {% endblock content %}
     {% block brands %}{% endblock brands %}
     {% block additions %}{% endblock additions %}
@@ -344,12 +165,50 @@
             </div>
         </div>
 {#        <script type="text/javascript" src="{% static "big_retail/js/main.js" %}" rel="stylesheet"></script>#}
-    </section>{% endblock footer %}
-{% block js %}
-    <script type='text/javascript' src='http://test.michalbacak.com/wp-includes/js/imagesloaded.min.js?ver=3.2.0'></script>
-    <script type='text/javascript' src='http://test.michalbacak.com/wp-content/plugins/ajax-load-more/vendor/js/masonry/masonry.pkgd.min.js?ver=4.2.1'></script>
-    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js">
-{% endblock js %}
+    </section>
+        <div class="hello2">hello2</div>
+    {% endblock footer %}
+
+{% block js %}{% endblock js %}
+{% block js-1 %}
+    <script type='text/javascript' src='http://test.michalbacak.com/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+    <script type="text/javascript" src="{% static "big_retail/js/jquery-1.11.1.min.js" %}" rel="stylesheet">var jQuery1111 = $.noConflict(true);</script>
+    <script type="text/javascript" src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js"></script>
+    <script type="text/javascript" src="{% static "big_retail/js/bootstrap.min.js" %}" rel="stylesheet"></script>
+    <script type="text/javascript" src="{% static "big_retail/js/bootstrapValidator.min.js" %}" rel="stylesheet"></script>
+    <script type="text/javascript" src="{% static "big_retail/js/bootstrap-hover-dropdown.min.js" %}" rel="stylesheet"></script>
+    <script type="text/javascript" src="{% static "big_retail/js/owl.carousel.min.js" %}" rel="stylesheet" ></script><!--owl-theme-->
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.sticky.js" %}"  rel="stylesheet"></script><!---->
+
+    {#<script type="text/javascript" src="{% static "big_retail/js/carousel.min.js" %}"  rel="stylesheet"></script><!--owl-theme-->#}
+    <script type="text/javascript" src="{% static "big_retail/js/slider/jquery.fractionslider.js" %}" rel="stylesheet"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/slider/main.js" %}" charset="utf-8" rel="stylesheet"></script> <!---->
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.prettyPhoto.js" %}" rel="stylesheet"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.easy-ticker.min.js" %}" rel="stylesheet"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/idangerous.swiper.min.js" %}" rel="stylesheet"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/idangerous.swiper.progress.min.js" %}" rel="stylesheet"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/star-rating.min.js" %}" rel="stylesheet"></script><!---->
+
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.flexslider-min.js" %}" rel="stylesheet"></script><!---->
+
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.content_slider.js" %}" rel="stylesheet"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.easypiechart.min.js" %}"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/option.js" %}"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.nstSlider.js" %}"></script><!---->
+
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.mb.YTPlayer.js" %}"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.appear.js" %}"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/main.js" %}"></script><!--portfolio.html-->
+
+    {#<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>#} <!-- который ломал все-->
+    {% comment %}<script type="text/javascript" src="{% static "shop_app/js/script.js" %}" rel="stylesheet"></script>{% endcomment %}
+{##}
+{#    <div id="root"></div>#}
+{#    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>#}
+{#    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>#}
+{#    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>#}
+{% endblock js-1 %}
+{% block react %}{% endblock react %}
 
 
 

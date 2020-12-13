@@ -815,6 +815,14 @@ function initPortfolioGrid(){
   });
  }
 
+// var d = document.getElementsByClassName('show_button')[0].localName;
+// var d = document.getElementById('show_button');
+// d.classList.add("visible");
+// b = document.getElementById('show_button').data = false
+// b.classList.remove("visible")
+// console.log('d')
+// console.log(d.childNodes)
+
  // function newNext(myThis){
 	// alert(myThis)
  // }

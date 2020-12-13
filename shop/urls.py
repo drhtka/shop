@@ -24,16 +24,19 @@ from django.urls import path, include, re_path
 #from blog.api.serializers import CommentSerializer
 from django.conf import settings
 from django.conf.urls.static import static
-
+from api import views as api_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('shop_app.urls')),
     path('test/', include('test_url.urls')),
     #path('blog/', include('blog.urls')),
-    #path("api/posts/",
-    #     api_views.PostListView.as_view(),
-    #     name="api_post_list"),
+    path("api/",
+        api_views.GoodsListView.as_view(),
+        name="api_list"),
+    path("api/<int:id>",
+        api_views.GoodsListDitailView.as_view(),
+        name="api_goods_list"),
     #path("api/posts/<pk>",
     #     api_views.CommentDetailView.as_view(),
     #     name="api_post_detail"),
