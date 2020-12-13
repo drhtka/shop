@@ -133,38 +133,28 @@
         </div>
     </section>
 {#    <div class="alert alert-dark" role="alert">Страница офомления заказа</div>#}
-    <h2 style="text-align: center">Ваш заказ</h2>
-    {% for shop_order in session_array %}
+    <h2 style="text-align: left; margin-left: 200px;">Ваш заказ</h2>
+
         <div class="container-fluid">
             <div class="col-auto">
-{#                <div>{{ shop_order.0 }}</div>#}
-{#                <div>{{ shop_order.1 }}</div>#}
-{#                <div><img class="orders_img" src="{{ MEDIA_URL }}{{ shop_order.2 }}" width="50px" height="50px"></div>#}
-{#                <form action="/main/dell_goods" method="get">#}
-{#                    <button value="{{ shop_order.0 }}" name="id" class="btn btn-outline-danger">Удалить</button>#}
-{#                </form>#}
-{#            </div>#}
-{#        </div>#}
-{##}
-{##}
-{#    <a href="/send_order"><button value="" class="btn btn-outline-success {{ button_vis }}">Купить</button></a>#}
 
     <section id="order-section" class="order-section">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-
+        <div class="order-box">
                     <div class="">
                         <table class="table">
                             <tr class="table-title">
                                 <td>Товар</td>
                                 <td>Цена</td>
-                                <td>Изображение</td>
+{#                                <td>Изображение</td>#}
                             </tr>
+                            {% for shop_order in session_array %}
                             <tr class="prodect-title">
                                 <td>{{ shop_order.0 }}</td>
                                 <td>{{ shop_order.1 }} р.</td>
-                                <td><img class="orders_img" src="{{ MEDIA_URL }}{{ shop_order.2 }}" width="30px" height="30px"></td>
+{#                                <td><img class="orders_img" src="{{ MEDIA_URL }}{{ shop_order.2 }}" width="30px" height="30px"></td>#}
                             </tr>
                             {% endfor %}
 
@@ -172,142 +162,108 @@
                                 <td>Итого</td>
                                 <td> {{ summ }} р.</td>
                             </tr>
-{#                            <tr class="table-title delivery">#}
-{#                                <td>Доставка</td>#}
-{#                                <td>Бесплатно</td>#}
-{#                            </tr>#}
-{#                            <tr class="table-title total-price">#}
-{#                                <td>К оплате</td>#}
-{#                                <td class="blue-text">2 000 р.</td>#}
-{#                            </tr>#}
+
                         </table>
                     </div>
+                    </div>
                 </div>
             </div>
-{#            <div class="row payment-method">#}
-{#                <div class="col-md-12">#}
-{#                    <div class="bank-payment">#}
-{#                        <input id="bank-payment" type="radio" value="bank" checked="checked" name="payment-method">#}
-{#                        <label for="bank-payment">WebMoney</label>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col-md-12">#}
-{#                    <div class="cheque-payment">#}
-{#                        <input id="cheque-payment" type="radio" value="cheque" checked="checked" name="payment-method">#}
-{#                        <label for="cheque-payment">Яндекс деньги</label>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col-md-12">#}
-{#                    <div class="cheque-payment">#}
-{#                        <input id="cheque2-payment" type="radio" value="cheque" checked="checked" name="payment-method">#}
-{#                        <label for="cheque2-payment">QIWI</label>#}
-{#                    </div>#}
-{#                </div>#}
+    </div>
                 <div class="col-md-12">
                     <div class="paypal-payment">
-{#                        <input id="paypal-payment" type="radio" value="paypal" checked="checked" name="payment-method">#}
-{#                        <label for="paypal-payment">Robokassa</label>#}
-{#                        <a href="#" title="Master Card"><img src="images/payment-method/mastercard.jpg" alt="payment method">#}
-{#                        </a>#}
-{#                        <a href="#" title="Visa"><img src="images/payment-method/visa.jpg" alt="payment method">#}
-{#                        </a>#}
-{#                        <a href="#" title="Amex"><img src="images/payment-method/amex.jpg" alt="payment method">#}
-{#                        </a>#}
-{#                        <a href="#" title="DISCOVER"><img src="images/payment-method/discover.jpg" alt="payment method">#}
-{#                        </a>#}
-{#                        <a href="#" title="eCHECK"><img src="images/payment-method/echeck.jpg" alt="payment method">#}
-{#                        </a>#}
-                    </div><a href="#"><h4>Я готов заплатить</h4></a>
+                    </div><a href="#"><h4 style="margin-left: 200px;">Я готов заплатить</h4></a>
                 </div>
             </div>
         </div>
     </section>
-    <section id="footer" class="footer-bg">
-        <div class="footer-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-3 animated" data-animation="fadeInUp" data-animation-delay="300">
-                        <h3>О магазине</h3>
-                        <p>Ретроконверсия национального наследия реально изменяет формирование имиджа. Еще Траут показал, что мониторинг активности вполне вероятен. Узнавание бренда экономит тактический инструмент маркетинга.</p>
-                        <ul>
-                            <li>Россия, Москва</li>
-                            <li>ул. Пушкина 23а</li>
-                            <li>mail@mail.com</li>
-                            <li>+7 123 456 789</li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-3 latest-post animated" data-animation="fadeInUp" data-animation-delay="700">
-                        <h3>Последние статьи</h3>
-                        <ul>
-                            <li><a href="#">Загловок статьи на сайте</a>
-                            </li>
-                            <li><a href="#">Загловок статьи на сайте</a>
-                            </li>
-                            <li><a href="#">Загловок статьи на сайте</a>
-                            </li>
-                            <li><a href="#">Загловок статьи на сайте</a>
-                            </li>
-                            <li><a href="#">Загловок статьи на сайте</a>
-                            </li>
-                            <li><a href="#">Загловок статьи на сайте</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-3 latest-post animated" data-animation="fadeInUp" data-animation-delay="700">
-                        <h3>Последние новости</h3>
-                        <ul>
-                            <li><a href="#">Загловок новости на сайте</a>
-                            </li>
-                            <li><a href="#">Загловок новости на сайте</a>
-                            </li>
-                            <li><a href="#">Загловок новости на сайте</a>
-                            </li>
-                            <li><a href="#">Загловок новости на сайте</a>
-                            </li>
-                            <li><a href="#">Загловок новости на сайте</a>
-                            </li>
-                            <li><a href="#">Загловок новости на сайте</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-3 flickr animated" data-animation="fadeInUp" data-animation-delay="900">
-                        <h3>Галерея</h3>
-                        <ul>
-                            <li><img src="images/flickr/1.jpg" alt="flickr-1" class="img-responsive">
-                            </li>
-                            <li><img src="images/flickr/2.jpg" alt="flickr-1" class="img-responsive">
-                            </li>
-                            <li><img src="images/flickr/3.jpg" alt="flickr-1" class="img-responsive">
-                            </li>
-                            <li><img src="images/flickr/4.jpg" alt="flickr-1" class="img-responsive">
-                            </li>
-                            <li><img src="images/flickr/5.jpg" alt="flickr-1" class="img-responsive">
-                            </li>
-                            <li><img src="images/flickr/6.jpg" alt="flickr-1" class="img-responsive">
-                            </li>
-                            <li><img src="images/flickr/7.jpg" alt="flickr-1" class="img-responsive">
-                            </li>
-                            <li><img src="images/flickr/8.jpg" alt="flickr-1" class="img-responsive">
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="copy-rights-bg">
-            <div class="copy-rights-section">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <p class="copyright-content">&copy; 2016 Big retail - HTML шаблон интернет-магазина</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="social-icon"><a href="#"><i class="fa fa-rss rss-icon"></i></a> <a href="#"><i class="fa fa-facebook facebook-icon"></i></a> <a href="#"><i class="fa fa-tumblr tumblr-icon"></i></a> <a href="#"><i class="fa fa-youtube youtube-icon"></i></a> <a href="#"><i class="fa fa-google google-icon"></i></a> <a href="#"><i class="fa fa-dribbble dribble-icon"></i></a> <a href="#"><i class="fa fa-vimeo-square vimeo-icon"></i></a> <a href="#"><i class="fa fa-skype skype-icon"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+{#    <section id="footer" class="footer-bg">#}
+{#        <div class="footer-section">#}
+{#            <div class="container">#}
+{#                <div class="row">#}
+{#                    <div class="col-sm-3 animated" data-animation="fadeInUp" data-animation-delay="300">#}
+{#                        <h3>О магазине</h3>#}
+{#                        <p>Ретроконверсия национального наследия реально изменяет формирование имиджа. Еще Траут показал, что мониторинг активности вполне вероятен. Узнавание бренда экономит тактический инструмент маркетинга.</p>#}
+{#                        <ul>#}
+{#                            <li>Россия, Москва</li>#}
+{#                            <li>ул. Пушкина 23а</li>#}
+{#                            <li>mail@mail.com</li>#}
+{#                            <li>+7 123 456 789</li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                    <div class="col-sm-3 latest-post animated" data-animation="fadeInUp" data-animation-delay="700">#}
+{#                        <h3>Последние статьи</h3>#}
+{#                        <ul>#}
+{#                            <li><a href="#">Загловок статьи на сайте</a>#}
+{#                            </li>#}
+{#                            <li><a href="#">Загловок статьи на сайте</a>#}
+{#                            </li>#}
+{#                            <li><a href="#">Загловок статьи на сайте</a>#}
+{#                            </li>#}
+{#                            <li><a href="#">Загловок статьи на сайте</a>#}
+{#                            </li>#}
+{#                            <li><a href="#">Загловок статьи на сайте</a>#}
+{#                            </li>#}
+{#                            <li><a href="#">Загловок статьи на сайте</a>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                    <div class="col-sm-3 latest-post animated" data-animation="fadeInUp" data-animation-delay="700">#}
+{#                        <h3>Последние новости</h3>#}
+{#                        <ul>#}
+{#                            <li><a href="#">Загловок новости на сайте</a>#}
+{#                            </li>#}
+{#                            <li><a href="#">Загловок новости на сайте</a>#}
+{#                            </li>#}
+{#                            <li><a href="#">Загловок новости на сайте</a>#}
+{#                            </li>#}
+{#                            <li><a href="#">Загловок новости на сайте</a>#}
+{#                            </li>#}
+{#                            <li><a href="#">Загловок новости на сайте</a>#}
+{#                            </li>#}
+{#                            <li><a href="#">Загловок новости на сайте</a>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                    <div class="col-sm-3 flickr animated" data-animation="fadeInUp" data-animation-delay="900">#}
+{#                        <h3>Галерея</h3>#}
+{#                        <ul>#}
+{#                            <li><img src="images/flickr/1.jpg" alt="flickr-1" class="img-responsive">#}
+{#                            </li>#}
+{#                            <li><img src="images/flickr/2.jpg" alt="flickr-1" class="img-responsive">#}
+{#                            </li>#}
+{#                            <li><img src="images/flickr/3.jpg" alt="flickr-1" class="img-responsive">#}
+{#                            </li>#}
+{#                            <li><img src="images/flickr/4.jpg" alt="flickr-1" class="img-responsive">#}
+{#                            </li>#}
+{#                            <li><img src="images/flickr/5.jpg" alt="flickr-1" class="img-responsive">#}
+{#                            </li>#}
+{#                            <li><img src="images/flickr/6.jpg" alt="flickr-1" class="img-responsive">#}
+{#                            </li>#}
+{#                            <li><img src="images/flickr/7.jpg" alt="flickr-1" class="img-responsive">#}
+{#                            </li>#}
+{#                            <li><img src="images/flickr/8.jpg" alt="flickr-1" class="img-responsive">#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="copy-rights-bg">#}
+{#            <div class="copy-rights-section">#}
+{#                <div class="container">#}
+{#                    <div class="row">#}
+{#                        <div class="col-sm-6">#}
+{#                            <p class="copyright-content">&copy; 2016 Big retail - HTML шаблон интернет-магазина</p>#}
+{#                        </div>#}
+{#                        <div class="col-sm-6">#}
+{#                            <div class="social-icon"><a href="#"><i class="fa fa-rss rss-icon"></i></a> <a href="#"><i class="fa fa-facebook facebook-icon"></i></a> <a href="#"><i class="fa fa-tumblr tumblr-icon"></i></a> <a href="#"><i class="fa fa-youtube youtube-icon"></i></a> <a href="#"><i class="fa fa-google google-icon"></i></a> <a href="#"><i class="fa fa-dribbble dribble-icon"></i></a> <a href="#"><i class="fa fa-vimeo-square vimeo-icon"></i></a> <a href="#"><i class="fa fa-skype skype-icon"></i></a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
 {% endblock %}
+{% block brands %}
+{% endblock brands %}
