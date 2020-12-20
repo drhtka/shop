@@ -44,3 +44,16 @@ function newNext(myThis){
 
 }
 
+var last_div = document.getElementsByClassName('project-grid').length
+var ress = last_div -1
+document.getElementsByClassName('project-grid')[ress].style.display = 'none'
+
+$.ajax({
+	url: '/ajaxcalc',
+	type: 'get',
+	data: {date: my_date.value},
+	success: function (response) {
+		console.log(response)
+		$('#bloc_content').html(response)
+	}
+})

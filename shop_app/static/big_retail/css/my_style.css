@@ -42,6 +42,11 @@
     margin-left: 100px;
 }
 
+/*.cont_flat_image{*/
+/*    overflow: hidden;*/
+/*    width: 100%;*/
+/*}*/
+
 .proj-our{
     /*display: grid;*/
     /*grid-template-rows: 390px 390px 390px;*/
@@ -152,14 +157,20 @@
 
 .cont_flat_image{
     display: grid;
-    grid-template-columns: 147px 147px 147px 147px 147px 147px 147px 147px;
+    grid-template-columns: 147px 147px 147px 147px;
     grid-template-rows: 135px; /* 250px 250px 250px;*/
-    width: 50%;
+    /*width: 50%;*/
     height: 50%;
+    overflow: hidden; /* прячем фото в описани товра в слайдере под большим фото*/
+    width: 100%;
     /*overflow: hidden;*/
     /*padding-top: 40px;*/
 }
 
+#top-sales-slider{
+    width: 75%;
+    margin: 0 auto;
+}
 /*.small_image_for{*/
 /*    height: 80px;*/
 /*    width: 140px;*/
@@ -215,4 +226,9 @@
     grid-column-gap: 5px; /*отступы в столбце*/
     grid-row-gap: 15px; /*отступы в ряде*/
     /*margin-top: 5px;*/
+}
+
+.name_prod{
+    margin-top: 45px;
+    font-size: 20px
 }

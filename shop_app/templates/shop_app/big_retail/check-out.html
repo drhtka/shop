@@ -18,6 +18,8 @@
             </div>
         </div>
     </div>
+
+    <div style="font-size: 25px; color: #0000FF; font-family: 'Lora'; text-align: center; margin-top: 30px;margin-bottom: 50px;">{{ empty }}</div>
     <section id="login-section" class="login-section">
         <div class="container">
             <div class="row">
@@ -176,94 +178,85 @@
             </div>
         </div>
     </section>
-{#    <section id="footer" class="footer-bg">#}
-{#        <div class="footer-section">#}
-{#            <div class="container">#}
-{#                <div class="row">#}
-{#                    <div class="col-sm-3 animated" data-animation="fadeInUp" data-animation-delay="300">#}
-{#                        <h3>О магазине</h3>#}
-{#                        <p>Ретроконверсия национального наследия реально изменяет формирование имиджа. Еще Траут показал, что мониторинг активности вполне вероятен. Узнавание бренда экономит тактический инструмент маркетинга.</p>#}
-{#                        <ul>#}
-{#                            <li>Россия, Москва</li>#}
-{#                            <li>ул. Пушкина 23а</li>#}
-{#                            <li>mail@mail.com</li>#}
-{#                            <li>+7 123 456 789</li>#}
-{#                        </ul>#}
-{#                    </div>#}
-{#                    <div class="col-sm-3 latest-post animated" data-animation="fadeInUp" data-animation-delay="700">#}
-{#                        <h3>Последние статьи</h3>#}
-{#                        <ul>#}
-{#                            <li><a href="#">Загловок статьи на сайте</a>#}
-{#                            </li>#}
-{#                            <li><a href="#">Загловок статьи на сайте</a>#}
-{#                            </li>#}
-{#                            <li><a href="#">Загловок статьи на сайте</a>#}
-{#                            </li>#}
-{#                            <li><a href="#">Загловок статьи на сайте</a>#}
-{#                            </li>#}
-{#                            <li><a href="#">Загловок статьи на сайте</a>#}
-{#                            </li>#}
-{#                            <li><a href="#">Загловок статьи на сайте</a>#}
-{#                            </li>#}
-{#                        </ul>#}
-{#                    </div>#}
-{#                    <div class="col-sm-3 latest-post animated" data-animation="fadeInUp" data-animation-delay="700">#}
-{#                        <h3>Последние новости</h3>#}
-{#                        <ul>#}
-{#                            <li><a href="#">Загловок новости на сайте</a>#}
-{#                            </li>#}
-{#                            <li><a href="#">Загловок новости на сайте</a>#}
-{#                            </li>#}
-{#                            <li><a href="#">Загловок новости на сайте</a>#}
-{#                            </li>#}
-{#                            <li><a href="#">Загловок новости на сайте</a>#}
-{#                            </li>#}
-{#                            <li><a href="#">Загловок новости на сайте</a>#}
-{#                            </li>#}
-{#                            <li><a href="#">Загловок новости на сайте</a>#}
-{#                            </li>#}
-{#                        </ul>#}
-{#                    </div>#}
-{#                    <div class="col-sm-3 flickr animated" data-animation="fadeInUp" data-animation-delay="900">#}
-{#                        <h3>Галерея</h3>#}
-{#                        <ul>#}
-{#                            <li><img src="images/flickr/1.jpg" alt="flickr-1" class="img-responsive">#}
-{#                            </li>#}
-{#                            <li><img src="images/flickr/2.jpg" alt="flickr-1" class="img-responsive">#}
-{#                            </li>#}
-{#                            <li><img src="images/flickr/3.jpg" alt="flickr-1" class="img-responsive">#}
-{#                            </li>#}
-{#                            <li><img src="images/flickr/4.jpg" alt="flickr-1" class="img-responsive">#}
-{#                            </li>#}
-{#                            <li><img src="images/flickr/5.jpg" alt="flickr-1" class="img-responsive">#}
-{#                            </li>#}
-{#                            <li><img src="images/flickr/6.jpg" alt="flickr-1" class="img-responsive">#}
-{#                            </li>#}
-{#                            <li><img src="images/flickr/7.jpg" alt="flickr-1" class="img-responsive">#}
-{#                            </li>#}
-{#                            <li><img src="images/flickr/8.jpg" alt="flickr-1" class="img-responsive">#}
-{#                            </li>#}
-{#                        </ul>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#        <div class="copy-rights-bg">#}
-{#            <div class="copy-rights-section">#}
-{#                <div class="container">#}
-{#                    <div class="row">#}
-{#                        <div class="col-sm-6">#}
-{#                            <p class="copyright-content">&copy; 2016 Big retail - HTML шаблон интернет-магазина</p>#}
-{#                        </div>#}
-{#                        <div class="col-sm-6">#}
-{#                            <div class="social-icon"><a href="#"><i class="fa fa-rss rss-icon"></i></a> <a href="#"><i class="fa fa-facebook facebook-icon"></i></a> <a href="#"><i class="fa fa-tumblr tumblr-icon"></i></a> <a href="#"><i class="fa fa-youtube youtube-icon"></i></a> <a href="#"><i class="fa fa-google google-icon"></i></a> <a href="#"><i class="fa fa-dribbble dribble-icon"></i></a> <a href="#"><i class="fa fa-vimeo-square vimeo-icon"></i></a> <a href="#"><i class="fa fa-skype skype-icon"></i></a>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </section>#}
+
 {% endblock %}
 {% block brands %}
 {% endblock brands %}
+{% block footer %}<section id="footer" class="footer-bg">
+    <div class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 animated" data-animation="fadeInUp" data-animation-delay="300">
+                    <h3>О магазине</h3>
+                    <p>Ретроконверсия национального наследия реально изменяет формирование имиджа. Еще Траут показал, что мониторинг активности вполне вероятен. Узнавание бренда экономит тактический инструмент маркетинга.</p>
+                    <ul>
+                        <li>Россия, Москва</li>
+                        <li>ул. Пушкина 23а</li>
+                        <li>mail@mail.com</li>
+                        <li>+7 123 456 789</li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 latest-post animated" data-animation="fadeInUp" data-animation-delay="700">
+                    <h3>Последние статьи</h3>
+                    <ul>
+                        <li><a href="#">Загловок статьи на сайте</a>
+                        </li>
+                        <li><a href="#">Загловок статьи на сайте</a>
+                        </li>
+                        <li><a href="#">Загловок статьи на сайте</a>
+                        </li>
+                        <li><a href="#">Загловок статьи на сайте</a>
+                        </li>
+                        <li><a href="#">Загловок статьи на сайте</a>
+                        </li>
+                        <li><a href="#">Загловок статьи на сайте</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 latest-post animated" data-animation="fadeInUp" data-animation-delay="700">
+                    <h3>Последние новости</h3>
+                    <ul>
+                        <li><a href="#">Загловок новости на сайте</a>
+                        </li>
+                        <li><a href="#">Загловок новости на сайте</a>
+                        </li>
+                        <li><a href="#">Загловок новости на сайте</a>
+                        </li>
+                        <li><a href="#">Загловок новости на сайте</a>
+                        </li>
+                        <li><a href="#">Загловок новости на сайте</a>
+                        </li>
+                        <li><a href="#">Загловок новости на сайте</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 flickr animated" data-animation="fadeInUp" data-animation-delay="900">
+                    <h3>Галерея</h3>
+                    <div class=" grid-footer">
+                        {% for gallery_index_tmp_s in gallery_index_tmp %}
+                            <ul>
+                                <li><img src="{{ MEDIA_URL }}{{ gallery_index_tmp_s.1 }}" alt="flickr-1" class="img-responsive">
+                                </li>
+                            </ul>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copy-rights-bg">
+        <div class="copy-rights-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="copyright-content">&copy; 2016 Big retail - HTML шаблон интернет-магазина</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="social-icon"><a href="#"><i class="fa fa-rss rss-icon"></i></a> <a href="#"><i class="fa fa-facebook facebook-icon"></i></a> <a href="#"><i class="fa fa-tumblr tumblr-icon"></i></a> <a href="#"><i class="fa fa-youtube youtube-icon"></i></a> <a href="#"><i class="fa fa-google google-icon"></i></a> <a href="#"><i class="fa fa-dribbble dribble-icon"></i></a> <a href="#"><i class="fa fa-vimeo-square vimeo-icon"></i></a> <a href="#"><i class="fa fa-skype skype-icon"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>{% endblock footer %}

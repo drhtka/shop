@@ -34,27 +34,31 @@
                             </thead>
                             <tbody>
                             <!--начало товара -->
-<div style="font-size: 25px; color: #0000FF; font-family: 'Lora'; text-align: center; margin-top: 30px;
-margin-bottom: 50px;">{{ nema }}</div>
+<div style="font-size: 25px; color: #0000FF; font-family: 'Lora'; text-align: center; margin-top: 30px;margin-bottom: 50px;">{{ nema }}</div>
+{#                            <a href="{% url "show" pk=all_goods_random_s.0 %}" class="pull-right">#}
+{#                            {% url "show" pk=all_goods_random_s.0 %}#}
+{#                            <a href="{% url "show" pk=shop_bill.5 %}"></a>#}
                             {% for shop_bill in cart_seshion %}
+
                                 <tr>
                                     <td><img src="{{ MEDIA_URL }}{{ shop_bill.2 }}" width="90" height="90" alt="shopping-cart">
                                     </td>
-                                    <td class="product-name-description"><a href="#">Название товара</a>
-                                        <p>{{ shop_bill.0 }}</p>
+                                    <td class="product-name-description"><!--<a href="#">Название товара</a>-->
+                                        <a href="{% url "show" pk=shop_bill.5 %}"><p class="name_prod">{{ shop_bill.0 }}</p></a> <!--название-->
                                     </td>
-                                    <td class="price">
-                                        <h3>{{ shop_bill.1 }} р.</h3>
+                                    <td class="price" style="text-align: center;">
+                                        <h3>{{ shop_bill.1 }}</h3>
                                     </td>
                                     <td class="range-input" data-trigger="spinner">
-                                        <div class="minus"><a href="javascript:;" data-spin="down"><i class="fa fa-minus"></i></a>
+                                        <div class="minus" onclick="minus(this, '{{ shop_bill.0 }}', '{{ shop_bill.5 }}')"><a href="javascript:;" data-spin="down"><i class="fa fa-minus"></i></a>
                                         </div>
-                                        <input type="text" class="form-control" value="1" data-rule="quantity">
-                                        <div class="plus"><a href="javascript:;" data-spin="up"><i class="fa fa-plus"></i></a>
+
+                                        <input type="text" class="form-control" value="{{ shop_bill.4 }}" data-rule="quantity">
+                                        <div class="plus" onclick="plus(this, '{{ shop_bill.0 }}', '{{ shop_bill.5 }}')"><a href="javascript:;" data-spin="up"><i class="fa fa-plus"></i></a>
                                         </div>
                                     </td>
-                                    <td class="total">
-                                        <h3>555р.</h3>
+                                    <td class="total" style="text-align: center;">
+                                        <h3>{{ shop_bill.6 }}</h3><span>р.</span>
                                     </td>
                                     <td class="close-button">
 {#                                        <a href="#" class="fa fa-times"></a>#}
@@ -123,7 +127,7 @@ margin-bottom: 50px;">{{ nema }}</div>
                             <h3>Итог по заказу</h3>
                         </div>
                         <div class="panel-body cart-total-detail">
-                            <p><span class="pull-right">1515 р.</span>Сумма товаров</p>
+                            <p><span class="pull-right main_summ">{{ main_summ_cart }} </span>Сумма товаров</p>
                             <div class="row final-total">
                                 <div class="col-xs-6">
                                     <h4>К оплате: 2 000 р.</h4>
@@ -150,153 +154,28 @@ margin-bottom: 50px;">{{ nema }}</div>
             <div class="row">
                 <div class="col-md-12">
                     <div id="top-sales">
-{#                        <div class="item">#}
-{#                            <div class="thumbnail">#}
-{#                                <div class="photo-block"><a class="add-cart-link" data-rel="prettyPhoto" href="images/top-sales/1.jpg" title="Название товара"><i class="fa fa-plus"></i></a> <img src="images/top-sales/1.jpg" class="img-responsive" alt="top-sales">#}
-{#                                </div>#}
-{#                                <div class="caption"><a href="#" class="category">Категория</a> <a href="#">Название товара</a>#}
-{#                                    <h4>500 р.</h4>#}
-{#                                    <p>#}
-{#                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>#}
-{#                                    </p>#}
-{#                                    <div class="row cart-details">#}
-{#                                        <div class="col-xs-6"><a href="#"><i class="fa fa-shopping-cart"></i> В корзину</a>#}
-{#                                        </div>#}
-{#                                        <div class="col-xs-6"><a href="#" class="pull-right">Подробнее <i class="fa fa-chevron-right"></i></a>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
 
                         {% for all_goods_random_s in all_goods_random %}
                         <div class="item">
                             <div class="thumbnail">
-                                <div class="photo-block"><a class="add-cart-link-" data-rel="prettyPhoto" title="Название товара"><i class="fa fa-plus"></i></a> <img src="{{ MEDIA_URL }}{{ all_goods_random_s.4 }}" class="img-responsive" alt="top-sales">
+                                <div class="photo-block"><a class="add-cart-link-" data-rel="prettyPhoto" title="Название товара"><i class="fa fa-plus-"></i></a> <img src="{{ MEDIA_URL }}{{ all_goods_random_s.4 }}" class="img-responsive" alt="top-sales">
                                 </div>
                                 <div class="caption"><a href="#" class="category">{{ all_goods_random_s.2 }}</a> <a href="#">{{ all_goods_random_s.1 }}</a>
                                     <h4>{{ all_goods_random_s.3 }} р.</h4>
                                     <p>
                                         <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
                                     </p>
-                                    <div class="row cart-details">
+                                    <div class="row cart-details" style="padding-top: 10px; padding-bottom: 20px;">
                                         <div class="col-xs-6"><a href="{% url 'shop_cart' %}?i={{ all_goods_random_s.0 }}&name={{ all_goods_random_s.1 }}&price={{ all_goods_random_s.3 }}&img={{ all_goods_random_s.4 }}"><i class="fa fa-shopping-cart"></i> В корзину</a>
                                         </div>
-                                        <div class="col-xs-6"><a href="{% url "show" pk=all_goods_random_s.0 %}" class="pull-right">Подробнее <i class="fa fa-chevron-right"></i></a>
+                                        <div class="col-xs-6"><a href="{% url "show" pk=all_goods_random_s.0 %}" class="pull-right">Подробнее </a><!--<i class="fa fa-chevron-right"></i>-->
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         {% endfor %}
-{#                        <div class="item">#}
-{#                            <div class="thumbnail">#}
-{#                                <div class="photo-block"><a class="add-cart-link" data-rel="prettyPhoto" href="images/top-sales/3.jpg" title="Название товара"><i class="fa fa-plus"></i></a> <img src="images/top-sales/3.jpg" class="img-responsive" alt="top-sales">#}
-{#                                </div>#}
-{#                                <div class="caption"><a href="#" class="category">Категория</a> <a href="#">Название товара</a>#}
-{#                                    <h4>500 р.</h4>#}
-{#                                    <p>#}
-{#                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>#}
-{#                                    </p>#}
-{#                                    <div class="row cart-details">#}
-{#                                        <div class="col-xs-6"><a href="#"><i class="fa fa-shopping-cart"></i> В корзину</a>#}
-{#                                        </div>#}
-{#                                        <div class="col-xs-6"><a href="#" class="pull-right">Подробнее <i class="fa fa-chevron-right"></i></a>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                        <div class="item">#}
-{#                            <div class="thumbnail">#}
-{#                                <div class="photo-block"><a class="add-cart-link" data-rel="prettyPhoto" href="images/top-sales/4.jpg" title="Название товара"><i class="fa fa-plus"></i></a> <img src="images/top-sales/4.jpg" class="img-responsive" alt="top-sales">#}
-{#                                </div>#}
-{#                                <div class="caption"><a href="#" class="category">Категория</a> <a href="#">Название товара</a>#}
-{#                                    <h4>500 р.</h4>#}
-{#                                    <p>#}
-{#                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>#}
-{#                                    </p>#}
-{#                                    <div class="row cart-details">#}
-{#                                        <div class="col-xs-6"><a href="#"><i class="fa fa-shopping-cart"></i> В корзину</a>#}
-{#                                        </div>#}
-{#                                        <div class="col-xs-6"><a href="#" class="pull-right">Подробнее <i class="fa fa-chevron-right"></i></a>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                        <div class="item">#}
-{#                            <div class="thumbnail">#}
-{#                                <div class="photo-block"><a class="add-cart-link" data-rel="prettyPhoto" href="images/top-sales/5.jpg" title="Название товара"><i class="fa fa-plus"></i></a> <img src="images/top-sales/5.jpg" class="img-responsive" alt="top-sales">#}
-{#                                </div>#}
-{#                                <div class="caption"><a href="#" class="category">Категория</a> <a href="#">Название товара</a>#}
-{#                                    <h4>500 р.</h4>#}
-{#                                    <p>#}
-{#                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>#}
-{#                                    </p>#}
-{#                                    <div class="row cart-details">#}
-{#                                        <div class="col-xs-6"><a href="#"><i class="fa fa-shopping-cart"></i> В корзину</a>#}
-{#                                        </div>#}
-{#                                        <div class="col-xs-6"><a href="#" class="pull-right">Подробнее <i class="fa fa-chevron-right"></i></a>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                        <div class="item">#}
-{#                            <div class="thumbnail">#}
-{#                                <div class="photo-block"><a class="add-cart-link" data-rel="prettyPhoto" href="images/top-sales/6.jpg" title="Название товара"><i class="fa fa-plus"></i></a> <img src="images/top-sales/6.jpg" class="img-responsive" alt="top-sales">#}
-{#                                </div>#}
-{#                                <div class="caption"><a href="#" class="category">Категория</a> <a href="#">Название товара</a>#}
-{#                                    <h4>500 р.</h4>#}
-{#                                    <p>#}
-{#                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>#}
-{#                                    </p>#}
-{#                                    <div class="row cart-details">#}
-{#                                        <div class="col-xs-6"><a href="#"><i class="fa fa-shopping-cart"></i> В корзину</a>#}
-{#                                        </div>#}
-{#                                        <div class="col-xs-6"><a href="#" class="pull-right">Подробнее <i class="fa fa-chevron-right"></i></a>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                        <div class="item">#}
-{#                            <div class="thumbnail">#}
-{#                                <div class="photo-block"><a class="add-cart-link" data-rel="prettyPhoto" href="images/top-sales/7.jpg" title="Название товара"><i class="fa fa-plus"></i></a> <img src="images/top-sales/7.jpg" class="img-responsive" alt="top-sales">#}
-{#                                </div>#}
-{#                                <div class="caption"><a href="#" class="category">Категория</a> <a href="#">Название товара</a>#}
-{#                                    <h4>500 р.</h4>#}
-{#                                    <p>#}
-{#                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>#}
-{#                                    </p>#}
-{#                                    <div class="row cart-details">#}
-{#                                        <div class="col-xs-6"><a href="#"><i class="fa fa-shopping-cart"></i> В корзину</a>#}
-{#                                        </div>#}
-{#                                        <div class="col-xs-6"><a href="#" class="pull-right">Подробнее <i class="fa fa-chevron-right"></i></a>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                        <div class="item">#}
-{#                            <div class="thumbnail">#}
-{#                                <div class="photo-block"><a class="add-cart-link" data-rel="prettyPhoto" href="images/top-sales/8.jpg" title="Название товара"><i class="fa fa-plus"></i></a> <img src="images/top-sales/8.jpg" class="img-responsive" alt="top-sales">#}
-{#                                </div>#}
-{#                                <div class="caption"><a href="#" class="category">Категория</a> <a href="#">Название товара</a>#}
-{#                                    <h4>500 р.</h4>#}
-{#                                    <p>#}
-{#                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>#}
-{#                                    </p>#}
-{#                                    <div class="row cart-details">#}
-{#                                        <div class="col-xs-6"><a href="#"><i class="fa fa-shopping-cart"></i> В корзину</a>#}
-{#                                        </div>#}
-{#                                        <div class="col-xs-6"><a href="#" class="pull-right">Подробнее <i class="fa fa-chevron-right"></i></a>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
+
                     </div>
                 </div>
             </div>
@@ -356,21 +235,21 @@ margin-bottom: 50px;">{{ nema }}</div>
                 <div class="col-sm-3 flickr animated" data-animation="fadeInUp" data-animation-delay="900">
                     <h3>Галерея</h3>
                     <ul>
-                        <li><img src="images/flickr/1.jpg" alt="flickr-1" class="img-responsive">
+                        <li><img src="#" alt="#" class="img-responsive">
                         </li>
-                        <li><img src="images/flickr/2.jpg" alt="flickr-1" class="img-responsive">
+                        <li><img src="#" alt="#" class="img-responsive">
                         </li>
-                        <li><img src="images/flickr/3.jpg" alt="flickr-1" class="img-responsive">
+                        <li><img src="#" alt="#" class="img-responsive">
                         </li>
-                        <li><img src="images/flickr/4.jpg" alt="flickr-1" class="img-responsive">
+                        <li><img src="#" alt="#" class="img-responsive">
                         </li>
-                        <li><img src="images/flickr/5.jpg" alt="flickr-1" class="img-responsive">
+                        <li><img src="#" alt="#" class="img-responsive">
                         </li>
-                        <li><img src="images/flickr/6.jpg" alt="flickr-1" class="img-responsive">
+                        <li><img src="#" alt="#" class="img-responsive">
                         </li>
-                        <li><img src="images/flickr/7.jpg" alt="flickr-1" class="img-responsive">
+                        <li><img src="#" alt="#" class="img-responsive">
                         </li>
-                        <li><img src="images/flickr/8.jpg" alt="flickr-1" class="img-responsive">
+                        <li><img src="#" alt="#" class="img-responsive">
                         </li>
                     </ul>
                 </div>
@@ -392,7 +271,67 @@ margin-bottom: 50px;">{{ nema }}</div>
             </div>
         </div>
     </div>
-</section>{% endblock footer %}
+</section>
+<script>
+
+    function plus(mythis, productName){ // из функции plus идём от this по дому к единице .value) + 1
+        if (Number(mythis.previousElementSibling.value < 10)) {
+            {#var plusOne = Number(thisplus.previousElementSibling.innerHTML)#}
+            {#console.log(mythis.previousElementSibling.value)#}
+            var plusOne = Number(mythis.previousElementSibling.value) + 1 // для прорисовки в шаблоне увеличение на один каждое нажатие
+            {#console.log(mythis.previousElementSibling.value)#}
+            {#console.log(mythis.parentNode.nextElementSibling.childNodes[1].innerHTML)#}
+
+            {#console.log(productName)#}
+            {#console.log(productId)#}
+            var first_price_plus = mythis.parentNode.previousElementSibling.childNodes[1].innerHTML // начальная цена одного товара
+            console.log(first_price_plus)
+            document.getElementsByClassName('main_summ')[0].innerHTML = Number(document.getElementsByClassName('main_summ')[0].innerHTML) + Number(first_price_plus) // к общей сумме пр нажатиии на плюсик
+            // приплюсовывается начальная цена одного товара
+            $.ajax({
+                url: '/final_order',
+                type: 'get',
+                data: {name: productName},
+                success: function (response) { // в респонсе прилетает общая сумма количство нажатий  умноженное на цену товара
+                    console.log(response)
+                    mythis.parentNode.nextElementSibling.childNodes[1].innerHTML = response // записываем
+                    $('#bloc_content').html(response)
+                }
+            })
+            mythis.previousElementSibling.value = plusOne // для прорисовки в шаблоне увеличение на один каждое нажатие
+            console.log(mythis.previousElementSibling.value)
+        }
+    }
+
+    function minus(mythis, productName, productId){
+        if (Number(mythis.nextElementSibling.value > 1)) {
+
+            var minusOne = Number(mythis.nextElementSibling.value) - 1
+            //console.log('summ_min')
+            //console.log(mythis.parentNode.previousElementSibling.childNodes[1].innerHTML)
+            var first_price = mythis.parentNode.previousElementSibling.childNodes[1].innerHTML // здесь цена за штуку товара
+            $.ajax({
+                url: '/final_order',
+                type: 'get',
+                data: {prodid: productId},
+                success: function (response) {
+                    console.log('resp_minus')
+                    console.log(response)
+                    mythis.parentNode.nextElementSibling.childNodes[1].innerHTML = response
+                    $('#bloc_content').html(response)
+                }
+            })
+            mythis.nextElementSibling.value = minusOne
+            //console.log('111')
+            //console.log(document.getElementsByClassName('main_summ')[0])
+            //alert(first_price)
+            document.getElementsByClassName('main_summ')[0].innerHTML = document.getElementsByClassName('main_summ')[0].innerHTML - first_price
+            //console.log(mythis.nextElementSibling.value)
+        }
+    }
+
+</script>
+{% endblock footer %}
 
 
 

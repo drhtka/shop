@@ -110,6 +110,7 @@
             </div>
 
             {% autopaginate all_goods 12 %}
+            {% paginate %}
                 <div class="my_row">
 
                     {% for all_goods_s in all_goods %}
@@ -249,21 +250,6 @@
                         <ul>
                             <li><img src="{{ MEDIA_URL }}{{ gallery_index_tmp_s.1 }}" alt="flickr-1" class="img-responsive">
                             </li>
-
-                            {#                                <li><img src="" alt="flickr-1" class="img-responsive">#}
-                            {#                                </li>#}
-                            {#                                <li><img src="" alt="flickr-1" class="img-responsive">#}
-                            {#                                </li>#}
-                            {#                                <li><img src="" alt="flickr-1" class="img-responsive">#}
-                            {#                                </li>#}
-                            {#                                <li><img src="" alt="flickr-1" class="img-responsive">#}
-                            {#                                </li>#}
-                            {#                                <li><img src="" alt="flickr-1" class="img-responsive">#}
-                            {#                                </li>#}
-                            {#                                <li><img src="" alt="flickr-1" class="img-responsive">#}
-                            {#                                </li>#}
-                            {#                                <li><img src="" alt="flickr-1" class="img-responsive">#}
-                            {#                                </li>#}
                         </ul>
                     {% endfor %}
                 </div>
