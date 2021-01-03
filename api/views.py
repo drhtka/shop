@@ -8,8 +8,8 @@ from rest_framework.views import APIView
 from rest_framework.renderers import JSONRenderer
 
 
-from shop_app.models import GoodsModel
-from api.serializers import GoodsModelSerializer
+from shop_app.models import GoodsModel, CategoryModel
+from api.serializers import GoodsModelSerializer, CategoryModelSerializer
 
 class GoodsListView(generics.ListAPIView):
     queryset = GoodsModel.objects.all()
@@ -24,6 +24,11 @@ class GoodsListDitailView(APIView):
         print(serializer.data)
         # print(serializer.data["slug"])
         return Response(serializer.data)
+
+class CategoryListView(generics.ListAPIView):
+    queryset = CategoryModel.objects.all()
+    serializer_class = CategoryModelSerializer
+
 
 ###########
 # class GoodsListView(generics.ListAPIView):

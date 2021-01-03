@@ -63,7 +63,7 @@ class OrdersModel(models.Model):
     bill_id = models.CharField('id покупки', max_length=30, blank=True)
     tovar_name = models.CharField('название', max_length=30, blank=True)
     price = models.CharField(max_length=30, verbose_name='Цена', blank=True)
-    img = models.CharField(max_length=30, verbose_name='Цена', blank=True)
+    img = models.CharField(max_length=30, verbose_name='Фото', blank=True)
 
     def publich(self):
         self.order_date = timezone.now()
@@ -95,10 +95,10 @@ class GoodsModel(models.Model):
         verbose_name_plural = 'Товары'
         db_table = 'goods'
 
-    others = '0'
-    clothes = '1'
-    apparature = '2'
-    books = '3'
+    others = '1'
+    clothes = '2'
+    apparature = '3'
+    books = '4'
 
     CATEGORY_CHOICES = (
         (others, 'Разное'),

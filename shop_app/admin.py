@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
+
+from accounts.models import CustomUser
 from shop_app.models import GoodsModel, CategoryModel, BillingModel, OrdersModel, Image, Product
 from django.contrib.contenttypes.admin import GenericTabularInline#, GenericInlineModelAdmin
+from django.contrib import admin
+# from .models import *
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('catname', 'id',)
+    list_display = ('catname', 'id', 'description',)
     list_filter = ('catname', 'id',)
 
 class BillngAdmin(admin.ModelAdmin):
@@ -33,6 +37,9 @@ class GoodsAdmin(admin.ModelAdmin):
     inlines = [
         ImageInline, # связываем галерею с товаром
     ]
+
+
+admin.site.register(CustomUser)
 
 admin.site.register(GoodsModel, GoodsAdmin,)
 admin.site.register(CategoryModel, CategoryAdmin,)

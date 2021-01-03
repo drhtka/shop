@@ -4,7 +4,7 @@ import psycopg2
 from django.http import HttpResponse
 from django.template import loader, Context
 from django.urls import reverse
-
+from articles.models import Article
 from shop_app.models import GoodsModel, Image, CategoryModel, Product
 import random
 
@@ -51,13 +51,14 @@ def index(request):
         gallery_index_tmp = random.sample(list(gallery_index), 16)
         # print('gallery_index_tmp')
         # print(gallery_index_tmp)
-
+        object_list = Article.objects.all()
         return render(request, 'shop_app/index.html', {'all_goods': tmp_categ_name,
                                                        'all_in_slider': all_goods[0:5],
                                                        'render_session': render_session,
                                                        'count_render_session': count_render_session,
                                                        'all_goods_random': all_goods_random,
                                                        'gallery_index_tmp': gallery_index_tmp,
+                                                       'object_list': object_list[0:6],
                                                        })
 
 def contacts(request):
@@ -187,6 +188,9 @@ def gallery(request):
     #return render(request, 'shop_app/category.html')
     return render(request, 'shop_app/big_retail/portfolio.html', {'all_photo': all_photo_s})
 #from django.contrib.admin.options import get_content_type_for_model
+
+
+
 def show(request, pk):
     # детальное описание товара
     print('id')
@@ -551,7 +555,8 @@ def shop_orders(request):
                                                                                'count_render_session': count_render_session,
                                                                                'render_session': render_session,
                                                                                'summ': summ,
-                                                                               'gallery_index_tmp': gallery_index_tmp},)
+                                                                               'gallery_index_tmp': gallery_index_tmp,
+                                                                               'main_summ_cart': request.session['summ']},)
     else:
         empty = 'Корзина пуста!'
         return render(request, 'shop_app/big_retail/check-out.html', {'empty': empty})

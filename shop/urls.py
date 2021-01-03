@@ -28,7 +28,9 @@ from api import views as api_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
     path('', include('shop_app.urls')),
+    path('articles', include('articles.urls')),
     path('test/', include('test_url.urls')),
     #path('blog/', include('blog.urls')),
     path("api/",
@@ -37,6 +39,11 @@ urlpatterns = [
     path("api/<int:id>",
         api_views.GoodsListDitailView.as_view(),
         name="api_goods_list"),
+
+    path("api/category",
+       api_views.CategoryListView.as_view(),
+       name="category_list"),
+
     #path("api/posts/<pk>",
     #     api_views.CommentDetailView.as_view(),
     #     name="api_post_detail"),

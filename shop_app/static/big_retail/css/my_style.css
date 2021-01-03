@@ -33,7 +33,7 @@
      height: 445px;
  }
 /*grid on categ*/
-.project-grid{
+.my-project-grid{
     display: grid;
     grid-template-rows: 370px 370px 370px;
     grid-template-columns: 320px 320px 320px 320px;
@@ -231,4 +231,186 @@
 .name_prod{
     margin-top: 45px;
     font-size: 20px
+}
+
+
+.nema{
+    font-size: 25px;
+    color: #0000FF;
+    font-family: Lora;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.button_dell{
+    margin-bottom: -30px;
+}
+
+.rub_span{
+    display: flex;
+    align-items: center; /*os y*/
+    justify-content: space-around;
+    width: 70px;
+    padding-top: 20px !important;
+    margin-left: 50px;
+}
+
+.rub_span span{
+    padding-top: 15px !important;
+}
+
+.rub_span h3{
+    padding-top: 5px !important;
+}
+
+.main_summ_span{
+    display: flex;
+    align-items: center; /*os y*/
+    justify-content: space-around;
+    width: 70px;
+    padding-left: 150px;
+}
+
+/*modal*/
+.myModal{
+    background: gray;
+    width: 400px;
+    height: 250px;
+    margin: 0 auto;
+    display: none;
+}
+/*Class open close modal*/
+.visible{
+    display: block;
+}
+
+/* Modal Content */
+.modalContent{
+    margin: auto;
+    padding: 100px;
+    width: 80%;
+
+}
+
+.my_modal_bootstrap{
+    top: 40%;
+    display: block;
+    margin: 0 auto;
+}
+.parent_ul{
+    display: grid;
+    grid-template-columns: 60px 60px 60px 60px 60px 60px 60px;
+    grid-template-rows: 65px 65px 65px;
+}
+
+.my_modal_bootstrap {
+    top: 200%;
+}
+
+.img_modal{
+    width: 100%;
+    /*height: 102%;*/
+    display: block;
+    margin: 0 auto;
+}
+
+/*.prev-div-index{*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*.next-div-index{*/
+/*    cursor: pointer;*/
+/*}*/
+
+
+.prev-div-index{
+    display: none;
+
+}
+
+.next-div-index{
+    display: none;
+}
+
+.modal-content:hover .prev-div-index{
+    font-family: Arial;
+    display: inline-block;
+    position: absolute;
+    top: 43%;
+    color: #4f5b69;
+    font-size: 30px;
+    font-weight: lighter;
+    z-index: 1;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.modal-content:hover .next-div-index{
+    display: inline-block;
+    position: absolute;
+    top: 43%;
+    color: #4f5b69;
+    font-size: 30px;
+    font-weight: lighter;
+    z-index: 1;
+    margin-left: 550px;
+    cursor: pointer;
+}
+
+.my-close{
+    /*margin-top: -400px;*/
+    color: red;
+    font-size: 100px;
+    margin-top: -400px;
+    /*position: absolute;*/
+}
+
+.my-close{
+    border: none !important;
+    outline: none !important;
+}
+
+/*Как сделать - различные фигуры Источник <https://html5css.ru/howto/howto_css_shapes.php> */
+/*.triangle-left {*/
+/*    width: 0;*/
+/*    height: 0;*/
+/*    border-top: 15px solid transparent;*/
+/*    border-right: 30px solid black;*/
+/*    border-bottom: 15px solid transparent;*/
+/*}*/
+
+/*.triangle-right {*/
+/*    width: 0;*/
+/*    height: 0;*/
+/*    border-top: 15px solid transparent;*/
+/*    border-left: 30px solid black;*/
+/*    border-bottom: 15px solid transparent;*/
+/*}*/
+
+
+/*i {*/
+/*    border: solid black;*/
+/*    border-width: 0 3px 3px 0;*/
+/*    display: inline-block;*/
+/*    padding: 3px;*/
+/*}*/
+
+.triangle-right{
+    border: solid lightgrey;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 10px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.triangle-left {
+    border: solid lightyellow;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 10px;
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
 }

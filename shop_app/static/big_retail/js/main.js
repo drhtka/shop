@@ -10,7 +10,7 @@ $(window).load(function() {
 	if( $('.fra-slider').length !== 0 ) {
 		$('.fra-slider').fractionSlider({
 			'fullWidth': 			true,
-			'controls': 			true, 
+			'controls': 			true,
 			'pager': 				true,
 			'responsive': 			true,
 			'dimensions': 			"1230,470",
@@ -23,16 +23,16 @@ $(window).load(function() {
  		deeplinking: false,
 		hook: 'data-rel'
  	});
-	
+
 	/* ----------- Blog Flexslider ----------- */
 	$('.flexslider').flexslider({
 		animation: "fade",
-		prevText: "", 
-		nextText: "", 
+		prevText: "",
+		nextText: "",
 		directionNav: false
   	});
-	
-	
+
+
 });
 /* =================== Load Function Ends =================== */
 
@@ -624,12 +624,12 @@ $(document).ready(function() {
 	
 	
 	/* ----------- Video ----------- */	
-	$(function() {
-		"use strict";
-		if ( $( ".player" ).length ) {
-		$(".player").mb_YTPlayer();	
-		}
-	});
+	// $(function() {
+	// 	"use strict";
+	// 	if ( $( ".player" ).length ) {
+	// 	$(".player").mb_YTPlayer();
+	// 	}
+	// });
 	
 });
 
@@ -792,14 +792,14 @@ function initPortfolioGrid(){
 			
 			var filter_selector = $port_container.parent().find('.project-filters a.active').data('filter');  
 			
-			$port_container.isotope({
-				resizable: false,
-				filter: filter_selector,
-				masonry: {
-					columnWidth: masonryWidth,
-					gutter: gutterSize
-				}
-			});
+			// $port_container.isotope({
+			// 	resizable: false,
+			// 	filter: filter_selector,
+			// 	masonry: {
+			// 		columnWidth: masonryWidth,
+			// 		gutter: gutterSize
+			// 	}
+			// });
 	   });
   
    // Portfolio Filter Items

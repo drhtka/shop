@@ -19,7 +19,7 @@
 
 {#        <div id="app"></div>#}
 {#        <div id="root"></div>#}
-        {{ goods_api }}
+{#        {{ goods_api }}#}
         <div class="page-desc-section">
             <div class="container">
                 <div class="row">
@@ -42,9 +42,9 @@
             </div>
             <div class="container- my_container" >
 
-                <div class="project-grid works- grid-column-3-">
+                <div class="my-project-grid works- grid-column-3-" > <!--style="display: none !important;"-->
                 {% for category_s in category %}
-                <div class="children">
+{#                <div class="children"></div>#}
                     <div class="project-items- photo- html- proj-our">
                         <div class="thumbnail">
                             <div class="img-box">
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+
                     {% endfor %}
                     </div>
 
@@ -77,97 +77,6 @@ hello-1
     {% endblock content %}
     {% block brands %}{% endblock brands %}
     {% block additions %}{% endblock additions %}
-    {% block footer %}<section id="footer" class="footer-bg" style="margin-top: 50px">
-        <div class="footer-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-3 animated" data-animation="fadeInUp" data-animation-delay="300">
-                        <h3>О магазине</h3>
-                        <p>Ретроконверсия национального наследия реально изменяет формирование имиджа. Еще Траут показал, что мониторинг активности вполне вероятен. Узнавание бренда экономит тактический инструмент маркетинга.</p>
-                        <ul>
-                            <li>Россия, Москва</li>
-                            <li>ул. Пушкина 23а</li>
-                            <li>mail@mail.com</li>
-                            <li>+7 123 456 789</li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-3 latest-post animated" data-animation="fadeInUp" data-animation-delay="700">
-                        <h3>Последние статьи</h3>
-                        <ul>
-                            <li><a href="#">Загловок статьи на сайте</a>
-                            </li>
-                            <li><a href="#">Загловок статьи на сайте</a>
-                            </li>
-                            <li><a href="#">Загловок статьи на сайте</a>
-                            </li>
-                            <li><a href="#">Загловок статьи на сайте</a>
-                            </li>
-                            <li><a href="#">Загловок статьи на сайте</a>
-                            </li>
-                            <li><a href="#">Загловок статьи на сайте</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-3 latest-post animated" data-animation="fadeInUp" data-animation-delay="700">
-                        <h3>Последние новости</h3>
-                        <ul>
-                            <li><a href="#">Загловок новости на сайте</a>
-                            </li>
-                            <li><a href="#">Загловок новости на сайте</a>
-                            </li>
-                            <li><a href="#">Загловок новости на сайте</a>
-                            </li>
-                            <li><a href="#">Загловок новости на сайте</a>
-                            </li>
-                            <li><a href="#">Загловок новости на сайте</a>
-                            </li>
-                            <li><a href="#">Загловок новости на сайте</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-3 flickr animated" data-animation="fadeInUp" data-animation-delay="900">
-                        <h3>Галерея</h3>
-                        <ul>
-                            <li><img src="" alt="flickr-1" class="img-responsive">
-                            </li>
-                            <li><img src="" alt="flickr-1" class="img-responsive">
-                            </li>
-                            <li><img src="" alt="flickr-1" class="img-responsive">
-                            </li>
-                            <li><img src="" alt="flickr-1" class="img-responsive">
-                            </li>
-                            <li><img src="" alt="flickr-1" class="img-responsive">
-                            </li>
-                            <li><img src="" alt="flickr-1" class="img-responsive">
-                            </li>
-                            <li><img src="" alt="flickr-1" class="img-responsive">
-                            </li>
-                            <li><img src="" alt="flickr-1" class="img-responsive">
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="copy-rights-bg">
-            <div class="copy-rights-section">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <p class="copyright-content">&copy; 2016 Big retail - HTML шаблон интернет-магазина</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="social-icon"><a href="#"><i class="fa fa-rss rss-icon"></i></a> <a href="#"><i class="fa fa-facebook facebook-icon"></i></a> <a href="#"><i class="fa fa-tumblr tumblr-icon"></i></a> <a href="#"><i class="fa fa-youtube youtube-icon"></i></a> <a href="#"><i class="fa fa-google google-icon"></i></a> <a href="#"><i class="fa fa-dribbble dribble-icon"></i></a> <a href="#"><i class="fa fa-vimeo-square vimeo-icon"></i></a> <a href="#"><i class="fa fa-skype skype-icon"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-{#        <script type="text/javascript" src="{% static "big_retail/js/main.js" %}" rel="stylesheet"></script>#}
-    </section>
-        <div class="hello2">hello2</div>
-    {% endblock footer %}
 
 {% block js %}{% endblock js %}
 {% block js-1 %}

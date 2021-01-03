@@ -26,7 +26,7 @@ SECRET_KEY = '9v&*3_@_029tixk300k9uz75m#@p(6(w@&-gm-ed14v*@+5)z2'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+SITE_ID = 1
 
 # Application definition
 
@@ -45,14 +45,22 @@ INSTALLED_APPS = [
     'dj_pagination',
     'api',
     'corsheaders',
+    #Local
+    'articles.apps.ArticlesConfig',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'accounts',
+
 
 ]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -78,6 +86,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
                 'django.template.context_processors.i18n',
+                'shop_app.context_processors.gallery_index_tmp',
+                'articles.context_processors.object_list',
             ],
         },
     },
@@ -168,7 +178,42 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 #https://developer.mozilla.org/ru/docs/Learn/Server-side/Django/%D0%A1%D0%B5%D1%81%D1%81%D0%B8%D0%B8
 SESSION_SAVE_EVERY_REQUEST = True
 
-CORS_ORIGIN_WHITELIST = (
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ORIGIN_WHITELIST = [
+    'http://google.com'
     'localhost:8800'
-    '127.0.0.1:8800'
+    # 'http://localhost:8800'
+    'http://127.0.0.1:8800'
+    'http://127.0.0.1:8800/api'
+    # 'https://www.youtube.com'
+    # 'https://googleads.g.doubleclick.net'
+    'gdata.youtube.com'
+    'googleads.g.doubleclick.net'
+    # 'http://gdata.youtube.com/feeds/api/videos/8hv-ol3'
+    # 'https://gdata.youtube.com/feeds/api/videos/8hv-ol3RnPo?v=2&alt=jsonc'
+
+    # '*'
+]
+
+AUTHENTICATION_BACKENDS = (
+
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
+ACCOUNT_FORMS = {'signup': 'accounts.forms.SimpleSignupForm'}
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.ukr.net'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = DEFAULT_FROM_EMAIL = 'tinez99@ukr.net'
+EMAIL_HOST_PASSWORD = ''
