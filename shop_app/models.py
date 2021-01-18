@@ -14,8 +14,19 @@ from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelatio
 #
 # from shop import settings
 
-
-
+# from django.contrib.auth.models import User
+#
+# class UserProfile(models.Model):
+#
+#     class Meta:
+#         verbose_name = 'Профиль'
+#         verbose_name_plural = 'Профили'
+#
+#     user = models.OneToOneField(User, on_delete=True)
+#     name = models.CharField()
+#     website = models.URLField(blank=True)
+#     def __str__(self):
+#         return self.user.username
 
 class CategoryModel(models.Model):
     class Meta:
@@ -25,9 +36,9 @@ class CategoryModel(models.Model):
 
     id = models.AutoField(primary_key=True, auto_created=True, null=False)
     catname = models.CharField('название', max_length=15, blank=True)
-    description = models.TextField('Описание', blank=True, null=True)
+    description = models.TextField('Описание', blank=True, default='0')
     img_categ = models.ImageField(upload_to='img_categ', verbose_name='Изображение категории', blank=True, null=True)
-
+    cat_true = models.PositiveIntegerField(max_length=15, unique=True, null=True)
     def publich(self):
         self.order_date = timezone.now()
         self.save()
@@ -95,16 +106,18 @@ class GoodsModel(models.Model):
         verbose_name_plural = 'Товары'
         db_table = 'goods'
 
-    others = '1'
-    clothes = '2'
-    apparature = '3'
-    books = '4'
+
+    clothes = '1'
+    apparature = '2'
+    books = '3'
+    others = '4'
 
     CATEGORY_CHOICES = (
-        (others, 'Разное'),
+
         (clothes, 'Одежда'),
         (apparature, 'Аппаратура'),
         (books,'Книги'),
+        (others, 'Разное'),
     )
 
     id = models.AutoField(primary_key=True, auto_created=True, null=False)

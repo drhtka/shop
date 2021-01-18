@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 <title>{% block title %}Товары{% endblock %}</title>
-{% block video-baner %}{% endblock video-baner %}
-{% block header-top %}
 
-{% endblock header-top %}
+
+{#{% block css %}<link href="{% static "big_retail/css/my_style.css" %}" rel="stylesheet" type="text/css">{% endblock css %}#}
+{% block video-baner %}{% endblock video-baner %}
+
 {% block content %}
 <body id="shop-list-layout-side-bar">
 {#    <div id="pageloader">#}
@@ -12,37 +13,37 @@
 {#    </div>#}
 
 <!--start big slider-->
-<div id="top-slider" class="owl-carousel owl-theme">
-    <div class="item"><img src="/media/img/36.jpg" alt="">
-        <div class="carousel-caption">
-            <h2>Магазин товаров</h2>
-            <h1>Открывайте на любом устройстве</h1>
-            <p>Каталог качественных товаров на любой вкус</p>
-            <p>Приобрайте с удовольствием</p>
-            <div class="btn pop">ПОДРОБНОСТИ</div>
-        </div>
-    </div>
-    <div class="item"><img src="/media/img/36.jpg" alt="">
-        <div class="carousel-caption">
-            <h2>Магазин товаров</h2>
-            <h1>Открывайте на любом устройстве</h1>
-            <p>Каталог качественных товаров на любой вкус</p>
-            <p>Приобрайте с удовольствием</p>
-            <div class="btn pop">ПОДРОБНОСТИ</div>
-        </div>
-    </div>
-</div>
-<!--end big slider-->
-<div class="page-desc-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 page-desc blog">
-                <h2 class="animated" data-animation="fadeInRight" data-animation-delay="300">Наш магазин товаров</h2>
-                <p class="animated" data-animation="fadeInLeft" data-animation-delay="300">Рекламное сообщество, как принято считать, спорадически усиливает целевой трафик, повышая конкуренцию.</p>
-            </div>
-        </div>
-    </div>
-</div>
+{#<div id="top-slider" class="owl-carousel owl-theme">#}
+{#    <div class="item"><img src="/media/img/36.jpg" alt="">#}
+{#        <div class="carousel-caption">#}
+{#            <h2>Магазин товаров</h2>#}
+{#            <h1>Открывайте на любом устройстве</h1>#}
+{#            <p>Каталог качественных товаров на любой вкус</p>#}
+{#            <p>Приобрайте с удовольствием</p>#}
+{#            <div class="btn pop">ПОДРОБНОСТИ</div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="item"><img src="/media/img/36.jpg" alt="">#}
+{#        <div class="carousel-caption">#}
+{#            <h2>Магазин товаров</h2>#}
+{#            <h1>Открывайте на любом устройстве</h1>#}
+{#            <p>Каталог качественных товаров на любой вкус</p>#}
+{#            <p>Приобрайте с удовольствием</p>#}
+{#            <div class="btn pop">ПОДРОБНОСТИ</div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+{#<!--end big slider-->#}
+{#<div class="page-desc-section">#}
+{#    <div class="container">#}
+{#        <div class="row">#}
+{#            <div class="col-md-12 page-desc blog">#}
+{#                <h2 class="animated" data-animation="fadeInRight" data-animation-delay="300">Наш магазин товаров</h2>#}
+{#                <p class="animated" data-animation="fadeInLeft" data-animation-delay="300">Рекламное сообщество, как принято считать, спорадически усиливает целевой трафик, повышая конкуренцию.</p>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
     <div id="app">
 
 

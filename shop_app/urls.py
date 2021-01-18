@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import url
 from django.urls import path, re_path
-
+# from django.conf.urls import include, url
 from shop_app import views
 #from .views import index
 #from .views import contacts

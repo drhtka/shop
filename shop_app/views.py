@@ -124,9 +124,17 @@ def goods(request):
     # print('tmp_categ_name')
     # print(tmp_categ_name)
     category_on_goods = CategoryModel.objects.values_list()
-
+    # подсчет и вывод товаров в корзину из сессии
+    render_session = []
+    if request.session.get('my_list'):
+        # print('index_sess-2')
+        # print(request.session['my_list'])
+        render_session = request.session['my_list']
+    count_render_session = len(render_session)
 
     return render(request, 'shop_app/big_retail/shop-list.html', context={'goods': tmp_categ_name,
+                                                                          'render_session': render_session,
+                                                                          'count_render_session': count_render_session,
                                                                           'category_on_goods': category_on_goods})
 def sort_goods_categ(request):
     # сортировка по категориям

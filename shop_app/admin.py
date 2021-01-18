@@ -8,7 +8,7 @@ from django.contrib import admin
 # from .models import *
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('catname', 'id', 'description',)
+    list_display = ('catname', 'id', 'description', 'cat_true',)
     list_filter = ('catname', 'id',)
 
 class BillngAdmin(admin.ModelAdmin):

@@ -132,7 +132,7 @@
                                     </p>
                                     <div class="row- shoping-details">
                                         <div class="my_cart_reed">
-                                <div><a href="{% url 'shop_cart' %}?i={{ all_goods_s.0 }}&name={{ all_goods_s.1 }}&price={{ all_goods_s.3 }}&img={{ all_goods_s.4 }}" class="add-card-text"><span class="fa fa-shopping-cart"></span>В корзину</a>
+                                <div><a href="{% url 'shop_cart' %}?i={{ all_goods_s.0 }}&name={{ all_goods_s.1 }}&price={{ all_goods_s.3 }}&img={{ media_url_cart }}{{ all_goods_s.4 }}" class="add-card-text"><span class="fa fa-shopping-cart"></span>В корзину</a>
                                             </div>
 {#                                            <div ><a href="{% url "show" %}?i={{ all_goods_s.0 }}" class="show-link">Читать...<span class="right-icon-"></span></a>#}
                                               <div ><a href="{% url "show" pk=all_goods_s.0 %}" class="show-link">Подробнее...<span class="right-icon-"></span></a>

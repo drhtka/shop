@@ -13,6 +13,8 @@ from api.serializers import GoodsModelSerializer, CategoryModelSerializer
 
 class GoodsListView(generics.ListAPIView):
     queryset = GoodsModel.objects.all()
+    print('queryset')
+    print(queryset)
     serializer_class = GoodsModelSerializer
 
 
@@ -21,7 +23,7 @@ class GoodsListDitailView(APIView):
     def post(self, request, id):
         posts = GoodsModel.objects.filter(id=id)
         serializer = GoodsModelSerializer(posts, many=True)
-        print(serializer.data)
+        # print(serializer.data)
         # print(serializer.data["slug"])
         return Response(serializer.data)
 

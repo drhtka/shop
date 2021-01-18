@@ -414,3 +414,16 @@
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
 }
+
+.filter-print-price a h4{
+    margin-top: 10px !important;
+    width: 170px;
+}
+
+.filter-print-price input {
+    border: 2px solid #2b669a;
+}
+
+.filter-print-price input:invalid {
+    border: 2px solid red;
+}

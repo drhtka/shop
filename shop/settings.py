@@ -88,6 +88,7 @@ TEMPLATES = [
                 'django.template.context_processors.i18n',
                 'shop_app.context_processors.gallery_index_tmp',
                 'articles.context_processors.object_list',
+                'shop_app.context_processors.media_url_cart'
             ],
         },
     },
