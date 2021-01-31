@@ -427,3 +427,41 @@
 .filter-print-price input:invalid {
     border: 2px solid red;
 }
+.text_null_search{
+    font-size: 25px;
+    color: #0000FF;
+    font-family: Lora;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+.button-height{
+    height: 47px;
+}
+.input-height{
+    height: 47px;
+}
+
+.form-signin input[type="text"]{
+    margin-bottom: 10px !important;
+}
+
+.form-signin input[type="email"]{
+    margin-bottom: 10px !important;
+}
+.errorlist li{
+    color: red;
+
+}
+.errorlist li{
+    list-style: none;
+    padding-left: 0;
+}
+
+.errorlist{
+    padding-left: 0;
+}
+
+.send-button-my{
+    padding-left: 16px !important;
+}

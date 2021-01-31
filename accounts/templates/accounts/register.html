@@ -1,0 +1,27 @@
+{% extends "base_register.html" %}
+{% load static %}
+{#{% block title %}Регистрация{% endblock title%}#}
+
+{% block content %}
+    <link href="{% static "big_retail/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "big_retail/css/my_style.css" %}" rel="stylesheet" type="text/css">
+
+
+    <form class="form-signin" action="." method="post">
+    <h1 class="h3 mb-3 font-weight-normal">Создать аккаунт</h1>
+    <h5><p>Воспользуйтесь следующей формой:</p></h5>
+
+        <div>{{ user_form.username }}</div>
+        <div>{{ user_form.username.errors}}</div>
+        <div>{{ user_form.email }}</div>
+        <div>{{ user_form.email.errors }}</div>
+        <div>{{ user_form.phone }}</div>
+        <div>{{ user_form.phone.errors }}</div>
+        <div>{{ user_form.password }}</div>
+        <div>{{ user_form.password.errors }}</div>
+        <div>{{ user_form.password2 }}</div>
+        <div>{{ user_form.password2.errors }}</div>
+        {% csrf_token %}
+        <p><input class="btn btn-lg btn-primary btn-block input-height" type="submit" value="Создать"></p>
+    </form>
+{% endblock %}

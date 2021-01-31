@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.urls import reverse_lazy
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -51,7 +53,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'accounts',
+    'accounts.apps.AccountsConfig',
+    # 'CustomUser',
 
 
 ]
@@ -203,11 +206,13 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
+
 ACCOUNT_FORMS = {'signup': 'accounts.forms.SimpleSignupForm'}
 AUTH_USER_MODEL = 'accounts.CustomUser'
+# AUTH_USER_MODEL = 'auth.User'
 
 ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_AUTHENTICATION_METHOD = False #'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
@@ -218,3 +223,10 @@ EMAIL_HOST = 'smtp.ukr.net'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = DEFAULT_FROM_EMAIL = 'tinez99@ukr.net'
 EMAIL_HOST_PASSWORD = ''
+
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'
+# LOGOUT_REDIRECT_URL = '/'
+# LOGIN_URL = reverse_lazy('login')
+# LOGOUT_URL = reverse_lazy('logout')
+# AUTH_USER_MODEL = 'accounts.CustomUser'

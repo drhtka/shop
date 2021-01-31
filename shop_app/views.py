@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, render_to_response, redirect
 import psycopg2
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader, Context
 from django.urls import reverse
+from django.views import View
+
+from accounts.forms import FastRegistrationForm
 from articles.models import Article
 from shop_app.models import GoodsModel, Image, CategoryModel, Product
 import random
@@ -537,6 +540,8 @@ def dell_goods(request):
 def shop_orders(request):
     #  страница финальная, где подтверждаются все заказы старый shop_orders.html'
     # sum_append = []
+    form = FastRegistrationForm()
+    # test='test'
     if request.session.get('my_list'):
         session_array = request.session['my_list']
         render_session = request.session['my_list']
@@ -555,6 +560,22 @@ def shop_orders(request):
         # sum_prod = sum(session_array[0][1])
         gallery_index = Image.objects.filter(object_id=16).values_list()
         gallery_index_tmp = random.sample(list(gallery_index), 16)
+        # test_form = FastRegistrationForm()
+        # print('test_form')
+        # print(test_form)
+        # if request.method == "POST":
+        #     form = FastRegistrationForm(request.POST)
+        #     print('form-1')
+        #     print(form)
+        #     if form.is_valid():
+        #         new_user = form.save(commit=False)
+        #         new_user.set_password(form.cleaned_data["password"])
+        #         new_user.save()
+        #         return render(request, "big_retail/check-out.html",
+        #                       {"new_user": new_user})
+        #         # if not request.user.is_authenticated():/
+        #         # return HttpResponseRedirect('/login/')
+        # else:
 
 
     #'count_render_session': count_render_session, 'render_session': render_session
@@ -564,10 +585,14 @@ def shop_orders(request):
                                                                                'render_session': render_session,
                                                                                'summ': summ,
                                                                                'gallery_index_tmp': gallery_index_tmp,
-                                                                               'main_summ_cart': request.session['summ']},)
+                                                                               'main_summ_cart': request.session['summ'],
+                                                                               'user_formm': form,
+                                                                               },)
     else:
         empty = 'Корзина пуста!'
-        return render(request, 'shop_app/big_retail/check-out.html', {'empty': empty})
+        form = FastRegistrationForm()
+        return render(request, 'shop_app/big_retail/check-out.html', {'empty': empty, 'user_formm': form})
+
 def send_order(request):
     # конец всех заказов, очищаем сессию заносим в базу заказ
     print('send_order-1')
@@ -603,6 +628,20 @@ def send_order(request):
     #print('test_sess')
     #print(request.session['my_list'])
     #print(show[0][1])
+
+class LKViews(View):
+
+    def get(self, request):
+        print('start')
+        if request.user.is_authenticated:
+            test = 'test'
+            print('1')
+
+            return render(request, 'shop_app/lk.html', {'test': test})
+        else:
+            print('2')
+            return HttpResponseRedirect('/login/')
+
 
 """    if request.session['my_list'] in locals():
         print('yes')

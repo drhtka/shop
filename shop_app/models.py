@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils import timezone
@@ -38,7 +39,7 @@ class CategoryModel(models.Model):
     catname = models.CharField('название', max_length=15, blank=True)
     description = models.TextField('Описание', blank=True, default='0')
     img_categ = models.ImageField(upload_to='img_categ', verbose_name='Изображение категории', blank=True, null=True)
-    cat_true = models.PositiveIntegerField(max_length=15, unique=True, null=True)
+    cat_true = models.PositiveIntegerField(unique=True, null=True)
     def publich(self):
         self.order_date = timezone.now()
         self.save()
@@ -48,6 +49,7 @@ class CategoryModel(models.Model):
 
 
 class BillingModel(models.Model):
+    # товары в предварииельной корзине
     class Meta:
         verbose_name = 'Товар в корзине'
         verbose_name_plural = 'Товары в корзине'
@@ -56,6 +58,10 @@ class BillingModel(models.Model):
     id = models.AutoField(primary_key=True, auto_created=True, null=False)
     name = models.CharField('название', max_length=30, blank=True)
     sum = models.TextField('Сумма', blank=True, null=True)
+    buyer = models.ForeignKey(
+        User,
+        related_name='bill_products',
+        on_delete=models.CASCADE)
 
     def publich(self):
         self.order_date = timezone.now()
@@ -65,6 +71,7 @@ class BillingModel(models.Model):
         return self.name
 
 class OrdersModel(models.Model):
+    #последня корзина товары для покупки
     class Meta:
         verbose_name = 'Покупка'
         verbose_name_plural = 'Покупки'

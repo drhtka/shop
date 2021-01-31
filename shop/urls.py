@@ -24,11 +24,21 @@ from django.urls import path, include, re_path
 #from blog.api.serializers import CommentSerializer
 from django.conf import settings
 from django.conf.urls.static import static
+
+from accounts import views
 from api import views as api_views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
+    path('account/', include('allauth.urls')),
+    path('register/', views.register, name='register'),
+    path('login/', auth_views.LoginView.as_view(), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('accounts/', views.accounts, name='accounts'),
+    path('fastregister/', views.fastregister, name='fastregister'),
+
+
     path('', include('shop_app.urls')),
     path('articles', include('articles.urls')),
     path('test/', include('test_url.urls')),

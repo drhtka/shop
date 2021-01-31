@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 
-{% load staticfiles %}
-<style>.un_visible{ display: none; }</style>
+{% load static %}
+<style>.un_visible{ display: none; }
+.send-button-my{
+    margin-left: 16px !important;
+}
+</style>
 
 <title>{% block title %}Оформление и оплата{% endblock %}</title>
 {% block video-baner %}{% endblock video-baner %}
@@ -27,7 +31,7 @@
                 <div class="col-md-6 col-sm-6">
                     <div class="login-box">
                         <div class="title-box">
-                            <h2>Войти в кабинет</h2>
+                            <h2>Войти в кабинет {{ new_userr.username }}</h2>
                         </div>
                         <div class="login-details">
                             <p>Производство достижимо в разумные сроки. Поэтому перераспределение бюджета отталкивает фирменный медийный канал, размещаясь во всех медиа.</p>
@@ -52,25 +56,64 @@
                 <div class="col-md-6 col-sm-6">
                     <div class="login-box">
                         <div class="title-box">
-                            <h2>Скидочный код</h2>
+                            <h2>Быстрая регистрация</h2>
                         </div>
                         <div class="login-details">
                             <p>Производство достижимо в разумные сроки. Поэтому перераспределение бюджета отталкивает фирменный медийный канал, размещаясь во всех медиа.</p>
-                            <form role="form" name="commentform" class="login-form" id="comment-form" method="post" action="#" enctype="multipart/form-data">
+                            <form role="form" name="commentform" class="login-form form-signin" id="commentform" method="post" enctype="multipart/form-data">
+                                <div class="row">
+{{ test }}
+                                    <div class="col-md-6">{{ user_formm.username }}</div>
+                                    <div >{{ user_formm.username.errors }}</div>
+                                    <div class="col-md-6">{{ user_formm.email }}</div>
+                                    <div>{{ user_formm.email.errors }}</div>
+                                    <div class="col-md-6">{{ user_formm.password }}</div>
+                                    <div>{{ user_formm.password.errors }}</div>
+                                    <div class="col-md-6">{{ user_formm.password2 }}</div>
+                                    <div>{{ user_formm.password2.errors }}</div>
+                                    <div>{{ user_formm.lead }}</div>
+                                    {% csrf_token %}
+{#                                    <div class="col-md-6">#}
+{#                                        <input type="password" name="password" id="password" class="form-control" placeholder="Пароль">#}
+{#                                    </div>#}
+{#                                    <div class="col-md-6">#}
+{#                                        <input type="email" name="contact_email" id="contact_email" class="form-control input-email" placeholder="e-mail">#}
+{#                                    </div>#}
+{#                                    <div class="col-md-6">#}
+{#                                        <input type="password" name="password" id="password" class="form-control" placeholder="Пароль">#}
+{#                                    </div>#}
+{#                                </div>#}
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <input type="text" name="contact_number" id="contact_number" class="form-control contact-number" placeholder="Купон сюда..">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <input type="submit" id="sending-btn" class="btn send-button" value="Применить">
+                                        <input type="submit" id="sendingbtn" class="btn send-button send-button-my" value="Регистрация" style="margin-left: 16px !important;">
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
+{#                <div class="col-md-6 col-sm-6">#}
+{#                    <div class="login-box">#}
+{#                        <div class="title-box">#}
+{#                            <h2>Скидочный код</h2>#}
+{#                        </div>#}
+{#                        <div class="login-details">#}
+{#                            <p>Производство достижимо в разумные сроки. Поэтому перераспределение бюджета отталкивает фирменный медийный канал, размещаясь во всех медиа.</p>#}
+{#                            <form role="form" name="commentform" class="login-form" id="comment-form" method="post" action="#" enctype="multipart/form-data">#}
+{#                                <div class="row">#}
+{#                                    <div class="col-md-12">#}
+{#                                        <input type="text" name="contact_number" id="contact_number" class="form-control contact-number" placeholder="Купон сюда..">#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="row">#}
+{#                                    <div class="col-md-12">#}
+{#                                        <input type="submit" id="sending-btn" class="btn send-button" value="Применить">#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </form>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
             </div>
         </div>
     </section>

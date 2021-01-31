@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block content %}
+    {% if user.is_authenticated %}
+{{ test }}
+    {% endif %}
+{% endblock content %}

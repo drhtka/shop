@@ -7,6 +7,10 @@ from django.contrib.contenttypes.admin import GenericTabularInline#, GenericInli
 from django.contrib import admin
 # from .models import *
 
+
+class CustomUserAdmin(admin.ModelAdmin):
+    list_display = ('username', 'lead', 'phone', 'email')
+
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('catname', 'id', 'description', 'cat_true',)
     list_filter = ('catname', 'id',)
@@ -39,7 +43,7 @@ class GoodsAdmin(admin.ModelAdmin):
     ]
 
 
-admin.site.register(CustomUser)
+admin.site.register(CustomUser, CustomUserAdmin)
 
 admin.site.register(GoodsModel, GoodsAdmin,)
 admin.site.register(CategoryModel, CategoryAdmin,)
