@@ -16,12 +16,12 @@ class CategoryAdmin(admin.ModelAdmin):
     list_filter = ('catname', 'id',)
 
 class BillngAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
-    list_filter = ('id', 'name')
+    list_display = ('id', 'user_cart', 'user_phone', 'created', 'sum', 'null_one')
+    list_filter = ('user_cart',)
 
 class OrdersAdmin(admin.ModelAdmin):
-    list_display = ('id', 'bill_id')
-    list_filter = ('id', 'bill_id')
+    list_display = ('id', 'bill_id', 'created', 'tovar_name', 'price', 'user_end')
+    list_filter = ('created', 'user_end', 'price')
 
 class ImageInline(GenericTabularInline):
     model = Image

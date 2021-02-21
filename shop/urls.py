@@ -26,6 +26,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from accounts import views
+# from accounts.views import login_view
 from api import views as api_views
 from django.contrib.auth import views as auth_views
 
@@ -34,10 +35,14 @@ urlpatterns = [
     path('account/', include('allauth.urls')),
     path('register/', views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(), name='login'),
+    # path('login/', auth_views.LoginView.as_view(), {'template_name': "shop_app/big_retail/fast_check-out.html"}, name='login', ),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    # path('log_in/', login_view, name='log_in'),
+    # path('signup/', views.SignUpView.as_view(), name='signup'),
+    path('sign_up/', views.user_login, name='sign_up'),
+    path('log_out/', views.user_logout, name='log_out'),
     path('accounts/', views.accounts, name='accounts'),
     path('fastregister/', views.fastregister, name='fastregister'),
-
 
     path('', include('shop_app.urls')),
     path('articles', include('articles.urls')),

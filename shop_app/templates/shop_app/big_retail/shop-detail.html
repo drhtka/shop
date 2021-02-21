@@ -28,7 +28,7 @@
 
     <section class="product-detail">
         <div class="container my_container">
-            <div class="row" style="padding-left: 150px;">
+            <div class="row my_show_row" style="padding-left: 150px;">
 {#                {% for sh in show %}#}
                 <!--главное фото  наше-->
             <div class="col-md-5 product-slider animated" data-animation="fadeInUp" data-animation-delay="300" style="width: 610px;">
@@ -142,7 +142,7 @@
                         <div class="col-sm-6">
 {#                            <a class="navbar-brand" href="{% url "shop_billing" %}?i={{ sh.0 }}&name={{ sh.1 }}&price={{ sh.3 }}&img={{ sh.4 }}"><input type="button" {{ chek_good }} class="btn btn-success" value="Заказать "></a>#}
                             
-                            <a class="" href="{% url 'shop_cart' %}?i={{ show.0 }}&name={{ show.1 }}&price={{ show.3 }}&img={{ show.4 }}"><button type="button" class="btn add-cart" {{ chek_good }}><i class="fa fa-shopping-cart"></i>В корзину</button></a>
+                            <a class="" href="{% url 'shop_cart' %}?i={{ show.0 }}&name={{ show.1 }}&price={{ show.3 }}&img={{ media_url_cart }}{{ show.4 }}"><button type="button" class="btn add-cart" {{ chek_good }}><i class="fa fa-shopping-cart"></i>В корзину</button></a>
                         </div>
                         <div class="col-sm-6">
                             <button type="button" class="btn"><i class="fa fa-heart"></i>В избранное</button>
@@ -164,7 +164,7 @@
 
 
     <section id="product-tab">
-        <div class="container">
+        <div class="container our_container">
             <div class="row">
                 <div class="col-xs-12 animated" data-animation="fadeInUp" data-animation-delay="500">
                     <ul class="nav nav-tabs" role="tablist">

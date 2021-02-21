@@ -1,15 +1,21 @@
 # -*- coding: utf-8 -*-
+from django.contrib import auth
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.shortcuts import render, render_to_response, redirect
 import psycopg2
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader, Context
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views import View
-
-from accounts.forms import FastRegistrationForm
+from django.views.generic import ListView, DetailView
+from accounts.models import CustomUser
+from accounts.forms import FastRegistrationForm, AuthorizationForm
 from articles.models import Article
-from shop_app.models import GoodsModel, Image, CategoryModel, Product
+from shop_app.models import GoodsModel, Image, CategoryModel, Product, BillingModel, OrdersModel
 import random
+import datetime
 
 def index(request):
     #главная
@@ -55,6 +61,13 @@ def index(request):
         # print('gallery_index_tmp')
         # print(gallery_index_tmp)
         object_list = Article.objects.all()
+        if request.user.is_authenticated:
+            print('author')
+            print(request.user.id)
+        else:
+            request.user.id = request.user
+            print('author-2')
+
         return render(request, 'shop_app/index.html', {'all_goods': tmp_categ_name,
                                                        'all_in_slider': all_goods[0:5],
                                                        'render_session': render_session,
@@ -308,7 +321,10 @@ def show(request, pk):
     #return render(request, 'shop_app/showp.html', context={'show': show, 'chek_good': chek_good})
 
 def shop_billing(request):
+    # нерабочий деф 13.01.2021
+
     request.session.modified = True
+
     #выбираем товар и отправляем в корзину
     #id_shop_billing = request.POST.get('i', default=None)
     # request.session['my_list'] = []
@@ -323,15 +339,18 @@ def shop_billing(request):
     price = request.GET.get('price')
     img = request.GET.get('img')
     #img = str(img)
-    print(type(img))
-
+    # print(type(img))
+    if request.user.is_authenticated:
+        u = request.user
+        print('u')
+        print(u)
     if len(request.session['my_list']) > 0:
-        print(request.session['my_list'])
+        # print(request.session['my_list'])
         search_find_id = request.session['my_list'][0][3]
         request.session['my_list'].append([name, price, img, search_find_id])
     else:
         # request.session['my_list'] = []
-        postgreSQL_select_Query = "INSERT INTO shop_billing (name, sum) VALUES ('" + name + "', '" + price + "')"
+        postgreSQL_select_Query = "INSERT INTO shop_billing (name, sum, buyer) VALUES ('" + name + "', '" + price + "', '" + u + "')"
         #вставляем запись в таблицу shop_billing - эта запись будет номером корзинки 26 min
         # print(postgreSQL_select_Query)
         cursor = connection.cursor()
@@ -359,6 +378,17 @@ def shop_cart(request):
     #выбираем товар и отправляем в корзину
     # print('shop_cart-1')
     # print(request.session.get('my_list'))
+    # now = datetime.datetime.now()
+    # now = str(now)
+    # if request.user.is_authenticated:
+    #     u = request.user.id
+    #     print('u')
+    #     print(u)
+    #     uu = request.user.id
+    #     buyer_id = str(uu)
+    # else:
+    #     buyer_id = str(0)
+
     request.session.modified = True
     connection = psycopg2.connect(user="shopuser",
                                   password="shop_pos0701",
@@ -380,31 +410,36 @@ def shop_cart(request):
         search_find_id = request.session['my_list'][0][3]
         # print('search_find_id')
         # print(search_find_id)
-        request.session['my_list'].append([name, price, img, search_find_id, 1, id_shop_billing, price])
-
-
+        #        request.session['my_list'].append([name, price, img, search_find_id, 1, id_shop_billing, price])
+        request.session['my_list'].append([name, price, img, 0, 1, 0, price])
+        # print('no_image')
+        # print(request.session['my_list'])
+#, buyer_id_id, created
+#, '" + buyer_id + "', '" + now + "'
     else: # сразу идет сюда и заносит парвым в корзину
         # request.session['my_list'] = []
         request.session['summ'] = price
         my_list_cart = []
-        postgreSQL_select_Query = "INSERT INTO shop_billing (name, sum) VALUES ('" + name + "', '" + price + "')"
-        #вставляем запись в таблицу shop_billing - эта запись будет номером корзинки 26 min
-        cursor = connection.cursor()
-        cursor.execute(postgreSQL_select_Query)
-        connection.commit()
-
-        postgreSQL_select_Query = "SELECT * FROM shop_billing ORDER BY id DESC LIMIT 1"
-        # после вставки получаем номер этой записи (номер корзинки)
-        cursor = connection.cursor()
-        cursor.execute(postgreSQL_select_Query)
-        show = cursor.fetchone()
-        find_id = str(show[0])
+        # postgreSQL_select_Query = "INSERT INTO shop_billing (name, sum) VALUES ('" + name + "', '" + price + "')"
+        # #вставляем запись в таблицу shop_billing - эта запись будет номером корзинки 26 min
+        # cursor = connection.cursor()
+        # cursor.execute(postgreSQL_select_Query)
+        # connection.commit()
+        #
+        # postgreSQL_select_Query = "SELECT * FROM shop_billing ORDER BY id DESC LIMIT 1"
+        # # после вставки получаем номер этой записи (номер корзинки)
+        # cursor = connection.cursor()
+        # cursor.execute(postgreSQL_select_Query)
+        # show = cursor.fetchone()
+        # find_id = str(show[0])
         # print('find_id')
         # print(find_id)
-        my_list_cart.append([name, price, img, find_id, 1, id_shop_billing, price]) # сразу идет сюда добавил 1 для счетчика
+        my_list_cart.append([name, price, img, 0, 1, 0, price]) # сразу идет сюда добавил 1 для счетчика
+
+        #my_list_cart.append([name, price, img, find_id, 1, id_shop_billing, price]) # сразу идет сюда добавил 1 для счетчика
         request.session['my_list'] = my_list_cart
-    print('уход на рефферер')
-    print(request.session['my_list'])
+    # print('уход на рефферер')
+    # print(request.session['my_list'])
     # referer = self.request.META.get('HTTP_REFERER')# вернуться на предыдущую страницу на тот же урл
     return redirect(request.META.get('HTTP_REFERER'))
     # return redirect('/')
@@ -443,31 +478,31 @@ def shop_bay(request):
     # print(request.session.get('my_list'))
     render_session = []
     cart_seshion = []
+    button_vis = 'un_visible'
     if request.session.get('my_list'):
+        button_vis = 'visible'
         cart_seshion = request.session['my_list']
-        # print('shop_bay_cart_seshion')
-        # print(len(cart_seshion))
-        # print('shop_bay-2')
-        # print(request.session.get('my_list'))
-        # count_cart_session = len(cart_seshion)
-        if request.session.get('my_list'):
-            render_session = request.session['my_list']
-            count_render_session = len(cart_seshion)
+        count_render_session = len(cart_seshion)
+        render_session = request.session['my_list']
+        # if request.session.get('my_list'):
+        print('count_render_session')
+        print(count_render_session)
+
+
 
         return render(request, 'shop_app/big_retail/cart.html', context={'cart_seshion': cart_seshion,
                                                                          'count_render_session': count_render_session,
                                                                          'render_session': render_session,
                                                                          'all_goods_random': all_goods_random,
                                                                          'main_summ_cart': request.session['summ'],
+                                                                         'button_vis': button_vis,
                                                                          })
     else:
-        # return HttpResponse('товаров нэма!')
-        all_goods = GoodsModel.objects.values_list()
-        all_goods_random = random.sample(list(all_goods), 9)
-        print('all_goods_random_temp')
-        print(all_goods_random)
+
+        button_vis = 'un_visible'
         nema = 'Корзина пуста!'
         return render(request, 'shop_app/big_retail/cart.html', context={'nema': nema,
+                                                                         'button_vis': button_vis,
                                                                          'all_goods_random': all_goods_random,})
 
 
@@ -498,15 +533,7 @@ def finalOrder(request):
                                                                                             # разницу между общей суммой и одного стоимости одного товра при нажатии
                 return HttpResponse(sessin_plus[6])
                 break
-        # return render(request, 'shop_app/big_retail/cart.html', context={'main_summ_cart': request.session['summ'],})
-        #                                                                  })
-            # return render(request, 'shop_app/big_retail/cart.html', context={'main_summ_cart': request.session['summ'],
-            #                                                                  })
-            # if sessin_plus[0] == name or sessin_plus[5] == prodid:
 
-        # print('afret_for')
-        # print(len(request.session['my_list']))
-        # return HttpResponse('Okey')
 
 
 def dell_goods(request):
@@ -536,62 +563,120 @@ def dell_goods(request):
     else:
         return redirect(reverse('index'))
     return redirect(request.META.get('HTTP_REFERER'))
-
+# @login_required(login_url=reverse_lazy('login'))
 def shop_orders(request):
     #  страница финальная, где подтверждаются все заказы старый shop_orders.html'
     # sum_append = []
+    form_aut = AuthorizationForm()
     form = FastRegistrationForm()
-    # test='test'
+    # print("ses-1")
+    # print(request.session.get('my_list'))
+    # print('author-shop')
+    # print(request.user)
+    summ = 0
+    name = ''
+    button_vis = 'visible'
+
+    # print('uerr_phone_bill')
+    # print(uerr_phone_bill)
+    #, phone_us=uerr_phone_bill[0]['phone']
     if request.session.get('my_list'):
+        print('сессия есть')
+        button_vis = 'visible'
         session_array = request.session['my_list']
         render_session = request.session['my_list']
         count_render_session = len(session_array)
-        print('test_array')
-        print(session_array)
+        ############можно комментить######
         summ = 0
+        name = ''
         for session_array_s in session_array:
-
             summ += int(session_array_s[1])
-        print('summ')
-        print(summ)
-        button_vis = 'un_visible'
-        if len(session_array) > 0:
-            button_vis = 'visible'
-        # sum_prod = sum(session_array[0][1])
+            name = session_array_s[0]
+            print('summ-1')
+            print(summ)
+        if request.user.is_authenticated:
+            # uerr_phone_bill = CustomUser.objects.filter(username=request.user.username).values_list('phone')
+            insert_order = BillingModel(sum=summ,
+                                        user_cart=request.user.username,
+                                        user_phone=request.user)  # заносим в базу    , user_phone=request.users.phone
+            # print('tel_user')
+            # print(request.user)
+            # print(uerr_phone_bill)
+            # insert_order.save(force_insert=True)  # сохраняем в базу
+            for insert_order_s in session_array:
+
+                nearly_final = OrdersModel(bill_id=insert_order.id,
+                                           tovar_name=insert_order_s[0],
+                                           price=insert_order_s[1],
+                                           img=insert_order_s[2],)
+                ################можно комментить######
+                # nearly_final.save(force_insert=True)
+        nearly_final_text = 'Подтвердите заказ для окончания покупки'
+        # request.session['my_list'] = []
+        # button_vis = 'un_visible'
+        # if len(request.session.get('my_list')) > 0:
+        #     button_vis = 'visible'
+        #     print('сессия есть--')
+        # else:
+        #     print('сессия net')
         gallery_index = Image.objects.filter(object_id=16).values_list()
         gallery_index_tmp = random.sample(list(gallery_index), 16)
-        # test_form = FastRegistrationForm()
-        # print('test_form')
-        # print(test_form)
-        # if request.method == "POST":
-        #     form = FastRegistrationForm(request.POST)
-        #     print('form-1')
-        #     print(form)
-        #     if form.is_valid():
-        #         new_user = form.save(commit=False)
-        #         new_user.set_password(form.cleaned_data["password"])
-        #         new_user.save()
-        #         return render(request, "big_retail/check-out.html",
-        #                       {"new_user": new_user})
-        #         # if not request.user.is_authenticated():/
-        #         # return HttpResponseRedirect('/login/')
-        # else:
-
 
     #'count_render_session': count_render_session, 'render_session': render_session
         return render(request, 'shop_app/big_retail/check-out.html', context={'session_array': session_array,
-                                                                              'bbutton_vis': button_vis,
+                                                                              'button_vis': button_vis,
                                                                                'count_render_session': count_render_session,
                                                                                'render_session': render_session,
                                                                                'summ': summ,
                                                                                'gallery_index_tmp': gallery_index_tmp,
                                                                                'main_summ_cart': request.session['summ'],
                                                                                'user_formm': form,
+                                                                               'form_aut': form_aut,
+                                                                                'nearly_final_text': nearly_final_text,
                                                                                },)
     else:
-        empty = 'Корзина пуста!'
+        empty_cart = 'Корзина пуста!'
+        form_aut = AuthorizationForm()
         form = FastRegistrationForm()
-        return render(request, 'shop_app/big_retail/check-out.html', {'empty': empty, 'user_formm': form})
+        button_vis = 'un_visible'
+        # request.session['my_list'] = []
+        # button_vis = 'un_visible'
+        # if len(request.session.get('my_list')) > 0:
+        #     print('сессия есть--')
+        # else:
+        #     print('сессия net')
+        return render(request, 'shop_app/big_retail/check-out.html', {'empty_cart': empty_cart,
+                                                                      'user_formm': form,
+                                                                      'form_aut': form_aut,
+                                                                      'button_vis': button_vis,
+                                                                      'username': auth.get_user(request).username,})
+
+def final_thanks(request):
+    # последняя странца
+    if request.session.get('my_list'):
+        session_array = request.session['my_list']
+        summ = 0
+        for session_array_2 in session_array:
+            summ += int(session_array_2[1])
+        insert_order = BillingModel(sum=summ,
+                                    user_cart=request.user.username,
+                                    user_phone=request.user,
+                                    null_one='1')  # заносим в базу
+        insert_order.save(force_insert=True)  # сохраняем в базу
+
+        for insert_order_s in session_array:
+            nearly_final = OrdersModel(bill_id=insert_order.id,
+                                       tovar_name=insert_order_s[0],
+                                       price=insert_order_s[1],
+                                       img=insert_order_s[2],
+                                       user_end=request.user.username,)
+            nearly_final.save(force_insert=True)
+        nearly_final_text = 'Спасибо за Ваш заказ мы с Вами свяжемся!'
+        request.session['my_list'] = []
+        return render(request, 'shop_app/big_retail/final_thanks.html', {'nearly_final_text': nearly_final_text})
+    else:
+        nearly_final_text = 'Товаров нет!'
+        return render(request, 'shop_app/big_retail/final_thanks.html', {'nearly_final_text': nearly_final_text})
 
 def send_order(request):
     # конец всех заказов, очищаем сессию заносим в базу заказ
@@ -629,18 +714,61 @@ def send_order(request):
     #print(request.session['my_list'])
     #print(show[0][1])
 
-class LKViews(View):
+class ProdsListView(LoginRequiredMixin, ListView):
+    #  страница блога зарегестрированного пользователя
+    model = OrdersModel
+    # print(fields)
+    context_object_name = "products"
+    template_name = 'shop_app/lk_lst.html'
+    login_url = 'login'
+    # print('context_object_name')
+    # print(context_object_name)
 
+    # def get_queryset(self):  # здесь покaвазывает товары
+    #     # закрепленные за пользователем
+    #     u = self.request.user.username
+    #     qs_id = BillingModel.objects.filter(user_cart=u).values_list()
+    #     for qs_id_s in qs_id:
+    #         # i = OrdersModel.objects.filter(id=qs_id['id'])
+    #         print('i')
+    #         print(qs_id_s[0])
+    #
+    #     qs = super().get_queryset().all()#values_list('name', 'sum', 'created', 'buyer_id')
+    #     print('print(qs.filter(author=u))')
+    #     print(u)
+    #     print(qs.filter(user_end=u))
+    #     return qs.filter(user_end=u)
     def get(self, request):
-        print('start')
+        # хочу взять айдишник корзины временной и прировнять к айди корзины в которой заазы подтвержденные
         if request.user.is_authenticated:
-            test = 'test'
-            print('1')
+            u = self.request.user.username
 
-            return render(request, 'shop_app/lk.html', {'test': test})
-        else:
-            print('2')
-            return HttpResponseRedirect('/login/')
+            us_id_s=''
+            us_id = BillingModel.objects.filter(user_cart=u).filter(null_one=1).values_list()
+
+            return render(request, 'shop_app/lk_lst.html', {'us_id_s':us_id})
+
+
+# class LKViews((DetailView):
+
+
+def lk_detail(request, pk):
+    print('start')
+    # if request.user.is_authenticated:
+
+    print('1')
+    print(pk)
+
+    i = OrdersModel.objects.filter(bill_id=str(pk)).values_list('tovar_name', 'price')
+    print('i')
+    print(i)
+    ii = OrdersModel.objects.select_related().filter(bill_id__contains=id)
+    print('ii')
+    print(ii)
+    return render(request, 'shop_app/lk.html', {'i': i, 'ii': ii})
+        # else:
+        #     print('2')
+        #     return HttpResponseRedirect('/login/')
 
 
 """    if request.session['my_list'] in locals():

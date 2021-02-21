@@ -5,7 +5,7 @@ from django.urls import path, re_path
 from shop_app import views
 #from .views import index
 #from .views import contacts
-from shop_app.views import LKViews
+from shop_app.views import ProdsListView
 
 urlpatterns = [
     re_path(r'^$', views.index, name='index'),
@@ -24,8 +24,14 @@ urlpatterns = [
     path('shop_orders/', views.shop_orders, name='shop_orders'),
     path('send_order/', views.send_order, name='send_order'),
     path('sort_goods_categ/', views.sort_goods_categ, name='sort_goods_categ'),
+    path('final_thanks/', views.final_thanks, name='final_thanks'),
     # path('lk/', LKViews.lk, name='lk')
-    path('lk/', LKViews.as_view(), name='lk')
+
+    path('lk_list/', ProdsListView.as_view(), name='lk_list'),
+    path('lk/<int:pk>/', views.lk_detail, name='lk'),
+    # path('lk/', views.lk_detail, name='lk'),
+
+
 
 ]
 #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

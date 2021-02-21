@@ -1,8 +1,14 @@
-{% extends "base.html" %}
-
+{% extends 'base_register.html' %}
 {% load static %}
+{% block video-baner %}{% endblock %}
 {% block content %}
-    {% if user.is_authenticated %}
-{{ test }}
-    {% endif %}
+    <link href="{% static "big_retail/css/my_style.css" %}" rel="stylesheet" type="text/css">
+    {{ i }}  111111
+    {{ ii }} 222222
+    {% if user.is_authenticated %}{% endif %}
+<div>{{ i.0.tovar_name }}</div>
+        <div>{{ i.price }}</div>
+    <div>{{ i.0.price }}</div>
+    <div>{{ i.created }}</div>
+
 {% endblock content %}

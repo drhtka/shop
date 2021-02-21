@@ -4,7 +4,10 @@
 {% block video-baner %}{% endblock video-baner %}
 
 {% block content %}
+    <style>
+        .un_visible{ display: none; }
 
+    </style>
 
     <div class="page-desc-section">
         <div class="container">
@@ -21,7 +24,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered {{ button_vis }}">
                             <thead>
                                 <tr>
                                     <th>Фото</th>
@@ -78,12 +81,12 @@
             </div>
         </div>
     </section>
-    <section id="delivery-total">
-        <div class="container">
+    <section id="delivery-total" >
+        <div class="container {{ button_vis }}">
             <div class="row">
                 <!--delivery-->
                 <!--delivery end-->
-                <div class="col-md-6 animated" data-animation="fadeInUp" data-animation-delay="300">
+                <div class="col-md-6 animated issue-order" data-animation="fadeInUp" data-animation-delay="300">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3>Итог по заказу</h3>
@@ -95,7 +98,7 @@
                                     <h4  class="main_summ_span"><span class="main_summ">{{ main_summ_cart }}</span><span class="end_span">р.</span> </h4>
                                 </div>
                                 <div class="col-xs-6">
-                                    <a href="/shop_orders"><button class="btn btn-default pull-right" style="background: #d9534f">Оплатить</button></a>
+                                    <a href="/shop_orders"><button class="btn btn-default pull-right" style="background: #291365">Оформить</button></a>
                                 </div>
                             </div>
                         </div>
@@ -122,15 +125,15 @@
                             <div class="thumbnail">
                                 <div class="photo-block"><a class="add-cart-link-" data-rel="prettyPhoto" title="Название товара"><i class="fa fa-plus-"></i></a> <img src="{{ MEDIA_URL }}{{ all_goods_random_s.4 }}" class="img-responsive" alt="top-sales">
                                 </div>
-                                <div class="caption"><a href="#" class="category">{{ all_goods_random_s.2 }}</a> <a href="#">{{ all_goods_random_s.1 }}</a>
+                                <div class="caption"><a href="#" class="category">{{ all_goods_random_s.2 }}</a> <a href="#" class="pro_het">{{ all_goods_random_s.1 }}</a>
                                     <h4>{{ all_goods_random_s.3 }} р.</h4>
-                                    <p>
-                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
-                                    </p>
+{#                                    <p>#}
+{#                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>#}
+{#                                    </p>#}
                                     <div class="row cart-details" style="padding-top: 10px; padding-bottom: 20px;">
-                                        <div class="col-xs-6"><a href="{% url 'shop_cart' %}?i={{ all_goods_random_s.0 }}&name={{ all_goods_random_s.1 }}&price={{ all_goods_random_s.3 }}&img={{ media_url_cart }}{{ all_goods_random_s.4 }}"><i class="fa fa-shopping-cart"></i> В корзину</a>
+                                        <div class="col-xs-6 my-col-6"><a href="{% url 'shop_cart' %}?i={{ all_goods_random_s.0 }}&name={{ all_goods_random_s.1 }}&price={{ all_goods_random_s.3 }}&img={{ media_url_cart }}{{ all_goods_random_s.4 }}"><i class="fa fa-shopping-cart fa-shopping-cart"></i> <span class="my-fa">В корзину</span></a>
                                         </div>
-                                        <div class="col-xs-6"><a href="{% url "show" pk=all_goods_random_s.0 %}" class="pull-right">Подробнее </a><!--<i class="fa fa-chevron-right"></i>-->
+                                        <div class="col-xs-6"><a href="{% url "show" pk=all_goods_random_s.0 %}" class="pull-right"><span class="my-fa">Подробнее</span> </a><!--<i class="fa fa-chevron-right"></i>-->
                                         </div>
                                     </div>
                                 </div>

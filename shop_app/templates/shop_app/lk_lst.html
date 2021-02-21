@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load pagination_tags %}
+{% block css %}<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">{% endblock css %}
+
+<title>{% block title %}Личный кабинет{% endblock %}</title>
+{% block video-baner %}{% endblock %}
+{% block content %}
+    <link href="{% static "big_retail/css/my_style.css" %}" rel="stylesheet" type="text/css">
+    {% if user.is_authenticated %}
+        {{ posts }}
+{#        <h2><div>Ваше имя: {{ request.user.username  }}</div></h2>#}
+{#        <h2><div>Номер заказа: {{ products.0.bill_id }}</div></h2>#}
+        {% autopaginate us_id_s 12 %}
+        {% paginate %}
+        <!--bootstrap start-->
+        <div class="my_container_media">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Номер</th>
+                <th scope="col">Название</th>
+                <th scope="col">Цена</th>
+                <th scope="col">Фото</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td colspan="2">Larry the Bird</td>
+                <td>@twitter</td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+        <!--bootstrap end-->
+        <div class="grid-lk">
+        {{ us_id_s }}
+        {% for products_is in us_id_s %}
+            <div class="submit_a_request-less">
+        <div>Номер заказа: <a href="{% url 'lk' pk=products_is.0 %}">{{ products_is.0 }}</a></div><br>
+{#                <div>Номер заказа: <a href="{% url 'lk' %}?i={{ products_is.0 }}">{{ products_is.0 }}</a></div><br>#}
+        <div>Сумма заказа: {{ products_is.1 }}</div><br>
+{#        <div> <img src="{{ products_is.2}}" height="100px"; width="100px"> </div><br>#}
+        <div>дата заказа: {{ products_is.2|date:"d M Y" }}</div><br>
+            </div>
+        {% endfor %}
+        </div>
+        {% paginate %}
+    {% endif %}
+{% endblock content %}
+{% block brands %}{% endblock brands %}
+{% block js %}<script type="text/javascript" src="{% static "/shop_app/js/script.js" %}" rel="stylesheet"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{% endblock js %}
+{#{% block js-1 %}{% endblock js-1 %}#}
+{% block react %}{% endblock react %}

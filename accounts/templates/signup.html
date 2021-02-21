@@ -1,21 +1,63 @@
-{% extends "base_register.html" %}
-
-{% load i18n %}
-
-{% block head_title %}{% trans "Signup" %}{% endblock %}
-
+{% extends 'base_register.html' %}
+{% load static %}
+{% block title %}<title>Авторизация</title>{% endblock title %}
 {% block content %}
-<h1>{% trans "Sign Up" %}</h1>
+    <link href="{% static "big_retail/css/my_style.css" %}" rel="stylesheet" type="text/css">
+    {#    {% if user.is_anonymous %}{% endif %}#}
+    <form method="post"  class="form-signin">
+        <h2>Вход</h2>
+        {#        <h1>Ваше имя {{ form.username }}!</h1>#}
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+        {{ form_aut.username }}
 
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
+        {{ form_aut.password }}
+        {% csrf_token %}
+        <button class="btn btn-lg btn-primary btn-block button-height" type="submit">Войти</button>
+    </form>
 
-{% endblock %}
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{#{% extends "base_register.html" %}#}
+{##}
+{#{% load i18n %}#}
+{##}
+{#{% block head_title %}{% trans "Signup" %}{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#<h1>{% trans "Sign Up" %}</h1>#}
+{##}
+{#<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>#}
+{##}
+{#<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">#}
+{#  {% csrf_token %}#}
+{#  {{ form.as_p }}#}
+{#  {% if redirect_field_value %}#}
+{#  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />#}
+{#  {% endif %}#}
+{#  <button type="submit">{% trans "Sign Up" %} &raquo;</button>#}
+{#</form>#}
+{##}
+{#{% endblock %}#}

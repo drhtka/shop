@@ -72,17 +72,13 @@
                     </div>
                 </div>
                 {% endif %}
-{#                444444444  anonim{% if user.is_anonymous %}Hello user anonim!!!{% endif %}#}
-{#                333333333 auth{% if  user.is_authenticate %}Hello user auth!!!{% endif %}#}
-
-{#            {{ request.user }}#}
-{#            {{ request.user.is_superuser  }}#}
-{#                ifffff{% if user_formm.username == request.user.username or request.user.is_superuser.username %} 1{% else %} 2{% endif %}#}
-                {% if user.is_anonymous %}
-{#                    prosto dopustim anonimus#}
-                {% block fast %}{% endblock fast %}
+                anonim{% if user.is_anonymous %}Hello user anonim!!!{% endif %}
+                333333333 auth{% if  user.is_authenticate %}Hello user auth!!!{% endif %}
+{#                                                    {% if user.username == user.user_formm.username %} 1{% else %} 2{% endif %}#}
+                ifffff{% if user_formm.username == request.user.username or request.user.is_superuser.username %} 1{% else %} 2{% endif %}
+{#                {% if user.is_anonymous %}#}
     <div class="col-md-6 col-sm-6">
-                    <div class="login-box {{ button_viss }}">
+                    <div class="login-box {{ button_vis }}">
                         <div class="title-box">
                             <h2>Быстрая регистрация</h2>
                         </div>
@@ -90,13 +86,13 @@
                             <p>Производство достижимо в разумные сроки. Поэтому перераспределение бюджета отталкивает фирменный медийный канал, размещаясь во всех медиа.</p>
                             <form action="{% url 'fastregister' %}" method="post" enctype="multipart/form-data" class="login-form" >
                                 <div class="row">
-{#                                    {% if user.username == user.user_formm.username %}{% else %} {% endif %}#}
+{#                                    {% if user.username == user.user_formm.username %} {% else %} {% endif %}#}
 
 
                                     <div class="col-md-6">{{ user_formm.username }}</div>
                                     <div >{{ user_formm.username.errors }}</div>
-                                    <div class="col-md-6">{{ user_formm.phone }}</div>
-                                    <div>{{ user_formm.email.phone }}</div>
+                                    <div class="col-md-6">{{ user_formm.email }}</div>
+                                    <div>{{ user_formm.email.errors }}</div>
                                     <div class="col-md-6">{{ user_formm.password }}</div>
                                     <div>{{ user_formm.password.errors }}</div>
                                     <div class="col-md-6">{{ user_formm.password2 }}</div>
@@ -115,7 +111,7 @@
                         </div>
                     </div>
                 </div>
-                {% endif %}
+{#                {% endif %}#}
 
             </div>
         </div>
