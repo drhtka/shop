@@ -1,0 +1,252 @@
+{% extends "base.html" %}
+{% load static %}
+<title>{% block title %}Категории{% endblock %}</title>
+
+{% block video-baner %}
+{% endblock video-baner %}
+
+    <body id="projects"></body>
+    {% block content %}
+        {% comment %}<div id="pageloader">
+            <div class="loader-item fa fa-spin colored-border"></div>
+        </div>{% endcomment %}
+<style>
+.inner_content{
+    {#height: {{ height_block }};#}
+}
+
+</style>
+        <div class="page-desc-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 page-desc">
+                        <h2 class="animated" data-animation="fadeInRight" data-animation-delay="300">Наша галерея</h2>
+                        <p class="animated" data-animation="fadeInLeft" data-animation-delay="300">Производство достижимо в разумные сроки. Поэтому перераспределение бюджета</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="inner_content">
+        <section id="#your-works" class="your-works-section my-works-section">
+
+            <div class="container- my_container" >
+
+                <div class="my-project-grid works- grid-column-3-" > <!--style="display: none !important;"-->
+                {% for category_s in category %}
+{#                <div class="children"></div> class="col-md-9 col-sm-9"#}
+{#                    <div class=" col-md-12 col-sm-12"></div>#}
+                    <div class="project-items- photo- html- proj-our">
+                        <div class="thumbnail">
+                            <div class="img-box">
+
+                                <div class="img-block"><img src="{{ MEDIA_URL }}{{ category_s.3 }}" class="img-responsive" alt="">
+                                </div>
+                            </div>
+                            <div class="caption">
+
+                                <h3><a href="{% url "sort_goods_categ" %}?i={{ category_s.0 }}">{{ category_s.1 }}</a></h3><!--Название-->
+                                <p>{{ category_s.2 }}{#А вот по мнению аналитиков контекстная реклама ускоряет сублимированный охват аудитории. Практика однозначно показывает, что рейт-карта ускоряет конкурент, повышая конкуренцию.#}</p>
+                                <p class="rating">
+                                    <label>
+                                        <input value="4" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs">
+                                    </label><span>- рейтинг фото</span>
+                                </p>
+                                <div class="social-icon"><a href="#"><i class="fa fa-google google-icon"></i></a> <a href="#"><i class="fa fa-facebook facebook-icon"></i></a> <a href="#"><i class="fa fa-dribbble dribble-icon"></i></a> <a href="#"><i class="fa fa-twitter twitter-icon"></i></a> <a href="#"><i class="fa fa-rss rss-icon"></i></a> <a href="#"><i class="fa fa-vimeo-square vimeo-icon"></i></a> <a href="#"><i class="fa fa-skype skype-icon"></i></a> <a href="#"><i class="fa fa-youtube youtube-icon"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                    </div>
+
+                </div>
+        </section>
+            </div>
+
+        <!---->
+
+        <section id="shop-list" class="shop-list-section top-sale-section">
+            <div class="container">
+                <div class="row button-block">
+                    <div class="col-md-12">
+                        <ul>
+                            <li class="pull-right">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="btn-group list view-type">Показать как:</li>
+                                    <li class="btn-group list active" role="presentation"><a href="{% url 'goods' %}" title="List View" role="tab" data-toggle="tab"><i class="fa fa-th-list"></i></a>
+                                    </li>
+                                    <li class="btn-group grid" role="presentation"><a href="{% url "index" %}" title="Grid View"><i class="fa fa-th-large"></i></a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="btn-group item-sort">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="pull-right"><i class="fa fa-angle-down"></i></span>Сортировать: <span>Выберите вариант</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">По цене</a>
+                                    </li>
+                                    <li><a href="#">По популярности</a>
+                                    </li>
+                                    <li><a href="#">По дате</a>
+                                    </li>
+                                    <li><a href="#">По доставке</a>
+                                    </li>
+                                </ul>
+                            </li>
+{#                            <li class="btn-group">#}
+{#                                <button type="button" class="btn btn-default top-icon"><i class="fa fa-arrow-up"></i>#}
+{#                                </button>#}
+{#                            </li>#}
+                            <!--btn-group item-show-->
+                            <li class="btn-group item-categories">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="pull-right"><i class="fa fa-angle-down"></i></span>Выбрать: <span>категорию</span>
+                                </button>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    {#                                <li><a href="#">{{ category_on_goods.0.1 }}</a>#}
+                                    {#                                </li>#}
+                                    {#                                <li><a href="#">{{ category_on_goods.0.1 }}</a>#}
+                                    {#                                </li>#}
+                                    {#                                <li><a href="#">Недвижимость</a>#}
+                                    {#                                </li>#}
+                                    {#                                <li><a href="#">Продукты</a>#}
+                                    {#                                </li>#}
+                                    {% for category_on_goods_s in category_on_goods %}
+                                        <li><a href="{% url "sort_goods_categ" %}?i={{ category_on_goods_s.0 }}"> <span>{{ category_on_goods_s.1}}</span></a>
+                                            {#                                    <a href="#">Все</a>#}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab-content">
+
+                    <div role="tabpanel" class="tab-pane fade in active shop-list-section" id="list">
+                        <div class="row">
+                            <div class="col-md-3 filter col-sm-3">
+                                <!--filter-price-box тут был фильтр-->
+                                <div class="filter-category-box">
+                                    <div class="filter-title">
+                                        <h3>Категории</h3>
+                                    </div>
+                                    {% for category_on_goods_s in category_on_goods %}
+                                        <div class="panel-group" id="accordion" role="tablist">
+
+                                            <div class="panel panel-default">
+
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title"><a href="{% url "sort_goods_categ" %}?i={{ category_on_goods_s.0 }}"><span class="counting-box">13</span> <span class="panel-title">{{ category_on_goods_s.1}}</span></a></h4>
+                                                </div>
+
+
+                                            </div>
+
+
+                                        </div>
+                                    {% endfor %}
+                                </div>
+
+                            </div>
+                            <div class="col-md-9 col-sm-9">
+
+
+                                <!---->
+                                <div>
+                                    {% for goodss in goods %}
+
+                                        <!--start block-->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="item-panel">
+                                                    <div class="row margin-hide">
+                                                        <div class="col-md-4 col-sm-4 padding-left-hide">
+                                                            <a data-rel="prettyPhoto" href="images/shop-2/1.png" title="Название товара" class="img-body-"></a>
+                                                            <img src="{{MEDIA_URL}}{{ goodss.4 }}" alt="" class="img-responsive">
+                                                        </div>
+                                                        <div class="col-md-8 col-sm-8 padding-right-hide">
+                                                            <div class="offer-box">
+                                                                <h3>-50%</h3>
+                                                                <h3>Акция</h3>
+                                                            </div><a href="#"><h3>{{ goodss.1 }}</h3></a>
+                                                            <h4>{{ goodss.3 }} р.</h4>
+                                                            <h5>{{ goodss.2 }}</h5>
+                                                            <p>{{ goodss.5 }}</p>
+                                                            <p class="ratings">
+                                                                <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span> рейтинг товара</span>
+                                                            </p>
+{#                                                            ?i={{ goodss.0 }}#}
+                                                            <ul>
+                                                                <li class="show-link"><a href="{% url "show" pk=goodss.0 %}"><span>Подробнее..</span></a><span class="fa fa-angle-right right-icon"></span>
+                                                                </li>
+                                                                <li class="add-to-card"><span class="fa fa-shopping-cart"></span><a href="#"><span>В корзину</span></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <!--end block-->
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        <!---->
+    {% endblock content %}
+    {% block brands %}{% endblock brands %}
+    {% block additions %}{% endblock additions %}
+
+{% block js %}{% endblock js %}
+{% block js-1 %}
+    <script type='text/javascript' src='http://test.michalbacak.com/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+    <script type="text/javascript" src="{% static "big_retail/js/jquery-1.11.1.min.js" %}" rel="stylesheet">var jQuery1111 = $.noConflict(true);</script>
+    <script type="text/javascript" src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js"></script>
+    <script type="text/javascript" src="{% static "big_retail/js/bootstrap.min.js" %}" rel="stylesheet"></script>
+    <script type="text/javascript" src="{% static "big_retail/js/bootstrapValidator.min.js" %}" rel="stylesheet"></script>
+    <script type="text/javascript" src="{% static "big_retail/js/bootstrap-hover-dropdown.min.js" %}" rel="stylesheet"></script>
+    <script type="text/javascript" src="{% static "big_retail/js/owl.carousel.min.js" %}" rel="stylesheet" ></script><!--owl-theme-->
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.sticky.js" %}"  rel="stylesheet"></script><!---->
+
+    {#<script type="text/javascript" src="{% static "big_retail/js/carousel.min.js" %}"  rel="stylesheet"></script><!--owl-theme-->#}
+    <script type="text/javascript" src="{% static "big_retail/js/slider/jquery.fractionslider.js" %}" rel="stylesheet"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/slider/main.js" %}" charset="utf-8" rel="stylesheet"></script> <!---->
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.prettyPhoto.js" %}" rel="stylesheet"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.easy-ticker.min.js" %}" rel="stylesheet"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/idangerous.swiper.min.js" %}" rel="stylesheet"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/idangerous.swiper.progress.min.js" %}" rel="stylesheet"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/star-rating.min.js" %}" rel="stylesheet"></script><!---->
+
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.flexslider-min.js" %}" rel="stylesheet"></script><!---->
+
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.content_slider.js" %}" rel="stylesheet"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.easypiechart.min.js" %}"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/option.js" %}"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.nstSlider.js" %}"></script><!---->
+
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.mb.YTPlayer.js" %}"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.appear.js" %}"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/main.js" %}"></script><!--portfolio.html-->
+
+    {#<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>#} <!-- который ломал все-->
+    {% comment %}<script type="text/javascript" src="{% static "shop_app/js/script.js" %}" rel="stylesheet"></script>{% endcomment %}
+{##}
+{#    <div id="root"></div>#}
+{#    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>#}
+{#    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>#}
+{#    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>#}
+{% endblock js-1 %}
+{% block react %}{% endblock react %}
+
+
+
+

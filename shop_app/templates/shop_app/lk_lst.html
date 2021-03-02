@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load pagination_tags %}
+
 {% block css %}<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">{% endblock css %}
 
 <title>{% block title %}Личный кабинет{% endblock %}</title>
@@ -11,54 +11,41 @@
         {{ posts }}
 {#        <h2><div>Ваше имя: {{ request.user.username  }}</div></h2>#}
 {#        <h2><div>Номер заказа: {{ products.0.bill_id }}</div></h2>#}
-        {% autopaginate us_id_s 12 %}
-        {% paginate %}
+
         <!--bootstrap start-->
-        <div class="my_container_media">
+        <div class="my_container_media center-tables-lk">
+        <div class="panel panel-default">
         <table class="table table-hover">
             <thead>
             <tr>
                 <th scope="col">Номер</th>
-                <th scope="col">Название</th>
-                <th scope="col">Цена</th>
-                <th scope="col">Фото</th>
+                <th scope="col">Дата</th>
+                <th scope="col">Сумма</th>
+                <th scope="col">Телефон</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-            </tr>
+
+            {% for products_is in us_id_s %}
+                <tr>
+
+                <td><a href="{% url 'lk' pk=products_is.0 %}">{{ products_is.0 }}</a></td>
+                    <td>{{ products_is.2|date:"d M Y" }}</td>
+                    {#                <div>Номер заказа: <a href="{% url 'lk' %}?i={{ products_is.0 }}">{{ products_is.0 }}</a></div><br>#}
+                    <td>{{ products_is.1 }}</td>
+                    {#        <div> <img src="{{ products_is.2}}" height="100px"; width="100px"> </div><br>#}
+                    <td>{{ products_is.4 }}</td>
+
+                </tr>
+            {% endfor %}
+
             </tbody>
         </table>
         </div>
-        <!--bootstrap end-->
-        <div class="grid-lk">
-        {{ us_id_s }}
-        {% for products_is in us_id_s %}
-            <div class="submit_a_request-less">
-        <div>Номер заказа: <a href="{% url 'lk' pk=products_is.0 %}">{{ products_is.0 }}</a></div><br>
-{#                <div>Номер заказа: <a href="{% url 'lk' %}?i={{ products_is.0 }}">{{ products_is.0 }}</a></div><br>#}
-        <div>Сумма заказа: {{ products_is.1 }}</div><br>
-{#        <div> <img src="{{ products_is.2}}" height="100px"; width="100px"> </div><br>#}
-        <div>дата заказа: {{ products_is.2|date:"d M Y" }}</div><br>
-            </div>
-        {% endfor %}
         </div>
-        {% paginate %}
+        <!--bootstrap end-->
+
+
     {% endif %}
 {% endblock content %}
 {% block brands %}{% endblock brands %}

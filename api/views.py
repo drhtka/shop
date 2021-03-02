@@ -41,7 +41,7 @@ class CategoryListView(generics.ListAPIView):
 #     #
 #     # def get(self, request, *args, **kwargs):
 #     #     self.object = self.get_object()
-#     #     return Response({'goods_api': self.object}, template_name='shop_app/big_retail/portfolio.html')
+#     #     return Response({'goods_api': self.object}, template_name='shop_app/big_retail/category.html')
 #
 # class GoodsListDitailView(APIView):
 #

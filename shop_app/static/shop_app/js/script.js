@@ -40,10 +40,12 @@ function openModall(mythis) {
 
 	document.getElementsByClassName('img_modal')[0].src = mythis.src
 	$('#exampleModal').modal('show') // query запуск по id при нажати на фото
+	document.getElementsByClassName('modal-open')[0].style.paddingRight = '0px'
 	// console.log(modal('show'))
 	document.getElementById('exampleModal').style.top = '20%'
 	//document.getElementsByClassName('myModal')[0] = document.getElementsByClassName('my-src')[0].src
 	first_push_image = mythis
+
 
 }
 // предыдущую фотграфию при клике заносим в модалку

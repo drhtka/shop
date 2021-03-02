@@ -4,14 +4,14 @@
     <title>{% block title %}Главная{% endblock %}</title>
 {% block content %}
 <body id="video-bg">
-<style>
-
-/*    .pagination{
-        margin-top: {{ height_block }};
-        margin-left: 600px;
-        width: 800px;
-    }*/
-</style>
+{#<style>#}
+{##}
+{#/*    .pagination{#}
+{#        margin-top: {{ height_block }};#}
+{#        margin-left: 600px;#}
+{#        width: 800px;#}
+{#    }*/#}
+{#</style>#}
 {% block video-baner %}{% endblock video-baner %}
     {% block additions %} {% endblock additions %}
         <section id="new-additions" class="new-additions section">
@@ -52,7 +52,7 @@
     </section>
    <!-- new-additions end-->
     <section id="top-sale" class="top-sale-section">
-        <div class="container">
+        <div class="container my_container-index">
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="section-title">Что мы можем Вам предложить?</h2>
@@ -120,7 +120,7 @@
                                     <a data-rel="prettyPhoto-" href="/media/img/36.jpg" title="Название товара" class="link">
                                         <i class="fa- fa-plus-"></i></a>
 
-                                    <img src="{{ MEDIA_URL }}{{ all_goods_s.4 }}" alt="item" class="img-responsive" style="height: 253px; width: 300px">
+                                    <img src="{{ MEDIA_URL }}{{ all_goods_s.4 }}" alt="item" class="img-responsive">
                                 </div>
                                 <div  class="prodect-details border_image">
                                     <h4>{{ all_goods_s.2 }}</h4>{#Категория#}
@@ -147,12 +147,12 @@
                     {% endfor %}
 
                 </div>
-            {% paginate %}
+            <div class="pagin-down">{% paginate %}</div>
         </div>
         </div>
     </section>
 
-    <section class="work-area section">
+    <section class="work-area section my_work-area-index">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">

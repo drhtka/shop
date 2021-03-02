@@ -154,8 +154,8 @@ def goods(request):
                                                                           'category_on_goods': category_on_goods})
 def sort_goods_categ(request):
     # сортировка по категориям
-    # print('ii')
-    # print(request.GET.get('i'))
+    print('ii')
+    print(request.GET.get('i'))
     cat_num = (request.GET.get('i'))
     sort_goods_categ = GoodsModel.objects.filter(category=str(cat_num)).values_list()
     tmp_append_goods = []
@@ -163,8 +163,8 @@ def sort_goods_categ(request):
     tmp_categ_name_list = []
     for all_goods_s in sort_goods_categ:
         tmp_append_goods.append(all_goods_s)
-    # print('tmp_append_goods')
-    # print(tmp_append_goods)
+    print('tmp_append_goods')
+    print(tmp_append_goods)
         # print('all_goods_s')
         # print(all_goods_s)
 
@@ -184,8 +184,27 @@ def sort_goods_categ(request):
             tmp_categ_name.append(tmp_categ_name_list)
 
     category_on_goods = CategoryModel.objects.values_list()
-    return render(request, 'shop_app/big_retail/shop-list.html', context={'goods': tmp_categ_name,
-                                                                          'category_on_goods': category_on_goods})
+    connection = psycopg2.connect(user="shopuser",
+                                  password="shop_pos0701",
+                                  host="127.0.0.1",
+                                  port="5432",
+                                  database="shop_pos")
+    cursor = connection.cursor()
+    postgreSQL_select_Query = "select * from category"
+    cursor.execute(postgreSQL_select_Query)
+    category = cursor.fetchall()
+    ######
+    render_session = []
+    if request.session.get('my_list'):
+        # print('index_sess-2')
+        # print(request.session['my_list'])
+        render_session = request.session['my_list']
+    count_render_session = len(render_session)
+    return render(request, 'shop_app/big_retail/category.html', context={'goods': tmp_categ_name,
+                                                                         'category': category,
+                                                                          'category_on_goods': category_on_goods,
+                                                                         'render_session': render_session,
+                                                                         'count_render_session': count_render_session,})
 
 def category(request):
     # категории товаров
@@ -198,22 +217,79 @@ def category(request):
     postgreSQL_select_Query = "select * from category"
     cursor.execute(postgreSQL_select_Query)
     category = cursor.fetchall()
+    # print('category')
+    # print(category)
     # отправка на страницу в корзину и количество товаров header-top
     render_session = []
     if request.session.get('my_list'):
         render_session = request.session['my_list']
     count_render_session = len(render_session)
-    return render(request, 'shop_app/big_retail/portfolio.html', context={'category': category, 'render_session': render_session, 'count_render_session': count_render_session})
+
+    ######start goods#############
+    all_goods_arr = []
+    connection = psycopg2.connect(user="shopuser",
+                                  password="shop_pos0701",
+                                  host="127.0.0.1",
+                                  port="5432",
+                                  database="shop_pos")
+    cursor = connection.cursor()
+    postgreSQL_select_Query = 'select * from goods'
+    cursor.execute(postgreSQL_select_Query)
+    goodss = cursor.fetchall()
+
+    postgreSQL_select_Query = "select * from goods ORDER BY id ASC"
+    # print(postgreSQL_select_Query)
+    cursor.execute(postgreSQL_select_Query)
+    goodss = cursor.fetchall()
+    # print('goodss')
+    # print(goodss)
+    all_goods_arr.append(goodss)
+    all_goods = all_goods_arr
+
+
+    tmp_append_goods = []
+    tmp_categ_name = []
+    tmp_categ_name_list = []
+    for all_goods_s in all_goods:
+        tmp_append_goods.append(all_goods_s)
+        for tmp_s in tmp_append_goods[0]:
+            #print('tmp_s')
+            #print(tmp_s)
+            p = GoodsModel(category=tmp_s[2])
+            categor_name = p.get_category_display()
+            list_tmp = list(tmp_s)
+            list_tmp[2]=categor_name
+            list_tmp = tuple(list_tmp)
+            #print('tmPP_turp')
+            #print(list_tmp)
+            for list_tmp_s in [list_tmp]:
+                # print('list_tmp_s')
+                # print(list_tmp_s)
+                tmp_categ_name_list = list_tmp_s
+                tmp_categ_name.append(tmp_categ_name_list)
+    # print('tmp_categ_name')
+    # print(tmp_categ_name)
+    category_on_goods = CategoryModel.objects.values_list()
+    # подсчет и вывод товаров в корзину из сессии
+    render_session = []
+    if request.session.get('my_list'):
+        # print('index_sess-2')
+        # print(request.session['my_list'])
+        render_session = request.session['my_list']
+    count_render_session = len(render_session)
+    return render(request, 'shop_app/big_retail/category.html', context={'category': category,
+                                                                         'goods': tmp_categ_name,
+                                                                         'category_on_goods': category_on_goods,
+                                                                         'render_session': render_session,
+                                                                         'count_render_session': count_render_session,})
 
 def gallery(request):
     all_photo = Image.objects.values_list()
     for all_photo_s in all_photo:
         print(all_photo_s[1])
     #return render(request, 'shop_app/category.html')
-    return render(request, 'shop_app/big_retail/portfolio.html', {'all_photo': all_photo_s})
+    return render(request, 'shop_app/big_retail/category.html', {'all_photo': all_photo_s})
 #from django.contrib.admin.options import get_content_type_for_model
-
-
 
 def show(request, pk):
     # детальное описание товара
@@ -715,31 +791,13 @@ def send_order(request):
     #print(show[0][1])
 
 class ProdsListView(LoginRequiredMixin, ListView):
-    #  страница блога зарегестрированного пользователя
+    #  страница лк зарегестрированного пользователя
     model = OrdersModel
-    # print(fields)
     context_object_name = "products"
     template_name = 'shop_app/lk_lst.html'
     login_url = 'login'
-    # print('context_object_name')
-    # print(context_object_name)
 
-    # def get_queryset(self):  # здесь покaвазывает товары
-    #     # закрепленные за пользователем
-    #     u = self.request.user.username
-    #     qs_id = BillingModel.objects.filter(user_cart=u).values_list()
-    #     for qs_id_s in qs_id:
-    #         # i = OrdersModel.objects.filter(id=qs_id['id'])
-    #         print('i')
-    #         print(qs_id_s[0])
-    #
-    #     qs = super().get_queryset().all()#values_list('name', 'sum', 'created', 'buyer_id')
-    #     print('print(qs.filter(author=u))')
-    #     print(u)
-    #     print(qs.filter(user_end=u))
-    #     return qs.filter(user_end=u)
     def get(self, request):
-        # хочу взять айдишник корзины временной и прировнять к айди корзины в которой заазы подтвержденные
         if request.user.is_authenticated:
             u = self.request.user.username
 
@@ -759,13 +817,9 @@ def lk_detail(request, pk):
     print('1')
     print(pk)
 
-    i = OrdersModel.objects.filter(bill_id=str(pk)).values_list('tovar_name', 'price')
-    print('i')
-    print(i)
-    ii = OrdersModel.objects.select_related().filter(bill_id__contains=id)
-    print('ii')
-    print(ii)
-    return render(request, 'shop_app/lk.html', {'i': i, 'ii': ii})
+    i = OrdersModel.objects.filter(bill_id=str(pk)).values_list('tovar_name', 'price', 'created', 'img', 'bill_id')
+
+    return render(request, 'shop_app/lk.html', {'i': i})
         # else:
         #     print('2')
         #     return HttpResponseRedirect('/login/')

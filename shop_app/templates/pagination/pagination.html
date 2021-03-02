@@ -1,4 +1,5 @@
 {% load static %}
+<link href="{% static "big_retail/css/my_style.css" %}" rel="stylesheet" type="text/css">
 
 {% if is_paginated %}
     {% load i18n %}
@@ -25,7 +26,7 @@
         {% endfor %}
         {% if page_obj.has_next %}
             <a href="?page={{ page_obj.next_page_number }}{{ getvars }}{{ hashtag }}"
-               class="next pagination__link_state_active pagination__link line_null array">{% trans " > " %}</a>
+               class="next pagination__link_state_active pagination__link line_null array pagination__link_index">{% trans " > " %}</a>
         {% else %}
             <span class="disabled next pagination__link_state_active pagination__link line_null">{% trans "Последняя" %}</span>
         {% endif %}

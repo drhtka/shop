@@ -1,14 +1,59 @@
-{% extends 'base_register.html' %}
+{% extends 'base.html' %}
 {% load static %}
+<title>{% block title %}Личный кабинет{% endblock %}</title>
 {% block video-baner %}{% endblock %}
 {% block content %}
+{#    <style>#}
+{#        input.button-lk {#}
+{#            position: -webkit-sticky;#}
+{#            position: sticky;#}
+{#            top: 50%;#}
+            {#background-color: yellow;#}
+            {#padding: 50px;#}
+            {#font-size: 20px;#}
+{#        }#}
+{#    </style>#}
     <link href="{% static "big_retail/css/my_style.css" %}" rel="stylesheet" type="text/css">
-    {{ i }}  111111
-    {{ ii }} 222222
-    {% if user.is_authenticated %}{% endif %}
-<div>{{ i.0.tovar_name }}</div>
-        <div>{{ i.price }}</div>
-    <div>{{ i.0.price }}</div>
-    <div>{{ i.created }}</div>
+{#<div>#}
+{#    <div>{{ i.0.2 }}11111</div><br>#}
+{##}
+{#    {% if user.is_authenticated %}{% endif %}#}
+{##}
+{#    {% for i_s in i %}#}
+{#        <div class="submit_a_request-less">#}
+{#        <div>{{ i_s.0 }}</div>#}
+{#        <div>{{ i_s.1 }}</div>#}
+{##}
+{##}
+{#        <div> <img src="{{ i_s.3 }}" height="100px"; width="100px"> </div><br>#}
+{#        </div>#}
+{#    {%  endfor %}#}
+{#</div>#}
+{#<section></section>#}
+<div class="content-lk">
+    <input class="button-lk" type="button" onclick="history.back();" value="Назад"/>
+    <h2><div  class="child-active-lk"> Номер заказа: {{ i.0.4 }}</div></h2>
+    <h2><div  class="child-active-lk"> Дата покупки: {{ i.0.2 }}</div></h2>
 
+
+    <div class="parent_lk">
+    {% for i_s in i %}
+        <div class="child_lk border-lk">
+        <div> <img class="img-lk" src="{{ i_s.3 }}" height="100px"; width="100px"> </div>
+
+            <div>Цена: {{ i_s.0 }}</div>
+            <div>Сумма: {{ i_s.1 }}</div>
+
+        </div>
+    {%  endfor %}
+    </div>
+{#    <input class="button-lk" type="button" onclick="history.back();" value="Назад"/>#}
+</div>
 {% endblock content %}
+{% block brands %}{% endblock brands %}
+{% block js %}<script type="text/javascript" src="{% static "/shop_app/js/script.js" %}" rel="stylesheet"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{% endblock js %}
+{#{% block js-1 %}{% endblock js-1 %}#}
+{% block react %}{% endblock react %}
