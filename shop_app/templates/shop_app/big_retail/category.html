@@ -161,24 +161,24 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="item-panel">
-                                                    <div class="row margin-hide">
+                                                    <div class="row margin-hide my_margin-hide">
                                                         <div class="col-md-4 col-sm-4 padding-left-hide">
                                                             <a data-rel="prettyPhoto" href="images/shop-2/1.png" title="Название товара" class="img-body-"></a>
-                                                            <img src="{{MEDIA_URL}}{{ goodss.4 }}" alt="" class="img-responsive">
+                                                            <img src="{{MEDIA_URL}}{{ goodss.4 }}" alt="" class="img-responsive my_responsive">
                                                         </div>
                                                         <div class="col-md-8 col-sm-8 padding-right-hide">
                                                             <div class="offer-box">
                                                                 <h3>-50%</h3>
                                                                 <h3>Акция</h3>
-                                                            </div><a href="#"><h3>{{ goodss.1 }}</h3></a>
-                                                            <h4>{{ goodss.3 }} р.</h4>
-                                                            <h5>{{ goodss.2 }}</h5>
-                                                            <p>{{ goodss.5 }}</p>
-                                                            <p class="ratings">
-                                                                <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span> рейтинг товара</span>
-                                                            </p>
+                                                            </div><a href="#"><h3 class="categ_name">{{ goodss.1 }}</h3></a>
+                                                            <h4 class="categ_price">{{ goodss.3 }} р.</h4>
+                                                            <h5 class="categ_categ">{{ goodss.2 }}</h5>
+                                                            <p class="my_contex">{{ goodss.5 }}</p>
+{#                                                            <p class="ratings">#}
+{#                                                                <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span> рейтинг товара</span>#}
+{#                                                            </p>#}
 {#                                                            ?i={{ goodss.0 }}#}
-                                                            <ul>
+                                                            <ul class="my_show-link">
                                                                 <li class="show-link"><a href="{% url "show" pk=goodss.0 %}"><span>Подробнее..</span></a><span class="fa fa-angle-right right-icon"></span>
                                                                 </li>
                                                                 <li class="add-to-card"><span class="fa fa-shopping-cart"></span><a href="#"><span>В корзину</span></a>

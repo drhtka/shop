@@ -146,8 +146,10 @@ class GoodsModel(models.Model):
     category = models.CharField('Категории', max_length=15, null=True, choices=CATEGORY_CHOICES)
     price = models.CharField(max_length=30, verbose_name='Цена', blank=True)
     img = models.ImageField(upload_to='img', verbose_name='Основное изображение', blank=True, null=True)
-    desc = models.TextField('Описание', blank=True, null=True)
-    tags = GenericRelation(Image)
+    desc = models.CharField('Описание краткое', max_length=30,blank=True, null=True)
+    tags = GenericRelation(Image) # это без галереи првязка
+    # description = models.CharField('Описание краткое', max_length=255, blank=True, null=True)
+    # characteristic = models.CharField('Характеристики', max_length=30,blank=True, null=True)
 
     def publich(self):
         self.order_date = timezone.now()
