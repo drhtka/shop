@@ -5,9 +5,9 @@
     {% load i18n %}
     <div class="pagination">
         {% if page_obj.has_previous %}
-            <a href="?page={{ page_obj.previous_page_number }}{{ getvars }}{{ hashtag }}" class="prev pagination__link_state_active pagination__link line_null array">{% trans " < " %}</a>
+            <a href="?page={{ page_obj.previous_page_number }}{{ getvars }}{{ hashtag }}" class="prev pagination__link_state_active pagination__link line_null array">{% trans " &laquo; " %}</a>
         {% else %}
-            <span class="disabled prev pagination__link_state_active pagination__link line_null"> {% trans "Первая" %}</span>
+            <span class="disabled prev pagination__link_state_active pagination__link- line_null first_pagin"> {% trans "Первая" %}</span>
         {% endif %}
         {% for page in pages %}
             {% if page %}
@@ -26,9 +26,9 @@
         {% endfor %}
         {% if page_obj.has_next %}
             <a href="?page={{ page_obj.next_page_number }}{{ getvars }}{{ hashtag }}"
-               class="next pagination__link_state_active pagination__link line_null array pagination__link_index">{% trans " > " %}</a>
+               class="next pagination__link_state_active pagination__link line_null array pagination__link_index">{% trans "&raquo;" %}</a>
         {% else %}
-            <span class="disabled next pagination__link_state_active pagination__link line_null">{% trans "Последняя" %}</span>
+            <span class="disabled next pagination__link_state_active pagination__link- line_null">{% trans "Последняя" %}</span>
         {% endif %}
     </div>
 {% endif %}

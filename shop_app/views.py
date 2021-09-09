@@ -47,6 +47,7 @@ def index(request):
             for list_tmp_s in [list_tmp]:
                 tmp_categ_name_list = list_tmp_s
                 tmp_categ_name.append(tmp_categ_name_list)
+        #для слайдера
         all_goods_random = random.sample(list(tmp_categ_name), 7)
 
         render_session = []
@@ -60,14 +61,14 @@ def index(request):
         gallery_index_tmp = random.sample(list(gallery_index), 16)
         # print('gallery_index_tmp')
         # print(gallery_index_tmp)
-        object_list = Article.objects.all()
+        object_list = Article.objects.all().order_by('pk')
         if request.user.is_authenticated:
             print('author')
             print(request.user.id)
         else:
             request.user.id = request.user
             print('author-2')
-
+        category_on_goods = CategoryModel.objects.values_list()
         return render(request, 'shop_app/index.html', {'all_goods': tmp_categ_name,
                                                        'all_in_slider': all_goods[0:5],
                                                        'render_session': render_session,
@@ -75,6 +76,7 @@ def index(request):
                                                        'all_goods_random': all_goods_random,
                                                        'gallery_index_tmp': gallery_index_tmp,
                                                        'object_list': object_list[0:6],
+                                                       'category_on_goods': category_on_goods,
                                                        })
 
 def contacts(request):
@@ -154,8 +156,8 @@ def goods(request):
                                                                           'category_on_goods': category_on_goods})
 def sort_goods_categ(request):
     # сортировка по категориям
-    print('ii')
-    print(request.GET.get('i'))
+    # print('ii')
+    # print(request.GET.get('i'))
     cat_num = (request.GET.get('i'))
     sort_goods_categ = GoodsModel.objects.filter(category=str(cat_num)).values_list()
     tmp_append_goods = []
@@ -163,11 +165,10 @@ def sort_goods_categ(request):
     tmp_categ_name_list = []
     for all_goods_s in sort_goods_categ:
         tmp_append_goods.append(all_goods_s)
-    print('tmp_append_goods')
-    print(tmp_append_goods)
+    # print('tmp_append_goods')
+    # print(len(tmp_append_goods))
         # print('all_goods_s')
         # print(all_goods_s)
-
 
     for tmp_s in tmp_append_goods:
         # print('tmp_s')
@@ -182,8 +183,26 @@ def sort_goods_categ(request):
         for list_tmp_s in [list_tmp]:
             tmp_categ_name_list = list_tmp_s
             tmp_categ_name.append(tmp_categ_name_list)
-
+    append_count_goods_categ = []
     category_on_goods = CategoryModel.objects.values_list()
+    for category_count_s in category_on_goods:
+        list_category_count_s = list(category_count_s)
+        count_goods_categ = GoodsModel.objects.filter(category=str(category_count_s[0])).values().count()
+        count_categ =  list_category_count_s[0], list_category_count_s[1], list_category_count_s[2], list_category_count_s[3], list_category_count_s[4], count_goods_categ
+        # print('append_count_goods_categ-sort')
+        # print(count_categ)
+        append_count_goods_categ.append(count_categ)
+    # print(append_count_goods_categ)
+    # print('min_max')
+    # if request.GET.get('min'):
+    #     print('1')
+    #     category_on_goods_or = GoodsModel.objects.values().order_by('price')
+    #     print(category_on_goods_or)
+    # if request.GET.get('max'):
+    #     print('2')
+    #     category_on_goods_or = GoodsModel.objects.values().order_by('-price')
+    #     print(category_on_goods_or)
+
     connection = psycopg2.connect(user="shopuser",
                                   password="shop_pos0701",
                                   host="127.0.0.1",
@@ -200,9 +219,12 @@ def sort_goods_categ(request):
         # print(request.session['my_list'])
         render_session = request.session['my_list']
     count_render_session = len(render_session)
+
+
+
     return render(request, 'shop_app/big_retail/category.html', context={'goods': tmp_categ_name,
                                                                          'category': category,
-                                                                          'category_on_goods': category_on_goods,
+                                                                         'category_on_goods': append_count_goods_categ,
                                                                          'render_session': render_session,
                                                                          'count_render_session': count_render_session,})
 
@@ -269,7 +291,25 @@ def category(request):
                 tmp_categ_name.append(tmp_categ_name_list)
     # print('tmp_categ_name')
     # print(tmp_categ_name)
+    append_count_goods_categ = []
     category_on_goods = CategoryModel.objects.values_list()
+
+    # category_count = CategoryModel.objects.values()
+    for category_count_s in category_on_goods:
+        list_category_count_s = list(category_count_s)
+
+
+        count_goods_categ = GoodsModel.objects.filter(category=str(category_count_s[0])).values().count()
+        # print('category_count')
+        # print(count_goods_categ)
+        # list_category_count_s[5] = count_goods_categ
+        # print('list_category_count_s')
+        # print(list_category_count_s[5])
+        count_categ =  list_category_count_s[0], list_category_count_s[1], list_category_count_s[2], list_category_count_s[3], list_category_count_s[4], count_goods_categ
+        # print('append_count_goods_categ')
+        # print(count_categ)
+        append_count_goods_categ.append(count_categ)
+    # print(append_count_goods_categ)
     # подсчет и вывод товаров в корзину из сессии
     render_session = []
     if request.session.get('my_list'):
@@ -279,9 +319,10 @@ def category(request):
     count_render_session = len(render_session)
     return render(request, 'shop_app/big_retail/category.html', context={'category': category,
                                                                          'goods': tmp_categ_name,
-                                                                         'category_on_goods': category_on_goods,
+                                                                         'category_on_goods': append_count_goods_categ,
                                                                          'render_session': render_session,
-                                                                         'count_render_session': count_render_session,})
+                                                                         'count_render_session': count_render_session,
+                                                                         })
 
 def gallery(request):
     all_photo = Image.objects.values_list()
@@ -809,7 +850,6 @@ class ProdsListView(LoginRequiredMixin, ListView):
 
 # class LKViews((DetailView):
 
-
 def lk_detail(request, pk):
     print('start')
     # if request.user.is_authenticated:
@@ -823,6 +863,412 @@ def lk_detail(request, pk):
         # else:
         #     print('2')
         #     return HttpResponseRedirect('/login/')
+
+
+from django.db.models import Count
+from django.db.models import Max, Min
+from django.db.models import Avg
+
+
+def fetch_price(request):
+    # print('min_max')
+    # Book.objects.aggregate(Avg('price'), Max('price'), Min('price'))
+    # images_by_popularity = GoodsModel.objects.annotate(price=Count('price')).order_by('price')
+    categ = request.GET.get('categ')
+    sec_cat = request.GET.get('sec_cat')
+    print('sec_cat')
+    print(sec_cat)
+    print('categ')
+    print(categ)
+    min = 1
+    max = 9999999999999999999999999
+
+    if request.GET.get('price') == 'min' and int(categ) == 0:
+        # print('1')
+        all_goods = GoodsModel.objects.filter(price__gt=min).filter(price__lt=max).values_list()
+        print('884-2')
+        print(all_goods)
+        tmp_append_goods = []
+        tmp_categ_name = []
+        tmp_categ_name_list = []
+
+        for tmp_s in all_goods:
+            print('tmp_s-899')
+            print(tmp_s)
+            p = GoodsModel(category=tmp_s[2])
+            categor_name = p.get_category_display()
+            list_tmp = list(tmp_s)
+            list_tmp[2]=categor_name
+            list_tmp = tuple(list_tmp)
+            #print('tmPP_turp')
+            #print(list_tmp)
+            for list_tmp_s in [list_tmp]:
+                # print('list_tmp_s')
+                # print(list_tmp_s)
+                tmp_categ_name_list = list_tmp_s
+                tmp_categ_name.append(tmp_categ_name_list)
+            # print('tmp_categ_name-903')
+            # print(tmp_categ_name)
+        return render(request, 'shop_app/big_retail/category_test.html', {'goods':tmp_categ_name})
+
+    elif request.GET.get('price') == 'max' and int(categ) == 0:
+        all_goods = GoodsModel.objects.filter(price__lt=max).filter(price__gt=min).reverse().order_by('price').values_list()
+        # goods = GoodsModel.objects.annotate(total_price=Count('price')).order_by('-price')
+        # print('2')
+        # print(all_goods)
+        # all_goods = GoodsModel.objects.filter(price__gt=min).filter(price__lt=max).values_list()
+        tmp_append_goods = []
+        tmp_categ_name = []
+        tmp_categ_name_list = []
+
+        for tmp_s in all_goods:
+
+            p = GoodsModel(category=tmp_s[2])
+            categor_name = p.get_category_display()
+            list_tmp = list(tmp_s)
+            list_tmp[2]=categor_name
+            list_tmp = tuple(list_tmp)
+            #print('tmPP_turp')
+            #print(list_tmp)
+            for list_tmp_s in [list_tmp]:
+                # print('list_tmp_s')
+                # print(list_tmp_s)
+                tmp_categ_name_list = list_tmp_s
+                tmp_categ_name.append(tmp_categ_name_list)
+        return render(request, 'shop_app/big_retail/category_test.html', {'goods':tmp_categ_name})
+
+    elif request.GET.get('price') == 'min' and int(categ) > 0:
+        print('1-939')
+        all_goods = GoodsModel.objects.filter(price__gt=min).filter(price__lt=max).filter(category=categ).values_list()
+
+        print('all_goods-942')
+        print(all_goods)
+        tmp_append_goods = []
+        tmp_categ_name = []
+        tmp_categ_name_list = []
+
+        for tmp_s in all_goods:
+            # print('tmp_s-899')
+            # print(tmp_s)
+            p = GoodsModel(category=tmp_s[2])
+            categor_name = p.get_category_display()
+            list_tmp = list(tmp_s)
+            list_tmp[2]=categor_name
+            list_tmp = tuple(list_tmp)
+            #print('tmPP_turp')
+            #print(list_tmp)
+            for list_tmp_s in [list_tmp]:
+                # print('list_tmp_s')
+                # print(list_tmp_s)
+                tmp_categ_name_list = list_tmp_s
+                tmp_categ_name.append(tmp_categ_name_list)
+            # print('tmp_categ_name-903')
+            # print(tmp_categ_name)
+        return render(request, 'shop_app/big_retail/category_test.html', {'goods':tmp_categ_name})
+
+    elif request.GET.get('price') == 'max' and int(categ) > 0:
+
+        all_goods = GoodsModel.objects.filter(price__lt=max).filter(price__gt=min).filter(category=categ).filter(category=categ).reverse().order_by('price').values_list()
+        # goods = GoodsModel.objects.annotate(total_price=Count('price')).order_by('-price')
+        # print('2')
+        # print(all_goods)
+        # all_goods = GoodsModel.objects.filter(price__gt=min).filter(price__lt=max).values_list()
+        tmp_append_goods = []
+        tmp_categ_name = []
+        tmp_categ_name_list = []
+
+        for tmp_s in all_goods:
+
+            p = GoodsModel(category=tmp_s[2])
+            categor_name = p.get_category_display()
+            list_tmp = list(tmp_s)
+            list_tmp[2]=categor_name
+            list_tmp = tuple(list_tmp)
+            #print('tmPP_turp')
+            #print(list_tmp)
+            for list_tmp_s in [list_tmp]:
+                # print('list_tmp_s')
+                # print(list_tmp_s)
+                tmp_categ_name_list = list_tmp_s
+                tmp_categ_name.append(tmp_categ_name_list)
+        return render(request, 'shop_app/big_retail/category_test.html', {'goods':tmp_categ_name})
+
+def fetch_category(request):
+
+    categ = request.GET.get('categ')
+    print('categ')
+    print(categ)
+    print('price')
+    print(request.GET.get('price'))
+    categ = request.GET.get('categ')
+    tmp_price = request.GET.get('price')
+    if tmp_price == 'По цене меньше':
+        tmp_price = 'min'
+    elif tmp_price == 'По цене больше':
+        tmp_price = 'max'
+    else:
+        tmp_price = 'min'
+    min = 1
+    max = 9999999999999999999999999
+
+    if tmp_price == 'min':
+        # print('1')
+        all_goods = GoodsModel.objects.filter(price__gt=min).filter(price__lt=max).filter(category=int(categ)).values_list()
+
+        tmp_append_goods = []
+        tmp_categ_name = []
+        tmp_categ_name_list = []
+
+        for tmp_s in all_goods:
+            # print('tmp_s-899')
+            # print(tmp_s)
+            p = GoodsModel(category=tmp_s[2])
+            categor_name = p.get_category_display()
+            list_tmp = list(tmp_s)
+            list_tmp[2]=categor_name
+            list_tmp = tuple(list_tmp)
+            #print('tmPP_turp')
+            #print(list_tmp)
+            for list_tmp_s in [list_tmp]:
+                # print('list_tmp_s')
+                # print(list_tmp_s)
+                tmp_categ_name_list = list_tmp_s
+                tmp_categ_name.append(tmp_categ_name_list)
+            # print('tmp_categ_name-903')
+            # print(tmp_categ_name)
+        return render(request, 'shop_app/big_retail/category_test.html', {'goods':tmp_categ_name})
+
+
+    if tmp_price == 'max':
+
+        # if request.GET.get('price') == 'max':
+        # all_goods = GoodsModel.objects.filter(category=int(categ)).values_list()
+        all_goods = GoodsModel.objects.filter(price__lt=max).filter(price__gt=min).filter(category=categ).filter(category=int(categ)).reverse().order_by('price').values_list()
+        # goods = GoodsModel.objects.annotate(total_price=Count('price')).order_by('-price')
+        print('1037')
+        print(all_goods)
+        # all_goods = GoodsModel.objects.filter(price__gt=min).filter(price__lt=max).values_list()
+        tmp_append_goods = []
+        tmp_categ_name = []
+        tmp_categ_name_list = []
+
+        for tmp_s in all_goods:
+            # print('tmp_s')
+            # print(tmp_s)
+            p = GoodsModel(category=tmp_s[2])
+            categor_name = p.get_category_display()
+            list_tmp = list(tmp_s)
+            list_tmp[2]=categor_name
+            list_tmp = tuple(list_tmp)
+            # print('tmPP_turp')
+            # print(list_tmp)
+            for list_tmp_s in [list_tmp]:
+                # print('list_tmp_s')
+                # print(list_tmp_s)
+                tmp_categ_name_list = list_tmp_s
+                tmp_categ_name.append(tmp_categ_name_list)
+        return render(request, 'shop_app/big_retail/category_test.html', {'goods':tmp_categ_name})
+
+
+#_index
+def fetch_price_index(request):
+    # print('min_max')
+    # Book.objects.aggregate(Avg('price'), Max('price'), Min('price'))
+    # images_by_popularity = GoodsModel.objects.annotate(price=Count('price')).order_by('price')
+    categ = request.GET.get('categ')
+    sec_cat = request.GET.get('sec_cat')
+    print('sec_cat')
+    print(sec_cat)
+    print('categ')
+    print(categ)
+    min = 1
+    max = 9999999999999999999999999
+
+    if request.GET.get('price') == 'min' and int(categ) == 0:
+        # print('1')
+        all_goods = GoodsModel.objects.filter(price__gt=min).filter(price__lt=max).values_list()
+        print('884-2')
+        print(all_goods)
+        tmp_append_goods = []
+        tmp_categ_name = []
+        tmp_categ_name_list = []
+
+        for tmp_s in all_goods:
+            print('tmp_s-899')
+            print(tmp_s)
+            p = GoodsModel(category=tmp_s[2])
+            categor_name = p.get_category_display()
+            list_tmp = list(tmp_s)
+            list_tmp[2]=categor_name
+            list_tmp = tuple(list_tmp)
+            #print('tmPP_turp')
+            #print(list_tmp)
+            for list_tmp_s in [list_tmp]:
+                # print('list_tmp_s')
+                # print(list_tmp_s)
+                tmp_categ_name_list = list_tmp_s
+                tmp_categ_name.append(tmp_categ_name_list)
+            # print('tmp_categ_name-903')
+            # print(tmp_categ_name)
+        return render(request, 'shop_app/big_retail/index_test.html', {'all_goods':tmp_categ_name})
+
+    elif request.GET.get('price') == 'max' and int(categ) == 0:
+        all_goods = GoodsModel.objects.filter(price__lt=max).filter(price__gt=min).reverse().order_by('price').values_list()
+        # goods = GoodsModel.objects.annotate(total_price=Count('price')).order_by('-price')
+        # print('2')
+        # print(all_goods)
+        # all_goods = GoodsModel.objects.filter(price__gt=min).filter(price__lt=max).values_list()
+        tmp_append_goods = []
+        tmp_categ_name = []
+        tmp_categ_name_list = []
+
+        for tmp_s in all_goods:
+
+            p = GoodsModel(category=tmp_s[2])
+            categor_name = p.get_category_display()
+            list_tmp = list(tmp_s)
+            list_tmp[2]=categor_name
+            list_tmp = tuple(list_tmp)
+            #print('tmPP_turp')
+            #print(list_tmp)
+            for list_tmp_s in [list_tmp]:
+                # print('list_tmp_s')
+                # print(list_tmp_s)
+                tmp_categ_name_list = list_tmp_s
+                tmp_categ_name.append(tmp_categ_name_list)
+        return render(request, 'shop_app/big_retail/index_test.html', {'all_goods':tmp_categ_name})
+
+    elif request.GET.get('price') == 'min' and int(categ) > 0:
+        print('1-939')
+        all_goods = GoodsModel.objects.filter(price__gt=min).filter(price__lt=max).filter(category=categ).values_list()
+
+        print('all_goods-942')
+        print(all_goods)
+        tmp_append_goods = []
+        tmp_categ_name = []
+        tmp_categ_name_list = []
+
+        for tmp_s in all_goods:
+            # print('tmp_s-899')
+            # print(tmp_s)
+            p = GoodsModel(category=tmp_s[2])
+            categor_name = p.get_category_display()
+            list_tmp = list(tmp_s)
+            list_tmp[2]=categor_name
+            list_tmp = tuple(list_tmp)
+            #print('tmPP_turp')
+            #print(list_tmp)
+            for list_tmp_s in [list_tmp]:
+                # print('list_tmp_s')
+                # print(list_tmp_s)
+                tmp_categ_name_list = list_tmp_s
+                tmp_categ_name.append(tmp_categ_name_list)
+            # print('tmp_categ_name-903')
+            # print(tmp_categ_name)
+        return render(request, 'shop_app/big_retail/index_test.html', {'all_goods':tmp_categ_name})
+
+    elif request.GET.get('price') == 'max' and int(categ) > 0:
+
+        all_goods = GoodsModel.objects.filter(price__lt=max).filter(price__gt=min).filter(category=categ).filter(category=categ).reverse().order_by('price').values_list()
+        # goods = GoodsModel.objects.annotate(total_price=Count('price')).order_by('-price')
+        # print('2')
+        # print(all_goods)
+        # all_goods = GoodsModel.objects.filter(price__gt=min).filter(price__lt=max).values_list()
+        tmp_append_goods = []
+        tmp_categ_name = []
+        tmp_categ_name_list = []
+
+        for tmp_s in all_goods:
+
+            p = GoodsModel(category=tmp_s[2])
+            categor_name = p.get_category_display()
+            list_tmp = list(tmp_s)
+            list_tmp[2]=categor_name
+            list_tmp = tuple(list_tmp)
+            #print('tmPP_turp')
+            #print(list_tmp)
+            for list_tmp_s in [list_tmp]:
+                # print('list_tmp_s')
+                # print(list_tmp_s)
+                tmp_categ_name_list = list_tmp_s
+                tmp_categ_name.append(tmp_categ_name_list)
+        return render(request, 'shop_app/big_retail/index_test.html', {'all_goods':tmp_categ_name})
+
+def fetch_category_index(request):
+
+    categ = request.GET.get('categ')
+    print('categ')
+    print(categ)
+    print('price')
+    print(request.GET.get('price'))
+    categ = request.GET.get('categ')
+    tmp_price = request.GET.get('price')
+    if tmp_price == 'По цене меньше':
+        tmp_price = 'min'
+    elif tmp_price == 'По цене больше':
+        tmp_price = 'max'
+    else:
+        tmp_price = 'min'
+    min = 1
+    max = 9999999999999999999999999
+
+    if tmp_price == 'min':
+        # print('1')
+        all_goods = GoodsModel.objects.filter(price__gt=min).filter(price__lt=max).filter(category=int(categ)).values_list()
+
+        tmp_append_goods = []
+        tmp_categ_name = []
+        tmp_categ_name_list = []
+
+        for tmp_s in all_goods:
+            # print('tmp_s-899')
+            # print(tmp_s)
+            p = GoodsModel(category=tmp_s[2])
+            categor_name = p.get_category_display()
+            list_tmp = list(tmp_s)
+            list_tmp[2]=categor_name
+            list_tmp = tuple(list_tmp)
+            #print('tmPP_turp')
+            #print(list_tmp)
+            for list_tmp_s in [list_tmp]:
+                # print('list_tmp_s')
+                # print(list_tmp_s)
+                tmp_categ_name_list = list_tmp_s
+                tmp_categ_name.append(tmp_categ_name_list)
+            # print('tmp_categ_name-903')
+            # print(tmp_categ_name)
+        return render(request, 'shop_app/big_retail/index_test.html', {'all_goods':tmp_categ_name})
+
+    if tmp_price == 'max':
+
+        # if request.GET.get('price') == 'max':
+        # all_goods = GoodsModel.objects.filter(category=int(categ)).values_list()
+        all_goods = GoodsModel.objects.filter(price__lt=max).filter(price__gt=min).filter(category=categ).filter(category=int(categ)).reverse().order_by('price').values_list()
+        # goods = GoodsModel.objects.annotate(total_price=Count('price')).order_by('-price')
+        print('1037')
+        print(all_goods)
+        # all_goods = GoodsModel.objects.filter(price__gt=min).filter(price__lt=max).values_list()
+        tmp_append_goods = []
+        tmp_categ_name = []
+        tmp_categ_name_list = []
+
+        for tmp_s in all_goods:
+            # print('tmp_s')
+            # print(tmp_s)
+            p = GoodsModel(category=tmp_s[2])
+            categor_name = p.get_category_display()
+            list_tmp = list(tmp_s)
+            list_tmp[2]=categor_name
+            list_tmp = tuple(list_tmp)
+            # print('tmPP_turp')
+            # print(list_tmp)
+            for list_tmp_s in [list_tmp]:
+                # print('list_tmp_s')
+                # print(list_tmp_s)
+                tmp_categ_name_list = list_tmp_s
+                tmp_categ_name.append(tmp_categ_name_list)
+        return render(request, 'shop_app/big_retail/index_test.html', {'all_goods':tmp_categ_name})
+
 
 
 """    if request.session['my_list'] in locals():

@@ -15,15 +15,15 @@
 {% block video-baner %}{% endblock video-baner %}
     {% block additions %} {% endblock additions %}
         <section id="new-additions" class="new-additions section">
-        <div class="container">
+        <div class="container cont_index">
             <div class="row">
                 <div class="col-xs-12 animated" data-animation="fadeInRight" data-animation-delay="500">
                     <h2 class="section-title animated" data-animation="fadeInRight" data-animation-delay="300">Специальные предложения</h2>
-                    <p class="sub-title animated" data-animation="fadeInLeft" data-animation-delay="300">Метод изучения рынка индуктивно ускоряет медиабизнес. Сегмент рынка развивает институциональный контент, опираясь на опыт западных коллег.</p>
+                    <p class="sub-title animated inde_pad_kar" data-animation="fadeInLeft" data-animation-delay="300">Метод изучения рынка индуктивно ускоряет медиабизнес. Сегмент рынка развивает институциональный контент, опираясь на опыт западных коллег.</p>
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="container main_container">
             <div class="row">
                 <div class="col-xs-12 animated" data-animation="fadeInUp" data-animation-delay="800">
                     <div id="new-additions-carousel" class="new-additions-carousel">
@@ -53,16 +53,16 @@
    <!-- new-additions end-->
     <section id="top-sale" class="top-sale-section">
         <div class="container my_container-index">
-            <div class="row">
+            <div class="row ind-row">
                 <div class="col-md-12">
                     <h2 class="section-title">Что мы можем Вам предложить?</h2>
                     <p class="sub-title">Метод изучения рынка индуктивно ускоряет медиабизнес. Сегмент рынка развивает институциональный контент, опираясь на опыт западных коллег.</p>
                 </div>
             </div>
             <div class="row button-block">
-                <div class="col-md-12">
+                <div class="col-md-12 col-md-elect">
                     <ul>
-                        <li class="pull-right">
+                        <li class="pull-right my_display_none-view">
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="btn-group list view-type">Показать как:</li>
                                 <li class="btn-group list active" role="presentation" ><a href="{% url 'goods' %}" title="Списком" role="tab" style="cursor: pointer;"><i class="fa fa-th-list"></i></a>
@@ -71,7 +71,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="btn-group item-sort">
+                        {% comment %}<li class="btn-group item-sort">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="pull-right"><i class="fa fa-angle-down"></i></span>Сортировать: <span>Выберите вариант</span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
@@ -104,34 +104,63 @@
                                 <li><a href="#">Все</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li>{% endcomment %}
+
+                        <li class="btn-group item-sort"><!--сортировать по цене-->
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="pull-right">
+                                    <i class="fa fa-angle-down"></i></span>Сортировать: <span class="change_price">По цене</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#" onclick="onclickPrice(this, 0, event) " class="change_price_min">По цене меньше</a>
+                                </li>
+                                <li><a href="#" onclick="onclickPrice(this, 1, event)" class="change_price_max">По цене больше</a>
+                                </li>
+                            </ul>
+                        </li><!--сортировать по цене-->
+                        <!--btn-group item-show-->
+                        <li class="btn-group item-categories"><!--сортировать по категориям-->
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <span class="pull-right">
+                                        <i class="fa fa-angle-down"></i>
+                                    </span>Выбрать: <span title="0" class="create_categ">Категорию</span>
+                            </button>
+                            <ul class="dropdown-menu min-max-js" role="menu">
+                                {% for category_on_goods_s in category_on_goods %}
+                                    <li>
+                                        <a href="#" onclick="onclickCateg(this, {{ category_on_goods_s.0 }}, '{{ category_on_goods_s.1 }}', event)"><span>{{ category_on_goods_s.1}}</span></a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </li><!--сортировать по категориям-->
+
                     </ul>
                 </div>
             </div>
             {% autopaginate all_goods 12 %}
-            {% paginate %}
-                <div class="my_row">
+            <div class="pagin-up">{% paginate %}</div>
+            <div class="for-row">
+                <div class="parent_my_row"><div class="my_row">
 
                     {% for all_goods_s in all_goods %}
 
                         <div class="chaild_grid">
                             <div class="prodect-box">
                                 <div class="photo-block-">
-                                    <a data-rel="prettyPhoto-" href="/media/img/36.jpg" title="Название товара" class="link">
+                                    <a data-rel="prettyPhoto-" href="/media/img/36.jpg-" title="Название товара" class="-link-">
                                         <i class="fa- fa-plus-"></i></a>
 
                                     <img src="{{ MEDIA_URL }}{{ all_goods_s.4 }}" alt="item" class="img-responsive">
                                 </div>
                                 <div  class="prodect-details border_image">
                                     <h4>{{ all_goods_s.2 }}</h4>{#Категория#}
-                                    <h3>{{ all_goods_s.1 }}</h3>
+                                    <h3 class="h3_prod">{{ all_goods_s.1 }}</h3>
                                     <h2>цена: {{ all_goods_s.3 }}</h2>
-                                    <p>
-                                    <div class="border_two_line"><span class="color_star rating">&#9733;</span> <span class="color_star_two">&#9734;</span><span class="my_reiting">- рейтинг товара</span></div>
-                                    </p>
+{#                                    <p>#}
+{#                                    <div class="border_two_line"><span class="color_star rating">&#9733;</span> <span class="color_star_two">&#9734;</span><span class="my_reiting">- рейтинг товара</span></div>#}
+{#                                    </p>#}
                                     <div class="row- shoping-details">
                                         <div class="my_cart_reed">
-                                <div><a href="{% url 'shop_cart' %}?i={{ all_goods_s.0 }}&name={{ all_goods_s.1 }}&price={{ all_goods_s.3 }}&img={{ media_url_cart }}{{ all_goods_s.4 }}" class="add-card-text"><span class="fa fa-shopping-cart"></span>В корзину</a>
+                                            <div><a href="{% url 'shop_cart' %}?i={{ all_goods_s.0 }}&name={{ all_goods_s.1 }}&price={{ all_goods_s.3 }}&img={{ media_url_cart }}{{ all_goods_s.4 }}" class="add-card-text"><span class="fa fa-shopping-cart"></span><span class="span-cart-index">В корзину</span></a>
                                             </div>
 {#                                            <div ><a href="{% url "show" %}?i={{ all_goods_s.0 }}" class="show-link">Читать...<span class="right-icon-"></span></a>#}
                                               <div ><a href="{% url "show" pk=all_goods_s.0 %}" class="show-link">Подробнее...<span class="right-icon-"></span></a>
@@ -145,8 +174,9 @@
                         </div>
 
                     {% endfor %}
-
+                   </div>
                 </div>
+            </div>
             <div class="pagin-down">{% paginate %}</div>
         </div>
         </div>
@@ -154,7 +184,7 @@
 
     <section class="work-area section my_work-area-index">
         <div class="container">
-            <div class="row">
+            <div class="row row-footer-he">
                 <div class="col-xs-12">
                     <h2 class="section-title text-center color-black animated" data-animation="fadeInRight" data-animation-delay="300">Приветствуем Вас в нашем магазине!</h2>
                     <p class="sub-title text-center color-black animated" data-animation="fadeInLeft" data-animation-delay="500">Исходя из структуры пирамиды Маслоу, опрос охватывает фирменный нишевый проект.</p>
@@ -162,27 +192,27 @@
                 </div>
             </div>
             <div class="row welcome-block">
-                <div class="col-sm-3">
+                <div class="col-sm-3 my-col-sm-3">
                     <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="300"><i class="fa fa-shopping-cart"></i>
-                        <h3>Быстрая покупка</h3>
+                        <h3 class="my_welcome-box">Быстрая покупка</h3>
                         <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3 my-col-sm-3">
                     <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="500"><i class="fa fa-car"></i>
-                        <h3>Доставка по России</h3>
+                        <h3 class="my_welcome-box">Доставка по России</h3>
                         <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3 my-col-sm-3">
                     <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="700"><i class="fa fa-money"></i>
-                        <h3>Продажа шаблонов</h3>
+                        <h3 class="my_welcome-box">Продажа шаблонов</h3>
                         <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3 my-col-sm-3">
                     <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="900"><i class="fa fa-credit-card"></i>
-                        <h3>Оплачивайте здесь</h3>
+                        <h3 class="my_welcome-box">Оплачивайте здесь</h3>
                         <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
                     </div>
                 </div>
@@ -191,6 +221,75 @@
     </section>
 
 </body>
+
+    <script>
+
+        number_cat = 0
+        number_flag = 0
+        function onclickPrice(my_this, flag, event) {
+            // фильтрация по минимальной и мкаксимальной цене
+            event.preventDefault()
+            // прсваиваем слассу там где выбираем название категории
+
+            //console.log('min-max-js')
+            //console.log(document.getElementsByClassName('min-max-js')[0])
+            {#var fetch_categ = document.getElementsByClassName('create_categ')[0].innerHTML#}
+            {#console.log('onclickPrice')#}
+            {#console.log(my_this.innerHTML)#}
+            {#console.log(flag)#}
+            var second_cat = document.getElementsByClassName('create_categ')[0].title
+
+            console.log(document.getElementsByClassName('create_categ')[0].innerHTML)// прсваиваем слассу там где выбираем название категории
+
+            if (flag == 0) {  // сорт по меньшей цене
+                {#console.log(document.getElementById('price_min_max'))#}
+                document.getElementsByClassName('change_price')[0].innerHTML = document.getElementsByClassName('change_price_min')[0].innerHTML
+                fetch('/fetch_price_index?price=min&categ=' + number_cat + '&sec_cat=' + second_cat)  // передаём min
+                    // Handle success
+                    {#.then(response => console.log(response))#}
+                    .then(response => response.text())//ловим с дефа  django
+                    .then(data => getFilterData(data))
+            } else {// сорт по большей цене
+                document.getElementsByClassName('change_price')[0].innerHTML = document.getElementsByClassName('change_price_max')[0].innerHTML
+                fetch('/fetch_price_index?price=max&categ=' + number_cat + '&sec_cat=' + second_cat)  // передаём max
+                    .then(response => response.text())//ловим с дефа
+                    .then(data => getFilterData(data))
+                // Handle success
+                {#.then(response => console.log(response))#}
+
+            }
+        }
+
+        function getFilterData(data){
+            //функция котороая выводит все полученные отфильтрованные данные из etch в id 'for-row'
+            //console.log('data')
+            //console.log(data)
+            let contentblock = ''
+            document.getElementsByClassName('for-row')[0].innerHTML = data  //
+            //console.log('contentblock')
+            //console.log(contentblock)
+        }
+
+        function onclickCateg(my_categ, int_id, str_cat, event, flag_price){// по нажатию на выбор категории
+            // останавливаем перзагрузку страницы и сласу присваиваем название категории
+            number_cat = int_id// глобальна перменна перадаем id категории
+            //console.log('str_cat')
+            //console.log(str_cat)
+            document.getElementsByClassName('create_categ')[0].innerHTML = str_cat// прсваиваем слассу там где выбираем название категории
+            document.getElementsByClassName('create_categ')[0].title = int_id
+            flag_price = document.getElementsByClassName('change_price')[0].innerHTML
+            event.preventDefault()// остановить действие по умалчанию перход по сылке
+
+
+            {#else {// сорт по большей цене}#}
+            fetch('/fetch_category_index?categ=' + number_cat + '&price=' + flag_price)  // передаём max
+                // Handle success
+                {#.then(response => console.log(response))#}
+                .then(response => response.text())//ловим с дефа
+                .then(data => getFilterData(data))
+
+        }
+    </script>
 
 {% endblock content %}
 {% block brands %}{% endblock brands %}

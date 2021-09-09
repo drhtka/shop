@@ -3,7 +3,9 @@
 
 <html lang="en">
 <head>
-    <meta charset="UTF-8"><!DOCTYPE html>
+    <meta charset="UTF-8" ><!DOCTYPE html>
+{#https://overcoder.net/q/207101/%D0%BF%D1%83%D1%81%D1%82%D0%BE%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE-%D0%B2%D0%BD%D0%B8%D0%B7%D1%83-%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D1%8B-%D0%B7%D0%B0-%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B0%D0%BC%D0%B8-%D1%82%D0%B5%D0%B3%D0%BE%D0%B2-html-%D0%BD%D0%B0-%D0%BC%D0%BE%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D0%BE%D0%BC#}
+{#    <meta charset="UTF-8" content="width=device-width, initial-scale=1"><!DOCTYPE html>#}
     <html lang="ru">
 
     <head>
@@ -27,9 +29,10 @@
         {% comment %}<link href="{% static "shop_app/css/base.css" %}" rel="stylesheet" type="text/css">{% endcomment %}
         <link href="{% static "big_retail/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
         <link href="{% static "big_retail/css/style.css" %}" rel="stylesheet" type="text/css">
-
-        <link href="{% static "pagination/my_pagin.css" %}" rel="stylesheet" type="text/css">
         <link href="{% static "big_retail/css/my_style.css" %}" rel="stylesheet" type="text/css">
+        <link href="{% static "pagination/my_pagin.css" %}" rel="stylesheet" type="text/css">
+
+        <link href="{% static "big_retail/css/my_media.css" %}" rel="stylesheet" type="text/css">
 
     {% block css %}{% endblock css %}
 
@@ -97,8 +100,8 @@
                                     <li><a href="#"><i class="flaticon-phone46"></i> +7 123 456 78 90</a>
                                     </li>
                                 </ul>
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><i class="flaticon-list50"></i>
-                                </button>
+{#                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><i class="flaticon-list50"></i>#}
+{#                                </button>#}
                             </div>
                             <ul class="nav navbar-nav navbar-right section-hidden">
 
@@ -236,7 +239,8 @@
         </div>
     {% endblock header1 %}
 
-<body>
+<body class="Site">
+<div class="my_body Site-content">
 {% block content %}
 
 {% endblock content %}
@@ -293,9 +297,9 @@
 
     {% block footer %}
         <section id="footer" class="footer-bg">
-        <div class="footer-section">
+        <div class="footer-section footer-section-my">
             <div class="container">
-                <div class="row">
+                <div class="row my_foorer_row">
                     <div class="col-sm-3 animated my_display_none" data-animation="fadeInUp" data-animation-delay="300">
                         <h3>О магазине</h3>
                         <p>Ретроконверсия национального наследия реально изменяет формирование имиджа. Еще Траут показал, что мониторинг активности вполне вероятен. Узнавание бренда экономит тактический инструмент маркетинга.</p>
@@ -307,20 +311,19 @@
                         </ul>
                     </div>
 
-                    <div class="col-sm-3 latest-post animated my_display_none" data-animation="fadeInUp" data-animation-delay="700">
-                        <h3>Последние новости</h3>
+                    <div class="col-sm-3 latest-post animated my_display_none z-index-article" data-animation="fadeInUp" data-animation-delay="700">
+                        <h3 >Последние новости</h3>
 
                         {% for article in object_list %}
                             <ul>
-                                <li><a href="{% url 'articles:article_detail' pk=article.pk %}">{{ article.title }}</a>
-                                </li>
+                                <li><a href="{% url 'articles:article_detail' pk=article.pk %}">{{ article.title }}</a></li>
                             </ul>
                         {% endfor %}
                     </div>
                     <div class="col-sm-3- flickr animated" data-animation="fadeInUp" data-animation-delay="900">
-                        <h3 class="my_display_none">Галерея</h3>
+                        <h3 class="my_display_none gallery_base">Галерея</h3>
 
-                        <div class="grid-footer">
+                        <div class="grid-footer mar_gal_bas">
 {#                            <ul class="parent_ul"></ul>#}
                                 {% for gallery_index_tmp_s in gallery_index_tmp %}
                                     <li>
@@ -373,6 +376,8 @@
                 </div>
             </div>
         </div>
+        </section>
+
         <script type="text/javascript" src="{% static "shop_app/js/script.js" %}" rel="stylesheet"></script>
     {% endblock footer %}
 {% block js %}
@@ -434,6 +439,7 @@
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script><!--2212-->
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script><!--2212-->
 {% endblock react %}
+</div>
 </body>
 
 </html>

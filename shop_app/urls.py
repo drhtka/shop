@@ -25,6 +25,10 @@ urlpatterns = [
     path('send_order/', views.send_order, name='send_order'),
     path('sort_goods_categ/', views.sort_goods_categ, name='sort_goods_categ'),
     path('final_thanks/', views.final_thanks, name='final_thanks'),
+    path('fetch_price/', views.fetch_price, name='fetch_price'),
+    path('fetch_category/', views.fetch_category, name='fetch_category'),
+    path('fetch_price_index/', views.fetch_price_index, name='fetch_pric_indexe'),
+    path('fetch_category_index/', views.fetch_category_index, name='fetch_category_index'),
     # path('lk/', LKViews.lk, name='lk')
 
     path('lk_list/', ProdsListView.as_view(), name='lk_list'),

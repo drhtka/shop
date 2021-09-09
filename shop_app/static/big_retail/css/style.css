@@ -2132,7 +2132,7 @@ li.grid {
 .shop-list-section .item-panel h5 {
     font-family: 'Lora';
     text-align: left;
-    margin: 2px 0;
+    margin: 7px 0;
     text-transform: capitalize
 }
 .shop-list-section .item-panel a h3 {
@@ -2191,8 +2191,8 @@ li.grid {
     font-family: 'Lora';
     line-height: 1.3;
     border-top: 1px solid #e5e5e5;
-    padding: 6px 0px 3px;
-    margin: 5px 10px 0px 0px
+    padding: 8px 0px 0px;
+    margin: 3px 10px 0px 0px
 }
 .shop-list-section .item-panel .ratings .contings {
     font-family: 'Lora';
@@ -2201,7 +2201,7 @@ li.grid {
 }
 .shop-list-section .item-panel ul {
     margin: 0;
-    padding: 4px 0px 0px
+    padding: 16px 0px 0px
 }
 .shop-list-section .item-panel ul li {
     list-style: none;
@@ -2209,7 +2209,8 @@ li.grid {
 }
 .shop-list-section .item-panel ul li a,
 .shop-list-section .item-panel ul li a {
-    font-family: 'Lora'
+    font-family: 'Lora';
+    padding-left: 6px;
 }
 .shop-list-section .item-panel ul li a:hover,
 .shop-list-section .item-panel ul li a:hover {
@@ -2220,7 +2221,7 @@ li.grid {
     margin-right: 10px
 }
 .shop-list-section .item-panel ul li .fa {
-    margin: 0 5px
+    margin: 0 1px
 }
 ul.top-sale-pagination {
     margin: 27px auto 0;
@@ -2887,10 +2888,10 @@ ul.top-sale-pagination li a {
 }
 .filter-print-price {
     padding: 7px 0px 0px;
-    margin: 0px 17px
+    margin: 11px 17px
 }
 .filter-print-price a h4 {
-    padding: 5px 31px;
+    padding: 9px 31px;
     color: #FFFFFF;
     text-align: center;
     font-family: 'Lora';
@@ -6014,7 +6015,7 @@ panel-default {
     margin: 0 auto
 }
 #single-projects .page-desc-section .page-desc:before {
-    font-family: 'FontAwesome';
+    font-family: 'FontAwesome', serif;
     content: "\f109"
 }
 #single-projects .single-item-section {

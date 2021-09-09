@@ -5,6 +5,7 @@ class App extends React.Component{
         // помогает обращаться (запускат методы у себя из класса react.component)
         this.state = {  // state состояние глобальня память
             products: [],
+            products_pagin: [],
             products_edit: [],
             products_filtr_price: [],
             products_search: [],
@@ -17,7 +18,10 @@ class App extends React.Component{
             orig_min_price: 100,
             orig_max_price: 59999999999,
             text_null_search: '',
-            drop_categ: ''
+            drop_categ: '',
+            gener_array: [],
+            count_page: 0
+
         }
     }
 
@@ -136,9 +140,7 @@ class App extends React.Component{
         }
     }
     sortPriceMax(event){
-
         event.target.value = event.target.value.replace(/[^0-9]/g, "");// запрет ввода букв
-
         if (event.target.value.length > 9) {// запрещаем ввод больше 9 символов в поле минимальной цены
             event.target.value = event.target.value.substring(0, 9);// записываем в значение поля, значение без букв и 0 до 9 символов
         }
@@ -151,7 +153,6 @@ class App extends React.Component{
         }else {
             this.setState({max_price:event.target.value}) // если меньше тогда заносим в стейт значение по умолчанию из стейта
         }
-
     }
 
     filtrPrice(){
@@ -160,7 +161,6 @@ class App extends React.Component{
         // совместная функция, которая содержит отфильтованные товары по категориии и мин и макс цене
         // let max_tmp_price = this.state.orig_max_price
         let max_tmp_price = this.state.orig_max_price
-
         // console.log(this.state.max_price.length)
         if(this.state.max_price.length == 0){
         this.state.max_price = max_tmp_price
@@ -174,7 +174,6 @@ class App extends React.Component{
         let search_input = event.target.value
 
         this.setState({search_input_state:search_input.toLowerCase()}) // приравниваем введеное в поле поиска слово к нижнему регстру
-
     }
 
     filterItems(event){
@@ -226,46 +225,130 @@ class App extends React.Component{
                     if(Number(category_one_push[p].price) >= Number(this.state.min_price) && Number(category_one_push[p].price) <= Number(this.state.max_price)){ // сравниваем цену товара
                         // отсортирванную по категориям и минимальную цену
                         // и цену товара отсортирванную по категориям и максимальную цену
-                        final_array.push(category_one_push[p]) // когда эти условия совпадают, тогда пушим
+                        final_array.push(category_one_push[p]) // когда эти условия совпадают, тогда пушим для создания ключ
 
                     }
                 }
 
-                this.setState({products:final_array}) // и заносим в стейт юля прорисовки в шаблоне
+                this.setState({products:final_array}) // и заносим в стейт для прорисовки в шаблоне
             }
         }
+
+    paginProd(num_pagin, event){
+
+        // let tmp_gener_array = this.state.gener_array(0, 6)
+        // let start = 0
+        // let end = 6
+        let step = 6
+        // let x_end = (step * num_pagin) - 5
+        let xstart = 0
+        let xend = 0
+        // let all_pages = (this.state.products_pagin.length/6).toFixed()
+        for (let i=0; i<num_pagin; i++){
+            // console.log('num_pagin')
+            // console.log(num_pagin)
+            // console.log('actiual-1')
+            // console.log(xstart)
+            // console.log(xend)
+            xstart = xend //xstart счетчик номер стартового эллемента массива
+            xend = xend + step //xend счетчик последнего эллемента массива
+            console.log('actiual-2')
+            console.log(xstart)
+            console.log(xend)
+        }
+        let tmp_gener_array = this.state.products_pagin.slice(xstart, xend) // слайсом ограничиваем начало и конец по номеру нажатого
+        this.setState({gener_array: tmp_gener_array})
+
+        // if (event.target.innerHTML == '1'){
+        //     let tmp_gener_array = this.state.products_pagin.slice(0, 6)
+        //     this.setState({gener_array: tmp_gener_array})
+        //     // console.log('this.state.gener_array-1')
+        //     // console.log(this.state.gener_array)
+        // }
+        // if (event.target.innerHTML == '2'){
+        //     let tmp_gener_array = this.state.products_pagin.slice(7, 13)
+        //     this.setState({gener_array: tmp_gener_array})
+        //     console.log('this.state.gener_array-2')
+        //     console.log(this.state.gener_array)
+        // }
+        // if (event.target.innerHTML == '3'){
+        //     let tmp_gener_array = this.state.products_pagin.slice(14, 20)
+        //     this.setState({gener_array: tmp_gener_array})
+        //     console.log('this.state.gener_array-2')
+        //     console.log(this.state.gener_array)
+        // }
+
+        // this.setState({gener_array: tmp_gener_array})
+        // console.log(animals.slice(2, 4));
+    }
+
+
 
     productsApi(json){ // в одной функции делаем 2 задания во время фетча, т.е одну и ту же выборку назначаем двум переменным
         this.setState({products:json}) //
         this.setState({products_edit:json})
         this.setState({products_filtr_price:json})
         this.setState({products_search:json})
+        this.setState({products_pagin:json})//передаем в формате json в функцию
+        this.setState({gener_array:json.slice(0, 6)}) //пердаем в формате json в функцию, слайсом выбираем первые 6 товаров для первой страница
+
         // console.log('products_edit')
         //
         // console.log(this.state.products_edit, this.state.products)
     }
     componentDidMount(){
-        console.log('hello_comp-2')
+        // console.log('hello_comp-2')
+        // let products_pagin_len = this.state.products_pagin
+        // console.log('products_pagin_len')
+        // console.log(products_pagin_len)
 
     // GET Request.
         fetch('http://127.0.0.1:8800/api')
             // Handle success
             .then(response => response.json())  // convert to json
-            .then(json => this.productsApi(json))    //print data to console
+            .then(json => this.productsApi(json))    //   //пердаем в фомате json в функцию
+            // .then(json => this.mySetArray.bind(this, json))
 
         fetch('http://127.0.0.1:8800/api/category')
             // Handle success
             .then(responsec => responsec.json())  // convert to json
             .then(json => this.setState({category:json}))
+
             //.then(json => this.setState({products:json}))    //print data to console
+            // .then(data2 => this.setState({products_pagin:data2}))
+            //  let products_pagin = gener_array.slice(0, 6)
+            // console.log('1223')
+            // console.log(products_pagin)
 
             // .then(my_categ_state => console.log(this.state.category))
         // console.log('2')
         // console.log(this.state.category)
 }
+
     /*<!-- выведем даные из сайта: -->*/
     render() {//  render зарезервированное имя в реакте выводит даные{
+        let count_page_var = (this.state.products_pagin.length/6).toFixed() // получаем количество страниц по 6 товаров .toFixed() округляет в большую
+        // this.setState({count_page: count_page_var})
+        let pag_array = []
+        for (let i = 1; i<=count_page_var; i++){ //перебираем циклом и получаем количество страниц
+            // console.log('count_page_var-i')
+            // console.log(i)
+            pag_array.push(i) // пушим чтоб сделать ключ значение, для передачи в шаблон
+        }
+        // console.log('pag_array')
+        // console.log(pag_array)
 
+        const pages = pag_array.map((item, index)=>{ //
+            // let item_pagin = item
+            // return <li key={index}>{item}<div>{item} $</div></li>
+
+            return <li key={index} onClick={this.paginProd.bind(this, item)}><a>{item}</a></li>
+
+            // <li><a href="#" onClick={this.paginProd.bind(this)}>&laquo;</a></li>
+
+        });
+
+        // let pagin= "{% paginate %}"
         let categories = this.state.category.map((item, index)=>{
             let cat_trues = item.cat_true
             let cat_names = item.catname
@@ -275,53 +358,48 @@ class App extends React.Component{
             </li>
 
         });
-        let myProducts = this.state.products.map((item, index)=>{ //index внутрення нумерация, его менять нельзя
+        let myProducts = this.state.gener_array.map((item, index)=>{ //index внутрення нумерация, его менять нельзя, выводим товары на страницу gener_array
             let href_url = '/show/'+item.id
             let href_url_cart = "/shop_cart?i="+item.id+"&name="+item.goodsname+"&price="+item.price+"&img="+item.img
-            return <div key={index}>
 
-                <div className="item-panel">
+            return <div key={index}>
+                {/*<div className="pagin-up">{pagin}</div>*/}
+                <div className="item-panel product-grid-child">
                     <div className="row margin-hide">
                         <div className="col-md-4 col-sm-4 padding-left-hide">
                             <a data-rel="prettyPhoto" href="images/shop-2/1.png" title="Название товара" className="img-body-" />
-                            <img src={item.img} alt="" className="img-responsive" />
+                            <img src={item.img} alt="" className="img-responsive img-responsive-prod" />
                         </div>
-
                         <div className="col-md-8 col-sm-8 padding-right-hide">
                             <div className="offer-box">
                                 <h3>-50%</h3>
                                 <h3>Акция</h3>
                             </div><a href="#"><h3>Код:  {item.id}</h3></a>
-                            <h4>{item.goodsname}</h4>
+                            <h4 className="goodsname-hide">{item.goodsname}</h4>
                             <h5>{item.price}</h5>
                             <p>{item.category_choices}</p>
                             <ul>
                                 <li className="show-link"><a href={href_url}><span>Подробнее..</span></a><span className="fa fa-angle-right right-icon"></span>
                                 </li>
                                 <li className="add-to-card"><span className="fa fa-shopping-cart"><a href={href_url_cart}><span>В корзину</span></a></span>
-
                                 </li>
                             </ul>
                         </div>
-
-
                     </div>
                 </div>
-
-                </div>
+            </div>
 
         });
 
         return <div>
 
             <section id="shop-list" className="shop-list-section top-sale-section">
-                <div className="container">
+                <div className="container container-filter">
                     <div className="row button-block">
-                        <div className="col-md-12">
+                        <div className="col-md-12 col-md-12-prodlist">
                             <ul>
-
                                 <li className="btn-group item-sort">
-                                    <button type="button"  className="btn btn-default dropdown-toggle" data-toggle="dropdown"><span className="pull-right"><i className="fa fa-angle-down" />
+                                    <button type="button"  className="btn btn-default dropdown-toggle dropdown-toggle-heght" data-toggle="dropdown"><span className="pull-right"><i className="fa fa-angle-down" />
                                     </span>Сортировать: <span>{this.state.down_up}</span>
                                     </button>
                                     <ul className="dropdown-menu" role="menu">
@@ -335,12 +413,12 @@ class App extends React.Component{
                                         </li>
                                     </ul>
                                 </li>
-                                <li className="btn-group">
-                                    <button type="button" className="btn btn-default top-icon"><i className="fa fa-arrow-up" />
-                                    </button>
-                                </li>
+                                {/*<li className="btn-group">*/}
+                                {/*    <button type="button" className="btn btn-default top-icon"><i className="fa fa-arrow-up" />*/}
+                                {/*    </button>*/}
+                                {/*</li>*/}
                                 <li className="btn-group item-categories">
-                                    <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <button type="button" className="btn btn-default dropdown-toggle dropdown-toggle-my" data-toggle="dropdown">
                                         <span className="pull-right">
                                             <i className="fa fa-angle-down" /></span>Выбрать: <span>{this.state.sort_categor_drop}</span>
                                     </button>
@@ -355,9 +433,9 @@ class App extends React.Component{
                                     </ul>
                                 </li>
 
-                                <li className="btn-group item-categories">
-                                    <input type="search" onChange={this.updateInputValue.bind(this)}/>
-                                    <button onClick={this.filterItems.bind(this)}>Искать</button>
+                                <li className="btn-group item-categories item-categories-my">
+                                    <input className="input-search" type="search" onChange={this.updateInputValue.bind(this)}/>
+                                    <button className="button-search" onClick={this.filterItems.bind(this)}>Искать</button>
                                 </li>
 
                             </ul>
@@ -366,49 +444,33 @@ class App extends React.Component{
                     </div>
                     <div className="tab-content">
                         <div role="tabpanel" className="tab-pane fade in active shop-list-section" id="list">
-                            <div className="row">
-                                <div className="col-md-3 filter col-sm-3">
+                            <div className="row shop-list-row">
+                                <div className="col-md-3 filter col-sm-3 col-sm-3-my">
                                     <div className="filter-price-box">
                                         <div className="filter-title">
                                             <h3>фильтр по цене</h3>
                                         </div>
-                                        <ul className="filter-print-price">
+                                        <ul className="filter-print-price my_filter-print-price">
 
-                                            <input onChange={this.sortPriceMin.bind(this)} placeholder="мин цена"/>
-                                            <input onChange={this.sortPriceMax.bind(this)} placeholder="максимальная цена"/>
-                                            <li className="filter_price"><a href="#"><h4 onClick={this.filtrPrice.bind(this)}>фильтр</h4></a>
+                                            <input id="input_first" onChange={this.sortPriceMin.bind(this)} placeholder="мин цена"/>
+                                            <input id="input_second" onChange={this.sortPriceMax.bind(this)} placeholder="максимальная цена"/>
+                                            <li className="filter_price my_filter_price"><a href="#"><h4 onClick={this.filtrPrice.bind(this)}>фильтр</h4></a>
                                             </li>
 
 
                                         </ul>
                                     </div>
-                                    //left filter
-                                    <div className="filter-category-box">
-                                        <div className="filter-title">
-                                            <h3>Категории</h3>
-                                        </div>
-                                        {/*for category_on_goods_s in category_on_goods*/}
-                                        <div className="panel-group" id="accordion" role="tablist">
-                                            <div className="panel panel-default">
-                                                <div className="panel-heading">
-                                                    // <h4 className="panel-title"><a href="sort_goods_categ?i=category_on_goods_s.0"><span className="counting-box">13</span> <span className="panel-title">{/*category_on_goods_s.1*/}</span></a></h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {/*endfor*/}
-                                    </div>
-                                    //left filter
+
                                 </div>
-                                <div className="col-md-9 col-sm-9">
+                                <div className="col-md-9 col-sm-9 col-md-9-my">
                                     {/**/}
                                     <div>
                                         {/*for goodss in goods %{'}'}*/}
                                         {/*start block*/}
                                         <div className="row">
-                                            <div className="col-md-12">
+                                            <div className="col-md-12 col-md-12-grid">
                                                 {myProducts}
-                                                <div className="text_null_search">{this.state.text_null_search}</div>
-
+                                                <div className="text_null_search col-md-6">{this.state.text_null_search}</div>
                                             </div>
                                         </div>
                                         {/*endfor */}
@@ -420,8 +482,24 @@ class App extends React.Component{
                     </div>
                 </div>
             </section>
-
+            <nav>
+                <ul className="pagination">
+                    <li><a href="#" onClick={this.paginProd.bind(this)}>&laquo;</a></li>
+                    <li><a href="#" onClick={this.paginProd.bind(this)}>1</a></li>
+                    <li><a href="#" onClick={this.paginProd.bind(this)}>2</a></li>
+                    <li><a href="#" onClick={this.paginProd.bind(this)}>3</a></li>
+                    <li><a href="#" onClick={this.paginProd.bind(this)}>4</a></li>
+                    <li><a href="#" onClick={this.paginProd.bind(this)}>5</a></li>
+                    <li><a href="#">&raquo;</a></li>
+                </ul>
+            </nav>
+            <ul className="pagination">
+                <li><a href="#" onClick={this.paginProd.bind(this)}>&laquo;</a></li>
+                    {pages}
+                <li><a href="#">&raquo;</a></li>
+            </ul>
         </div>;
+
     }
 }
 

@@ -28,14 +28,14 @@
 
     <section class="product-detail">
         <div class="container my_container">
-            <div class="row my_show_row" style="padding-left: 150px;">
+            <div class="row my_show_row padding-left-main">
 {#                {% for sh in show %}#}
                 <!--главное фото  наше-->
-            <div class="col-md-5 product-slider animated" data-animation="fadeInUp" data-animation-delay="300" style="width: 610px;">
+            <div class="col-md-5 product-slider animated col-md-5-my" data-animation="fadeInUp" data-animation-delay="300" >
             <div class="main-big-photo">
-                <div class="prev-div" onclick="newPrev(this) "> < </div>
-                    <div class="big-photo"><img class="main_img" src="{{ MEDIA_URL }}{{ show.4 }}" ></div>
-                <div class="next-div" onclick="newNext(this)"> > </div>
+                <div class="prev-div" onclick="newPrev(this) "><img src={% static "shop_app/img/34.png" %} alt="arrow"></div>
+                    <div class="big-photo"><img class="main_img img-responsive" src="{{ MEDIA_URL }}{{ show.4 }}" ></div>
+                <div class="next-div" onclick="newNext(this)"><img src={% static "shop_app/img/35.png" %} alt="arrow"></div>
             </div>
                 <!--главное фото конец-->
                 <!--малые фото начало-->
@@ -71,20 +71,19 @@
 {#                </div>#}
                 <!--мале фото старое еend-->
 
-            <div class="products-content">
-                <div class="col-md-7 product-description animated my_right_block my_prod " data-animation="fadeInUp" data-animation-delay="500"><a href="#">{{ show.1 }}</a>
-                    <h3>{{ show.3 }} рублей</h3>
-                    <p>{{ show.5 }}</p>
+            <div class="products-content-">
+                <div class="col-md-7 product-description animated my_right_block my_prod " data-animation="fadeInUp" data-animation-delay="500">
 
-                    <p>
-                        <input id="input-21d" value="3" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>
-                    </p>
 
-                    <div class="row">
-                        <div class="col-sm-4">
+{#                    <p>#}
+{#                        <input id="input-21d" value="3" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>#}
+{#                    </p>#}
+
+                    <div class="row row-buy">
+                        <div class="col-sm-3 col-sm-diteil">
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <div class="row">
+                                    <div class="row row-ditael">
                                         <div class="col-xs-2"><i class="fa fa-shopping-cart"></i>
                                         </div>
                                         <div class="col-xs-10">
@@ -95,7 +94,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3 col-sm-diteil">
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <div class="row">
@@ -109,7 +108,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3 col-sm-diteil">
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <div class="row">
@@ -117,12 +116,18 @@
                                         </div>
                                         <div class="col-xs-10">
                                             <p>Лучшие товары</p>
-                                            <h4>Уникальный контент</h4>
+                                            <h4>Контент</h4>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="col-md-12 arg-pad">
+                        <div class="col-md-4 col-md-4-my"><p class="pad-name">{{ show.1 }}</p></div>
+                        <div class="col-md-4 col-md-4-my"><p class="pad-price">{{ show.3 }} &#8381;</p></div>
+                        <div class="col-md-4 col-md-4-my"><p class="pad-lutc">{{ show.5 }}</p></div>
                     </div>
 {#                    <div class="row range-input">#}
 {#                        <div class="col-xs-2">#}
@@ -139,40 +144,49 @@
 {#                        </div>#}
 {#                    </div>#}
                     <div class="row add-buttons">
-                        <div class="col-sm-6">
+                        <div class="col-md-12">
 {#                            <a class="navbar-brand" href="{% url "shop_billing" %}?i={{ sh.0 }}&name={{ sh.1 }}&price={{ sh.3 }}&img={{ sh.4 }}"><input type="button" {{ chek_good }} class="btn btn-success" value="Заказать "></a>#}
-                            
+
                             <a class="" href="{% url 'shop_cart' %}?i={{ show.0 }}&name={{ show.1 }}&price={{ show.3 }}&img={{ media_url_cart }}{{ show.4 }}"><button type="button" class="btn add-cart" {{ chek_good }}><i class="fa fa-shopping-cart"></i>В корзину</button></a>
                         </div>
-                        <div class="col-sm-6">
-                            <button type="button" class="btn"><i class="fa fa-heart"></i>В избранное</button>
-                        </div>
+{#                        <div class="col-sm-6">#}
+{#                            <button type="button" class="btn"><i class="fa fa-heart"></i>В избранное</button>#}
+{#                        </div>#}
                     </div>
 {#                {% endfor %}#}
-                    <div class="row category-tags">
-                        <div class="col-xs-12">
-                            <p>Категория товара: <a href="#">{{ show.2 }}</a>
+                    <div class="row category-tags"></div>
+
+{#                            <h4 class="panel-title"><a href="{% url "sort_goods_categ" %}?i={{ category_on_goods_s.0 }}"><span class="counting-box">{{ category_on_goods_s.5 }}</span> <span class="panel-title">{{ category_on_goods_s.1}}</span></a></h4>#}
+                            <div class="col-md-6 col-md-6-my">
+                            <p class="tegs-diyeil">
+                                <span class="color_cat cat_radius">Категория: </span>
+                                <a href="#"><div class="color-categ-prod">{{ show.2 }}</div></a>
                             </p>
-                            <p>Теги: {{ tegs_categ_desc }}</p>
-                        </div>
-                    </div>
+                            </div>
+                            <div class="col-md-6 col-md-6-my">
+                                <p class="tegs-diyeil">
+                                    <span class="color_cat cat_radius">Теги: </span><div class="tegs_categ">{{ tegs_categ_desc }}</div>
+                                </p>
+                            </div>
+
+
                 </div>
             </div>
-        </div>
-        </div>
-    </section>
+            </div>
+            </div>
+            </section>
 
 
-    <section id="product-tab">
+    <section id="product-tab" class="my_animated">
         <div class="container our_container">
             <div class="row">
                 <div class="col-xs-12 animated" data-animation="fadeInUp" data-animation-delay="500">
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#more-information" role="tab" data-toggle="tab">Описание</a>
+                        <li role="presentation" class="active pres-des"><a href="#more-information" role="tab" data-toggle="tab">Описание</a>
                         </li>
-                        <li role="presentation"><a href="#specifications" role="tab" data-toggle="tab">Характеристики</a>
+                        <li role="presentation" class="pres-chacr"><a href="#specifications" role="tab" data-toggle="tab">Характеристики</a>
                         </li>
-                        <li role="presentation"><a href="#images" role="tab" data-toggle="tab">Отзывы</a>
+                        <li role="presentation" class="pres-abouts"><a href="#images" role="tab" data-toggle="tab">Отзывы</a>
                         </li>
                     </ul>
                     <div class="tab-content">
@@ -191,16 +205,16 @@
         </div>
     </section>
     <section id="top-sales-slider" class="section">
-        <div class="container">
+        <div class="container container-similar">
             <div class="row">
-                <div class="col-xs-12 animated" data-animation="fadeInUp" data-animation-delay="300">
-                    <h2>Похожие товары</h2>
+                <div class="col-xs-12 animated animated_similar" data-animation="fadeInUp" data-animation-delay="300">
+                    <h2 class="animated-prod">Похожие товары</h2>
                 </div>
             </div>
         </div>
 
         <div class="container slider-container animated" data-animation="fadeInUp" data-animation-delay="500">
-            <div class="row">
+            <div class="row row-imilar-prod">
 
                 <div class="col-md-12">
 
@@ -209,14 +223,14 @@
 
                         <div class="item" style="margin: 5px;">
                             <div class="thumbnail">
-                                <div class="photo-block"><a class="add-cart-link-" data-rel="prettyPhoto" href="" title="Название товара"><i class="fa_fa-plus-"></i></a> <img src="{{ MEDIA_URL }}{{ all_goods_random_s.4 }}" class="img-responsive" alt="top-sales">
+                                <div class="photo-block"><a class="add-cart-link-" data-rel="prettyPhoto" href="" title="Название товара"><i class="fa_fa-plus-"></i></a> <img src="{{ MEDIA_URL }}{{ all_goods_random_s.4 }}" class="img-responsive img-random" alt="top-sales">
                                 </div>
-                                <div class="caption"><a href="#" class="category" style="margin-bottom: 10px;">{{ all_goods_random_s.2 }}</a> <a href="#">{{ all_goods_random_s.1 }}</a>
-                                    <h4 style="margin-top: 10px;">{{ all_goods_random_s.3 }} р.</h4>
+                                <div class="caption caption-pad"><a href="#" class="category category-mb">{{ all_goods_random_s.2 }}</a> <a href="#"><span class="height-prod">{{ all_goods_random_s.1 }}</span></a>
+                                    <h4 class="price-mt">{{ all_goods_random_s.3 }} р.</h4>
 {#                                    <p>#}
 {#                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>#}
-{#                                    </p>#}
-                                    <div class="row cart-details" style="padding: 15px;">
+{#               style="padding: 15px;"                     </p>#}
+                                    <div class="row cart-details" >
                                         <div class="col-xs-6" style="width: 70%;"><a href="{% url 'shop_cart' %}?i={{ all_goods_random_s.0 }}&name={{ all_goods_random_s.1 }}&price={{ all_goods_random_s.3 }}&img={{ all_goods_random_s.4 }}"><i class="fa fa-shopping-cart" style="margin-left: -10px;"></i>Купить</a>
                                         </div>
                                         <div class="col-xs-6"  style="width: 70%; margin-left: 55px; margin-top: -20px;"><a href="{% url "show" pk=all_goods_random_s.0 %}" class="pull-right">Подробнее </a> <!--<i class="fa fa-chevron-right"></i>-->

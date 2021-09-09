@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load pagination_tags %}
 <title>{% block title %}Товары{% endblock %}</title>
 
 
@@ -7,53 +8,25 @@
 {% block video-baner %}{% endblock video-baner %}
 
 {% block content %}
-<body id="shop-list-layout-side-bar">
+    {% autopaginate goods 6 %}
 
-
-{#    <div id="pageloader">#}
-{#        <div class="loader-item fa fa-spin colored-border"></div>#}
-{#    </div>#}
-
-<!--start big slider-->
-{#<div id="top-slider" class="owl-carousel owl-theme">#}
-{#    <div class="item"><img src="/media/img/36.jpg" alt="">#}
-{#        <div class="carousel-caption">#}
-{#            <h2>Магазин товаров</h2>#}
-{#            <h1>Открывайте на любом устройстве</h1>#}
-{#            <p>Каталог качественных товаров на любой вкус</p>#}
-{#            <p>Приобрайте с удовольствием</p>#}
-{#            <div class="btn pop">ПОДРОБНОСТИ</div>#}
-{#        </div>#}
-{#    </div>#}
-{#    <div class="item"><img src="/media/img/36.jpg" alt="">#}
-{#        <div class="carousel-caption">#}
-{#            <h2>Магазин товаров</h2>#}
-{#            <h1>Открывайте на любом устройстве</h1>#}
-{#            <p>Каталог качественных товаров на любой вкус</p>#}
-{#            <p>Приобрайте с удовольствием</p>#}
-{#            <div class="btn pop">ПОДРОБНОСТИ</div>#}
-{#        </div>#}
-{#    </div>#}
-{#</div>#}
-{#<!--end big slider-->#}
-{#<div class="page-desc-section">#}
-{#    <div class="container">#}
-{#        <div class="row">#}
-{#            <div class="col-md-12 page-desc blog">#}
-{#                <h2 class="animated" data-animation="fadeInRight" data-animation-delay="300">Наш магазин товаров</h2>#}
-{#                <p class="animated" data-animation="fadeInLeft" data-animation-delay="300">Рекламное сообщество, как принято считать, спорадически усиливает целевой трафик, повышая конкуренцию.</p>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</div>#}
-    <div id="app">
-
-
-</div>
-
+    {% comment %}<div class="pagin-up">{% paginate %}</div> item products  <div class="pagin-down">{% paginate %}</div> {% endcomment %}
+            <body id="shop-list-layout-side-bar">
+                <div id="app">
+            </div>
+{#    <nav>#}
+{#        <ul class="pagination">#}
+{#            <li><a href="#" onclick="">&laquo;</a></li>#}
+{#            <li><a href="#">1</a></li>#}
+{#            <li><a href="#">2</a></li>#}
+{#            <li><a href="#">3</a></li>#}
+{#            <li><a href="#">4</a></li>#}
+{#            <li><a href="#">5</a></li>#}
+{#            <li><a href="#">&raquo;</a></li>#}
+{#        </ul>#}
+{#    </nav>#}
 {% endblock content %}
 {% block brands %}{% endblock brands %}
-{% block additions %}{% endblock additions %}
 {% block react %}
 {#    <script type='text/javascript' src='http://test.michalbacak.com/wp-includes/js/imagesloaded.min.js?ver=3.2.0'></script>#}
 {#    <script type='text/javascript' src='http://test.michalbacak.com/wp-content/plugins/ajax-load-more/vendor/js/masonry/masonry.pkgd.min.js?ver=4.2.1'></script>#}
@@ -63,7 +36,8 @@
     <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script><!--2212-->
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script><!--2212-->
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script><!--2212-->
-    <script type="text/babel" src="{% static "shop_app/js/react_prod_ditail.js" %}">
+
+    <script type="text/babel" src="{% static "shop_app/js/react_prod_ditail.js" %}"><!--страница которую рисует React-->
 
 {% endblock react %}
 {% block js-1 %}

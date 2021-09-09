@@ -68,7 +68,7 @@ class BillingModel(models.Model):
     user_cart = models.CharField('Покупатель в корзине', max_length=30, blank=True, null=True)
     # phone_us = models.ForeignKey(CustomUser,  blank=True, null=True, on_delete=models.CASCADE)
     user_phone = models.CharField('Телефон покупателя', max_length=30, blank=True, null=True)
-    null_one = models.IntegerField('Ноль или один', max_length=2, default='0')
+    null_one = models.IntegerField('Ноль или один', default='0')
     # buyer_id = models.ForeignKey(
     #     settings.AUTH_USER_MODEL,
     #     related_name='bill_products',
@@ -120,12 +120,15 @@ class Image(models.Model):
     #     pass
     def __str__(self):
         return str(self.image)
-
+# from django.db.models import F
+# ordering = [F('author').asc(nulls_last=True)]
 class GoodsModel(models.Model):
     class Meta:
         verbose_name = 'Тоовар'
         verbose_name_plural = 'Товары'
         db_table = 'goods'
+        ordering = ['price']
+        # ordering = [F('price').asc(nulls_last=True)]
 
 
     clothes = '1'
@@ -144,10 +147,11 @@ class GoodsModel(models.Model):
     id = models.AutoField(primary_key=True, auto_created=True, null=False)
     goodsname = models.CharField('Название', max_length=20, blank=True, null=True)
     category = models.CharField('Категории', max_length=15, null=True, choices=CATEGORY_CHOICES)
-    price = models.CharField(max_length=30, verbose_name='Цена', blank=True)
+    price = models.IntegerField(max_length=30, verbose_name='Цена', blank=True)
     img = models.ImageField(upload_to='img', verbose_name='Основное изображение', blank=True, null=True)
     desc = models.TextField('Описание', blank=True, null=True)
     tags = GenericRelation(Image)
+    # catname = models.ForeignKey(CategoryModel, on_delete=models.CASCADE, related_name='orders')
 
     def publich(self):
         self.order_date = timezone.now()

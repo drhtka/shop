@@ -44,6 +44,7 @@ urlpatterns = [
     path('accounts/', views.accounts, name='accounts'),
     path('fastregister/', views.fastregister, name='fastregister'),
 
+
     path('', include('shop_app.urls')),
     path('articles', include('articles.urls')),
     path('test/', include('test_url.urls')),

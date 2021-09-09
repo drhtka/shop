@@ -1,0 +1,42 @@
+{% load pagination_tags %}
+{% autopaginate all_goods 12 %}
+{#{% paginate %}#}
+<div class="parent_my_row"><div class="my_row">
+{% for all_goods_s in all_goods %}
+
+    <div class="chaild_grid">
+        <div class="prodect-box">
+            <div class="photo-block-">
+                <a data-rel="prettyPhoto-" href="/media/img/36.jpg" title="Название товара" class="link">
+                    <i class="fa- fa-plus-"></i></a>
+
+                <img src="{{ MEDIA_URL }}{{ all_goods_s.4 }}" alt="item" class="img-responsive">
+            </div>
+            <div  class="prodect-details border_image">
+                <h4>{{ all_goods_s.2 }}</h4>{#Категория#}
+                <h3 class="h3_prod">{{ all_goods_s.1 }}</h3>
+                <h2>цена: {{ all_goods_s.3 }}</h2>
+                {#                                    <p>#}
+                {#                                    <div class="border_two_line"><span class="color_star rating">&#9733;</span> <span class="color_star_two">&#9734;</span><span class="my_reiting">- рейтинг товара</span></div>#}
+                {#                                    </p>#}
+                <div class="row- shoping-details">
+                    <div class="my_cart_reed">
+                        <div><a href="{% url 'shop_cart' %}?i={{ all_goods_s.0 }}&name={{ all_goods_s.1 }}&price={{ all_goods_s.3 }}&img={{ media_url_cart }}{{ all_goods_s.4 }}" class="add-card-text"><span class="fa fa-shopping-cart"></span><span class="span-cart-index">В корзину</span></a>
+                        </div>
+                        {#                                            <div ><a href="{% url "show" %}?i={{ all_goods_s.0 }}" class="show-link">Читать...<span class="right-icon-"></span></a>#}
+                        <div ><a href="{% url "show" pk=all_goods_s.0 %}" class="show-link">Подробнее...<span class="right-icon-"></span></a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endfor %}
+</div>
+</div>
+
+
+{#<div class="pagin-down">{% paginate %}</div>#}
