@@ -1,12 +1,12 @@
 # Shop
+- HTML
+- CSS
+- JS 
  - Django==2.2
- - Pillow==7.0.0
- - psycopg2-binary==2.8.4
- - pytz==2019.3
- - sqlparse==0.3.0
- - Query
  - BD PostgresQL
-
+ - готовый шаблон
 
 **Install**
 - pip install requirements.txt
+
+![alt text](screenshots/filename.jpg "Описание будет тут")
