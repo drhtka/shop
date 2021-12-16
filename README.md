@@ -12,4 +12,9 @@
 - pip install requirements.txt
 1) На главной странице товары. Фильтрация по сумме и категории.Пагинация
 2) Одна страница прорисована на  React JS Фильтрация по сумме, задается диапазон цен и категории.Пагинация
-   ![alt text](screenshots/filename.jpg "Описание будет тут"){:height="36px" width="36px"}.
+   ![alt text](screenshots/filename.jpg "Описание будет тут")
+
+
+[comment]: <> (   {:height="36px" width="36px"}.)
+   
+   
