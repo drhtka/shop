@@ -5,6 +5,7 @@
 - React JS 
  - Django==2.2
  - BD PostgresQL
+ - DRF
  - готовый шаблон
 
 
