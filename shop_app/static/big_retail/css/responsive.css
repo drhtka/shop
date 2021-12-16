@@ -439,9 +439,9 @@
 	.menu-bar .navbar-nav > li{
 		display:block;
 	}
-	.navbar{
-		z-index:99999;
-	}
+	/*.navbar{*/
+	/*	z-index:99999;*/
+	/*}*/
 	.menu-bar .nav > li:hover, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a.active, .navbar-default.menu-bar .navbar-nav > .open > a, .navbar-default.menu-bar .navbar-nav > .open > a:hover, .navbar-default.menu-bar .navbar-nav > .open > a:focus,.menu-bar .dropdown .dropdown-menu{
 		background:transparent;
 	}

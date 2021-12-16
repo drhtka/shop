@@ -25,7 +25,8 @@
         </div>
     </div>
 
-    <div style="font-size: 25px; color: #0000FF; font-family: 'Lora'; text-align: center; margin-top: 30px;margin-bottom: 50px;">{{ empty_cart }}{{ nearly_final_text }}</div>
+    <div class="nearly_final_text">{{ empty_cart }}{{ nearly_final_text }}</div>
+{#    <div style="font-size: 25px; color: #0000FF; font-family: 'Lora'; text-align: center; margin-top: 30px;margin-bottom: 50px;">{{ empty_cart }}{{ nearly_final_text }}</div>#}
     <section id="login-section" class="login-section">
         <div class="container">
             <div class="row">
@@ -132,7 +133,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 order-inal">
-                    <div class="order-box">
+                    <div class="order-box my-order-box">
                                 <div>
                                     <table class="table">
                                         <tr class="table-title">
@@ -160,10 +161,10 @@
                         </div>
                 </div>
         {% if user.is_authenticated %}
-            <div class="row">
+            <div class="row row-final">
 
                 <div class="col-md-12">
-                    <a href="{% url 'final_thanks' %}"><input type="submit" id="sendingbtn" class="btn send-button send-button-my" value="Подтвердить заказ" style="margin-left: 599px !important; margin-top: 28px;"></a>
+                    <a href="{% url 'final_thanks' %}"><input type="submit" id="sendingbtn" class="btn send-button send-button-my " value="Подтвердить заказ" ></a>
                 </div>
             </div>
             {% else %}

@@ -184,7 +184,7 @@ a:focus {
 }
 .section .owl-buttons {
     position: absolute;
-    top: 30%;
+    top: 37%;
     text-align: center;
     width: 100%
 }
@@ -1532,7 +1532,7 @@ ul li.dropdown-submenu:hover span.submenu-toggler {
     background: #2e2e2e
 }
 .top-sale-section {
-    padding-bottom: 40px
+    padding-bottom: 10px
 }
 .top-sale-section .sub-title {
     padding: 0px 19%
@@ -1576,7 +1576,7 @@ ul li.dropdown-submenu:hover span.submenu-toggler {
     -webkit-border-radius: 0;
     background: #fafafa;
     color: #909090;
-    min-width: 245px;
+    min-width: 251px;
     text-align: left
 }
 .button-block span li {
@@ -2304,55 +2304,56 @@ ul.top-sale-pagination li a {
     -webkit-transform-origin: right bottom 0;
     width: 102%;
     max-width: 50px;
-    z-index: 1
+    z-index: 1;
 }
 .shop-list-section .margin-hide {
-    margin: 0px
+    margin: 0px;
 }
 .shop-list-section .padding-left-hide {
-    padding-left: 0px
+    padding-left: 0px;
 }
 .shop-list-section .padding-right-hide {
-    padding-right: 0px
+    padding-right: 0px;
+    margin-top: 10px;
 }
 #shop-list-layout-2-col .shop-list-section .item-panel .img-body img {
-    margin: 0
+    margin: 0;
 }
 #shop-list-layout-2-col .shop-list-section .item-panel .hot.offer-box {
-    background: #ef3547
+    background: #ef3547;
 }
 #shop-list-layout-2-col .shop-list-section .item-panel .hot.offer-box:after {
-    background: #ef3547
+    background: #ef3547;
 }
 #shop-list-layout-2-col .shop-list-section .item-panel .hot.offer-box h3 {
     margin-top: 9px;
-    font-size: 15px
+    font-size: 15px;
 }
 #shop-list-layout-2-col .shop-list-section .item-panel .green.offer-box {
-    background: #30be4e
+    background: #30be4e;
 }
 #shop-list-layout-2-col .shop-list-section .item-panel .green.offer-box:after {
-    background: #30be4e
+    background: #30be4e;
 }
 #shop-list-layout-2-col .shop-list-section .item-panel .green.offer-box h3 {
     margin-top: 9px;
-    font-size: 15px
+    font-size: 15px;
 }
 #shop-list-layout-2-col .shop-list-section .item-panel .yellow.offer-box {
-    background: #ff6131
+    background: #ff6131;
 }
 #shop-list-layout-2-col .shop-list-section .item-panel .yellow.offer-box:after {
-    background: #ff6131
+    background: #ff6131;
 }
 #shop-list-layout-2-col .shop-list-section .item-panel .yellow.offer-box h3 {
     margin-top: 9px;
-    font-size: 15px
+    font-size: 15px;
 }
 #shop-list-layout-2-col .load-more {
-    display: none
+    display: none;
 }
 #shop-list-layout-2-col .load-more.active {
-    display: block
+    display: block;
 }
 #shop-list-layout-2-col .loadmore-btn .loadmore {
     display: block;
@@ -2571,7 +2572,7 @@ ul.top-sale-pagination li a {
 .filter .filter-category-box {
     border: 1px solid #e3e3e3;
     width: 100%;
-    margin-top: 30px
+    margin-top: 130px
 }
 .filter .filter-category-box .panel-group .panel {
     border-radius: 0px;
@@ -4636,7 +4637,7 @@ input[type="checkbox"]:focus {
 }
 .blog-post {
     padding-top: 0px;
-    padding-bottom: 45px
+    padding-bottom: 0px
 }
 .blog-post .thumbnail {
     background: transparent;

@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
 {% load static %}
 
 <html lang="en">
@@ -76,8 +79,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="navbar">
-                            <div class="navbar-header">
+                        <div class="navbar navbar-lk navbar-cart">
+                            <div class="navbar-header navbar-header-number">
                                 <ul class="header-top-left">
 {#                                    <li class="dropdown collapse navbar-collapse" id="bs-example-navbar-collapse-1">Язык<a class="dropdown-toggle" data-toggle="dropdown" href="#">[ <span>RU<i class="fa fa-angle-down"></i></span> ]</a>#}
 {#                                        <ul class="dropdown-menu" role="menu">#}
@@ -103,27 +106,27 @@
 {#                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><i class="flaticon-list50"></i>#}
 {#                                </button>#}
                             </div>
-                            <ul class="nav navbar-nav navbar-right section-hidden">
+                            <ul class="nav navbar-nav navbar-right section-hidden-">
 
-                                <li class="cart"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-shopping-cart"></i>В корзине {{ count_render_session }} товара</a>
+                                <li class="cart"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-shopping-cart"></i><tspan class="dropdown-toggle-hidden">В корзине</tspan> {{ count_render_session }} <tspan class="dropdown-toggle-hidden">товара</tspan></a>
                                     <ul class="dropdown-menu" role="menu">
 
                                         {% for render_session_s in render_session  %}
-                                        <li class="clearfix">
+                                        <li class="clearfix dropdown-toggle-hidden">
 {#                                            <i class="fa fa-times pull-right"></i>#}
-                                            <form action="/dell_goods" method="get">
+                                            <form class="dropdown-toggle-hidden" action="/dell_goods" method="get">
                                                 <input value="{{ render_session_s.0 }}" name="id" class="btn btn-danger" type="hidden">
                                                 <button id="show_button" class="fa fa-times pull-right show_button"></button>
 
                                             </form>
 
-                                            <img src="{{ render_session_s.2 }}" height="30px" width="30px" alt="item-1" class="pull-left">
-                                            <div class="pull-left product"><a href="#">{{ render_session_s.0 }}</a>
-                                                <h5>{{ render_session_s.1 }} р.</h5>
+                                            <img src="{{ render_session_s.2 }}" height="30px" width="30px" alt="item-1" class="pull-left dropdown-toggle-hidden">
+                                            <div class="pull-left product dropdown-toggle-hidden"><a href="#">{{ render_session_s.0 }}</a>
+                                                <h5 class="dropdown-toggle-hidden">{{ render_session_s.1 }} р.</h5>
                                             </div>
                                         </li>
                                         {% endfor %}
-                                        <li class="clearfix checkout"><a href="{% url 'shop_bay' %}" class="pull-left">В корзину</a> <a href="{% url 'shop_orders' %}" class="pull-right">Оплатить</a>
+                                        <li class="clearfix checkout"><a href="{% url 'shop_bay' %}" class="pull-left">В корзину</a> <a href="{% url 'shop_orders' %}" class="pull-right dropdown-toggle-hidden">Оплатить</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -133,7 +136,7 @@
                                 <li><a href="{% url 'login' %}"><i class="fa fa-unlock-alt"></i>Вход</a>
                                 </li>
 
-                                <li><a href="{% url 'register' %}">Регистрация</a>
+                                <li class="li-reg-drop"><a href="{% url 'register' %}">Регистрация</a>
                                 </li>
                                 {% endif %}
                             </ul>
@@ -146,7 +149,7 @@
     {% endblock header-top %}
     {% block header1 %}
         <div id="sticky-section" class="sticky-navigation">
-            <nav class="navbar navbar-default menu-bar" role="navigation">
+            <nav class="navbar navbar-default menu-bar navbar-z" role="navigation">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
@@ -183,22 +186,22 @@
                                     <li class="register-border"><a href="#">Регистрация</a>
                                     </li>
                                 </ul>
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"><span class="menu-box"><span class="menu">Меню</span><i class="flaticon-list50 menu-button"></i>
+                                <button onclick="onclickMenu(this, event)" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"><span class="menu-box"><span class="menu">Меню</span><i class="flaticon-list50 menu-button"></i>
                                 </span>
                                 </button>
                             </div>
                             <div class="collapse navbar-collapse my-collapse" id="bs-example-navbar-collapse-2">
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li class="dropdown"><a href="{% url "index" %}" class="dropdown-toggle">Главная</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-1"></span>
+                                <ul class="nav navbar-nav navbar-right navbar-right-lk">
+                                    <li class="dropdown dropd-z nohover"><a href="{% url "index" %}" class="dropdown-toggle dropdown-toggle-cat">Главная</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-1"></span>
                                     </li>
 {#                                    <li><a href="{% url "category" %}">Категории</a>#}
 {#                                    </li>#}
-                                    <li class="dropdown"><a href="{% url 'goods' %}" class="dropdown-toggle">Товары</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-3"></span>
+                                    <li class="dropdown dropd-z"><a href="{% url 'goods' %}" class="dropdown-toggle">Товары</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-3"></span>
 
-                                    <li class="dropdown"><a href="{% url 'category' %}" class="dropdown-toggle">Категории</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-6"></span>
+                                    <li class="dropdown dropd-z"><a href="{% url 'category' %}" class="dropdown-toggle">Категории</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-6"></span>
 
                                     </li>
-                                    <li class="dropdown"><a href="{% url 'articles:article_list' %}" class="dropdown-toggle">Новости</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-6"></span>
+                                    <li class="dropdown dropd-z"><a href="{% url 'articles:article_list' %}" class="dropdown-toggle">Новости</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-6"></span>
 {#                                        <ul role="menu" class="dropdown-menu collapse-6 collapse">#}
 {#                                            <li><a href="{% url 'articles:article_list' %}">Новости</a>{{ article.body }}#}
 {#                                            </li>#}
@@ -209,15 +212,15 @@
 {#                                    <li><a href="contacts.html">Контакты</a>#}
 {#                                    </li>#}
 {#                                    <i class="fa fa-angle-down"></i>#}
-                                    <li class="dropdown"><a href="#" class="dropdown-toggle my_about">О нас</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-2"></span>
+{#                                    <li class="dropdown dropd-z"><a href="#" class="dropdown-toggle my_about">О нас</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-2"></span>#}
 {#                                        <ul role="menu" class="dropdown-menu collapse-2 collapse">#}
 {#                                            <li><a href="about-us.html">О компании</a>#}
 {#                                            </li>#}
 {#                                            <li><a href="services.html">Услуги</a>#}
 {#                                            </li>#}
 {#                                        </ul>#}
-                                    </li>
-                                    <li><a href="{% url "lk_list" %}">Личный кабинет</a>
+{#                                    </li>#}
+                                    <li class="dropdown dropd-z"><a class="dropd-z-noline" href="{% url "lk_list" %}">Личный кабинет</a>
                                     </li>
 
                                     <li class="search-form">
@@ -237,10 +240,33 @@
                 </div>
             </nav>
         </div>
+
+{#        <script>#}
+{#        function onclickMenu(){#}
+{#            console.log('my-collapse')#}
+{#            console.log(document.getElementsByClassName('my-collapse')[0].classList.contains('in'))#}
+{#            if(document.getElementsByClassName('my-collapse')[0].classList.contains('in') == false || document.getElementsByClassName('my-collapse')[0].style.display == 'none' ){#}
+{#                document.getElementsByClassName('my-collapse')[0].classList.add('in')#}
+{##}
+{#                document.getElementsByClassName('my-collapse')[0].style.display = 'block'#}
+{#                document.getElementsByClassName('my-collapse')[0].style.visibility = 'visible'#}
+{##}
+{#            }#}
+{#            else{#}
+{#                document.getElementsByClassName('my-collapse')[0].classList.remove('in')#}
+{##}
+{#                document.getElementsByClassName('my-collapse')[0].style.display = 'none'#}
+{#                document.getElementsByClassName('my-collapse')[0].style.visibility = 'hidden'#}
+{##}
+{#            }#}
+{#        }#}
+{#        </script>#}
     {% endblock header1 %}
 
 <body class="Site">
 <div class="my_body Site-content">
+    <div class="wrapper"><!-- .wrapper -->
+    <div class="content">
 {% block content %}
 
 {% endblock content %}
@@ -296,9 +322,9 @@
         </section>{% endblock brands %}
 
     {% block footer %}
-        <section id="footer" class="footer-bg">
+        <section id="footer" class="footer-bg footer">
         <div class="footer-section footer-section-my">
-            <div class="container">
+            <div class="container detail_cont_foter">
                 <div class="row my_foorer_row">
                     <div class="col-sm-3 animated my_display_none" data-animation="fadeInUp" data-animation-delay="300">
                         <h3>О магазине</h3>
@@ -351,6 +377,7 @@
                 </div>
             </div>
         </div>
+
         <!-- Modal -->
         <div class="modal fade my_modal_bootstrap" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -380,6 +407,8 @@
 
         <script type="text/javascript" src="{% static "shop_app/js/script.js" %}" rel="stylesheet"></script>
     {% endblock footer %}
+</div> <!-- .content -->
+</div><!-- .wrapper -->
 {% block js %}
     <script type='text/javascript' src='http://test.michalbacak.com/wp-includes/js/imagesloaded.min.js?ver=3.2.0'></script>
     <script type='text/javascript' src='http://test.michalbacak.com/wp-content/plugins/ajax-load-more/vendor/js/masonry/masonry.pkgd.min.js?ver=4.2.1'></script>
@@ -434,7 +463,7 @@
 {#    <script type='text/javascript' src='http://test.michalbacak.com/wp-includes/js/imagesloaded.min.js?ver=3.2.0'></script>#}
 {#    <script type='text/javascript' src='http://test.michalbacak.com/wp-content/plugins/ajax-load-more/vendor/js/masonry/masonry.pkgd.min.js?ver=4.2.1'></script>#}
 {#    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js">#}
-    <script type="text/babel" src="{% static "shop_app/js/react_prod_ditail.js" %}">
+{#    <script type="text/babel" src="{% static "shop_app/js/react_prod_ditail.js" %}">#}
         <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script><!--2212-->
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script><!--2212-->
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script><!--2212-->

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load my_filters %}
-
+{% load pagination_tags %}
 <title>{% block title %}Категории{% endblock %}</title>
 
 {% block video-baner %}
@@ -13,8 +13,262 @@
             <div class="loader-item fa fa-spin colored-border"></div>
         </div>{% endcomment %}
 <style>
-.inner_content{
-    {#height: {{ height_block }};#}
+
+    .curr_page_number{
+        color: white;
+    {#text-decoration: underline;#}
+        background: #38486F;
+        border: 1px solid #38486F;
+
+    {#border: 7px solid red;#}
+    }
+
+    .curr_page_number:hover{
+        font-weight: bold;
+        color: #38486F;
+        background: white;
+        border: 1px solid #38486F;
+    }
+
+
+    .button-block-cat{
+        margin-top: 1 !important;
+    }
+
+    .shop-list-section .item-panel {
+        margin-top: 0px !important;
+    }
+
+    .filter .filter-category-box {
+        margin-top: 50px !important;
+        width: inherit;
+    }
+
+    .inner_content{
+        {#height: {{ height_block }};#}
+    }
+    .pagination-cat{
+        margin-left: 25%;
+    }
+
+    .pagination{
+        margin-left: 25% !important;
+    }
+
+@media  (min-width: 320px) and (max-width: 454px) {
+    .for-row {
+        height: 1518px;
+        overflow: hidden;
+    }
+
+    .my_work-area-categ {
+        height: 1292px !important;
+    }
+    #shop-list.shop-list-section {
+        padding: 0;
+    }
+
+    .pagination-cat {
+        margin-left: 0;
+    }
+
+    .col-md-12-cat {
+        margin-top: 0px !important;
+    }
+
+    .filter .filter-category-box {
+        margin-top: 0px !important;
+    }
+
+
+}
+@media  (min-width: 454px) and (max-width: 554px) {
+
+    .shop-list-section .item-panel {
+        margin-top: 0px !important;
+    }
+    .categ-contener-hello{
+        margin-top: -80px !important;
+        margin-bottom: -68px;
+    }
+    .filter .filter-category-box {
+        margin-top: 14px !important;
+    }
+
+}
+@media  (min-width: 555px) and (max-width: 669px) {
+
+    /* .shop-list-section .item-panel {
+        margin-top: 0px !important;
+    }*/
+    .categ-contener-hello {
+        margin-top: -118px !important;
+        margin-bottom: -68px;
+    }
+
+    .welcome-block {
+        margin-top: 95px !important;
+    }
+    .sub-title-additionally{
+        margin-top: 100px;
+    }
+    .filter .filter-category-box {
+        margin-top: 106px !important;
+        width: 44% !important;
+    }
+
+    .pagin-up {
+        margin-left: 8.5% !important;
+
+    }
+
+    .pagin-down {
+        margin-left: 8.5% !important;
+
+    }
+    .pagination {
+         margin: 0 auto;
+         width: 44%;
+     }
+}
+
+@media  (min-width: 670px) and (max-width: 767px) {
+    .my_work-area-categ {
+        margin-top: -116px !important;
+    }
+
+    .sub-title-additionally{
+        margin-top: 31px;
+    }
+    .filter .filter-category-box {
+        margin-top: 9px !important;
+        width: 44% !important;
+    }
+
+    .pagination {
+        width: 392px;
+        margin-bottom: 24px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+
+    .pagin-up {
+        margin: 0 auto !important;
+        {#width: 100%;#}
+        width: 392px;
+        {#margin-bottom: 24px !important;#}
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: inherit;
+        padding-right: inherit;
+    }
+
+    .pagin-down {
+        margin-left: 1% !important;
+        padding-left: 1% !important;
+        width: 100%;
+    }
+
+    .pagin-up-categ {
+        margin-top: 23px !important;
+        margin-bottom: 22px;
+    }
+
+    }
+
+
+
+@media  (min-width: 768px) and (max-width: 997px)  {
+    .pagination-cat {
+        margin-left: 0% !important;
+    }
+    .col-xs-12-my {
+        margin-top: -92px;
+    }
+    .filter .filter-category-box {
+        margin-top: 79px !important;
+        width: 100%;
+    }
+    .filter .filter-title::after {
+        bottom: 0;
+        height: 0;
+    }
+
+    .item-panel{
+        margin-bottom: 14px !important;
+    }
+}
+
+@media  (min-width: 998px) and (max-width: 1199px)  {
+
+    .col-xs-12-my {
+        margin-top: -92px;
+    }
+
+    .filter .filter-category-box {
+        margin-top: 128px !important;
+        width: 100%;
+    }
+    .filter .filter-title::after {
+        bottom: 0;
+        height: 0;
+    }
+    .item-panel{
+        margin-bottom: 14px !important;
+    }
+    .pagination {
+        margin-left: 29% !important;
+    }
+
+}
+
+@media  (min-width: 1200px) and (max-width: 1399px)  {
+
+    .col-xs-12-my {
+        margin-top: -92px;
+    }
+
+    .filter .filter-category-box {
+        margin-top: 120px !important;
+        width: 100%;
+    }
+    .filter .filter-title::after {
+        bottom: 0;
+        height: 0;
+    }
+
+    .item-panel{
+        margin-bottom: 14px !important;
+    }
+
+    .pagination {
+        margin-left: 18% !important;
+    }
+}
+
+@media  (min-width: 1400px) and (max-width: 2400px)  {
+
+    .col-xs-12-my {
+        margin-top: -92px;
+    }
+
+    .filter .filter-category-box {
+        margin-top: 120px !important;
+        width: 100%;
+    }
+    .filter .filter-title::after {
+        bottom: 0;
+        height: 0;
+    }
+
+    .item-panel{
+        margin-bottom: 14px !important;
+    }
+
+    .pagination {
+        margin-left: 18% !important;
+    }
 }
 
 </style>
@@ -22,13 +276,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 page-desc">
-                        <h2 class="animated" data-animation="fadeInRight" data-animation-delay="300">Наша галерея</h2>
+                        <h2 class="animated" data-animation="fadeInRight" data-animation-delay="300">Категории</h2>
                         <p class="animated" data-animation="fadeInLeft" data-animation-delay="300">Производство достижимо в разумные сроки. Поэтому перераспределение бюджета</p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="inner_content">
+        <div class="inner_content inner_content-cat">
         <section id="#your-works" class="your-works-section my-works-section">
 
             <div class="container- my_container" >
@@ -38,21 +292,21 @@
 {#                <div class="children"></div> class="col-md-9 col-sm-9"#}
 {#                    <div class=" col-md-12 col-sm-12"></div>#}
                     <div class="project-items- photo- html- proj-our">
-                        <div class="thumbnail">
+                        <div class="thumbnail thumbnail-cat">
                             <div class="img-box">
 
-                                <div class="img-block"><img src="{{ MEDIA_URL }}{{ category_s.3 }}" class="img-responsive" alt="">
+                                <div class="img-block"><img src="{{ MEDIA_URL }}{{ category_s.3 }}" class="img-responsive img-responsive-cat" alt="">
                                 </div>
                             </div>
-                            <div class="caption">
+                            <div class="caption caption-cat">
 
                                 <h3><a href="{% url "sort_goods_categ" %}?i={{ category_s.0 }}">{{ category_s.1 }}</a></h3><!--Название-->
-                                <p>{{ category_s.2 }}{#А вот по мнению аналитиков контекстная реклама ускоряет сублимированный охват аудитории. Практика однозначно показывает, что рейт-карта ускоряет конкурент, повышая конкуренцию.#}</p>
-                                <p class="rating">
-                                    <label>
-                                        <input value="4" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs">
-                                    </label><span>- рейтинг фото</span>
-                                </p>
+                                <p class="tags-cat">{{ category_s.2 }}{#А вот по мнению аналитиков контекстная реклама ускоряет сублимированный охват аудитории. Практика однозначно показывает, что рейт-карта ускоряет конкурент, повышая конкуренцию.#}</p>
+{#                                <p class="rating">#}
+{#                                    <label>#}
+{#                                        <input value="4" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs">#}
+{#                                    </label><span>- рейтинг фото</span>#}
+{#                                </p>#}
                                 <div class="social-icon"><a href="#"><i class="fa fa-google google-icon"></i></a> <a href="#"><i class="fa fa-facebook facebook-icon"></i></a> <a href="#"><i class="fa fa-dribbble dribble-icon"></i></a> <a href="#"><i class="fa fa-twitter twitter-icon"></i></a> <a href="#"><i class="fa fa-rss rss-icon"></i></a> <a href="#"><i class="fa fa-vimeo-square vimeo-icon"></i></a> <a href="#"><i class="fa fa-skype skype-icon"></i></a> <a href="#"><i class="fa fa-youtube youtube-icon"></i></a>
                                 </div>
                             </div>
@@ -70,21 +324,21 @@
 
         <section id="shop-list" class="shop-list-section top-sale-section">
             <div class="container">
-                <div class="row button-block">
-                    <div class="col-md-12">
+                <div class="row button-block button-block-cat">
+                    <div class="col-md-12 col-md-12-cat">
                         <ul>
                             <li class="pull-right">
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li class="btn-group list view-type">Показать как:</li>
-                                    <li class="btn-group list active" role="presentation"><a href="{% url 'goods' %}" title="List View" role="tab" data-toggle="tab"><i class="fa fa-th-list"></i></a>
+                                    <li class="btn-group list active" role="presentation"><a href="{% url 'category' %}" title="List View" ><i class="fa fa-th-list categ-point"></i></a>
                                     </li>
                                     <li class="btn-group grid" role="presentation"><a href="{% url "index" %}" title="Grid View"><i class="fa fa-th-large"></i></a>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="btn-group item-sort"><!--сортировать по цене-->
+                            <li class="btn-group item-sort item-sort-categ"><!--сортировать по цене-->
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="pull-right">
-                                    <i class="fa fa-angle-down"></i></span>Сортировать: <span class="change_price">Выберите вариант</span>
+                                    <i class="fa fa-angle-down"></i></span><span class="change_price">Выберите вариант</span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="#" onclick="onclickPrice(this, 0, event) " class="change_price_min">По цене меньше</a>
@@ -98,7 +352,7 @@
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                     <span class="pull-right">
                                         <i class="fa fa-angle-down"></i>
-                                    </span>Выбрать: <span title="0" class="create_categ">Категорию</span>
+                                    </span><span title="0" class="create_categ">Категорию</span>
                                 </button>
                                 <ul class="dropdown-menu min-max-js" role="menu">
                                     {% for category_on_goods_s in category_on_goods %}
@@ -116,7 +370,7 @@
                         <div class="row">
                             <div class="col-md-3 filter col-sm-3">
                                 <!--filter-price-box тут был фильтр-->
-                                <div class="filter-category-box">
+                                <div class="filter-category-box filter-category-box-categ">
                                     <div class="filter-title">
                                         <h3>Категории</h3> <!--Количество товаров в категори боковая-->
                                     </div>
@@ -134,11 +388,13 @@
                             </div>
                             <div class="col-md-9 col-sm-9">
                                 <!---->
-                                <div class="for-row">
+                                {% autopaginate goods 8 %}
+                                <div class="pagin-up pagin-up-categ">{% paginate %}</div>
+                                <div class="for-row  col-md-12-cat">
                                     {% for goodss in goods %}
 
                                         <!--start block-->
-                                        <div class="row">
+                                        <div class="row row-cat">
                                             <div class="col-md-12">
                                                 <div class="item-panel">
                                                     <div class="row margin-hide my_margin-hide">
@@ -161,7 +417,9 @@
                                                             <ul class="my_show-link">
                                                                 <li class="show-link"><a href="{% url "show" pk=goodss.0 %}"><span>Подробнее..</span></a><span class="fa fa-angle-right right-icon"></span>
                                                                 </li>
-                                                                <li class="add-to-card"><span class="fa fa-shopping-cart"></span><a href="#"><span>В корзину</span></a>
+{#                                                                <div><a href="{% url 'shop_cart' %}?i={{ all_goods_s.0 }}&name={{ all_goods_s.1 }}&price={{ all_goods_s.3 }}&img={{ media_url_cart }}{{ all_goods_s.4 }}" class="add-card-text"><span class="fa fa-shopping-cart"></span><span class="span-cart-index">В корзину</span></a>#}
+
+                                                                    <li class="add-to-card"><span class="fa fa-shopping-cart"></span><a href="{% url 'shop_cart' %}?i={{ goodss.0 }}&name={{ goodss.1 }}&price={{ goodss.3 }}&img={{ media_url_cart }}{{ goodss.4 }}"><span>В корзину</span></a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -171,6 +429,7 @@
                                         </div>
                                     {% endfor %}
                                 </div>
+                                <div class="pagin-down pagin-down-categ">{% paginate %}</div>
                             </div>
                             <!--end block-->
 
@@ -182,7 +441,43 @@
             </div>
         </section>
         <!---->
-
+        <section class="work-area section my_work-area-categ">
+            <div class="container categ-contener-hello">
+                <div class="row row-footer-he">
+                    <div class="col-xs-12 col-xs-12-my col-xs-12-my-cat">
+                        <h2 class="section-title text-center color-black animated" data-animation="fadeInRight" data-animation-delay="300">Приветствуем Вас в нашем магазине!</h2>
+                        <p class="sub-title text-center color-black animated" data-animation="fadeInLeft" data-animation-delay="500">Исходя из структуры пирамиды Маслоу, опрос охватывает фирменный нишевый проект.</p>
+                        <p class="sub-title text-center color-black sub-title-additionally animated" data-animation="fadeInLeft" data-animation-delay="500">Рекламоноситель, пренебрегая деталями, основан на тщательном анализе данных.</p>
+                    </div>
+                </div>
+                <div class="row welcome-block">
+                    <div class="col-sm-3 my-col-sm-3">
+                        <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="300"><i class="fa fa-shopping-cart"></i>
+                            <h3 class="my_welcome-box">Быстрая покупка</h3>
+                            <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 my-col-sm-3">
+                        <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="500"><i class="fa fa-car"></i>
+                            <h3 class="my_welcome-box">Доставка по России</h3>
+                            <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 my-col-sm-3">
+                        <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="700"><i class="fa fa-money"></i>
+                            <h3 class="my_welcome-box">Продажа шаблонов</h3>
+                            <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 my-col-sm-3">
+                        <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="900"><i class="fa fa-credit-card"></i>
+                            <h3 class="my_welcome-box">Оплачивайте здесь</h3>
+                            <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <script>
             {#function changPrice(my_this){#}
             {#    // сюда прилетает id выбранного города в value#}
@@ -201,6 +496,14 @@
                 {#console.log('data-n-126')#}
                 {#console.log(saveChild(data))#}
            //}
+
+            var pageCurrent = document.getElementsByClassName("current")[0].innerHTML
+
+            if (pageCurrent && pageCurrent !==0 && pageCurrent !=='0' && pageCurrent !=='') {
+                {#alert(pageCurrent)#}
+                document.getElementsByClassName("current")[0].classList.add('curr_page_number')
+            }
+
 
             number_cat = 0
             number_flag = 0
@@ -275,9 +578,14 @@
 
             }
         </script>
+
+
     {% endblock content %}
     {% block brands %}{% endblock brands %}
+
     {% block additions %}{% endblock additions %}
+
+
 
 {% block js %}{% endblock js %}
 {% block js-1 %}

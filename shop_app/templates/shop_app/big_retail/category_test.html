@@ -20,7 +20,8 @@
                         <ul class="my_show-link">
                             <li class="show-link"><a href="{% url "show" pk=goodss.0 %}"><span>Подробнее..</span></a><span class="fa fa-angle-right right-icon"></span>
                             </li>
-                            <li class="add-to-card"><span class="fa fa-shopping-cart"></span><a href="#"><span>В корзину</span></a>
+                            <li class="add-to-card"><span class="fa fa-shopping-cart"></span><a href="{% url 'shop_cart' %}?i={{ goodss.0 }}&name={{ goodss.1 }}&price={{ goodss.3 }}&img={{ media_url_cart }}{{ goodss.4 }}"><span>В корзину</span></a>
+{#                            <li class="add-to-card"><span class="fa fa-shopping-cart"></span><a href="#"><span>В корзину</span></a>#}
                             </li>
                         </ul>
                     </div>

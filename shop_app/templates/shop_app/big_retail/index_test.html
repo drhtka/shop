@@ -1,15 +1,16 @@
 {% load pagination_tags %}
 {% autopaginate all_goods 12 %}
 {#{% paginate %}#}
+<div class="pagin-up pagin-up-index">{% paginate %}</div>
+<div class="for-row">
 <div class="parent_my_row"><div class="my_row">
 {% for all_goods_s in all_goods %}
 
     <div class="chaild_grid">
         <div class="prodect-box">
             <div class="photo-block-">
-                <a data-rel="prettyPhoto-" href="/media/img/36.jpg" title="Название товара" class="link">
+                <a data-rel="prettyPhoto-" href="/media/img/36.jpg" title="Название товара" class="link-bac">
                     <i class="fa- fa-plus-"></i></a>
-
                 <img src="{{ MEDIA_URL }}{{ all_goods_s.4 }}" alt="item" class="img-responsive">
             </div>
             <div  class="prodect-details border_image">
@@ -27,9 +28,7 @@
                         <div ><a href="{% url "show" pk=all_goods_s.0 %}" class="show-link">Подробнее...<span class="right-icon-"></span></a>
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>
@@ -37,6 +36,7 @@
 {% endfor %}
 </div>
 </div>
-
+</div>
+<div class="pagin-down pagin-down-index">{% paginate %} index-test</div>
 
 {#<div class="pagin-down">{% paginate %}</div>#}

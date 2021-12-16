@@ -12,11 +12,11 @@
 
 
 
-    <section class="blog-post">
+    <section class="blog-post blog-post-detail">
         <div class="container">
             <div class="row">
-                <div class="blog-top animated" data-animation="fadeInUp" data-animation-delay="500"><img src="{{ MEDIA_URL }}{{ object.img }}" height="500px" alt="blog-photo" class="img-responsive- blog-photo">
-                    <div class="blog-date">
+                <div class="blog-top animated" data-animation="fadeInUp" data-animation-delay="500"><img src="{{ MEDIA_URL }}{{ object.img }}" alt="blog-photo" class="img-responsive img-responsive-art blog-photo">
+                    <div class="blog-date blog-date-detail">
                         <h2>{{ article.date|date:"d" }}</h2>
                         <p>{{ article.date|date:"M" }}</p>
                         <h4>{{ article.date|date:"Y" }}</h4>
@@ -30,24 +30,24 @@
                             <p class="blog-content">{{ object.body|truncatewords:40|linebreaks }}</p>
                             <div class="row post-details">
                                 <div class="col-sm-3 col-md-2"><i class="fa fa-user"><span>Автор:</span></i>{{ object.author }}</div>
-                                <div class="col-sm-3 col-md-2"><i class="fa fa-comments"><span>Комментарии:</span></i>5</div>
-                                <div class="col-sm-3 col-md-2"><i class="fa fa-folder"><span>Категория:</span></i>Новости</div>
+{#                                <div class="col-sm-3 col-md-2"><i class="fa fa-comments"><span>Комментарии:</span></i>5</div>#}
+{#                                <div class="col-sm-3 col-md-2"><i class="fa fa-folder"><span>Категория:</span></i>Новости</div>#}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 animated" data-animation="fadeInUp" data-animation-delay="500">
+                {% comment %}<div class="col-md-12 animated" data-animation="fadeInUp" data-animation-delay="500">
                     <div class="about-author">
                         <div class="thumb"><img src="images/blog-single/author.jpg" alt="author-images" class="img-responsive author-photo">
                         </div>
                         <h3>Иван Дионтьев</h3>
                         <p>Конкурент, безусловно, исключительно транслирует контент. Стратегический рыночный план охватывает потребительский рынок, расширяя долю рынка. Показ баннера без оглядки на авторитеты отталкивает ребрендинг, не считаясь с затратами.</p>
                     </div>
-                </div>
+                </div>{% endcomment %}
             </div>
         </div>
     </section>
-    <section class="comments-part">
+    {% comment %}<section class="comments-part">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -97,8 +97,8 @@
                 </div>
             </div>
         </div>
-    </section>
-    <section class="comment-form animated" data-animation="fadeInUp" data-animation-delay="500">
+    </section>{% endcomment %}
+    {% comment %}<section class="comment-form animated" data-animation="fadeInUp" data-animation-delay="500">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -129,7 +129,7 @@
                 </div>
             </form>
         </div>
-    </section>
+    </section>{% endcomment %}
 
 
 

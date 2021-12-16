@@ -6,47 +6,89 @@
 <title>{% block title %}Личный кабинет{% endblock %}</title>
 {% block video-baner %}{% endblock %}
 {% block content %}
+    <style>
+        {#.navbar-right-lk{#}
+        {#    margin-right: 19%;#}
+        {#}#}
+        .navbar-lk{
+            margin-bottom: 6px;
+        }
+        .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
+            color: #fff;
+
+        }
+
+    </style>
     <link href="{% static "big_retail/css/my_style.css" %}" rel="stylesheet" type="text/css">
     {% if user.is_authenticated %}
         {{ posts }}
 {#        <h2><div>Ваше имя: {{ request.user.username  }}</div></h2>#}
 {#        <h2><div>Номер заказа: {{ products.0.bill_id }}</div></h2>#}
-
+        <div class="page-desc-section page-desc-section-cat">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 page-desc">
+                    <h2 class="animated animated-lk" data-animation="fadeInRight" data-animation-delay="300">Личный кабинет</h2>
+                    <p class="animated" data-animation="fadeInLeft" data-animation-delay="300">Производство достижимо в разумные сроки. Поэтому перераспределение бюджета</p>
+                </div>
+            </div>
+        </div>
+        </div>
         <!--bootstrap start-->
-        <div class="my_container_media center-tables-lk container">
-        <div class="panel panel-default container">
-        <table class="table table-hover container">
-            <thead>
+        <div class="my_container_media- center-tables-lk container">
+{#        <div class="panel panel-default container">#}
+        <table class="table table-hover container table-lk">
+            <thead class="thead-lk">
             <tr>
-                <th scope="col">Номер</th>
-                <th scope="col">Дата</th>
-                <th scope="col">Сумма</th>
-                <th scope="col">Телефон</th>
+                <th scope="col" class="col-th col-th-number">Номер</th>
+                <th scope="col" class="col-th col-th-date">Дата</th>
+                <th scope="col" class="col-th col-th-summ">Сумма</th>
+                <th scope="col" class="col-th phone-vis-lk">Телефон</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody class="tbody-lk">
 
             {% for products_is in us_id_s %}
                 <tr>
 
-                <td><a href="{% url 'lk' pk=products_is.0 %}">{{ products_is.0 }}</a></td>
-                    <td>{{ products_is.2|date:"d M Y" }}</td>
+                <td class="col-td">{{ products_is.0 }}</td>
+                    <td class="col-td"><a href="{% url 'lk' pk=products_is.0 %}">{{ products_is.2|date:"d.M.Y" }}</a></td>
                     {#                <div>Номер заказа: <a href="{% url 'lk' %}?i={{ products_is.0 }}">{{ products_is.0 }}</a></div><br>#}
-                    <td>{{ products_is.1 }}</td>
-                    {#        <div> <img src="{{ products_is.2}}" height="100px"; width="100px"> </div><br>#}
-                    <td>{{ products_is.4 }}</td>
+                    <td class="col-td">{{ products_is.1 }}</td>
+{#                    <div> <img src="{{ products_is.2}}" > </div>#}
+                    <td class="col-td phone-vis-lk">{{ products_is.4 }}</td>
 
                 </tr>
             {% endfor %}
 
             </tbody>
         </table>
-        </div>
+{#        </div>#}
         </div>
         <!--bootstrap end-->
 
 
     {% endif %}
+            <script>
+            function onclickMenu(){
+                console.log('my-collapse')
+                console.log(document.getElementsByClassName('my-collapse')[0].classList.contains('in'))
+                if(document.getElementsByClassName('my-collapse')[0].classList.contains('in') == false || document.getElementsByClassName('my-collapse')[0].style.display == 'none' ){
+                    document.getElementsByClassName('my-collapse')[0].classList.add('in')
+
+                    document.getElementsByClassName('my-collapse')[0].style.display = 'block'
+                    document.getElementsByClassName('my-collapse')[0].style.visibility = 'visible'
+
+                }
+                else{
+                    document.getElementsByClassName('my-collapse')[0].classList.remove('in')
+
+                    document.getElementsByClassName('my-collapse')[0].style.display = 'none'
+                    document.getElementsByClassName('my-collapse')[0].style.visibility = 'hidden'
+
+                }
+            }
+            </script>
 {% endblock content %}
 {% block brands %}{% endblock brands %}
 {% block js %}<script type="text/javascript" src="{% static "/shop_app/js/script.js" %}" rel="stylesheet"></script>

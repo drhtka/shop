@@ -40,9 +40,18 @@ html{
     /*grid-template-columns: 270px 270px 270px 270px;*/
     grid-template-columns: 300px 300px 300px 300px;
     grid-column-gap: 0%; /*отступы в столбце*/
-    grid-row-gap: 4%; /*отступы в ряде*/
-
+    grid-row-gap: 5%; /*отступы в ряде*/
 }
+
+.my_row_early{
+    display: grid;
+    grid-template-rows: 292px 292px;
+    /*grid-template-columns: 270px 270px 270px 270px;*/
+    grid-template-columns: 300px 300px 300px 300px;
+    grid-column-gap: 0%; /*отступы в столбце*/
+    grid-row-gap: 9%; /*отступы в ряде*/
+}
+
 div .my_row{
     /*height: 1181px;*/
 }
@@ -205,7 +214,13 @@ div .my_row{
     /*overflow: hidden;*/
     /*padding-top: 40px;*/
 }
-
+.pagination_react{
+    /*border: 0px !important;*/
+}
+.pagination-react{
+    margin: 0 auto !important;
+    margin-left: 22% !important;
+}
 #top-sales-slider{
     width: 75%;
     margin: 0 auto;
@@ -275,18 +290,49 @@ div .my_row{
 }
 
 .name_prod{
-    margin-top: 45px;
-    font-size: 20px
+    margin-top: 30px;
+    font-size: 20px;
+    margin-left: 17%;
 }
 
-
-.nema{
+.price-cart-table{
+    margin-top: 37px;
+}
+.form-control-cart-count{
+    width: 29%;
+}
+.cart-count-flex{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 33px;
+}
+.empty_cart{
     font-size: 25px;
-    color: #0000FF;
+    color: #38486F;
     font-family: Lora;
     text-align: center;
+    /*border: 1px solid;*/
+    /*padding: 13px;*/
+    /*width: 20%;*/
+/*    border-radius: 7px;*/
+    margin: 0 auto;
     margin-top: 30px;
     margin-bottom: 50px;
+/*}*/
+/*.empty_cart:hover{*/
+/*    font-size: 25px;*/
+/*    background: #38486F;*/
+/*    color: white;*/
+/*    font-family: Lora;*/
+/*    text-align: center;*/
+/*    border: 1px solid;*/
+/*    border-color: #38486F;*/
+/*    padding: 13px;*/
+/*    width: 20%;*/
+/*    border-radius: 7px;*/
+/*    margin: 0 auto;*/
+/*    margin-top: 30px;*/
+/*    margin-bottom: 50px;*/
 }
 
 .button_dell{
@@ -315,7 +361,8 @@ div .my_row{
     align-items: center; /*os y*/
     justify-content: space-around;
     width: 70px;
-    padding-left: 150px;
+    padding-left: 98px;
+    padding-top: 7px;
 }
 
 /*modal*/
@@ -401,16 +448,18 @@ div .my_row{
     font-size: 30px;
     font-weight: lighter;
     z-index: 1;
-    margin-left: 550px;
+    margin-left: 559px;
     cursor: pointer;
 }
 
 .my-close{
     /*margin-top: -400px;*/
-    color: red;
-    font-size: 100px;
-    margin-top: -400px;
-    /*position: absolute;*/
+    color: white;
+    font-size: 53px;
+    margin-top: -382px;
+    position: absolute;
+    margin-left: 94%;
+    opacity: 0.7;
 }
 
 .my-close{
@@ -444,7 +493,7 @@ div .my_row{
 /*}*/
 
 .triangle-right{
-    border: solid lightgrey;
+    border: solid lightyellow;
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 10px;
@@ -480,10 +529,12 @@ div .my_row{
     font-family: Lora;
     text-align: center;
     margin-top: 30px;
-    margin-bottom: 50px;
+    /*margin-bottom: 50px;*/
 }
 .button-height{
     height: 47px;
+    margin-top: 13px;
+    background-color: #222832;
 }
 .input-height{
     height: 47px;
@@ -508,9 +559,26 @@ div .my_row{
 .errorlist{
     padding-left: 0;
 }
+.row-final{
+    margin: 0 auto;
+    width: 8%;
+    margin-top: 55px;
+}
+
 
 .send-button-my{
-    padding-left: 16px !important;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 40px;
+    border: 1px solid #222;
+    color: #222;
+
+}
+.send-button-my:hover{
+    color: #fff;
+    background: #38486F;
+
 }
 
 .order-inal{
@@ -529,14 +597,27 @@ div .my_row{
     text-align: center;
 
 }
+#login-section.login-section {
+    padding-bottom: 0px;
+}
+
 .for_buy-order{
-    font-size: 18px;
-    color: #0000FF;
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    font-size: 32px !important;
+    color: rgb(51, 51, 51);
     font-family: 'Lora';
-    font-width: 18px ;
+    font-width: 18px;
     text-align: center;
-    margin: 0 0 0 625px;
-    /*color: #0000FF;"*/
+}
+.nearly_final_text{
+    font-size: 32px;
+    color: rgb(51, 51, 51);
+    font-family: 'Lora';
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
 }
 
 /* style="text-align: center; margin:0 auto; color: #0000FF;" */
@@ -553,7 +634,7 @@ div .my_row{
     font-width: 12px ;
 }
 .padding-left-main{
-    padding-left: 150px;
+    padding-left: 0px;
 }
 .our_container{
     width: 80%;
@@ -577,11 +658,11 @@ div .my_row{
     padding-left: 3px;
 }
 
-/*---------------[Lk-----*/
-.center-tables-lk{
-    /*display: block;*/
-    margin: 2% 3% 3% 25%;
-}
+/*---------------Lk  lk-----*/
+/*.center-tables-lk{*/
+/*    !*display: block;*!*/
+/*    margin: 2% 3% 3% 25%;*/
+/*}*/
 .modal-open .modal {
     overflow-x: hidden;
     overflow-y: hidden;
@@ -593,9 +674,11 @@ div .my_row{
 .cont_index{
     margin-top: 21px !important;
 }
-
+.section-index{
+    padding: 0px 0px 53px !important;
+}
 div.container.cont_index{
-    height: 150px;
+    height: 100px;
 }
 
 .footer-bg{
@@ -612,37 +695,49 @@ div.container.cont_index{
     font-size: 16px !important;
 }
 .cart-details{
-    padding: 15px;
+    margin: 0 auto;
+    padding: 0px;
+    padding-top: 7px;
+    padding-bottom: 8px;
+}
+.img-responsive-cart{
+    height: 197px;
+}
+.photo-block{
+    margin-top: -20px;
+}
+
+
+.col-td a {
+    margin-left: 26%;
 }
 
 
 
 
-
-
-@media  (min-width: 300px) and (max-width: 320px) {
-    .grid-footer {
-        width: 85%;
-        margin: 0 auto;
-        grid-template-columns: 25% 25% 25% 25%;
-        grid-template-rows: 25% 25% 25% 25%;
-    }
-    .my_container_media {
-        width: 98%;
-        margin: 16% 0% 0% 1%;
-    }
-    input.button-lk {
-        margin: 0 0 0 63% !important;
-        top: 50% !important;
-        /*padding: 20px !important;*/
-        /*font-size: 20px;*/
-    }
-    /*.parent_ul {*/
-    /*    display: grid;*/
-    /*    grid-template-columns: 60px 60px 60px 60px;*/
-    /*    grid-template-rows: 65px 65px 65px;*/
-    /*}*/
-}
+/*@media  (min-width: 300px) and (max-width: 320px) {*/
+/*    .grid-footer {*/
+/*        width: 85%;*/
+/*        margin: 0 auto;*/
+/*        grid-template-columns: 25% 25% 25% 25%;*/
+/*        grid-template-rows: 25% 25% 25% 25%;*/
+/*    }*/
+/*    .my_container_media {*/
+/*        width: 98%;*/
+/*        margin: 16% 0% 0% 1%;*/
+/*    }*/
+/*    input.button-lk {*/
+/*        margin: 0 0 0 63% !important;*/
+/*        top: 50% !important;*/
+/*        !*padding: 20px !important;*!*/
+/*        !*font-size: 20px;*!*/
+/*    }*/
+/*    !*.parent_ul {*!*/
+/*    !*    display: grid;*!*/
+/*    !*    grid-template-columns: 60px 60px 60px 60px;*!*/
+/*    !*    grid-template-rows: 65px 65px 65px;*!*/
+/*    !*}*!*/
+/*}*/
 
 .grid-lk{
     height: 100vh; /*высота в процентах*/
@@ -683,6 +778,9 @@ div.child-active-lk{
     align-content: space-between;
     flex-wrap: wrap;
     height: 100%;
+    margin-right: 3%;
+    margin-bottom: 25px;
+    width: fit-content;
 }
 .child-active-lk{
     /*align-self: flex-start;*/
@@ -693,7 +791,7 @@ div.child-active-lk{
 }
 .child_lk{
     /*width: 5%;*/
-    margin: 10px 10px;
+    margin: 0 auto;
     border-radius: 5px
     /*font-family: 'Lora';*/
 }
@@ -715,18 +813,24 @@ div.child_lk>div{
 
 .border-lk{
     border: 1px solid #032e2a;
-    padding: 10px;
+    padding: 22px;
+    margin: 10px;
+    /*margin-top: 16px;*/
 }
 
 .button-lk{
     padding: 8px 24px;
-    margin: 0 1270px;
+    /*margin: 0 1270px;*/
     border: whitesmoke;
     border-top-color: currentcolor;
     border-right-color: currentcolor;
     border-bottom-color: currentcolor;
     border-left-color: currentcolor;
     border-color: currentColor;
+    position: fixed;
+    top: 142px;
+    right: 40px;
+    z-index: 100000;
 }
 
 input.button-lk {
@@ -856,6 +960,262 @@ input.button-lk {
 .price-mt{
     margin-top: 10px;
 }
+.pagin-up-categ{
+    margin-left: -204px;
+    margin-top: 16px;
+}
+
+.pagin-down-categ{
+    margin-left: -204px;
+    margin-top: 52px;
+}
+.img-responsive-index{
+    width: 177px;
+    height: 150px;
+}
+.filter-category-box-categ{
+    margin-top: 131px;
+ }
+.page-desc-section{
+    margin-top: 28px;
+    padding-left: 13px;
+    padding-right: 12px;
+}
+.categ-point{
+    cursor: pointer;
+}
+.img-responsive-art{
+    height: auto;
+}
+.blog-post h3 {
+    margin-top: 11px !important;
+}
+.table-lk{
+    width: 52%;
+    border: 1px solid lightgray;
+    border-radius: 14px !important;
+    display: flex;
+    align-items: normal;
+    justify-content: center;
+    flex-direction: column;
+}
+.phone-vis-lk{
+    width: 15%;
+}
+.product-name-cart-table{
+    width: 22%;
+}
+.range-input-cart-table{
+    width: 14%;
+}
+
+.blog-post .blog-date {
+    background: rgba(255, 255, 255, 0.2) 75% !important;
+    top: 3%;
+    padding-top: 0.5%;
+}
+.blog-post .blog-date:after {
+    border-top: none;
+}
+.blog-post .blog-date:after {
+    border-top: none;
+}
+.blog-post-detail .blog-date-detail{
+    top: 8%;
+    height: 73px !important;
+    margin-left: 4px;
+    padding-top: 0.3%;
+}
+.Similar-products{
+    margin: 0 auto;
+    margin-bottom: 22px;
+    text-align: center;
+}
+.table-cart-width{
+    width: 83%;
+}
+.form-signin h1{
+    text-align: center;
+}
+.plus, .minus{
+    margin-top: 8px;
+}
+.rub_span-cart-table{
+    width: 15%;
+}
+.all-price-cart-table{
+    margin-top: 37px;
+    margin-left: 10%;
+}
+.shopping-cart{
+    width: 13%;
+    padding: 0.5% !important;
+    padding-left: 3% !important;
+}
+.shopping-cart-img{
+    width:90px;
+    height: 90px;
+    padding-top: 5%;
+}
+.cart-name-table{
+    text-align: center;
+    font-size: 22px;
+}
+.close-button{
+    width: 15%;
+    padding-top: 16px !important;
+    padding-left: 32px !important;
+}
+.order-batton-cart{
+    background: #222832
+}
+
+.my-order-box{
+    width: 100%;
+    border: 1px solid;
+    border-radius: 14px !important;
+    display: flex;
+    align-items: normal;
+    justify-content: center;
+    flex-direction: column;
+}
+/******https://dimox.name/press_footer_bottom_with_css/
+Как с помощью CSS прижать footer к низу окна браузера******/
+/** {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*}*/
+/*html,*/
+/*body {*/
+/*    height: 100%;*/
+/*}*/
+/*.wrapper {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    min-height: 100%;*/
+/*    width: 100%;*/
+/*}*/
+/*.content {*/
+/*    flex: 1 0 auto;*/
+/*}*/
+/*.footer {*/
+/*    flex: 0 0 auto;*/
+/*}*/
+
+
+.final-total{
+    margin-top: 11px;
+    margin-bottom: 8px;
+}
+
+.col-xs-6-cart{
+    width: 45%;
+}
+.col-th{
+    padding: 16px 33px 16px 27px;
+}
+.col-td{
+    padding: 16px 16px 16px 27px;
+}
+
+.final_thanks{
+    font-size: 25px; color: #0000FF;
+    font-family: 'Lora';
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.shop_orders{
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    font-size: 18px;
+    color: #0000FF;
+    font-family: 'Lora';
+    font-width: 18px;
+    text-align: center;
+}
+.dropd-z-noline{
+    border-bottom: 0px !important;
+}
+.my-collapse{
+    margin-top: 0px !important;
+    padding: 0px !important;
+}
+.navbar-right-lk{
+    margin: 0px !important;
+}
+
+#sticky-section {
+    background: #195f91;
+    height: 71px !important;
+}
+
+.col-xs-6_detail{
+    width: 70%;
+}
+
+.col-xs-6_detail a {
+    text-decoration: none !important;
+}
+
+.pull-right{
+    text-decoration: none !important;
+}
+
+.col-xs-6_detail-pod{
+    width: 70%;
+    margin-left: 55px;
+    margin-top: -20px;
+}
+
+
+.new-additions .new-additions-items a {
+    text-decoration-line: none;
+}
+
+.shop-list-section .item-panel {
+    margin-top: 10px;
+}
+
+.col-md-12-cat{
+    margin-top: 20px;
+}
+
+/*.curr_page_number {*/
+/*    color: white;*/
+/*    background: #38486F;*/
+/*    border: 1px solid #38486F;*/
+/*}*/
+
+/*.curr_page_number:hover{*/
+/*    font-weight: bold;*/
+/*    color: #38486F;*/
+/*    background: white;*/
+/*    border: 1px solid #38486F;*/
+/*}*/
+
+
+
+
+/******https://dimox.name/press_footer_bottom_with_css/
+Как с помощью CSS прижать footer к низу окна браузера******/
+
+
+/*.page-desc-section{*/
+/*    margin-top: -1px !important;*/
+/*    height: 86px !important;*/
+/*}*/
+/*.page-desc-section h2 {*/
+/*    text-align: left;*/
+/*    margin: -15px auto 1px;*/
+/*    padding-left: 60px;*/
+/*}*/
+/*.page-desc-section .page-desc::before {*/
+/*    top: -8px !important;*/
+/*}*/
+
 /*.Site {*/
 /*    display: flex;*/
 /*    min-height: 1889vh !important;*/

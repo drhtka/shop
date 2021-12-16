@@ -71,20 +71,36 @@ function indexNext(myThis){
 
 //корзина
 
-
-
 	function plus(mythis, productName){ // из функции plus идём от this по дому к единице .value) + 1
-		if (Number(mythis.previousElementSibling.value < 10)) {
-	// {#var plusOne = Number(thisplus.previousElementSibling.innerHTML)#}
-	// {#console.log(mythis.previousElementSibling.value)#}
-		var plusOne = Number(mythis.previousElementSibling.value) + 1 // для прорисовки в шаблоне увеличение на один каждое нажатие
-	// {#console.log(mythis.previousElementSibling.value)#}
-	// {#console.log(mythis.parentNode.nextElementSibling.childNodes[1].innerHTML)#}
 
+		if (Number(mythis.previousElementSibling.value < 10)) {
+
+	// {#var plusOne = Number(thisplus.previousElementSibling.innerHTML)#}
+	// console.log(mythis)
+	// console.log('mythis')
+	// console.log(mythis.previousElementSibling.value)
+		var plusOne = Number(mythis.previousElementSibling.value) + 1 // для прорисовки в шаблоне увеличение на один каждое нажатие
+			// console.log('+1')
+			// console.log(plusOne)
+	// 		console.log('84')
+	// console.log(mythis.previousElementSibling.value)
+	// console.log(mythis.parentNode.parentNode.previousElementSibling.childNodes[1].innerHTML)
+	// 		console.log('summ')
+	// console.log(mythis.parentNode.parentNode.nextElementSibling.childNodes[1].innerHTML)
+	// console.log(mythis)
+	// 		console.log('mythis.parentNode')
+	// 		console.log(mythis.parentNode.parentNode.previousElementSibling)
+			// console.log(mythis.parentNode.previousElementSibling.childNodes[1].innerHTML)
 	// {#console.log(productName)#}
 	// {#console.log(productId)#}
-		var first_price_plus = mythis.parentNode.previousElementSibling.childNodes[1].innerHTML // начальная цена одного товара
-		console.log(first_price_plus)
+		var first_price_plus = mythis.parentNode.parentNode.previousElementSibling.childNodes[1].innerHTML // начальная цена одного товара
+			// console.log('innerHTML')
+			// console.log(first_price_plus)
+			// console.log(mythis.parentNode.parentNode.nextElementSibling.childNodes[1])
+		// console.log('first_price_plus')
+		// console.log(first_price_plus)
+			console.log('number')
+			console.log(Number(document.getElementsByClassName('main_summ')[0].innerHTML))
 		document.getElementsByClassName('main_summ')[0].innerHTML = Number(document.getElementsByClassName('main_summ')[0].innerHTML) + Number(first_price_plus) // к общей сумме пр нажатиии на плюсик
 		// приплюсовывается начальная цена одного товара
 			$.ajax({
@@ -92,39 +108,49 @@ function indexNext(myThis){
 				type: 'get',
 				data: {name: productName},
 				success: function (response) { // в респонсе прилетает общая сумма количство нажатий  умноженное на цену товара
-				console.log(response)
-				mythis.parentNode.nextElementSibling.childNodes[1].innerHTML = response // записываем
+				// console.log('response')
+				// console.log(response)
+				mythis.parentNode.parentNode.nextElementSibling.childNodes[1].innerHTML = response // записываем общую сумма
 				$('#bloc_content').html(response)
 			}
 		})
 		mythis.previousElementSibling.value = plusOne // для прорисовки в шаблоне увеличение на один каждое нажатие
-		console.log(mythis.previousElementSibling.value)
+		// console.log('value')
+		// console.log(mythis.previousElementSibling.value)
 	}
 }
 
 	function minus(mythis, productName, productId){
+		console.log('minu')
 		if (Number(mythis.nextElementSibling.value > 1)) {
 
 		var minusOne = Number(mythis.nextElementSibling.value) - 1
-		//console.log('summ_min')
-		//console.log(mythis.parentNode.previousElementSibling.childNodes[1].innerHTML)
-		var first_price = mythis.parentNode.previousElementSibling.childNodes[1].innerHTML // здесь цена за штуку товара
+			console.log('minusOne')
+			console.log(minusOne)
+		var first_price = mythis.parentNode.parentNode.previousElementSibling.childNodes[1].innerHTML // здесь цена за штуку товара
+
 		$.ajax({
-		url: '/final_order',
-		type: 'get',
-		data: {prodid: productId},
-		success: function (response) {
-		console.log('resp_minus')
-		console.log(response)
-		mythis.parentNode.nextElementSibling.childNodes[1].innerHTML = response
-		$('#bloc_content').html(response)
-	}
+			url: '/final_order',
+			type: 'get',
+			data: {prodid: productId},
+			success: function (response) {
+			console.log('resp_minus')
+			console.log(response)
+				console.log(mythis.parentNode.parentNode.nextElementSibling.childNodes[1].innerHTML)
+			mythis.parentNode.parentNode.nextElementSibling.childNodes[1].innerHTML = response
+			$('#bloc_content').html(response)
+		}
 })
 	mythis.nextElementSibling.value = minusOne
-	//console.log('111')
-	//console.log(document.getElementsByClassName('main_summ')[0])
+			// console.log('mythis.nextElementSibling.value')
+			// console.log(mythis.nextElementSibling.value)
+			// console.log('first_price')
+			// console.log(first_price)
+			console.log('111')
+			console.log(document.getElementsByClassName('main_summ'))
+			console.log(document.getElementsByClassName('main_summ')[0].innerHTML)
 	//alert(first_price)
-		document.getElementsByClassName('main_summ')[0].innerHTML = document.getElementsByClassName('main_summ')[0].innerHTML - first_price
+		document.getElementsByClassName('main_summ')[0].innerHTML = document.getElementsByClassName('main_summ')[0].innerHTML - first_price// гланая сумма внизу
 		//console.log(mythis.nextElementSibling.value)
 	}
 }

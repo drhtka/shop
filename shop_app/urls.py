@@ -8,7 +8,7 @@ from shop_app import views
 from shop_app.views import ProdsListView
 
 urlpatterns = [
-    re_path(r'^$', views.index, name='index'),
+    path(r'', views.index, name='index'),
     #path('shop/', index),
     path('contacts/', views.contacts,  name='contacts'),
     path('gallery/', views.gallery, name='gallery'),
@@ -29,6 +29,7 @@ urlpatterns = [
     path('fetch_category/', views.fetch_category, name='fetch_category'),
     path('fetch_price_index/', views.fetch_price_index, name='fetch_pric_indexe'),
     path('fetch_category_index/', views.fetch_category_index, name='fetch_category_index'),
+    path('priceIndexSort/', views.priceIndexSort, name='priceIndexSort'),
     # path('lk/', LKViews.lk, name='lk')
 
     path('lk_list/', ProdsListView.as_view(), name='lk_list'),

@@ -8,7 +8,169 @@
 {% block video-baner %}{% endblock video-baner %}
 
 {% block content %}
-    {% autopaginate goods 6 %}
+
+    <style>
+
+        .curr_page_number{
+            color: white;
+        {#text-decoration: underline;#}
+            background: #38486F;
+            border: 1px solid #38486F;
+        {#border: 7px solid red;#}
+        }
+
+        {#.curr_page_number:hover{#}
+        {#    font-weight: bold;#}
+        {#    color: #38486F;#}
+        {#    background: white;#}
+        {#    border: 1px solid #38486F;#}
+        //}
+
+        .page-desc-section{
+            margin: 0;
+        }
+
+        .button-block ul {
+            margin-bottom: 7px;
+        }
+
+        .shop-list-section .item-panel {
+            margin-top: 28px;
+        }
+
+        .array {
+            font-weight: bold;
+            color: #222;
+            border: none;
+        }
+        .pagination a {
+            border: none;
+        }
+
+        .pagination-react {
+            margin: 0 !important;
+            {#margin-left: 1% !important;#}
+            {#margin-right: 14% !important;#}
+            {#margin-top: 34px !important;#}
+            {#margin-bottom: -17px !important;#}
+            {#width: 453px !important;#}
+            {#padding-left: 12%;#}
+            {#padding-right: 12% ;#}
+            margin-top: -8px !important;
+        }
+
+        .pagination {
+
+            display: flex;
+            justify-content: center;
+
+
+            {#display: block;#}
+            {#width: 453px;#}
+            {#margin-left: auto;#}
+            {#margin-right: auto;#}
+
+
+            {#margin: 0 auto !important;#}
+            {#margin-left: auto;#}
+            {#display: block;#}
+            {#width: 453px;#}
+            {#margin-left: 49px;#}
+        }
+
+        @media  (min-width: 320px) and (max-width: 454px) {
+
+            .dropdown-menu {
+                background-color: rgb(204, 204, 204) !important;
+            }
+
+            .pagination__link {
+                min-width: 48px;
+            }
+            .pagination-react {
+
+                display: block;
+                width: 66% !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                margin-top: 34px !important;
+                padding: 0;
+                {#padding-left: 3% !important;#}
+                {#padding-right: 64% !important;#}
+            }
+
+            .pagination {
+
+                display: flex;
+                justify-content: center;
+            {#    margin: 0 auto !important;#}
+            {#margin-left: auto;#}
+            {#    display: block;#}
+            {#    width: 453px;#}
+            {#    margin-left: 49px;#}
+            }
+
+            .pagin-up{
+                margin: 0 auto !important;
+                width: 74% !important;
+                margin-top: 28px !important;
+            }
+
+        }
+
+        @media  (min-width: 555px) and (max-width: 669px){
+            {#.pagination {#}
+                {#display: block;#}
+                {#width: 453px;#}
+                {#margin-left: auto;#}
+                {#margin-right: auto;#}
+                {#padding-left: 12%;#}
+                {#padding-right: 12%;#}
+
+            .pagination {
+                display: flex;
+                justify-content: center;
+            }
+        }
+
+        @media  (min-width: 670px) and (max-width: 767px) {
+
+            .pagination-react {
+                padding-left: 8%;
+                padding-right: 8%;
+                margin-top: -68px !important;
+            }
+        }
+
+        @media  (min-width: 768px) and (max-width: 998px){
+            .pagination-react {
+                margin-bottom: 30px !important;
+            }
+        }
+
+        @media (min-width: 1200px) and (max-width: 1399px){
+
+            .footer-bg {
+                margin-top: 2% !important;
+            }
+        }
+
+
+
+    </style>
+
+    <div class="page-desc-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 page-desc">
+                    <h2 class="animated" data-animation="fadeInRight" data-animation-delay="300">Товары</h2>
+                    <p class="animated" data-animation="fadeInLeft" data-animation-delay="300">Производство достижимо в разумные сроки. Поэтому перераспределение бюджета</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{#    {% autopaginate goods 6 %}#}
 
     {% comment %}<div class="pagin-up">{% paginate %}</div> item products  <div class="pagin-down">{% paginate %}</div> {% endcomment %}
             <body id="shop-list-layout-side-bar">
@@ -25,6 +187,16 @@
 {#            <li><a href="#">&raquo;</a></li>#}
 {#        </ul>#}
 {#    </nav>#}
+
+{#    <script>#}
+
+        {#var pageCurrent = document.getElementsByClassName("current")[0].innerHTML#}
+        {#alert(pageCurrent)#}
+        {#if (pageCurrent && pageCurrent !==0 && pageCurrent !=='0' && pageCurrent !=='') {#}
+        {#    document.getElementsByClassName("current")[0].classList.add('curr_page_number')#}
+
+
+{#    </script>#}
 {% endblock content %}
 {% block brands %}{% endblock brands %}
 {% block react %}

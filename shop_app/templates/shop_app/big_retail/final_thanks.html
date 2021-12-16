@@ -5,7 +5,8 @@
 <title>{% block title %}Спасибо{% endblock %}</title>
 {% block video-baner %}{% endblock video-baner %}
 {% block content %}
-<div style="font-size: 25px; color: #0000FF; font-family: 'Lora'; text-align: center; margin-top: 30px;margin-bottom: 50px;">{{ nearly_final_text }}</div>
+<div class="final_thanks">{{ nearly_final_text }}</div>
+{#<div style="font-size: 25px; color: #0000FF; font-family: 'Lora'; text-align: center; margin-top: 30px;  margin-bottom: 50px;">{{ nearly_final_text }}</div>#}
 {% endblock content %}
 {% block brands %}{% endblock brands %}
 {% block js %}<script type="text/javascript" src="{% static "/shop_app/js/script.js" %}" rel="stylesheet"></script>{% endblock js %}

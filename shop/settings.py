@@ -197,7 +197,6 @@ CORS_ORIGIN_WHITELIST = [
     'googleads.g.doubleclick.net'
     # 'http://gdata.youtube.com/feeds/api/videos/8hv-ol3'
     # 'https://gdata.youtube.com/feeds/api/videos/8hv-ol3RnPo?v=2&alt=jsonc'
-
     # '*'
 ]
 

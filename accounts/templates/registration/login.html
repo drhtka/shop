@@ -1,18 +1,171 @@
-{% extends 'base_register.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% block title %}<title>Авторизация</title>{% endblock title %}
 {% block content %}
+
+    <style>
+        body{
+            height: 300px;
+        }
+        .form-signin {
+            width: 100%;
+            max-width: 330px;
+            padding: 15px;
+            margin: auto;
+        }
+        .footer-bg{
+            margin-top: 63% !important;
+        }
+    </style>
+    {% block css %}
     <link href="{% static "big_retail/css/my_style.css" %}" rel="stylesheet" type="text/css">
+    {% endblock css %}
+    {% comment %}{% endcomment %}{% block header1 %}{% endblock header1 %}
+    <div id="sticky-section" class="sticky-navigation">
+        <nav class="navbar navbar-default menu-bar" role="navigation">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="navbar-header">
+                            <div class="site-logo"><a title="" href="{% url 'index' %}">Shop</a>
+                            </div>
+                            <ul class="nav navbar-nav navbar-right section-show">
+                                <li class="cart"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-shopping-cart"></i>В корзине (3) товара</a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li class="clearfix"><i class="fa fa-times pull-right"></i> <img src="" alt="item-1" class="pull-left">
+                                            <div class="pull-left product"><a href="#">Название товара</a>
+                                                <h5>500 р.</h5>
+                                            </div>
+                                        </li>
+                                        <li class="clearfix"><i class="fa fa-times pull-right"></i> <img src="" alt="item-1" class="pull-left">
+                                            <div class="pull-left product"><a href="#">Название товара</a>
+                                                <h5>500 р.</h5>
+                                            </div>
+                                        </li>
+                                        <li class="clearfix"><i class="fa fa-times pull-right"></i> <img src="" alt="item-1" class="pull-left">
+                                            <div class="pull-left product"><a href="#">Название товара</a>
+                                                <h5>500 р.</h5>
+                                            </div>
+                                        </li>
+                                        <li class="total">
+                                            <h5>Итого: 1 500 р.</h5>
+                                        </li>
+                                        <li class="clearfix checkout"><a href="#" class="pull-left">В корзину</a> <a href="#" class="pull-right">Оплатить</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="login-style"><a href="#"><i class="fa fa-unlock-alt"></i>Вход</a>
+                                </li>
+                                <li class="register-border"><a href="#">Регистрация</a>
+                                </li>
+                            </ul>
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"><span class="menu-box"><span class="menu">Меню</span><i class="flaticon-list50 menu-button"></i>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse my-collapse" id="bs-example-navbar-collapse-2">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown"><a href="{% url "index" %}" class="dropdown-toggle dropdown-toggle-cat">Главная</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-1"></span>
+                                </li>
+                                {#                                    <li><a href="{% url "category" %}">Категории</a>#}
+                                {#                                    </li>#}
+                                <li class="dropdown"><a href="{% url 'goods' %}" class="dropdown-toggle">Товары</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-3"></span>
+
+                                <li class="dropdown"><a href="{% url 'category' %}" class="dropdown-toggle">Категории</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-6"></span>
+
+                                </li>
+                                <li class="dropdown"><a href="{% url 'articles:article_list' %}" class="dropdown-toggle">Новости</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-6"></span>
+                                    {#                                        <ul role="menu" class="dropdown-menu collapse-6 collapse">#}
+                                    {#                                            <li><a href="{% url 'articles:article_list' %}">Новости</a>{{ article.body }}#}
+                                    {#                                            </li>#}
+                                    {#                                            <li><a href="blog-single.html">Описание</a>#}
+                                    {#                                            </li>#}
+                                    {#                                        </ul>#}
+                                </li>
+                                {#                                    <li><a href="contacts.html">Контакты</a>#}
+                                {#                                    </li>#}
+                                {#                                    <i class="fa fa-angle-down"></i>#}
+                                <li class="dropdown"><a href="#" class="dropdown-toggle my_about">О нас</a> <span class="menu-toggler collapsed" data-toggle="collapse" data-target=".collapse-2"></span>
+                                    {#                                        <ul role="menu" class="dropdown-menu collapse-2 collapse">#}
+                                    {#                                            <li><a href="about-us.html">О компании</a>#}
+                                    {#                                            </li>#}
+                                    {#                                            <li><a href="services.html">Услуги</a>#}
+                                    {#                                            </li>#}
+                                    {#                                        </ul>#}
+                                </li>
+                                <li><a href="{% url "lk_list" %}">Личный кабинет</a>
+                                </li>
+
+{#                                <li class="search-form">#}
+{#                                    <form role="search" class="navbar-form">#}
+{#                                        <div class="input-group">#}
+{#                                            <input type="text" name="q" placeholder="Искать.." class="form-control">#}
+{#                                            <div class="input-group-btn">#}
+{#                                                <button type="submit" class="btn btn-default">ОК</button>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </form>#}
+{#                                </li>#}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div> <!---->
+
 {#    {% if user.is_anonymous %}{% endif %}#}
     <form method="post"  class="form-signin">
-        <h2>Вход</h2>
+        <h1>Вход</h1>
 {#        <h1>Ваше имя {{ form.username }}!</h1>#}
 
         {{ form.username }}
-
         {{ form.password }}
         {% csrf_token %}
     <button class="btn btn-lg btn-primary btn-block button-height" type="submit">Войти</button>
     </form>
 
 {% endblock content %}
+{% block video-baner %}{% endblock video-baner %}
+
+{% block brands %}{% endblock brands %}
+{% block js-1 %}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+
+    <script type='text/javascript' src='http://test.michalbacak.com/wp-includes/js/imagesloaded.min.js?ver=3.2.0'></script>
+    <script type='text/javascript' src='http://test.michalbacak.com/wp-content/plugins/ajax-load-more/vendor/js/masonry/masonry.pkgd.min.js?ver=4.2.1'></script>
+    <script type='text/javascript' src='http://test.michalbacak.com/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+    <script type="text/javascript" src="{% static "big_retail/js/jquery-1.11.1.min.js" %}" rel="stylesheet">var jQuery1111 = $.noConflict(true);</script>
+    <script type="text/javascript" src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js"></script>
+    <script type="text/javascript" src="{% static "big_retail/js/bootstrap.min.js" %}" rel="stylesheet"></script>
+    <script type="text/javascript" src="{% static "big_retail/js/bootstrapValidator.min.js" %}" rel="stylesheet"></script>
+    <script type="text/javascript" src="{% static "big_retail/js/bootstrap-hover-dropdown.min.js" %}" rel="stylesheet"></script>
+    <script type="text/javascript" src="{% static "big_retail/js/owl.carousel.min.js" %}" rel="stylesheet" ></script><!--owl-theme-->
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.sticky.js" %}"  rel="stylesheet"></script><!---->
+
+    <script type="text/javascript" src="{% static "big_retail/js/carousel.min.js" %}"  rel="stylesheet"></script><!--owl-theme-->
+    <script type="text/javascript" src="{% static "big_retail/js/slider/jquery.fractionslider.js" %}" rel="stylesheet"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/slider/main.js" %}" charset="utf-8" rel="stylesheet"></script> <!---->
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.prettyPhoto.js" %}" rel="stylesheet"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.easy-ticker.min.js" %}" rel="stylesheet"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/idangerous.swiper.min.js" %}" rel="stylesheet"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/idangerous.swiper.progress.min.js" %}" rel="stylesheet"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/star-rating.min.js" %}" rel="stylesheet"></script><!---->
+
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.flexslider-min.js" %}" rel="stylesheet"></script><!---->
+
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.content_slider.js" %}" rel="stylesheet"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.easypiechart.min.js" %}"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/option.js" %}"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.nstSlider.js" %}"></script><!---->
+
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.mb.YTPlayer.js" %}"></script><!--2212 минус ошибка-->
+    <script type="text/javascript" src="{% static "big_retail/js/jquery.appear.js" %}"></script><!---->
+    <script type="text/javascript" src="{% static "big_retail/js/main.js" %}"></script><!--без этого не загружается 2212-->
+
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script> <!-- который ломал все-->
+    {% comment %}<script type="text/javascript" src="{% static "shop_app/js/script.js" %}" rel="stylesheet"></script>{% endcomment %}
+
+    {#    <div id="root"></div>#}
+
+{% endblock js-1 %}

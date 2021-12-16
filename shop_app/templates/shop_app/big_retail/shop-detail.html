@@ -8,6 +8,97 @@
 {% block content %}
 {#    <div id="app">#}
 {#    </div>#}
+    <style>
+
+        .hight_flat_image {
+            height: 335px;
+        }
+        @media  (min-width: 320px) and (max-width: 454px) {
+            {#.page-desc-section {#}
+            {#    margin-top: 152px !important;#}
+            {#}#}
+            .owl-item{
+                width: 228px !important;
+            }
+
+        }
+        @media  (min-width: 455px) and (max-width: 480px) {
+        .slider-container {
+            width: 448px !important;
+            margin: 0 auto;
+            margin-left: -5px;
+            /*margin-left: 12%;*/
+            /*padding-left: 11%;*/
+        }
+
+        #top-sales-slider {
+            width: 244px !important;
+            margin: 0 auto;
+        }
+            .slider-container {
+                width: 224px !important;
+                margin: 0 auto;
+                margin-left: auto;
+                margin-left: -5px;
+                margin-left: 12%;
+                padding-left: 11%;
+            }
+        }
+
+        @media  (min-width: 670px) and (max-width: 767px) {
+            {#.owl-carousel .owl-wrapper-outer {#}
+            {#    overflow: hidden;#}
+            {#    position: relative;#}
+                {#width: 99% !important;#}
+            {#    margin-left: 0%;#}
+            /*{#}#}*/
+            .owl-item{
+                width: 173px !important;
+                margin-left: 0% !important;
+            }
+
+            .owl-carousel .owl-wrapper-outer{
+            }
+            #top-sales-slider {
+                width: 600px !important;
+                margin: 0 auto;
+            }
+            /*.owl-wrapper{
+                width: 509px !important;
+            }*/
+            .animated-prod {
+                margin-left: 4% !important;
+            }
+            .cart-details{
+                margin-right: -11px;
+                margin-left: -11px;
+                padding-top: 0px;
+            }
+            .col-xs-6_detail-pod {
+                width: 74%;
+            }
+            .price-mt{
+                margin: 8px 0 8px !important;
+            }
+
+
+        }
+        @media  (min-width: 998px) and (max-width: 1199px) {
+            .cart-details {
+                margin: 0 auto;
+                padding: 0px !important;
+                padding-top: 13px !important;
+                padding-bottom: 9px !important;
+            }
+
+
+        }
+        /*@media  (min-width: 556px) and (max-width: 669px) {
+            .hight_flat_image {
+                height: 335px;
+            }
+        }*/
+    </style>
 <body id="shop-detail">
 
     <div id="pageloader">
@@ -39,7 +130,7 @@
             </div>
                 <!--главное фото конец-->
                 <!--малые фото начало-->
-                <div class="cont_flat_image" id="slider">
+                <div class="cont_flat_image " id="slider" style="height: {{ hight_flat_image }}">
 {#                    style="padding-left: 255px; height: 500px; overflow: hidden; padding-top: 40px;"#}
                 {% for image_goods_s in image_goods %}
                     <div><img onclick="changeImg(this)" class="img_small" id={{ image_goods_s.0 }} src="{{ MEDIA_URL}}{{ image_goods_s.1 }}">
@@ -157,13 +248,13 @@
                     <div class="row category-tags"></div>
 
 {#                            <h4 class="panel-title"><a href="{% url "sort_goods_categ" %}?i={{ category_on_goods_s.0 }}"><span class="counting-box">{{ category_on_goods_s.5 }}</span> <span class="panel-title">{{ category_on_goods_s.1}}</span></a></h4>#}
-                            <div class="col-md-6 col-md-6-my">
+                            <div class="col-md-6 col-md-6-my col-md-6-my-cat">
                             <p class="tegs-diyeil">
                                 <span class="color_cat cat_radius">Категория: </span>
                                 <a href="#"><div class="color-categ-prod">{{ show.2 }}</div></a>
                             </p>
                             </div>
-                            <div class="col-md-6 col-md-6-my">
+                            <div class="col-md-6 col-md-6-my col-md-6-my-tags">
                                 <p class="tegs-diyeil">
                                     <span class="color_cat cat_radius">Теги: </span><div class="tegs_categ">{{ tegs_categ_desc }}</div>
                                 </p>
@@ -231,9 +322,9 @@
 {#                                        <input value="2" type="number" class="rating" min="0" max="5" step="0.5" data-size="xs"><span>- рейтинг товара</span>#}
 {#               style="padding: 15px;"                     </p>#}
                                     <div class="row cart-details" >
-                                        <div class="col-xs-6" style="width: 70%;"><a href="{% url 'shop_cart' %}?i={{ all_goods_random_s.0 }}&name={{ all_goods_random_s.1 }}&price={{ all_goods_random_s.3 }}&img={{ all_goods_random_s.4 }}"><i class="fa fa-shopping-cart" style="margin-left: -10px;"></i>Купить</a>
+                                        <div class="col-xs-6 col-xs-6_detail"><a href="{% url 'shop_cart' %}?i={{ all_goods_random_s.0 }}&name={{ all_goods_random_s.1 }}&price={{ all_goods_random_s.3 }}&img={{ all_goods_random_s.4 }}"><i class="fa fa-shopping-cart" style="margin-left: -10px;"></i>Купить</a>
                                         </div>
-                                        <div class="col-xs-6"  style="width: 70%; margin-left: 55px; margin-top: -20px;"><a href="{% url "show" pk=all_goods_random_s.0 %}" class="pull-right">Подробнее </a> <!--<i class="fa fa-chevron-right"></i>-->
+                                        <div class="col-xs-6 col-xs-6_detail-pod"><a href="{% url "show" pk=all_goods_random_s.0 %}" class="pull-right">Подробнее </a> <!--<i class="fa fa-chevron-right"></i>-->
                                         </div>
                                     </div>
                                 </div>

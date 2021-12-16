@@ -41,7 +41,7 @@
         <div class="child_lk border-lk">
         <div> <img class="img-lk" src="{{ i_s.3 }}" height="100px"; width="100px"> </div>
 
-            <div>Цена: {{ i_s.0 }}</div>
+            <div>Название: {{ i_s.0 }}</div>
             <div>Сумма: {{ i_s.1 }}</div>
 
         </div>
@@ -49,11 +49,31 @@
     </div>
 {#    <input class="button-lk" type="button" onclick="history.back();" value="Назад"/>#}
 </div>
+{#    <script>#}
+{#        function onclickMenu(){#}
+{#            console.log('my-collapse')#}
+{#            console.log(document.getElementsByClassName('my-collapse')[0].classList.contains('in'))#}
+{#            if(document.getElementsByClassName('my-collapse')[0].classList.contains('in') == false || document.getElementsByClassName('my-collapse')[0].style.display == 'none' ){#}
+{#                document.getElementsByClassName('my-collapse')[0].classList.add('in')#}
+{#                document.getElementsByClassName('my-collapse')[0].style.display = 'block'#}
+{#                document.getElementsByClassName('my-collapse')[0].style.visibility = 'visible'#}
+{#            }#}
+{#            else{#}
+{#                document.getElementsByClassName('my-collapse')[0].classList.remove('in')#}
+{##}
+{#                document.getElementsByClassName('my-collapse')[0].style.display = 'none'#}
+{#                document.getElementsByClassName('my-collapse')[0].style.visibility = 'hidden'#}
+{##}
+{#            }#}
+{#        }#}
+{#    </script>#}
 {% endblock content %}
 {% block brands %}{% endblock brands %}
 {% block js %}<script type="text/javascript" src="{% static "/shop_app/js/script.js" %}" rel="stylesheet"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{% static "big_retail/js/lk.js" %}"></script><!--без этого не загружается 2212-->
+
 {% endblock js %}
 {#{% block js-1 %}{% endblock js-1 %}#}
 {% block react %}{% endblock react %}

@@ -1,119 +1,326 @@
 {% extends "base.html" %}
 {% load static %}
 {% load pagination_tags %}
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
     <title>{% block title %}Главная{% endblock %}</title>
 {% block content %}
 <body id="video-bg">
-{#<style>#}
-{##}
-{#/*    .pagination{#}
-{#        margin-top: {{ height_block }};#}
-{#        margin-left: 600px;#}
-{#        width: 800px;#}
-{#    }*/#}
-{#</style>#}
+<style>
+
+    .curr_page_number{
+        color: white;
+        {#text-decoration: underline;#}
+        background: #38486F;
+        border: 1px solid #38486F;
+        {#border: 7px solid red;#}
+    }
+
+    .curr_page_number:hover{
+        font-weight: bold;
+        color: #38486F;
+        background: white;
+        border: 1px solid #38486F;
+    }
+
+    @media  (min-width: 320px) and (max-width: 454px) {
+        .dropdown-toggle-filter {
+            width: 246px;
+            margin-top: 6px;
+            border-radius: 1px;
+        }
+        .dropdown-toggle-filter:hover {
+            background-color: #2F3847;
+            color: #fff;
+        }
+        .dropdown-menu{
+            background-color: #fff !important;
+        }
+    }
+    @media  (min-width: 455px) and (max-width: 554px) {
+        .dropdown-toggle-filter {
+            width: 246px;
+            margin-top: 13px;
+            border-radius: 1px;
+        }
+
+        .dropdown-toggle-filter:hover {
+            background-color: #2F3847;
+            color: #fff;
+        }
+        .main_container {
+            height: 0;
+        }
+    }
+
+    @media  (min-width: 555px) and (max-width: 669px) {  /* тут высота идеально*/
+
+        .dropdown-toggle-filter {
+            width: 255px;
+            margin-top: 1px;
+            border-radius: 1px;
+        }
+
+        .dropdown-toggle-filter:hover {
+            background-color: #2F3847;
+            color: #fff;
+        }
+
+        .button-block {
+            margin-top: 48px !important;
+        }
+        .my-col-sm-3 {
+            margin-top: 16px;
+        }
+        .sub-title {
+            margin-bottom: -38px;
+            margin-top: 29px;
+        }
+        .welcome-block {
+            margin-top: 26px !important;
+        }
+    }
+    @media  (min-width:670px) and (max-width: 767px) {
+
+        .dropdown-toggle-filter {
+            margin: 0 auto;
+            width: 255px;
+            margin-top: 11px;
+            border-radius: 1px;
+
+        }
+        .top-sale-section .button-block li{
+            margin-top: 7px;
+        }
+
+        .pagin-down-index{
+            margin-top: 319px !important;
+            margin-left: 35% !important;
+        }
+
+        .dropdown-toggle-filter:hover {
+            background-color: #2F3847;
+            color: #fff;
+        }
+
+        .new-additions {
+            margin-top: -26px !important;
+        }
+        .my_container-index {
+            margin-top: -128px;
+        }
+        .owl-item {
+            height: 297px !important;
+        }
+    }
+
+    @media  (min-width: 768px) and (max-width: 997px) {
+        .owl-item {
+            height: 265px !important;
+        }
+        .sub-title{
+            margin-bottom: 22px;
+        }
+        .col-md-elect {
+            margin-left: 9%;
+        }
+        .dropdown-toggle-filter {
+            margin: 0 auto;
+            width: 107px;
+            margin-top: 6px;
+            border-radius: 1px;
+            padding: 6.5px;
+            margin-left: 1.5%;
+            margin-right: 1%;
+        }
+        .dropdown-toggle-filter:hover {
+            background-color: #2F3847;
+            color: #fff;
+        }
+
+        .top-sale-section .prodect-box h2 {
+            margin-bottom: 3px;
+            margin-top: 10px;
+        }
+
+        .button-block{
+            margin-bottom: 14px;
+        }
+        .pagin-up-index {
+            margin-bottom: 16px;
+            margin-top: 25px;
+        }
+        .owl-item {
+            height: 259px !important;
+        }
+        .button-block li .btn {
+            min-width: 148px !important;
+        }
+
+        .button-block li {
+            max-width: 177px;
+        }
+
+        .button-block li.btn-group .dropdown-menu {
+            min-width: 146px;
+        }
+
+        .dropdown-menu > li > a {
+            padding: 3px 14px;
+
+        }
+
+        /*.col-md-elect{
+            width: 100% !important;
+        }*/
+
+        .col-md-12 {
+            width: 100%;
+        }
+    }
+    @media  (min-width:998px) and (max-width: 1199px) {
+        .owl-item {
+            width: 8.5% !important;
+            height: 256px !important;
+        }
+
+        .dropdown-toggle-filter {
+            {#margin: 0 auto;#}
+            width: 24%;
+            border-radius: 1px;
+            {#padding: 6px;#}
+        }
+        .dropdown-toggle-filter:hover {
+            background-color: #2F3847;
+            color: #fff;
+        }
+        .button-block{
+            display: flex;
+            justify-content: space-between;
+            width: 958px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+        .button-block li .btn {
+            min-width: 218px !important;
+            margin-left: 10px !important;
+        }
+ /*
+        .button-block li {
+            max-width: 177px;
+        }
+
+        .button-block li.btn-group .dropdown-menu {
+            min-width: 146px;
+        }
+
+        .dropdown-menu > li > a {
+            padding: 3px 14px;
+
+        }*/
+
+        .dropdown-toggle-filter {
+            margin: 0 auto;
+            width: 107px;
+            /*
+            margin-top: 6px;
+            border-radius: 1px;*/
+            padding: 6.5px;
+            margin-left: 1.5%;
+            margin-right: 1%;
+        }
+
+    }
+
+</style>
+
 {% block video-baner %}{% endblock video-baner %}
-    {% block additions %} {% endblock additions %}
-        <section id="new-additions" class="new-additions section">
-        <div class="container cont_index">
-            <div class="row">
-                <div class="col-xs-12 animated" data-animation="fadeInRight" data-animation-delay="500">
-                    <h2 class="section-title animated" data-animation="fadeInRight" data-animation-delay="300">Специальные предложения</h2>
-                    <p class="sub-title animated inde_pad_kar" data-animation="fadeInLeft" data-animation-delay="300">Метод изучения рынка индуктивно ускоряет медиабизнес. Сегмент рынка развивает институциональный контент, опираясь на опыт западных коллег.</p>
-                </div>
+{% block additions %} {% endblock additions %}
+<div class="page-desc-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 page-desc">
+                <h2 class="animated" data-animation="fadeInRight" data-animation-delay="300">Главная</h2>
+                <p class="animated" data-animation="fadeInLeft" data-animation-delay="300">Производство достижимо в разумные сроки. Поэтому перераспределение бюджета</p>
             </div>
         </div>
-        <div class="container main_container">
-            <div class="row">
-                <div class="col-xs-12 animated" data-animation="fadeInUp" data-animation-delay="800">
-                    <div id="new-additions-carousel" class="new-additions-carousel">
+    </div>
+</div>
+<section id="new-additions" class="new-additions section section-index">
+    <div class="container cont_index">
+        <div class="row">
+            <div class="col-xs-12 animated" data-animation="fadeInRight" data-animation-delay="500">
+                <h2 class="section-title animated" data-animation="fadeInRight" data-animation-delay="300">Специальные предложения</h2>
+                <p class="sub-title animated inde_pad_kar" data-animation="fadeInLeft" data-animation-delay="300">Метод изучения рынка индуктивно ускоряет медиабизнес. Сегмент рынка развивает институциональный контент, опираясь на опыт западных коллег.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container main_container">
+        <div class="row">
+            <div class="col-xs-12 animated" data-animation="fadeInUp" data-animation-delay="800">
+                <div id="new-additions-carousel" class="new-additions-carousel">
 
-                        {% for all_goods_random_s in all_goods_random %}
+                    {% for all_goods_random_s in all_goods_random %}
                         <div class="new-additions-items active">
                             <div class="add-item">
-                                <img src="{{ MEDIA_URL }}{{ all_goods_random_s.4 }}" width="170" height="150" class="img-responsive">
+                                <a>
+                                <img src="{{ MEDIA_URL }}{{ all_goods_random_s.4 }}" class="img-responsive img-responsive-index" alt="">
                                 </a>
                             </div>
                             <h4>{{ all_goods_random_s.1 }}</h4><!--название товара-->
                             <h5>{{ all_goods_random_s.2 }}</h5><!--Категория-->
                             <h3><a href="{% url "show" pk=all_goods_random_s.0 %}">Подробнее</a></h3>
                         </div>
-                        {% endfor %}
+                    {% endfor %}
 
-                    </div>
-                </div>
-            </div>
-            <div class="row loadmore-btn">
-                <div class="col-md-12 load-post text-center">
-                    <button type="button" class="btn load-posts loadmore">Еще</button>
                 </div>
             </div>
         </div>
-    </section>
-   <!-- new-additions end-->
-    <section id="top-sale" class="top-sale-section">
-        <div class="container my_container-index">
-            <div class="row ind-row">
-                <div class="col-md-12">
-                    <h2 class="section-title">Что мы можем Вам предложить?</h2>
-                    <p class="sub-title">Метод изучения рынка индуктивно ускоряет медиабизнес. Сегмент рынка развивает институциональный контент, опираясь на опыт западных коллег.</p>
-                </div>
+        <div class="row loadmore-btn">
+            <div class="col-md-12 load-post text-center">
+                <button type="button" class="btn load-posts loadmore">Еще</button>
             </div>
-            <div class="row button-block">
-                <div class="col-md-12 col-md-elect">
-                    <ul>
-                        <li class="pull-right my_display_none-view">
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li class="btn-group list view-type">Показать как:</li>
-                                <li class="btn-group list active" role="presentation" ><a href="{% url 'goods' %}" title="Списком" role="tab" style="cursor: pointer;"><i class="fa fa-th-list"></i></a>
-                                </li>
-                                <li class="btn-group grid" role="presentation"><a href="{% url "index" %}" title="Сеткой" role="tab" ><i class="fa fa-th-large"></i></a>
-                                </li>
-                            </ul>
-                        </li>
-                        {% comment %}<li class="btn-group item-sort">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="pull-right"><i class="fa fa-angle-down"></i></span>Сортировать: <span>Выберите вариант</span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">По цене</a>
-                                </li>
-                                <li><a href="#">По популярности</a>
-                                </li>
-                                <li><a href="#">По дате</a>
-                                </li>
-                                <li><a href="#">По доставке</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="btn-group">
-                            <button type="button" class="btn btn-default top-icon"><i class="fa fa-arrow-up"></i>
-                            </button>
-                        </li>
-                        <li class="btn-group item-categories">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="pull-right"><i class="fa fa-angle-down"></i></span>Выбрать: <span>категорию</span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Техника</a>
-                                </li>
-                                <li><a href="#">Одежда</a>
-                                </li>
-                                <li><a href="#">Недвижимость</a>
-                                </li>
-                                <li><a href="#">Продукты</a>
-                                </li>
-                                <li><a href="#">Все</a>
-                                </li>
-                            </ul>
-                        </li>{% endcomment %}
+        </div>
+    </div>
+</section>
+<!-- new-additions end-->
+<section id="top-sale" class="top-sale-section">
+    <div class="container my_container-index">
+        <div class="row ind-row">
+            <div class="col-md-12">
+                <h2 class="section-title">Что мы можем Вам предложить?</h2>
+                <p class="sub-title">Метод изучения рынка индуктивно ускоряет медиабизнес. Сегмент рынка развивает институциональный контент, опираясь на опыт западных коллег.</p>
+            </div>
+        </div>
+        <div class="row button-block">
+            <div class="col-md-12 col-md-elect">
 
+                <ul>
+                    <li class="pull-right my_display_none-view">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="btn-group list view-type">Показать как:</li>
+                            <li class="btn-group list active" role="presentation" ><a href="{% url 'goods' %}" title="Списком" role="tab" style="cursor: pointer;"><i class="fa fa-th-list"></i></a>
+                            </li>
+                            <li class="btn-group grid" role="presentation"><a href="{% url "index" %}" title="Сеткой" role="tab" ><i class="fa fa-th-large"></i></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <form action="/priceIndexSort" method="get" class="form_sort">
                         <li class="btn-group item-sort"><!--сортировать по цене-->
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="pull-right">
-                                    <i class="fa fa-angle-down"></i></span>Сортировать: <span class="change_price">По цене</span>
+                            <button type="submit" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="pull-right">
+                                    <i class="fa fa-angle-down"></i></span><!--Сортировать: --> <span class="change_price">Цена</span>
+                                <input type="hidden" name="price" class="price" value="0">
+                                <input type="hidden" name="page_number" class="page_number" value="0">
                             </button>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#" onclick="onclickPrice(this, 0, event) " class="change_price_min">По цене меньше</a>
+                                <li><a onclick="onclickPrice(this, 0, event) " class="change_price_min price_iner" title="По возростанию">По возростанию</a>
+
                                 </li>
-                                <li><a href="#" onclick="onclickPrice(this, 1, event)" class="change_price_max">По цене больше</a>
+                                <li><a onclick="onclickPrice(this, 1, event)" class="change_price_max price_iner" title="По убыванию">По убыванию</a>
+
                                 </li>
                             </ul>
                         </li><!--сортировать по цене-->
@@ -122,173 +329,319 @@
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                     <span class="pull-right">
                                         <i class="fa fa-angle-down"></i>
-                                    </span>Выбрать: <span title="0" class="create_categ">Категорию</span>
+                                    </span><!--Выбрать: --> <span title="0" class="create_categ create_categ_my">Категория</span>
+                                <input type="hidden" name="categ_index" class="categ_index" value="0">
                             </button>
                             <ul class="dropdown-menu min-max-js" role="menu">
+
                                 {% for category_on_goods_s in category_on_goods %}
                                     <li>
-                                        <a href="#" onclick="onclickCateg(this, {{ category_on_goods_s.0 }}, '{{ category_on_goods_s.1 }}', event)"><span>{{ category_on_goods_s.1}}</span></a>
+                                        <a onclick="onclickCateg(this, {{ category_on_goods_s.0 }}, '{{ category_on_goods_s.1 }}', event)" class="nameCat">
+                                            <span class="cat_inner">{{ category_on_goods_s.1}}</span></a>
+                                        <input type="hidden" value="{{ category_on_goods_s.0 }}" >
                                     </li>
                                 {% endfor %}
                             </ul>
-                        </li><!--сортировать по категориям-->
+                        </li><!--сортировать по категориям-->{% comment %}{% endcomment %}
+                        <input type="hidden">
+                        <button onclick="saveDataForm(this)" type="button" class="btn btn-default dropdown-toggle dropdown-toggle-filter" data-toggle="dropdown">
+                            <span title="фильтровать" class="create_categ">Фильтровать</span>
+                        </button>
+                        <button type="submit" class="btn btn-default dropdown-toggle dropdown-toggle-filter" data-toggle="dropdown" onclick="window.location.href='.'">Сбросить</button>
 
-                    </ul>
-                </div>
+                    </form>
+
+{#                        <a href="{% url 'index' %}"><button type="submit" class="btn btn-default dropdown-toggle dropdown-toggle-filter" data-toggle="dropdown">Все</button></a>#}
+
+                </ul>
+
             </div>
-            {% autopaginate all_goods 12 %}
-            <div class="pagin-up">{% paginate %}</div>
-            <div class="for-row">
-                <div class="parent_my_row"><div class="my_row">
+        </div>
+        {#            {% autopaginate all_goods 12 %}#}
+        <div class="pagin-up pagin-up-index"></div>
 
-                    {% for all_goods_s in all_goods %}
+        <!--pagination start -->
+        {% comment %}<div class="pagin-up pagin-up-index ">
+            {% if all_goods.has_previous  %}
+                <a class="next pagination__link_state_active pagination__link line_null array pagination__link_index" href="?page=1">&laquo;&laquo;</a><!--первая страница-->
+                <a class="next pagination__link_state_active pagination__link line_null array pagination__link_index" href="?page={{ all_goods.previous_page_number }}">&laquo;</a><!--предыдущая страница-->
+            {% endif %}
+            {#                        <span  class="prev pagination__link_state_active pagination__link line_null array">{{ all_goods.number }}</span> из <span  class="prev pagination__link_state_active pagination__link line_null array">{{ all_goods.paginator.num_pages }}</span><!--показывает на какой мы странице-->#}
+            {#                        {% if all_goods.paginator.num_pages != 1 %}{% endif %}#}
+            {% for all_goods_s_num in all_goods.paginator.page_range %}
+                {% if all_goods.paginator.num_pages > 1 %}
+                    <a class="next pagination__link_state_active pagination__link line_null array pagination__link_index" href="?page={{ all_goods_s_num }}">{{ all_goods_s_num }}</a>
+                {% endif %}
+                {#                            <div>{{ all_goods_s_num }}</div>#}
+            {% endfor %}
 
-                        <div class="chaild_grid">
-                            <div class="prodect-box">
-                                <div class="photo-block-">
-                                    <a data-rel="prettyPhoto-" href="/media/img/36.jpg-" title="Название товара" class="-link-">
-                                        <i class="fa- fa-plus-"></i></a>
+            {% if all_goods.has_next %}
+                <a class="next pagination__link_state_active pagination__link line_null array pagination__link_index" href="?page={{ all_goods.next_page_number }}">&raquo;</a><!--следующая страница-->
+                <a class="next pagination__link_state_active pagination__link line_null array pagination__link_index" href="?page={{ all_goods.paginator.num_pages }}">&raquo;&raquo;</a><!--Последняя-->
+            {% endif %}
+            {#                        {{ all_goods.paginator.count }}<!--Всего объектов на всех страницах-->#}
+            {#                        {{ all_goods.paginator.page_range }}<!--генератор страниц-->#}
+        </div>{% endcomment %}
+        <!--pagination end -->
 
-                                    <img src="{{ MEDIA_URL }}{{ all_goods_s.4 }}" alt="item" class="img-responsive">
-                                </div>
-                                <div  class="prodect-details border_image">
-                                    <h4>{{ all_goods_s.2 }}</h4>{#Категория#}
-                                    <h3 class="h3_prod">{{ all_goods_s.1 }}</h3>
-                                    <h2>цена: {{ all_goods_s.3 }}</h2>
-{#                                    <p>#}
-{#                                    <div class="border_two_line"><span class="color_star rating">&#9733;</span> <span class="color_star_two">&#9734;</span><span class="my_reiting">- рейтинг товара</span></div>#}
-{#                                    </p>#}
-                                    <div class="row- shoping-details">
-                                        <div class="my_cart_reed">
-                                            <div><a href="{% url 'shop_cart' %}?i={{ all_goods_s.0 }}&name={{ all_goods_s.1 }}&price={{ all_goods_s.3 }}&img={{ media_url_cart }}{{ all_goods_s.4 }}" class="add-card-text"><span class="fa fa-shopping-cart"></span><span class="span-cart-index">В корзину</span></a>
-                                            </div>
-{#                                            <div ><a href="{% url "show" %}?i={{ all_goods_s.0 }}" class="show-link">Читать...<span class="right-icon-"></span></a>#}
-                                              <div ><a href="{% url "show" pk=all_goods_s.0 %}" class="show-link">Подробнее...<span class="right-icon-"></span></a>
-                                            </div>
+
+
+            <div class="parent_my_row">
+                {% if all_goods.paginator.count > 8 %}
+                    <div class="my_row">
+                    {% else %}
+                    <div class="my_row_early welcam_block_index">
+                {% endif %}
+
+                {% for all_goods_s in all_goods %}
+
+                    <div class="chaild_grid">
+                        <div class="prodect-box">
+                            <div class="photo-block-">
+                                <a data-rel="prettyPhoto-" href="/media/img/36.jpg" title="Название товара" class="-link-bac">
+                                    <i class="fa- fa-plus-"></i></a>
+
+                                <img src="{{ MEDIA_URL }}{{ all_goods_s.4 }}" alt="item" class="img-responsive">
+                            </div>
+                            <div  class="prodect-details border_image">
+                                <h4>{{ all_goods_s.2 }}</h4>{#Категория#}
+                                <h3 class="h3_prod">{{ all_goods_s.1 }}</h3>
+                                <h2 class="h2_price-index">цена: {{ all_goods_s.3 }}</h2>
+                                {#                                    <p>#}
+                                {#                                    <div class="border_two_line"><span class="color_star rating">&#9733;</span> <span class="color_star_two">&#9734;</span><span class="my_reiting">- рейтинг товара</span></div>#}
+                                {#                                    </p>#}
+                                <div class="row- shoping-details">
+                                    <div class="my_cart_reed">
+                                        <div><a href="{% url 'shop_cart' %}?i={{ all_goods_s.0 }}&name={{ all_goods_s.1 }}&price={{ all_goods_s.3 }}&img={{ media_url_cart }}{{ all_goods_s.4 }}" class="add-card-text"><span class="fa fa-shopping-cart"></span><span class="span-cart-index">В корзину</span></a>
                                         </div>
-
+                                        {#                                            <div ><a href="{% url "show" %}?i={{ all_goods_s.0 }}" class="show-link">Читать...<span class="right-icon-"></span></a>#}
+                                        <div ><a href="{% url "show" pk=all_goods_s.0 %}" class="show-link">Подробнее...<span class="right-icon-"></span></a>
+                                        </div>
                                     </div>
 
                                 </div>
+
                             </div>
                         </div>
+                    </div>
+                {% endfor %}
+            </div>
+                <!--pagination start   style="padding-top: 101px;" -->
+                <div  class="pagin-down pagin-down-index col-md-9 col-sm-9">
+                    {% if all_goods.has_previous  %}
+                        <a class="next pagination__link_state_active pagination__link line_null array pagination__link_index" onclick="nextPage(this, 1, event)" href="?page=1">&laquo;&laquo;</a><!--первая страница-->
+                        <a class="next pagination__link_state_active pagination__link line_null array pagination__link_index" onclick="nextPage(this, {{ all_goods.previous_page_number }}, event)" href="?page={{ all_goods.previous_page_number }}">&laquo;</a><!--предыдущая страница-->
+                    {% endif %}
+                    {#                        <span  class="prev pagination__link_state_active pagination__link line_null array">{{ all_goods.number }}</span> из <span  class="prev pagination__link_state_active pagination__link line_null array">{{ all_goods.paginator.num_pages }}</span><!--показывает на какой мы странице-->#}
+                    {#                        {% if all_goods.paginator.num_pages != 1 %}{% endif %}#}
+{#                    {{ page_befor_cicl }} колво страниц#}
+{#                {% if page_befor_cicl > 1 %}  123{% endif %}#}
+                    {% for all_goods_s_num in all_goods.paginator.page_range %}
+                        {% if all_goods.paginator.num_pages > 1 %}
+                            <a class="next pagination__link_state_active pagination__link line_null array pagination__link_index main_page" onclick="nextPage(this, {{ all_goods_s_num }}, event)" href="?page={{ all_goods_s_num }}">{{ all_goods_s_num }}</a>
+                        {#                            <div>{{ all_goods_s_num }}</div>#}
+                        {% endif %}
 
                     {% endfor %}
-                   </div>
+                    {% if all_goods.has_next %}
+                        <a class="next pagination__link_state_active pagination__link line_null array pagination__link_index" onclick="nextPage(this, {{ all_goods.next_page_number }}, event)" href="?page={{ all_goods.next_page_number }}">&raquo;</a><!--следующая страница-->
+                        <a class="next pagination__link_state_active pagination__link line_null array pagination__link_index" onclick="nextPage(this, {{ all_goods.paginator.num_pages }}, event)" href="?page={{ all_goods.paginator.num_pages }}">&raquo;&raquo;</a><!--Последняя-->
+                    {% endif %}
+                    {#                        {{ all_goods.paginator.count }}<!--Всего объектов на всех страницах-->#}
+                    {#                        {{ all_goods.paginator.page_range }}<!--генератор страниц-->#}
                 </div>
+                <!--pagination end -->
             </div>
-            <div class="pagin-down">{% paginate %}</div>
         </div>
-        </div>
-    </section>
+{#        <div class="pagin-down pagin-down-index">index</div>#}
+        {#            <div class="pagin-down pagin-down-index">{% paginate %} index</div>#}
+    </div>
+</section>
 
-    <section class="work-area section my_work-area-index">
-        <div class="container">
-            <div class="row row-footer-he">
-                <div class="col-xs-12">
-                    <h2 class="section-title text-center color-black animated" data-animation="fadeInRight" data-animation-delay="300">Приветствуем Вас в нашем магазине!</h2>
-                    <p class="sub-title text-center color-black animated" data-animation="fadeInLeft" data-animation-delay="500">Исходя из структуры пирамиды Маслоу, опрос охватывает фирменный нишевый проект.</p>
-                    <p class="sub-title text-center color-black animated" data-animation="fadeInLeft" data-animation-delay="500">Рекламоноситель, пренебрегая деталями, основан на тщательном анализе данных.</p>
+<section class="work-area section my_work-area-index">
+    <div class="container">
+        <div class="row row-footer-he">
+            <div class="col-xs-12">
+                <h2 class="section-title text-center color-black animated" data-animation="fadeInRight" data-animation-delay="300">Приветствуем Вас в нашем магазине!</h2>
+                <p class="sub-title text-center color-black animated" data-animation="fadeInLeft" data-animation-delay="500">Исходя из структуры пирамиды Маслоу, опрос охватывает фирменный нишевый проект.</p>
+                <p class="sub-title text-center color-black animated" data-animation="fadeInLeft" data-animation-delay="500">Рекламоноситель, пренебрегая деталями, основан на тщательном анализе данных.</p>
+            </div>
+        </div>
+
+        <div class="row welcome-block">
+            <div class="col-sm-3 my-col-sm-3">
+                <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="300"><i class="fa fa-shopping-cart"></i>
+                    <h3 class="my_welcome-box">Быстрая покупка</h3>
+                    <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
                 </div>
             </div>
-            <div class="row welcome-block">
-                <div class="col-sm-3 my-col-sm-3">
-                    <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="300"><i class="fa fa-shopping-cart"></i>
-                        <h3 class="my_welcome-box">Быстрая покупка</h3>
-                        <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
-                    </div>
+            <div class="col-sm-3 my-col-sm-3">
+                <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="500"><i class="fa fa-car"></i>
+                    <h3 class="my_welcome-box">Доставка по России</h3>
+                    <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
                 </div>
-                <div class="col-sm-3 my-col-sm-3">
-                    <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="500"><i class="fa fa-car"></i>
-                        <h3 class="my_welcome-box">Доставка по России</h3>
-                        <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
-                    </div>
+            </div>
+            <div class="col-sm-3 my-col-sm-3">
+                <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="700"><i class="fa fa-money"></i>
+                    <h3 class="my_welcome-box">Продажа шаблонов</h3>
+                    <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
                 </div>
-                <div class="col-sm-3 my-col-sm-3">
-                    <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="700"><i class="fa fa-money"></i>
-                        <h3 class="my_welcome-box">Продажа шаблонов</h3>
-                        <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
-                    </div>
-                </div>
-                <div class="col-sm-3 my-col-sm-3">
-                    <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="900"><i class="fa fa-credit-card"></i>
-                        <h3 class="my_welcome-box">Оплачивайте здесь</h3>
-                        <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
-                    </div>
+            </div>
+            <div class="col-sm-3 my-col-sm-3">
+                <div class="welcome-box animated" data-animation="fadeInUp" data-animation-delay="900"><i class="fa fa-credit-card"></i>
+                    <h3 class="my_welcome-box">Оплачивайте здесь</h3>
+                    <p>Исходя из структуры пирамиды Маслоу, концепция маркетинга определяет ролевой план размещения.</p><a href="#">Подробнее</a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 </body>
 
     <script>
+        {#var mapLink = document.querySelector(".contacts-button-map")#}
+        {#var mapPopup = document.querySelector(".modal-map")#}
+        {#var mapClose = mapPopup.querySelector(".modal-close")#}
+        {#mapLink.addEventListener("click", function(evt){#}
+        {##}
+        {#    evt.preventDefault();#}
+        {#    mapPopup.classList.add('modal-show')#}
+        //}
+
+        var params1 = (new URL(document.location)).searchParams; // берём данные из гет запроса
+        var categ_index = params1.get("categ_index")
+        var my_price_index = params1.get("price")
+        var curr_page_number = params1.get("page_number")
+        var mapPopup = document.getElementsByClassName("main_page")[curr_page_number-1] // текущаястраница подсвкечена синим
+
+
+            if (categ_index && categ_index !==0 && categ_index !=='0'){// если категория существует, т.е выбрана  и не равна нулю && categ_index !=='0' && categ_index !='0' && categ_index !=0
+                console.log('categ_indexr-1')
+                console.log(categ_index)
+
+                {#console.log(document.getElementsByClassName('cat_inner')[categ_index-1].innerHTML)#}
+
+                var my_categ_name = document.getElementsByClassName('cat_inner')[categ_index-1].innerHTML // записыаем нмер нажатой категории -1 потому что с нуля
+                document.getElementsByClassName('create_categ')[0].innerHTML = my_categ_name // записыаем для отображение в выпадающем что выбрано для прорисовки
+            }
+
+            if (my_price_index && my_price_index !==0 && my_price_index !=='0'){// если прайс существует, т.е выбран
+                var my_price_name = document.getElementsByClassName('price_iner')[my_price_index].title// записыаем номер нажатого прайсав переменную
+                document.getElementsByClassName('change_price')[0].innerHTML = my_price_name // записыаем для отображение в выпадающем что выбрано для прорисовки
+            }
+
+
+
+        console.log('mapPopup')
+        console.log(mapPopup)
+
+        if (curr_page_number && curr_page_number !==0 && curr_page_number !=='0') {
+
+            mapPopup.classList.add('curr_page_number')
+        } else{
+            document.getElementsByClassName("main_page")[0].classList.add('curr_page_number')
+        }
+
 
         number_cat = 0
         number_flag = 0
+        name_price = ''
+        name_cat = ''
         function onclickPrice(my_this, flag, event) {
-            // фильтрация по минимальной и мкаксимальной цене
-            event.preventDefault()
-            // прсваиваем слассу там где выбираем название категории
+            // фильтрация по минимальной и мкаксимальной цене значение первого фильтра
+            //event.preventDefault()
+            name_price = my_this.innerHTML
+            document.getElementsByClassName('change_price')[0].innerHTML = name_price// перезаписываем название цены при клике
+            document.getElementsByClassName('price')[0].value = flag// присваиваем 1 и 0
+            document.getElementsByClassName('page_number')[0].value = 1 // при фильтрации задаем 1 страницу пагинации
+        }
+        // по нажатию на выбор категории
+        // глобальна переменная перадаем id категории
+        function onclickCateg(my_categ, int_id, str_cat, event, flag_price){
+            // фильтрация по категориям
+            number_cat = int_id
+            name_cat = str_cat
+            document.getElementsByClassName('create_categ')[0].innerHTML = name_cat // перезаписываем название категрии при клике
+            // перезаписываем название категории при клике
 
-            //console.log('min-max-js')
-            //console.log(document.getElementsByClassName('min-max-js')[0])
-            {#var fetch_categ = document.getElementsByClassName('create_categ')[0].innerHTML#}
-            {#console.log('onclickPrice')#}
-            {#console.log(my_this.innerHTML)#}
-            {#console.log(flag)#}
-            var second_cat = document.getElementsByClassName('create_categ')[0].title
 
-            console.log(document.getElementsByClassName('create_categ')[0].innerHTML)// прсваиваем слассу там где выбираем название категории
+            document.getElementsByClassName("categ_index")[0].value = number_cat // перезаписываем номер категрии при клике
+            document.getElementsByClassName('page_number')[0].value = 1// при фильтрации задаем 1 страницу пагинации
+            // записываем в value айди категории
 
-            if (flag == 0) {  // сорт по меньшей цене
-                {#console.log(document.getElementById('price_min_max'))#}
-                document.getElementsByClassName('change_price')[0].innerHTML = document.getElementsByClassName('change_price_min')[0].innerHTML
-                fetch('/fetch_price_index?price=min&categ=' + number_cat + '&sec_cat=' + second_cat)  // передаём min
-                    // Handle success
-                    {#.then(response => console.log(response))#}
-                    .then(response => response.text())//ловим с дефа  django
-                    .then(data => getFilterData(data))
-            } else {// сорт по большей цене
-                document.getElementsByClassName('change_price')[0].innerHTML = document.getElementsByClassName('change_price_max')[0].innerHTML
-                fetch('/fetch_price_index?price=max&categ=' + number_cat + '&sec_cat=' + second_cat)  // передаём max
-                    .then(response => response.text())//ловим с дефа
-                    .then(data => getFilterData(data))
-                // Handle success
-                {#.then(response => console.log(response))#}
+            {#fetch('/fetch_category_index?categ=' + number_cat + '&price=' + flag_price)  // передаём max#}
+            {#    // Handle success#}
+            {#.then(response => console.log(response))#}
+            {#    .then(response => response.text())//ловим с дефа#}
+            {#    .then(data => getFilterData(data))#}
+        }
+        function saveDataForm(my_this){
+            // отправа формы при нажатии на кнопку фильтр
 
+            categ_index = document.getElementsByClassName('categ_index')[0].value
+                price = document.getElementsByClassName('price')[0].value
+
+            page_number = document.getElementsByClassName('page_number')[0].value
+            if (page_number != 0){
+                    page_number = 1
             }
-        }
 
-        function getFilterData(data){
-            //функция котороая выводит все полученные отфильтрованные данные из etch в id 'for-row'
-            //console.log('data')
-            //console.log(data)
-            let contentblock = ''
-            document.getElementsByClassName('for-row')[0].innerHTML = data  //
-            //console.log('contentblock')
-            //console.log(contentblock)
-        }
-
-        function onclickCateg(my_categ, int_id, str_cat, event, flag_price){// по нажатию на выбор категории
-            // останавливаем перзагрузку страницы и сласу присваиваем название категории
-            number_cat = int_id// глобальна перменна перадаем id категории
-            //console.log('str_cat')
-            //console.log(str_cat)
-            document.getElementsByClassName('create_categ')[0].innerHTML = str_cat// прсваиваем слассу там где выбираем название категории
-            document.getElementsByClassName('create_categ')[0].title = int_id
-            flag_price = document.getElementsByClassName('change_price')[0].innerHTML
-            event.preventDefault()// остановить действие по умалчанию перход по сылке
-
-
-            {#else {// сорт по большей цене}#}
-            fetch('/fetch_category_index?categ=' + number_cat + '&price=' + flag_price)  // передаём max
-                // Handle success
-                {#.then(response => console.log(response))#}
-                .then(response => response.text())//ловим с дефа
-                .then(data => getFilterData(data))
+            location.href="/priceIndexSort/?price=" + price + "&page_number=" + page_number + "&categ_index=" + categ_index
 
         }
+
+        categ_index = 0
+        price = 0
+        let params = (new URL(document.location)).searchParams;  // берём данные из гет запроса
+        categ_index = params.get("categ_index")
+        price = params.get("price")
+        document.getElementsByClassName('categ_index')[0].value = categ_index
+        document.getElementsByClassName('price')[0].value = price
+
+        function nextPage(my_this, page_number, event){
+            event.preventDefault()//stop
+            console.log('page_number')
+            console.log(page_number)
+            console.log(my_this, page_number)
+            document.getElementsByClassName('page_number')[0].value = page_number
+            categ_index = document.getElementsByClassName('categ_index')[0].value
+
+            price = document.getElementsByClassName('price')[0].value
+            document.getElementsByClassName('change_price')[0].innerHTML = name_price// записываем название цены при клике
+            document.getElementsByClassName('create_categ')[0].innerHTML = name_cat// записываем название каегории при клике
+            //https://ru.stackoverflow.com/questions/453355/javascript-%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C-get-%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80
+            console.log('price, categ_index')
+            console.log(price, categ_index)
+            if ( !categ_index || !price){
+                console.log('if-1')
+                let params = (new URL(document.location)).searchParams;  // берём данные из гет запроса
+                categ_index = params.get("categ_index")
+                price = params.get("price")
+            }
+            if ( categ_index && !price){
+                console.log('if-2')
+                let params = (new URL(document.location)).searchParams; // берём данные из гет запроса
+                categ_index = params.get("categ_index")
+                price = params.get("price")
+            }
+            if ( !categ_index && price){
+                console.log('if-3')
+                let params = (new URL(document.location)).searchParams; // берём данные из гет запроса
+                categ_index = params.get("categ_index")
+                price = params.get("price")
+            }
+            //console.log(price, categ_index, page_number)
+            if (categ_index == null){
+                categ_index = 0
+            }
+            if (price == null){
+                price = 0
+            }
+            {#alert(categ_index)#}
+            location.href="/priceIndexSort/?price=" + price + "&page_number=" + page_number + "&categ_index=" + categ_index
+        }
+
     </script>
 
 {% endblock content %}
