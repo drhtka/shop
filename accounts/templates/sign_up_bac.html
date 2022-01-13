@@ -1,0 +1,17 @@
+{% extends 'base_register.html' %}
+{% load static %}
+{% block title %}<title>Авторизация</title>{% endblock title %}
+{% block content %}
+    <link href="{% static "big_retail/css/my_style.css" %}" rel="stylesheet" type="text/css">
+{#    {% if user.is_anonymous %}{% endif %}#}
+    <form method="post"  class="form-signin">
+        <h2>рег</h2>
+{#        <h1>Ваше имя {{ form.username }}!</h1>#}
+
+        {{ user_form.username }}
+{#        {{ form.password }}#}
+        {% csrf_token %}
+    <button class="btn btn-lg btn-primary btn-block button-height" type="submit">Войти</button>
+    </form>
+
+{% endblock content %}
