@@ -40,8 +40,8 @@
     }
 
     .filter .filter-category-box {
-        margin-top: 50px !important;
-        width: inherit;
+        margin-top: 118px !important;
+        {#width: inherit;#}
     }
 
     .inner_content{
@@ -53,6 +53,10 @@
 
     .pagination{
         margin-left: 25% !important;
+    }
+    .row-cat{
+        margin-top: 15px;
+        margin-bottom: 15px;
     }
 
 @media  (min-width: 320px) and (max-width: 454px) {
@@ -502,6 +506,13 @@
             if (pageCurrent && pageCurrent !==0 && pageCurrent !=='0' && pageCurrent !=='') {
                 {#alert(pageCurrent)#}
                 document.getElementsByClassName("current")[0].classList.add('curr_page_number')
+            }
+
+            var pageCurrentTwo = document.getElementsByClassName("current")[1].innerHTML
+
+            if (pageCurrentTwo && pageCurrentTwo !==0 && pageCurrentTwo !=='0' && pageCurrentTwo !=='') {
+                {#alert(pageCurrent)#}
+                document.getElementsByClassName("current")[1].classList.add('curr_page_number')
             }
 
 

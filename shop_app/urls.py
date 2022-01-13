@@ -3,6 +3,7 @@ from django.conf.urls import url
 from django.urls import path, re_path
 # from django.conf.urls import include, url
 from shop_app import views
+from accounts. views import authorization
 #from .views import index
 #from .views import contacts
 from shop_app.views import ProdsListView
@@ -30,6 +31,7 @@ urlpatterns = [
     path('fetch_price_index/', views.fetch_price_index, name='fetch_pric_indexe'),
     path('fetch_category_index/', views.fetch_category_index, name='fetch_category_index'),
     path('priceIndexSort/', views.priceIndexSort, name='priceIndexSort'),
+    path('authorization/', authorization, name='authorization'),
     # path('lk/', LKViews.lk, name='lk')
 
     path('lk_list/', ProdsListView.as_view(), name='lk_list'),

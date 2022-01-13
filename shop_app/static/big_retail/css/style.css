@@ -1871,23 +1871,23 @@ li.grid {
     border: 1px solid #e3e3e3;
     position: relative
 }
-.new-additions .new-additions-items:hover .add-item a:after {
-    content: "\f067";
-    background: #fafafe;
-    opacity: 0.5;
-    text-align: center;
-    font-size: 45px;
-    padding: 16px 0px;
-    font-family: 'FontAwesome';
-    height: 97px;
-    width: 97px;
-    border: 1px solid #828282;
-    border-radius: 50%;
-    position: absolute;
-    color: #b8b8b9;
-    top: 18%;
-    left: 21%
-}
+/*.new-additions .new-additions-items:hover .add-item a:after {*/
+/*    content: "\f067";*/
+/*    background: #fafafe;*/
+/*    opacity: 0.5;*/
+/*    text-align: center;*/
+/*    font-size: 45px;*/
+/*    padding: 16px 0px;*/
+/*    font-family: 'FontAwesome';*/
+/*    height: 97px;*/
+/*    width: 97px;*/
+/*    border: 1px solid #828282;*/
+/*    border-radius: 50%;*/
+/*    position: absolute;*/
+/*    color: #b8b8b9;*/
+/*    top: 18%;*/
+/*    left: 21%*/
+/*}*/
 .new-additions .new-additions-items:hover .add-item {
     background: #eeeeee;
     border: 1px solid #a5a5a5

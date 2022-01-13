@@ -17,7 +17,7 @@ class SimpleSignupForm(SignupForm):
         return user
 
 class AuthorizationForm(AuthenticationForm):
-    username = forms.CharField(label='Имя пользователя', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'имя'}))
+    username = forms.CharField(label='Имя пользователя', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'имя'}), required=False)
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'пароль макс 12 симолов'}))
     # username = UsernameField(
     #     label=False,
@@ -30,6 +30,11 @@ class AuthorizationForm(AuthenticationForm):
     class Meta:
         model = CustomUser
         fields = ("username", "password")
+
+    # def __init__(self, *args, **kwargs):
+    #     super(AuthorizationForm, self).__init__(*args, **kwargs)
+    #     self.fields['username'].widget.attrs['required'] = 'False'
+
 
 class RegistrationForm(forms.ModelForm):
 

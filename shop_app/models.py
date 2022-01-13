@@ -147,7 +147,7 @@ class GoodsModel(models.Model):
     id = models.AutoField(primary_key=True, auto_created=True, null=False)
     goodsname = models.CharField('Название', max_length=20, blank=True, null=True)
     category = models.CharField('Категории', max_length=15, null=True, choices=CATEGORY_CHOICES)
-    price = models.IntegerField(max_length=30, verbose_name='Цена', blank=True)
+    price = models.IntegerField(verbose_name='Цена', blank=True)
     img = models.ImageField(upload_to='img', verbose_name='Основное изображение', blank=True, null=True)
     desc = models.TextField('Описание', blank=True, null=True)
     tags = GenericRelation(Image)

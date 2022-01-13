@@ -124,7 +124,7 @@
             </div>
         {% endif %}
         {{ form.username }}
-
+        <div >{{ form.username.errors }}</div>
         {{ form.password }}
         <div>{{ form.password.errors }}</div>
         {% csrf_token %}

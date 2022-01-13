@@ -462,8 +462,9 @@ buttonOne(price, name_click){
         this.setState({gener_array:json.slice(0, 6)}) //пердаем в формате json в стейт, слайсом выбираем первые 6 товаров для первой страница
 
         // console.log('products_edit')
+        console.log('products_edit')
         //
-        // console.log(this.state.products_edit, this.state.products)
+        console.log(this.state.products_edit, this.state.products)
     }
     componentDidMount(){
         // console.log('hello_comp-2')
@@ -471,13 +472,13 @@ buttonOne(price, name_click){
         // console.log('products_pagin_len')
         // console.log(products_pagin_len)
     // GET Request.
-        fetch('http://127.0.0.1:8800/api')
+        fetch('/api')
             // Handle success
             .then(response => response.json())  // convert to json
             .then(json => this.productsApi(json))  // передаем в фомате json в функцию
             // .then(json => this.mySetArray.bind(this, json))
 
-        fetch('http://127.0.0.1:8800/api/category')
+        fetch('/api/category')
             // Handle success
             .then(responsec => responsec.json())  // convert to json
             .then(json => this.setState({category:json}))
@@ -533,7 +534,7 @@ buttonOne(price, name_click){
         });
         // console.log('this.state.products_pagin')
         // console.log(this.state.products_pagin)
-        let myProducts = this.state.gener_array.slice(0, 6).map((item, index)=>{ //index внутрення нумерация, его менять нельзя, выводим товары на страницу gener_array
+            let myProducts = this.state.gener_array.slice(0, 6).map((item, index)=>{ //index внутрення нумерация, его менять нельзя, выводим товары на страницу gener_array
             let href_url = '/show/'+item.id
             let href_url_cart = "/shop_cart?i="+item.id+"&name="+item.goodsname+"&price="+item.price+"&img="+item.img
 

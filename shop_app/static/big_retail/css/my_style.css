@@ -467,30 +467,10 @@ div .my_row{
     outline: none !important;
 }
 
-/*Как сделать - различные фигуры Источник <https://html5css.ru/howto/howto_css_shapes.php> */
-/*.triangle-left {*/
-/*    width: 0;*/
-/*    height: 0;*/
-/*    border-top: 15px solid transparent;*/
-/*    border-right: 30px solid black;*/
-/*    border-bottom: 15px solid transparent;*/
-/*}*/
+.order-section{
+    margin-top: 66px;
+}
 
-/*.triangle-right {*/
-/*    width: 0;*/
-/*    height: 0;*/
-/*    border-top: 15px solid transparent;*/
-/*    border-left: 30px solid black;*/
-/*    border-bottom: 15px solid transparent;*/
-/*}*/
-
-
-/*i {*/
-/*    border: solid black;*/
-/*    border-width: 0 3px 3px 0;*/
-/*    display: inline-block;*/
-/*    padding: 3px;*/
-/*}*/
 
 .triangle-right{
     border: solid lightyellow;
@@ -987,6 +967,9 @@ input.button-lk {
 .img-responsive-art{
     height: auto;
 }
+.blog-photo {
+    max-height: 100% !important;
+}
 .blog-post h3 {
     margin-top: 11px !important;
 }
@@ -1181,6 +1164,15 @@ input.button-lk {
 
 .col-md-12-cat{
     margin-top: 20px;
+}
+.        .my-fa{
+    font-size: 16px;
+}{
+
+}
+
+.my-fa{
+    font-size: 16px;
 }
 
 /*.curr_page_number {*/

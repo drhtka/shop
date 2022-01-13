@@ -255,8 +255,11 @@
     #top-sales-slider {
         height: 424px !important;
     }
-    .animated-prod {
-        margin-left: 17% !important;
+    .animated-prod  {
+        margin: 0 auto;
+        margin-top: 10px;
+        margin-bottom: 26px;
+        margin-left: 11% !important;
     }
     .main-big-photo {
         display: flex;
@@ -639,6 +642,14 @@
         margin-top: 59px;
         margin-bottom: 11px;
     }
+    .my-fa-buy{
+        visibility: hidden !important;
+    }
+    .my-fa-detail{
+        margin: 0 auto;
+        margin-right: 16px;
+    }
+
 
     /************** lk 320  455 ***********/
     .table-lk {
@@ -1018,7 +1029,7 @@
     }
 
     .animated-prod {
-        margin-left: 31% !important;
+        margin-left: 20% !important;
     }
 
     .color-categ-prod {
@@ -1444,13 +1455,11 @@
     /*    width: 248px;*/
     /*    margin: 0 auto;*/
     /*}*/
-    .my-col-6{
-        width: 48%;
-    }
+
     .slider-container {
         width: 448px !important;
         margin: 0 auto;
-        margin-left: 3px !important;
+        /*margin-left: 3px !important;*/
         /*margin-left: 12%;*/
         /*padding-left: 11%;*/
     }
@@ -1464,6 +1473,14 @@
     }
     .art-name-table-none{
         display: none;
+    }
+
+    .my-fa-buy{
+        visibility: hidden !important;
+    }
+    .my-fa-detail{
+        margin: 0 auto;
+        margin-right: 16px;
     }
 
     /*.owl-item {*/
@@ -2169,6 +2186,13 @@
     .phone-vis-lk{
         width: 14% !important;
     }
+    .my-fa-buy{
+        visibility: hidden !important;
+    }
+    .my-fa-detail{
+        margin: 0 auto;
+        margin-right: 16px;
+    }
 
 }
 
@@ -2355,9 +2379,9 @@
         margin: 0 0 0 0 !important
     }
     .owl-item{
-        width: 4.7% !important;
-        height: 300px !important;
-        margin-left: 0%;
+        width: 3.7% !important;
+        height: 340px !important;
+        margin-left: 1%;
     }
     .padding-left-main {
         padding-left: 0px;
@@ -2396,13 +2420,9 @@
         overflow: hidden !important;
         display: block;
     }
-    .owl-item {
-        width: 4.2% !important;
-        height: 335px !important;
-    }
 
     #top-sales-slider {
-        width: 80%;
+        width: 100%;
         margin: 0 auto;
     }
     #top-sales-slider .item {
@@ -2748,7 +2768,9 @@
 
 
 @media  (min-width: 768px) and (max-width: 997px) {
-
+    .my_animated{
+        margin-top: 41pxж
+    }
     .grid-footer {
         display: grid !important;
         width: 39% !important;
@@ -3011,7 +3033,7 @@
     .our_container {
         width: 616px;
         margin: 0 auto;
-        margin-top: 70px;
+        margin-top: 31px;
     }
     .pres-des {
         width: 32%;
@@ -3040,7 +3062,9 @@
         margin: 8px 0 3px !important;
     }
     .animated-prod {
-        margin-left: 34% !important;
+        margin-left: 38% !important;
+        margin-top: 15px !important;
+        margin-bottom: 34px !important;
     }
     #product-tab .nav-tabs > li:first-child > a{
         min-width: 0px;
@@ -3157,9 +3181,9 @@
         overflow: hidden;
     }
     /*************** category 768 992 *********************/
-    .nav-tabs{
-        display: none;
-    }
+    /*.nav-tabs{*/
+    /*    display: none;*/
+    /*}*/
     .filter-category-box-categ{
         margin-top: 87px !important;
     }
@@ -3462,6 +3486,13 @@
     .phone-vis-lk{
         width: 15% !important;
     }
+    .my-fa-buy{
+        visibility: hidden !important;
+    }
+    .my-fa-detail{
+        margin: 0 auto;
+        margin-right: 16px;
+    }
 }
 @media  (min-width: 870px) and (max-width: 997px){
     .navbar-right {
@@ -3472,6 +3503,9 @@
 
 @media  (min-width: 998px) and (max-width: 1199px) {
 
+    .my_animated{
+        margin-top: 64px;
+    }
     html{
         overflow-x: hidden !important;
         /*resize: none !important;*/
@@ -3759,7 +3793,7 @@
     }
 
     #shop-detail .product-detail {
-        margin-bottom: 165px;
+        margin-bottom: 38px;
     }
 }
 

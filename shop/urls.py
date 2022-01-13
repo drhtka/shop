@@ -45,13 +45,14 @@ urlpatterns = [
     path('fastregister/', views.fastregister, name='fastregister'),
 
 
+
     path('', include('shop_app.urls')),
     path('articles', include('articles.urls')),
     path('test/', include('test_url.urls')),
     #path('blog/', include('blog.urls')),
-    path("api/",
+     path("api/",
         api_views.GoodsListView.as_view(),
-        name="api_list"),
+         name="api_list"),
     path("api/<int:id>",
         api_views.GoodsListDitailView.as_view(),
         name="api_goods_list"),
@@ -71,7 +72,9 @@ urlpatterns = [
     #path("api/posts/<str:blogpost>/", api_views.PostListUrlView.as_view(), name="api_post_list"),
     #re_path("api/posts/<blogpost>[^/]+/comments/", api_views.PostListUrlView.as_view(), name="api_post_list"),
     #url(r'^(?P<blogpost>[^/]+)/comments/(?P<id>[^/]+)/$', ModelViewSet.as_view(resource=CommentSerializer)),
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

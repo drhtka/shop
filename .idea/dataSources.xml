@@ -7,5 +7,12 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/shop_pos</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="postgres@shop_jino" uuid="212b9592-9e07-462e-9912-eb3f4687c305">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://ovz1.drhtka.pq4yn.vps.myjino.ru:5432/shop_pos</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

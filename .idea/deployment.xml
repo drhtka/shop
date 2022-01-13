@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData">
+  <component name="PublishConfigData" autoUpload="Always" serverName="shop" preserveTimestamps="false" createEmptyFolders="true" autoUploadExternalChanges="true">
     <serverData>
       <paths name="cp4.hyperhost.ua">
         <serverdata>
@@ -9,6 +9,25 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="shop">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/shop/shop" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/venv" />
+            <excludedPath path="/home/shop/shop/shopvenv" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+      <paths name="websocket@192.168.181.129:2202">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
     </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
   </component>
 </project>

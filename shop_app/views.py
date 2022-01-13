@@ -382,7 +382,7 @@ def show(request, pk):
     if len(image_goods) < 1:
         print('len(image_goods)')
         print(len(image_goods))
-        hight_flat_image = "10px"
+        hight_flat_image = "10px !important"
 
     # all_goods = GoodsModel.objects.values_list()
     # # print('all_goods_show')

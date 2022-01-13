@@ -7,14 +7,13 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.renderers import JSONRenderer
 
-
 from shop_app.models import GoodsModel, CategoryModel
 from api.serializers import GoodsModelSerializer, CategoryModelSerializer
 
 class GoodsListView(generics.ListAPIView):
     queryset = GoodsModel.objects.all()
-    print('queryset')
-    print(queryset)
+    # print('queryset')
+    # print(queryset)
     serializer_class = GoodsModelSerializer
 
 

@@ -27,7 +27,7 @@ SECRET_KEY = '9v&*3_@_029tixk300k9uz75m#@p(6(w@&-gm-ed14v*@+5)z2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['xn--80aairftm.pp.ua', '127.0.0.1']
 SITE_ID = 1
 
 # Application definition
@@ -55,21 +55,19 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'accounts.apps.AccountsConfig',
     # 'CustomUser',
-
-
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.security.SecurityMiddleware',
+    # 'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'dj_pagination.middleware.PaginationMiddleware',
-
 ]
 
 ROOT_URLCONF = 'shop.urls'
@@ -153,7 +151,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
@@ -168,8 +165,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'shop_app/static'),
     os.path.join(BASE_DIR, 'test_url/static'),
     os.path.join(BASE_DIR, 'shop_app/static/big_retail'),
-
 ]
+
 STATICFILES_FINDERS = (
 
     "django.contrib.staticfiles.finders.FileSystemFinder",
@@ -184,17 +181,37 @@ SESSION_SAVE_EVERY_REQUEST = True
 
 
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = False
 
 CORS_ORIGIN_WHITELIST = [
     'http://google.com'
     'localhost:8800'
+    'localhost:8005'
+    '127.0.0.1'
+    '127.0.0.1/api'
+    'http://127.0.0.1'
+    'http://127.0.0.1/api'
+    'http://127.0.0.1/'
+    'http://127.0.0.1/api'
     # 'http://localhost:8800'
     'http://127.0.0.1:8800'
     'http://127.0.0.1:8800/api'
+    'http://127.0.0.1:8005'
+    'http://xn--80aairftm.pp.ua:8005'
+    'http://127.0.0.1:8005/api'
+    'http://xn--80aairftm.pp.ua:8005/api'
+    '127.0.0.1:8005'
+    'xn--80aairftm.pp.ua:8005'
+    '127.0.0.1:8005/api'
+    'xn--80aairftm.pp.ua'
+    'xn--80aairftm.pp.ua/api'
+    'xn--80aairftm.pp.ua:8005/api'
     # 'https://www.youtube.com'
     # 'https://googleads.g.doubleclick.net'
     'gdata.youtube.com'
     'googleads.g.doubleclick.net'
+    '*'
+
     # 'http://gdata.youtube.com/feeds/api/videos/8hv-ol3'
     # 'https://gdata.youtube.com/feeds/api/videos/8hv-ol3RnPo?v=2&alt=jsonc'
     # '*'
